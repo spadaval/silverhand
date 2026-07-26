@@ -1,0 +1,4 @@
+# Blender working state — large CAD sources; keep local / external backup
+blender_files/
+*.blend
+*.blend1
