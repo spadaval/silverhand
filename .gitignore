@@ -2,3 +2,6 @@
 blender_files/
 *.blend
 *.blend1
+
+# ...except the master scene, which is checked in via Git LFS
+!reference/Johnny.blend
