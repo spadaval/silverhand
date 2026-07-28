@@ -225,6 +225,8 @@ def main() -> int:
                     "rows": list(VIEW_DIRECTIONS),
                 },
                 "contact_sheet": None,
+                "contact_sheets": [],
+                "archival_contact_sheet": None,
             },
         }
         manifest_path = output_dir / "manifest.json"
