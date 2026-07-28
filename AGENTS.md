@@ -31,6 +31,16 @@ Read these files before changing the model:
 - Local `.blend` experiments and archives belong under `blender_files/`, which
   is intentionally ignored.
 
+## Image evidence safety
+
+- Never inspect a full or archival contact sheet directly with an image model.
+- Use the paginated files listed in `render.contact_sheets` or inspect
+  individual matched-view images.
+- Use high image detail for review sheets. Reserve original detail for a small,
+  explicit crop when exact pixels are necessary.
+- A full vertical contact sheet may be generated only as human archival
+  evidence and must remain marked `direct_image_model_review: false`.
+
 ## Geometry rules
 
 - The game model governs visible composition.

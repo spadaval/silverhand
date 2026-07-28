@@ -370,8 +370,10 @@ voids that makes the arm read as the intended cybernetic design. Terms such as
 
 ### Contact sheet
 
-A stable set of matched source/current views. It standardizes evidence but does
-not perform the review.
+A stable set of matched source/current views. The active review form is a
+paginated packet listed under `render.contact_sheets`; each page is bounded for
+safe image-model inspection. A full vertical sheet is human archival evidence
+only. Neither form performs the qualitative review.
 
 ### Geometry fingerprint
 

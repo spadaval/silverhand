@@ -27,8 +27,8 @@ lineages.
 - `tools/sync_validation_cameras.sh` — creates or repairs the eight canonical
   semantic cameras and saves them in `90_VALIDATION_CAMERAS`.
 - `tools/render_geometry_comparison.sh` — renders the immutable TPU-only source
-  and current evaluation through identical cameras, then builds an annotated
-  Pillow contact sheet with `uv`.
+  and current evaluation through identical cameras, then builds two annotated,
+  bounded Pillow review pages with `uv`.
 - `tools/inventory_working_geometry.sh` — records every `REG_*` constituent,
   region, disposition, topology, bounds, metadata, and fingerprint.
 - `tools/analyze_clearance.sh` — records cutter topology, fit/cutter surface
@@ -61,7 +61,10 @@ lineages.
 
 ## Host-side Python
 
-- `tools/build_contact_sheet.py` — Pillow/`uv` contact-sheet composer.
+- `tools/build_contact_sheet.py` — Pillow/`uv` review-packet composer. It puts
+  at most four views on each page, uses two matched view-pairs per row, and
+  caps review pages at `2000 px`. A full vertical sheet requires the explicit
+  `--archival-output` option and is not suitable for direct image-model review.
 - `tools/validate_stl_exports.py` — dependency-free binary STL audit.
 - `tools/inventory_reference_3mf.py` — inventory of the proven 3MF.
 - `tools/extract_reference_3mf_armor.py` — extraction of millimeter-native armor
@@ -138,3 +141,8 @@ the `--` separator.
 
 The host contact-sheet helper uses a PEP 723 Pillow dependency managed by `uv`;
 it does not install Pillow into Blender.
+
+By default it creates `comparison_review_sheet-01.png` and
+`comparison_review_sheet-02.png` for the eight canonical views. The manifest
+lists these under `render.contact_sheets` with the `high` detail hint. Do not
+open a full archival sheet through an image-model inspection tool.

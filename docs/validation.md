@@ -92,6 +92,12 @@ Generate the standard comparison with:
 ./scripts/tools/render_geometry_comparison.sh
 ```
 
+The command produces a two-page review packet with four semantic views per
+page. Image-model review must use the files listed in
+`render.contact_sheets` at high detail, or individual matched-view images.
+Full vertical contact sheets are optional human archival evidence and must not
+be inspected directly by an image model.
+
 The canonical cameras live in `90_VALIDATION_CAMERAS`. Source and current
 geometry use the exact same orthographic camera transform and framing for each
 view. Regenerate or repair the rig with:
@@ -254,5 +260,7 @@ Each review JSON must include:
 - physical test status;
 - next gate.
 
-Generated views may be regenerated. Keep the JSON record and one useful contact
-sheet per milestone in Git unless a detailed view has unique review value.
+Generated views may be regenerated. Keep the JSON record and the useful review
+packet pages per milestone in Git unless a detailed view has unique review
+value. A full archival sheet is optional and does not replace the paginated
+review packet.
