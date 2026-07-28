@@ -140,6 +140,42 @@ validation evidence. The tracked master and retained rescue candidate were not
 changed. A Boolean cutter becomes viable only after a bounded region has been
 classified and reconstructed as a coherent volume.
 
+## Deep-fragment pilot evidence
+
+Two ignored local pilot scenes compare vertex deletion, rigid translation,
+uniform radial offset, radial-depth compression, and a procedural masked
+displacement field:
+
+- a borderline component with only two violating vertices can be cleared by
+  the masked field without a perceptible exterior change;
+- the selected deep wrist component has `40` vertices, `15` cutter
+  penetrations, and a `-11.748 mm` minimum margin;
+- deleting its violating vertices removes `15` vertices and `33` of its `65`
+  faces;
+- uniform radial offset inflates it, while masked displacement and radial-depth
+  compression visibly crush its axial profile;
+- a `15.2 mm` rigid lift preserves the fragment but breaks local registration
+  when applied to that component alone.
+
+A final spatial-field trial applied the same rigid motion to nearby geometry
+with smooth `25 mm` and `40 mm` falloffs. The `25 mm` field is the least
+destructive deep-failure result so far: it preserves the pilot fragment,
+affects `493` nearby vertices, and reduces total cutter penetrations from `424`
+to `401`. The `40 mm` field affects `1,085` vertices and creates new
+reserved-margin failures.
+
+No deep-fragment variant is promoted. The useful result is strategic: deep
+failures should first be tested as bounded corrections to the shared regional
+fit field. Isolated component repair remains a fallback only after neighboring
+registration has been evaluated.
+
+Evidence:
+
+- `blender_files/Johnny_pilot_reconstruction_trials.blend`
+- `blender_files/Johnny_pilot_reconstruction_component59_trials.blend`
+- `_validation/pilot_reconstruction/iteration_2_component59/build_report.json`
+- [Regional clearance-deformation approach](approaches/regional-clearance-deformation.md)
+
 ## Cleanup baseline
 
 - 170 objects
@@ -206,22 +242,25 @@ transformation evidence, not a salvage library for production.
 
 ## Immediate next work
 
-1. Generate explicit review masks for the `424` remaining penetrations across
-   the `14` still-intersecting components.
+1. Generate explicit review masks for the remaining penetrations across the
+   `14` still-intersecting components.
 2. Classify each masked region as visible source surface, removable prosthetic
    interior, or bounded reconstruction.
-3. Choose one small deep-failure region as the reconstruction pilot; preserve
-   its visible boundary and replace only the geometry required for clearance.
-4. Preserve the accepted shallow rescue mask; do not continue automatic radial
+3. Rework the deep wrist pilot as a bounded shared regional deformation,
+   starting from the `25 mm` falloff trial and reviewing registration against
+   adjacent source landmarks.
+4. If regional deformation cannot preserve the wrist composition, rebuild only
+   the pilot's hidden/interior surface while preserving its visible boundary.
+5. Preserve the accepted shallow rescue mask; do not continue automatic radial
    lifting beyond its `5 mm` and orientation limits.
-5. Reconstruct the larger shoulder, elbow, wrist, and embedded failures only
+6. Reconstruct the larger shoulder, elbow, wrist, and embedded failures only
    after the pilot establishes a reviewable method.
-6. Repeat triangle-orientation, distortion, matched-view, and exact
+7. Repeat triangle-orientation, distortion, matched-view, and exact
    surface-clearance evidence after every bounded reconstruction.
-7. Promote a fitted surface master only after qualitative visual and digital
+8. Promote a fitted surface master only after qualitative visual and digital
    clearance review.
-8. Begin hidden solidification and connectivity work only after that promotion.
-9. Defer the approximately `30°` priority wear pose and broader elbow mobility
+9. Begin hidden solidification and connectivity work only after that promotion.
+10. Defer the approximately `30°` priority wear pose and broader elbow mobility
    until the static straight composition is accepted.
 
 ## Deferred decisions already recorded

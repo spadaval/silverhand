@@ -5,11 +5,12 @@ manufacturing.
 
 Read these files before changing the model:
 
-1. `DESIGN.md` — accepted, durable design contract.
-2. `STATUS.md` — current scene authority, defects, and immediate milestone.
-3. `VALIDATION.md` — reusable promotion gates.
-4. `GLOSSARY.md` — authoritative project terminology and result language.
-5. `HISTORY.md` — rejected approaches and lessons that must not be repeated.
+1. `docs/design.md` — accepted, durable design contract.
+2. `docs/status.md` — current scene authority, defects, and immediate milestone.
+3. `docs/validation.md` — reusable promotion gates.
+4. `docs/glossary.md` — authoritative project terminology and result language.
+5. `docs/history.md` — rejected approaches and lessons that must not be repeated.
+6. Relevant records under `docs/approaches/` — evidence-backed method bounds.
 
 ## Units
 

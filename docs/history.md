@@ -3,6 +3,8 @@
 This file preserves lessons from rejected approaches without keeping their
 geometry, scripts, and binaries in the active workflow. Historical dimensions
 were recorded in centimeters before the 2026-07-27 millimeter migration.
+Current authority remains in [design.md](design.md) and
+[status.md](status.md).
 
 ## Original extracted model
 
@@ -220,6 +222,38 @@ interpretation manifold; it does not create the intended sleeve volume. The
 remaining deep failures need explicit surface classification and bounded
 reconstruction before a cutter can be used as a reliable manufacturing
 Boolean.
+
+## Deep-fragment reconstruction pilot
+
+One borderline fragment and one deeply embedded wrist fragment were tested
+without changing the retained rescue candidate.
+
+The borderline case confirmed that a procedural per-vertex displacement field
+can resolve a very small violation with negligible visible change. That does
+not generalize to deep failures.
+
+On the deep wrist fragment:
+
+- deleting penetrating vertices destroyed about half the surface;
+- uniform radial offset inflated the fragment;
+- masked displacement and radial-depth compression cleared the cutter by
+  collapsing the fragment's depth;
+- rigid translation preserved its form but displaced it by `15.2 mm`.
+
+Spreading that rigid translation into all nearby geometry with a smooth spatial
+falloff was more promising than editing the fragment alone. A `25 mm` falloff
+preserved the fragment and improved the global clearance count without the
+wide collateral effects of a `40 mm` falloff, but it remains an unapproved
+fit-field experiment.
+
+Lesson: a deep collision can be evidence that the regional fit field is wrong,
+not that the isolated source island is defective. Test a bounded shared
+deformation first. Rebuild visible or hidden surfaces only when coherent
+regional motion cannot preserve source registration.
+
+See the
+[regional clearance-deformation approach](approaches/regional-clearance-deformation.md)
+for the pilot evidence, method bounds, and continuation plan.
 
 The active master was reduced from 533 to 162 objects. Legacy collections,
 duplicate references, cameras, missing image dependencies, and unused datablocks

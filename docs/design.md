@@ -1,7 +1,8 @@
 # Silverhand Cyberarm — Design Contract
 
 This document contains accepted design decisions only. Live progress belongs in
-`STATUS.md`; rejected approaches and historical metrics belong in `HISTORY.md`.
+[status.md](status.md); rejected approaches and historical metrics belong in
+[history.md](history.md).
 
 ## 1. Product goal
 
@@ -34,8 +35,8 @@ The current scope is the wrist crease through the upper bicep.
 | Source classification | explicit reviewed masks; material labels are supporting evidence only |
 | Armor shape and scale | game source plus the proven 3MF, chosen per plate |
 | Material behavior | physical TPU/PLA coupons |
-| Current state | `STATUS.md` |
-| Promotion criteria | `VALIDATION.md` |
+| Current state | [status.md](status.md) |
+| Promotion criteria | [validation.md](validation.md) |
 
 No object name, script completion, manifold report, or slicer repair overrides
 the appropriate authority above.

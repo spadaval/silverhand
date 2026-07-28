@@ -10,7 +10,8 @@ This directory contains concise evidence, not generated-workspace history.
 - `layered_coupon_proof/` preserves the earlier evidence that overlapping
   closed source-detail solids can pass STL checks and slice successfully.
 
-Current records follow the schema in `VALIDATION.md`. A visual baseline is not a
+Current records follow the schema in
+[`docs/validation.md`](../docs/validation.md). A visual baseline is not a
 connected master or print approval. Generated detail views should be recreated
 when needed; retain one useful contact sheet unless an individual image has
 unique review value.

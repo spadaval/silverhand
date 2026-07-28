@@ -28,7 +28,7 @@ status and evidence.
 - No missing external files.
 - No accidental shared editable mesh data.
 - No cameras, exports, or legacy objects masquerade as active geometry.
-- Current object names agree with `STATUS.md`.
+- Current object names agree with [status.md](status.md).
 
 Failure blocks all later gates.
 

@@ -21,18 +21,19 @@ exports are deliberately later milestones.
 
 ## Project authority
 
-- [DESIGN.md](DESIGN.md) — accepted strategy and geometry contract
-- [STATUS.md](STATUS.md) — active scene and immediate work
-- [VALIDATION.md](VALIDATION.md) — promotion gates
-- [GLOSSARY.md](GLOSSARY.md) — authoritative project terminology
-- [HISTORY.md](HISTORY.md) — rejected approaches and retained lessons
+- [Documentation index](docs/README.md) — authority map and reading order
+- [Design contract](docs/design.md) — accepted strategy and geometry contract
+- [Current status](docs/status.md) — active scene and immediate work
+- [Validation contract](docs/validation.md) — promotion gates
+- [Glossary](docs/glossary.md) — authoritative project terminology
+- [History](docs/history.md) — rejected approaches and retained lessons
 - [AGENTS.md](AGENTS.md) — operating conventions
 
 ## Important files
 
 - `reference/Johnny.blend` — tracked master scene
 - `reference/johnny_silverhand_arm_scaled_up.3mf` — print-proven reference
-- `validation_reviews/main_geometry_baseline/` — current comparison evidence
+- `validation_reviews/` — tracked qualitative review records
 - `exports/current/` — production exports only; currently empty
 - `exports/evidence/` — retained non-production proof artifacts
 

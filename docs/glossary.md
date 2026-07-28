@@ -2,6 +2,7 @@
 
 This glossary gives project terms one durable meaning. A tool, object name, or
 conversation must not silently promote an artifact beyond these definitions.
+See the [documentation index](README.md) for the other project authorities.
 
 ## Authority and result language
 
@@ -275,6 +276,13 @@ be baked and deformed again as an additional modeling stage.
 One continuous spatial mapping applied to the complete source surface. It may
 bend the centerline, reparameterize length, scale cross-sections, and compress
 depth, but it must not move constituents independently.
+
+### Regional fit-field correction
+
+A bounded refinement of the shared deformation field applied to every vertex
+within one spatial region. It may preserve a deep source landmark while
+blending its motion into neighboring geometry. It is not an independent
+component lift and requires matched regional review.
 
 ### Radial depth stack
 
