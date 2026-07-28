@@ -2,6 +2,9 @@
 blender_files/
 *.blend
 *.blend1
+_validation/
+__pycache__/
+*.py[cod]
 
 # ...except the master scene, which is checked in via Git LFS
 !reference/Johnny.blend

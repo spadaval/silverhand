@@ -1,30 +1,71 @@
 # Silverhand Cyberarm
 
-A wearable cosplay build of Johnny Silverhand's cyberarm from Cyberpunk 2077 —
-modeled in Blender, 3D printed, and assembled as a two-material arm piece.
+A wearable Johnny Silverhand-inspired cyberarm for 3D printing. The design uses
+flexible TPU structure with separate rigid PLA armor while prioritizing comfort
+and source-model character over literal replica construction.
 
-## Goals
+## Current direction
 
-- **Wearable cosplay piece, not a replica.** Comfort takes priority over screen accuracy.
-- **All detail comes from the 3D print.** Cables, fibers, and panel detail are printed geometry — no hand fabrication.
-- **Two-material architecture:**
-  - **PLA armor plates** that read as metal (painted + weathered)
-  - A flexible **TPU inner sleeve** (95A) worn underneath, carrying the plates and most of the surface detail
+The active milestone is a wrist-to-upper-bicep **fitted surface master**:
 
-## Approach
+- begin again from the clean armor-stripped game surface;
+- map the whole surface through one shared, smooth deformation field;
+- preserve topology, relative placement, depth ordering, and negative space;
+- rebuild only bounded regions that cannot survive wearer fitting;
+- use a wearer-clearance volume only as a Boolean cutter and collision tool;
+- defer thickness, structural junctions, and printable topology until the fitted
+  surface passes matched-view review.
 
-- Source geometry is a game rip (`a0_001_ma_arms__silverhand`, damaged variant), rescaled per-section to the wearer's measurements in Blender.
-- One welded TPU sleeve runs wrist → bicep, closed by corset lacing; PLA plates attach on top with magnets/velcro; the hand is built on a fabric mechanic's glove.
-- Everything is sized for a Bambu A1 mini (18×18×18 cm bed, TPU-capable).
+Armor-gap panels, magnet hardpoints, closure details, segmentation, and final
+exports are deliberately later milestones.
 
-The full design rationale, fit/scaling math, panel inventory, and build sequence live in [DESIGN.md](DESIGN.md).
+## Project authority
 
-## Cloning
+- [DESIGN.md](DESIGN.md) — accepted strategy and geometry contract
+- [STATUS.md](STATUS.md) — active scene and immediate work
+- [VALIDATION.md](VALIDATION.md) — promotion gates
+- [GLOSSARY.md](GLOSSARY.md) — authoritative project terminology
+- [HISTORY.md](HISTORY.md) — rejected approaches and retained lessons
+- [AGENTS.md](AGENTS.md) — operating conventions
 
-This repo uses **Git LFS** for the master Blender scene (`reference/Johnny.blend`, ~260 MB).
-Install [git-lfs](https://git-lfs.com) *before* cloning, or that file will arrive as a small text pointer instead of the real scene:
+## Important files
 
+- `reference/Johnny.blend` — tracked master scene
+- `reference/johnny_silverhand_arm_scaled_up.3mf` — print-proven reference
+- `validation_reviews/main_geometry_baseline/` — current comparison evidence
+- `exports/current/` — production exports only; currently empty
+- `exports/evidence/` — retained non-production proof artifacts
+
+The entire project uses millimeters. Blender is configured as
+`1 Blender unit = 1 mm`, and STL export scale is `1.0`.
+
+## Validation
+
+Validate the master scene:
+
+```sh
+blender --background reference/Johnny.blend \
+  --python-exit-code 1 \
+  --python scripts/blender/validate_master.py
 ```
+
+Validate only the explicit current export directory:
+
+```sh
+scripts/tools/run_validation.sh
+```
+
+An empty `exports/current/` is expected until a connected main-geometry master
+is approved.
+
+## Git LFS
+
+Install Git LFS before cloning or pulling:
+
+```sh
 git lfs install
 git clone git@github.com:spadaval/silverhand.git
 ```
+
+Only `reference/Johnny.blend` is tracked as a `.blend`. Working scenes and local
+archives remain under the ignored `blender_files/` directory.

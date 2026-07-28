@@ -1,33 +1,56 @@
-# AGENTS.md
+# Silverhand project instructions
 
-Silverhand cyberarm cosplay build — Blender-based 3D modeling for 3D printing.
-Read [DESIGN.md](DESIGN.md) before making modeling decisions; it holds the design
-rationale, fit/scaling math, panel inventory, and build sequence.
+Silverhand is a Blender-based cyberarm cosplay build intended for additive
+manufacturing.
 
-## Layout
+Read these files before changing the model:
 
-- `reference/Johnny.blend` — **the master scene** (tracked via Git LFS, ~260 MB)
-- `reference/johnny_silverhand_arm_scaled_up.3mf` — proven printed panels used to calibrate fit
-- `blender_files/` — local Blender working iterations (gitignored, **not synced** between machines)
-- `exports/sleeve/`, `exports/test_prints/` — print-ready STLs exported from the master scene
-- `_stl_preview/` — rendered previews of the exported STLs
-- `DESIGN.md` — the design doc (goals, scaling, components, build sequence)
+1. `DESIGN.md` — accepted, durable design contract.
+2. `STATUS.md` — current scene authority, defects, and immediate milestone.
+3. `VALIDATION.md` — reusable promotion gates.
+4. `GLOSSARY.md` — authoritative project terminology and result language.
+5. `HISTORY.md` — rejected approaches and lessons that must not be repeated.
 
-## Git LFS (required)
+## Units
 
-- Install and init git-lfs **before cloning/pulling** (`git lfs install`), otherwise
-  `reference/Johnny.blend` arrives as a text pointer instead of the real scene.
-- `.gitattributes` routes **all** `*.blend` files through LFS.
-- `.gitignore` ignores `blender_files/`, `*.blend`, and `*.blend1`, with a single
-  exception: `!reference/Johnny.blend`. Only the master scene is checked in.
-- To update the checked-in master scene: overwrite `reference/Johnny.blend` and commit —
-  LFS storage is expected and fine for this one file.
-- Do **not** force-add other `.blend` files from `blender_files/`; keep experiments
-  local-only. LFS storage/bandwidth is limited (GitHub free tier: 1 GB).
+- Blender and all project scripts use millimeters.
+- Scene convention: `1 Blender unit = 1 mm` and `scale_length = 0.001`.
+- STL exports use scale `1.0`; never apply a centimeters-to-millimeters export
+  multiplier.
+- The A1 mini build volume is `180 × 180 × 180 mm`.
 
-## Conventions
+## Source and scene safety
 
-- Blender scene units: **1 unit = 1 cm** (`scale_length = 0.01`); STL exports are scaled ×10 to mm.
-- Print bed is 18×18×18 cm (A1 mini) — all exported pieces must be bed-sized.
-- Design decisions, component inventory, and build-sequence status live in DESIGN.md —
-  update it when any of those change, not just the scene.
+- `reference/Johnny.blend` is the tracked master scene.
+- `reference/johnny_silverhand_arm_scaled_up.3mf` is print-proven scale and
+  armor-shape evidence, not anatomical registration.
+- Preserve `SRC_GAME_RAW` and `SRC_GAME_FITTED` as immutable source evidence.
+- Do not edit or export `EVAL_*` review objects as production geometry.
+- Do not delete current salvage geometry without a verified checkpoint.
+- Local `.blend` experiments and archives belong under `blender_files/`, which
+  is intentionally ignored.
+
+## Geometry rules
+
+- The game model governs visible composition.
+- The fit reference governs wearer dimensions.
+- The clearance cutter is used only for subtraction and collision checks. It
+  must never generate or supply a global visible carrier.
+- Preserve intentional negative space.
+- Every printable constituent must be a closed, consistently oriented,
+  positive-volume solid.
+- Supports make printing possible; they do not create permanent connections.
+- Use local structural junctions, not an indiscriminate backing union.
+- Main geometry comes before tactical armor panels, hardpoints, closure detail,
+  and printer-bed segmentation.
+
+## Repository rules
+
+- Git LFS is required for the tracked master `.blend`.
+- Do not force-add other `.blend` files.
+- Keep rejected experiments in Git history or local archives, not in the active
+  master scene.
+- Errors must name the failed operation, target object/file, and actionable
+  reason.
+- Use `DONE` for successful tool execution. Reserve `PASS` for a named
+  validation gate or audit.
