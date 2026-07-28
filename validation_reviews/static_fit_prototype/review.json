@@ -1,0 +1,72 @@
+{
+  "target_role": "fitted surface candidate",
+  "target_object": "WORK_FITTED_SURFACE_CANDIDATE",
+  "source_object": "SRC_GAME_TPU_ONLY_BASELINE",
+  "source_topology": {
+    "vertices": 7347,
+    "edges": 19876,
+    "faces": 12564
+  },
+  "deformation": {
+    "method": "shared low-frequency station-angle source baseline into smooth anatomical station-angle target; monotonic radial depth; Basis preserved",
+    "shape_key": "STATIC_ANATOMICAL_FIT",
+    "source_baseline_percentile": 0.1,
+    "source_baseline_harmonics": 2,
+    "outer_radial_depth_scale": 1.0,
+    "inner_radial_depth_scale": 1.0,
+    "bounded_reconstruction_masks": []
+  },
+  "source_geometry_fingerprint": "e3e25e9188e9347671f90066c33d5da581f6c456565b63a39332acf3728d1362",
+  "target_geometry_fingerprint": "a29ab5cc2ea72b033ed0f44856a2db2277865e4a2027c9ff375ea71950a9425e",
+  "milestone_status": "fitted_surface_candidate_not_approved",
+  "date": "2026-07-27",
+  "units": "millimeters",
+  "source_comparison_completed": true,
+  "views_examined": [
+    "dorsal",
+    "ventral",
+    "medial",
+    "lateral",
+    "dorsal_lateral_three_quarter",
+    "ventral_medial_three_quarter",
+    "wrist_axial",
+    "bicep_axial"
+  ],
+  "geometry_results": {
+    "topology_invariants": "PASS",
+    "source_faces_deleted_or_split": 0,
+    "candidate_cutter_triangle_overlaps": 1323,
+    "vertices_inside_cutter": 743,
+    "minimum_vertex_margin_mm": -49.513582,
+    "affected_connected_components": 19,
+    "triangle_orientation_review_locators": 30,
+    "edge_length_ratio_p05": 0.819598,
+    "edge_length_ratio_median": 1.022808,
+    "edge_length_ratio_p95": 2.27931
+  },
+  "qualitative_assessment": {
+    "gate_c_visual_review": "FAIL",
+    "summary": "The shared deformation preserves registration and is much cleaner than the rejected processed baseline, but the bicep and shoulder mass, axial depth, and several local regions are altered too strongly for promotion.",
+    "does_this_look_ass": true
+  },
+  "promotion_gates": {
+    "gate_b_transformation_integrity": "PENDING",
+    "gate_c_fitted_surface_visual_review": "FAIL",
+    "gate_d_anatomical_clearance": "FAIL"
+  },
+  "unresolved_failures": [
+    "Review the 30 triangle-orientation locators and the long distortion tail.",
+    "Name and verify anatomical cross-sections at the wrist, elbow transitions, and upper bicep.",
+    "Create explicit review masks for the 19 cutter-intersecting source components.",
+    "Reconstruct only bounded visible or deeply embedded regions that cannot survive the shared deformation.",
+    "Repeat matched-view and exact cutter-intersection evidence after reconstruction."
+  ],
+  "physical_test_status": "not_started",
+  "motion_claim": "none",
+  "next_gate": "repeat Gate B, Gate C, and Gate D after bounded failure classification",
+  "evidence": {
+    "build_report": "_validation/static_fit_prototype/iteration_6/build_report.json",
+    "contact_sheet": "_validation/static_fit_prototype/iteration_6/comparison/comparison_contact_sheet.png",
+    "local_blend": "blender_files/Johnny_static_fit_prototype.blend"
+  }
+}

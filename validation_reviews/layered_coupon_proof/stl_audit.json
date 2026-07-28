@@ -1,0 +1,27 @@
+{
+  "export_root": "/private/var/folders/gv/x0jyj24s3mv2y_b46y2t_l3h0000gn/T/tmp.4NzJIy2qdD",
+  "bed_limit_mm": 180.0,
+  "allow_overlapping_shells": true,
+  "files": [
+    {
+      "file": "source_guided_layered_forearm_coupon_v1.stl",
+      "bytes": 7358084,
+      "triangles": 147160,
+      "dimensions_mm": [
+        92.573,
+        91.42,
+        96.999
+      ],
+      "connected_components": 7,
+      "nonmanifold_edges": 0,
+      "degenerate_triangles": 0,
+      "issues": [],
+      "passed": true
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "passed": 1,
+    "failed": 0
+  }
+}

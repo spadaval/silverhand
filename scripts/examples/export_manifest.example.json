@@ -1,0 +1,13 @@
+{
+  "artifact_status": "editable main geometry",
+  "artifacts": [
+    {
+      "filename": "replace_with_artifact_name.stl",
+      "objects": [
+        "REPLACE_WITH_EXPLICIT_REG_OBJECT"
+      ],
+      "component_policy": "single_solid",
+      "bed_policy": "unsegmented_evidence"
+    }
+  ]
+}
