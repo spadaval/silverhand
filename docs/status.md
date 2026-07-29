@@ -176,6 +176,202 @@ Evidence:
 - `_validation/pilot_reconstruction/iteration_2_component59/build_report.json`
 - [Regional clearance-deformation approach](approaches/regional-clearance-deformation.md)
 
+## Stepwise geometry-repair evidence
+
+The active ignored repair scene is:
+
+- `blender_files/Johnny_geometry_repair_work.blend`
+
+It begins from the retained fragment rescue and stores each accepted change as
+a reversible relative shape key. `REPAIR_001_COMPONENT_0` is retained as a
+bounded shallow-clearance patch:
+
+- two remaining penetrations are cleared;
+- global cutter penetrations fall from `424` to `422`;
+- reserved-margin failures fall from `433` to `431`;
+- cutter triangle overlaps fall from `1,051` to `1,037`;
+- source topology, face indices, and material assignments remain unchanged;
+- no negative-orientation locators are introduced;
+- local and complete high-detail review pages show no perceptible damage.
+
+The patch does not promote the complete fitted surface. Two contracted local
+edges remain recorded as later thickness/print-detail watch items.
+
+`REPAIR_002_COMPONENT_1_REGIONAL` is retained as a second reversible candidate,
+relative to Repair 001. Component `1` is a visible ventral mechanical plate
+nested against component `25`, so isolated lifting, deletion, masked radial
+displacement, and depth compression were rejected. A shared `35 mm` regional
+field moves the plate through an `8.2 mm` rigid core correction and blends the
+same motion through nearby source geometry:
+
+- all `8` component-1 penetrations are cleared;
+- global cutter penetrations fall from `422` to `397`;
+- reserved-margin failures fall from `431` to `411`;
+- cutter triangle overlaps fall from `1,037` to `978`;
+- topology and material assignments remain unchanged;
+- component `1` remains approximately `0.277 mm` from component `25`;
+- no negative-orientation locators are introduced;
+- local and complete high-detail review shows no perceptible registration or
+  silhouette damage.
+
+The field affects `1,471` weighted vertices and its affected-edge ratios range
+from `0.723772` to `1.312896`. It remains a fitted-surface candidate and does
+not establish a general automatic regional-lifting rule.
+
+Three additional hidden-side repairs are retained as reversible relative shape
+keys:
+
+| Repair | Component | Cutter vertices cleared | Global overlaps before → after | Visible result |
+|---|---:|---:|---:|---|
+| `REPAIR_003_COMPONENT_25_MASKED` | 25 | 29 | 978 → 885 | visible cradle preserved; displaced surface is buried |
+| `REPAIR_004_COMPONENT_37_MASKED` | 37 | 7 | 885 → 870 | exposed cable curve preserved; distorted endpoint is buried |
+| `REPAIR_005_COMPONENT_42_MASKED` | 42 | 7 | 870 → 837 | exposed upper-arm composition preserved; displaced branch is buried |
+
+Together, Repairs 003–005 reduce cutter penetrations from `397` to `354` and
+reserved-margin failures from `411` to `365`. They preserve all source
+vertices, faces, polygon indices, and material assignments, and introduce no
+negative-orientation locators. The active work scene is checkpointed after
+each retained repair.
+
+These are fitted-surface repairs, not printable-solid approval. Component `25`
+has five hidden edges contracted below half length; component `37` has three
+such edges plus one edge expanded to `2.088288`; component `42` has one edge
+contracted to `0.448621`. Those buried regions are explicit later
+solidification watch items.
+
+Four further repairs are retained as reversible candidates after independent,
+sanitized, high-detail local and complete matched-view review:
+
+| Repair | Component | Method | Global cutter vertices before → after | Global overlaps before → after |
+|---|---:|---|---:|---:|
+| `REPAIR_006_COMPONENT_20_MINOR_PATCHES` | 20 | six-ring harmonic field over minor clusters 2–5 | 354 → 336 | 837 → 806 |
+| `REPAIR_007_COMPONENT_16_HARMONIC` | 16 | eight-ring harmonic field | 336 → 334 | 806 → 792 |
+| `REPAIR_008_COMPONENT_52_REGIONAL` | 52 | `35 mm` shared regional rigid field | 334 → 326 | 792 → 769 |
+| `REPAIR_009_COMPONENT_57_REGIONAL` | 57 | `45 mm` shared regional rigid field | 326 → 309 | 769 → 741 |
+
+Repairs 006–009 preserve all source vertices, faces, face indices, and material
+assignments and introduce no negative-orientation locators. Each bounded delta
+answers `does_this_repair_delta_look_ass: false`. Component `16`, component
+`52`, and component `57` now have zero vertices below either the cutter or the
+reserved wall. Repair 006 clears only the four minor component-20 clusters;
+`115` component-20 vertices remain inside the cutter.
+
+The active scene and its pre-review checkpoint are byte-identical at SHA-256
+`35f3f8243022d6335df4ee60066a8041e4f1240e2c9462475e91f54f3fa2ca92`:
+
+- `blender_files/Johnny_geometry_repair_work.blend`
+- `blender_files/checkpoints/geometry_repair/pre_review_repairs_006_009_20260728.blend`
+
+Components `36` and `39` are now classified and parked:
+
+- component `36`: masked displacement flips three faces; depth compression
+  visibly changes the wrist hook;
+- component `39`: masked displacement flips one face; depth compression
+  flattens and rotates the wrist detail; rigid lifting breaks registration.
+
+Component `9` is also classified, but no geometry is retained from its trials.
+It is a `2,508`-vertex structural surface spanning much of the wrist and
+forearm, not one movable fragment. Its `163` penetrating vertices form six
+clusters; the two dominant wearer-facing inner-wall clusters contain `86` and
+`68` vertices at the proximal and wrist ends.
+
+Whole-component movement, radial compression, uniform offset, and masked
+projection are rejected. The nominal rigid lift creates `670` component-9
+penetrations; compression introduces `11` reversed faces; uniform offset
+introduces `9`; the ordinary masked field introduces `58`. Increasing masked
+diffusion raises the failure to `90–125` reversed faces. Deleting the
+penetrating vertices removes `466` interior faces and confirms that the outer
+silhouette is mostly unaffected, but the resulting open lumen holes are not a
+retained repair.
+
+Component `20`, only `0.012323 mm` from component `9`, is now classified into
+six violation clusters. Repair 006 retains bounded harmonic corrections for
+minor clusters 2–5. Major clusters 0 and 1 contain `87` and `32`
+reserved-margin failures and require wearer-facing surface replacement.
+
+The first cutter-derived replacement trials are not retained. An unbridged
+patch splits the candidate from `64` to `68` connected components and raises
+boundary edges from `1,756` to `1,929`. The best tested boundary bridge keeps
+`64` components but still raises boundary edges to at least `1,785`; conforming
+bridges raise them further. These trials prove the replacement location and
+clearance effect, not a valid transition topology.
+
+A boundary-count-preserving strip then met those numerical topology bounds:
+`64` connected components and `1,756` boundary/nonmanifold edges were
+unchanged, no noncontiguous manifold edges appeared, penetrations fell from
+`309` to `194`, and overlaps fell from `741` to `519`. It is nevertheless
+rejected. Bicep-axial high-detail review shows that its `1,451`-face
+cutter-conforming strip erases the source's stepped angular inner depth and
+reads as a broad smooth carrier-like slab. It also retains `42` replacement
+triangle overlaps.
+
+Two relief-preserving deformation controls are also rejected numerically.
+Pointwise projection of the original major-cluster vertices clears component
+`20` but reverses `8–22` triangles and stretches one edge to `11.8664` times
+its original length. Translating each major cluster rigidly before a harmonic
+boundary blend requires `48.205661 mm` and `32.556071 mm` motions; every
+tested transition reverses at least seven triangles, and the variants that
+clear the clusters reverse `43–202`.
+
+A component-proximity audit does not justify deleting component `20` as a
+duplicate of component `9`. Only `2` of the `118` major-cluster vertices are
+within `0.1 mm` of component `9`; the median nearest distance is
+`10.186440 mm`. The two surfaces occupy similar stations and radii but
+different angular locations around the lumen.
+
+A closed-core topology trial isolates the smaller major cluster `1`. Its
+original `87` faces and recognizable faceted relief are translated rigidly by
+`32.556071 mm`, then connected to the unchanged source through a one-layer,
+`60`-edge, `120`-triangle annulus. The trial preserves `64` connected
+components, `1,756` boundary/nonmanifold edges, and contiguous winding, while
+reducing penetrations from `309` to `296` and overlaps from `741` to `704`.
+It is rejected visually. Dorsal and ventral high-detail review show the
+annulus as a long triangular shelf/wall with spike-like projections that
+crowds and partially bridges the intentional local gap. The translated core
+itself preserves relief; the full-perimeter transition is the defect.
+
+The next component-20 method must preserve the reviewed exterior boundary and
+the source's angular inner relief, replace only the two major wearer-facing
+patches, and avoid increasing boundary-edge or connected-component counts.
+The next bounded trial should transfer the source ridge/depth landmarks as
+outward relief on a cutter-safe base. Do not repeat pointwise projection, a
+smooth cutter-only field, a harmonic blend of the full `32–48 mm` motion, or a
+full-perimeter annulus around a translated core.
+Component `9` follows with the same bounded classification principle; do not
+reconstruct coincident component-9 and component-20 inner layers twice.
+
+The earlier shallow radial-patch method remains rejected for components `16`,
+`19`, and `52`: component `16` visibly narrows, component `19` introduces a
+flipped triangle, and component `52` produces severe edge collapse/stretch
+plus two flipped triangles. Repairs 007 and 008 supersede only the failed
+component-16 and component-52 methods, not those rejection lessons. The visible
+cuff brace at component `59` remains parked for bounded visible reconstruction.
+
+No other remaining component qualifies for further shallow automatic lifting.
+The repair workflow must now classify or reconstruct one bounded region at a
+time.
+
+Evidence:
+
+- `validation_reviews/geometry_repair/classification.json`
+- `validation_reviews/geometry_repair/repair_001_component_0/review.json`
+- `_validation/geometry_repair/repair_001_component_0/`
+- `experiments/geometry_repair/component_1_methods/README.md`
+- `_validation/experiments/geometry_repair/component_1_methods/`
+- `experiments/geometry_repair/component_25_methods/README.md`
+- `experiments/geometry_repair/component_37_methods/README.md`
+- `experiments/geometry_repair/component_42_methods/README.md`
+- `experiments/geometry_repair/component_36_methods/README.md`
+- `experiments/geometry_repair/component_39_methods/README.md`
+- `experiments/geometry_repair/component_9_methods/README.md`
+- `validation_reviews/geometry_repair/repair_005_checkpoint/review.json`
+- `validation_reviews/geometry_repair/repair_006_component_20_minor/review.json`
+- `validation_reviews/geometry_repair/repair_007_component_16_harmonic/review.json`
+- `validation_reviews/geometry_repair/repair_008_component_52_regional/review.json`
+- `validation_reviews/geometry_repair/repair_009_component_57_regional/review.json`
+- `validation_reviews/geometry_repair/component_20_boundary_r2_l16_o4/review.json`
+- `validation_reviews/geometry_repair/component_20_relief_core_c1_l1/review.json`
+
 ## Cleanup baseline
 
 - 170 objects
@@ -242,24 +438,28 @@ transformation evidence, not a salvage library for production.
 
 ## Immediate next work
 
-1. Generate explicit review masks for the remaining penetrations across the
-   `14` still-intersecting components.
-2. Classify each masked region as visible source surface, removable prosthetic
-   interior, or bounded reconstruction.
-3. Rework the deep wrist pilot as a bounded shared regional deformation,
-   starting from the `25 mm` falloff trial and reviewing registration against
-   adjacent source landmarks.
-4. If regional deformation cannot preserve the wrist composition, rebuild only
-   the pilot's hidden/interior surface while preserving its visible boundary.
-5. Preserve the accepted shallow rescue mask; do not continue automatic radial
-   lifting beyond its `5 mm` and orientation limits.
-6. Reconstruct the larger shoulder, elbow, wrist, and embedded failures only
-   after the pilot establishes a reviewable method.
+1. Preserve Repairs 001–009 and the exact pre-review checkpoint with SHA-256
+   `35f3f8243022d6335df4ee60066a8041e4f1240e2c9462475e91f54f3fa2ca92`.
+2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
+3. For component `20`, replace only major clusters 0 and 1 with local
+   wearer-facing surfaces that retain the source's stepped angular depth.
+   Reject any transition construction that increases boundary-edge count,
+   creates an additional component, or smooths the inner surface into a broad
+   carrier-like field.
+4. After component `20`, preserve component `9`'s exterior and rebuild only
+   its two dominant wearer-facing patches. Do not rerun whole-component
+   displacement or wider diffusion.
+5. Return to parked components `19`, `36`, `39`, and `59` only with a
+   controlled reconstruction method.
+6. Delegate every image operation to a disposable subagent. Sanitize and size
+   checkpoint every derivative before high-detail review; never replay
+   unsanitized historical image outputs.
 7. Repeat triangle-orientation, distortion, matched-view, and exact
    surface-clearance evidence after every bounded reconstruction.
 8. Promote a fitted surface master only after qualitative visual and digital
    clearance review.
-9. Begin hidden solidification and connectivity work only after that promotion.
+9. Begin hidden solidification and connectivity work only after that
+    promotion.
 10. Defer the approximately `30°` priority wear pose and broader elbow mobility
    until the static straight composition is accepted.
 

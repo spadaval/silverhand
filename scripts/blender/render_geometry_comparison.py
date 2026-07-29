@@ -22,7 +22,11 @@ import bpy
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
+SCRIPTS_DIR = SCRIPT_DIR.parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
 
+from image_sanitization import sanitize_image  # noqa: E402
 from validation_camera_rig import (  # noqa: E402
     DEFAULT_SOURCE,
     DEFAULT_TARGET,
@@ -185,12 +189,14 @@ def main() -> int:
                         "Cannot render comparison: Blender reported success but "
                         f"did not create '{path}'"
                     )
+                sanitization = sanitize_image(path)
                 renders.append(
                     {
                         "role": label,
                         "object": obj.name,
                         "view": view_name,
                         "path": path.name,
+                        "sanitization": sanitization,
                     }
                 )
 

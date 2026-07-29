@@ -1,0 +1,156 @@
+{
+  "mission_id": "geometry-repair-009-review",
+  "repair": "REPAIR_009_COMPONENT_57_REGIONAL",
+  "relative_to": "REPAIR_008_COMPONENT_52_REGIONAL",
+  "scope": "qualitative_delta_only",
+  "result": "pass",
+  "candidate_disposition": "retain_candidate",
+  "fitted_surface_promotion": false,
+  "does_this_repair_delta_look_ass": false,
+  "claims": [
+    {
+      "claim": "The Repair 009 delta introduces no unacceptable silhouette or registration drift, contact or gap closure, bridge or fusion, spike, slab, flattening, depth inversion, altered wrist opening, or propagation into neighboring components.",
+      "classification": "pass"
+    },
+    {
+      "claim": "The intertwined component-57 wrist detail and the full 1169-vertex 45 mm regional field remain visually credible relative to Repair 008.",
+      "classification": "pass"
+    },
+    {
+      "claim": "Build-report topology, assignment, orientation, edge-ratio, translation/falloff, and clearance evidence is compatible with retaining the repair as a candidate.",
+      "classification": "pass"
+    },
+    {
+      "claim": "The bounded sanitized evidence is sufficient to answer does_this_repair_delta_look_ass.",
+      "classification": "pass"
+    }
+  ],
+  "text_evidence": {
+    "build_report": "_validation/experiments/geometry_repair/component_57_methods/regional_f45_trial/build_report.json",
+    "local_manifest": "_validation/experiments/geometry_repair/component_57_methods/regional_f45_trial/local/manifest.json",
+    "complete_manifest": "_validation/experiments/geometry_repair/component_57_methods/regional_f45_trial/complete/manifest.json",
+    "patch": {
+      "component": 57,
+      "component_vertices": 40,
+      "initially_violating_vertices": 12,
+      "affected_vertices": 1169,
+      "falloff_mm": 45.0,
+      "translation_mm": 7.250539,
+      "translation_direction": [
+        -0.411355,
+        -0.780283,
+        0.47111
+      ]
+    },
+    "topology": {
+      "source_vertices": 7347,
+      "candidate_vertices": 7347,
+      "source_faces": 12564,
+      "candidate_faces": 12564,
+      "face_indices_unchanged": true,
+      "material_assignments_unchanged": true
+    },
+    "distortion": {
+      "affected_edge_ratio_minimum": 0.768105,
+      "affected_edge_ratio_median": 1.000347,
+      "affected_edge_ratio_p95": 1.088616,
+      "affected_edge_ratio_maximum": 1.213738,
+      "negative_orientation_locator_count": 0
+    },
+    "clearance": {
+      "global_vertices_below_cutter_before": 326,
+      "global_vertices_below_cutter_after": 309,
+      "global_vertices_below_reserved_margin_before": 338,
+      "global_vertices_below_reserved_margin_after": 328,
+      "global_triangle_overlaps_before": 769,
+      "global_triangle_overlaps_after": 741,
+      "component_57_vertices_below_cutter_after": 0,
+      "component_57_vertices_below_reserved_margin_after": 0
+    }
+  },
+  "visual_evidence": {
+    "inspection_detail": "high",
+    "source_current_order": "source on left in gray; current on right in cyan",
+    "sanitization": {
+      "tool": "scripts/image_sanitization.py using ImageMagick",
+      "metadata_stripped": true,
+      "orientation_normalized": true,
+      "colorspace": "sRGB",
+      "bit_depth": 8,
+      "alpha": false,
+      "all_inspected_files_under_10000000_bytes": true
+    },
+    "inspected_pairs": [
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--local--dorsal.png",
+        "size_bytes": 1009216,
+        "observation": "The lower intertwined wrist strip shifts smoothly while the principal vertical plates, narrow separations, lower opening, and adjacent constituents remain distinct; no spike, slab, fusion, closure, or hard falloff boundary is visible."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--local--ventral.png",
+        "size_bytes": 971478,
+        "observation": "The broad negative-space channel remains open and the thin horizontal wrist element keeps coherent thickness and separation from the larger plate without contact, bridge, inversion, or abrupt deformation."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--local--medial.png",
+        "size_bytes": 1062145,
+        "observation": "Layered wrist strips preserve separation, ordering, faceting, arcs, and central/lower negative spaces without spike, crease, slab, bridge, or depth-order inversion."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--local--lateral.png",
+        "size_bytes": 1119699,
+        "observation": "Long overlapping plates retain parallel visual rhythm, open seams, clean faceted silhouettes, and separation; no neighboring plate is dragged into contact or fusion."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--local--wrist_axial.png",
+        "size_bytes": 1094083,
+        "observation": "The wrist opening remains open with an angular layered perimeter; intertwined bands retain separate paths and depth order, and the modest regional shift does not collapse, invert, bridge, or visibly malform the opening."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--complete--dorsal.png",
+        "size_bytes": 754881,
+        "observation": "Overall arm silhouette, wrist opening, forearm/body registration, and major negative spaces remain visually stable without propagated displacement or new bridge."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--complete--ventral.png",
+        "size_bytes": 745514,
+        "observation": "Ventral silhouette, circular wrist detail, cage-like negative spaces, and forearm separation remain stable without global registration drift or connection to neighboring components."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--complete--dorsal_lateral_three_quarter.png",
+        "size_bytes": 712397,
+        "observation": "The wrist assembly preserves layered composition, floating parts, structural gaps, full-arm silhouette, and constituent separation without new fusion, spike, or visible propagation."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--complete--ventral_medial_three_quarter.png",
+        "size_bytes": 688051,
+        "observation": "Open wrist/forearm channels, neighboring plate spacing, and recognizable silhouettes remain intact; the repair does not read as a slab, backing surface, or assembly-wide shift."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_009_component_57_regional/sanitized_review/pair--complete--bicep_axial.png",
+        "size_bytes": 805451,
+        "observation": "The distant upper-arm perimeter, layered constituents, loops, openings, and broad central surfaces remain visually equivalent, providing no evidence of distal propagation."
+      }
+    ]
+  },
+  "gate_classifications": {
+    "qualitative_delta": "pass",
+    "retain_candidate": "pass",
+    "fitted_surface_promotion": "deferred",
+    "anatomical_clearance": "fail"
+  },
+  "uncertainty": [
+    "Source and current use different display colors, reducing sensitivity to extremely subtle shading-only differences.",
+    "The local wrist-axial shift is visible in the tight crop, but it remains a coherent regional movement and does not alter the opening or intertwined composition objectionably.",
+    "The affected-edge minimum and maximum ratios represent up to about 23.2 percent contraction and 21.4 percent expansion; no corresponding objectionable artifact is visible in the reviewed views, but the reversible repair should remain a candidate until later physical-detail validation.",
+    "The repair leaves 309 global cutter penetrations, 328 reserved-margin violations, and 741 triangle overlaps, so it cannot support fitted-surface promotion."
+  ],
+  "ignored_test_review": "not-applicable",
+  "docs_help_consistency": "not-applicable",
+  "failures": [],
+  "follow_up": [
+    "Parent workflow may retain Repair 009 as a reversible candidate and continue the repair workflow.",
+    "Do not claim fitted-surface promotion until remaining global clearance failures and all required promotion gates are resolved."
+  ],
+  "checkpoint": "validation_reviews/geometry_repair/repair_009_component_57_regional/checkpoint.md"
+}

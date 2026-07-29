@@ -1,0 +1,203 @@
+{
+  "date": "2026-07-28",
+  "units": "millimeters",
+  "source_candidate": "WORK_FITTED_SURFACE_CANDIDATE",
+  "working_blend": "blender_files/Johnny_geometry_repair_work.blend",
+  "status": "stepwise_repair_classification_not_fitted_surface_promotion",
+  "retained_repairs": [
+    {
+      "component": 0,
+      "shape_key": "REPAIR_001_COMPONENT_0",
+      "classification": "bounded shallow-clearance patch",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 2,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_001_component_0/review.json"
+    },
+    {
+      "component": 1,
+      "shape_key": "REPAIR_002_COMPONENT_1_REGIONAL",
+      "classification": "visible nested plate with shared regional fit-field correction",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 8,
+      "vertices_inside_cutter_after": 0,
+      "review": "experiments/geometry_repair/component_1_methods/README.md"
+    },
+    {
+      "component": 25,
+      "shape_key": "REPAIR_003_COMPONENT_25_MASKED",
+      "classification": "visible mechanical cradle with buried collision",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 29,
+      "vertices_inside_cutter_after": 0,
+      "review": "experiments/geometry_repair/component_25_methods/README.md"
+    },
+    {
+      "component": 37,
+      "shape_key": "REPAIR_004_COMPONENT_37_MASKED",
+      "classification": "visible cable strip with buried endpoint collision",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 7,
+      "vertices_inside_cutter_after": 0,
+      "review": "experiments/geometry_repair/component_37_methods/README.md"
+    },
+    {
+      "component": 42,
+      "shape_key": "REPAIR_005_COMPONENT_42_MASKED",
+      "classification": "upper-arm cable with buried branch collision",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 7,
+      "vertices_inside_cutter_after": 0,
+      "review": "experiments/geometry_repair/component_42_methods/README.md"
+    },
+    {
+      "component": 20,
+      "shape_key": "REPAIR_006_COMPONENT_20_MINOR_PATCHES",
+      "classification": "minor clusters 2–5 with bounded harmonic reconstruction",
+      "result": "retained reversible candidate; major clusters 0–1 unresolved",
+      "vertices_inside_cutter_before": 133,
+      "vertices_inside_cutter_after": 115,
+      "review": "validation_reviews/geometry_repair/repair_006_component_20_minor/review.json"
+    },
+    {
+      "component": 16,
+      "shape_key": "REPAIR_007_COMPONENT_16_HARMONIC",
+      "classification": "visible narrow ribbon with topology-local harmonic reconstruction",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 2,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_007_component_16_harmonic/review.json"
+    },
+    {
+      "component": 52,
+      "shape_key": "REPAIR_008_COMPONENT_52_REGIONAL",
+      "classification": "tightly layered wrist detail with shared 35 mm regional correction",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 8,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_008_component_52_regional/review.json"
+    },
+    {
+      "component": 57,
+      "shape_key": "REPAIR_009_COMPONENT_57_REGIONAL",
+      "classification": "intertwined wrist detail with shared 45 mm regional correction",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 12,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_009_component_57_regional/review.json"
+    }
+  ],
+  "parked_components": [
+    {
+      "component": 19,
+      "classification": "bounded reconstruction review required",
+      "station_range_mm": [342.35, 414.07],
+      "vertices_inside_cutter": 7,
+      "minimum_margin_mm": -3.9193,
+      "reason": "The non-saving radial trial creates one negative-orientation locator and contracts one affected edge to 0.317958.",
+      "rejected_trial": "_validation/geometry_repair/component_19_trial/build_report.json"
+    },
+    {
+      "component": 59,
+      "classification": "visible cuff brace requiring bounded visible reconstruction",
+      "station_range_mm": [0.12, 13.55],
+      "vertices_inside_cutter": 15,
+      "minimum_margin_mm": -11.7483,
+      "nearest_component": 56,
+      "nearest_distance_mm": 0.149,
+      "reason": "The brace is visually meaningful and immediately layered against a clear neighboring component. Isolated movement breaks registration; pointwise movement crushes its profile."
+    },
+    {
+      "component": 36,
+      "classification": "visible wrist hook requiring controlled reconstruction",
+      "station_range_mm": [
+        29.0,
+        132.0
+      ],
+      "vertices_inside_cutter": 7,
+      "minimum_margin_mm": -9.799073,
+      "reason": "Masked displacement introduces three reversed faces; depth compression visibly changes the exposed wrist hook.",
+      "rejected_trial": "_validation/experiments/geometry_repair/component_36_methods/"
+    },
+    {
+      "component": 39,
+      "classification": "visible compact wrist detail requiring controlled reconstruction",
+      "station_range_mm": [
+        4.0,
+        76.0
+      ],
+      "vertices_inside_cutter": 10,
+      "minimum_margin_mm": -11.080595,
+      "reason": "Masked displacement introduces one reversed face; compression flattens the detail and rigid lifting breaks registration.",
+      "rejected_trial": "_validation/experiments/geometry_repair/component_39_methods/"
+    },
+    {
+      "component": 9,
+      "classification": "large structural shell with two dominant wearer-facing inner-wall failures",
+      "station_range_mm": [
+        0.108,
+        288.965
+      ],
+      "vertices_inside_cutter": 163,
+      "minimum_margin_mm": -43.069797,
+      "nearest_component": 20,
+      "nearest_distance_mm": 0.012323,
+      "reason": "Whole-component deformation is invalid across this multi-station shell. Compression and offset reverse faces; masked projection reverses 58 faces; wider diffusion raises the failure to 90–125 faces. Rebuild only the classified inner patches after component 20 is classified.",
+      "rejected_trial": "_validation/experiments/geometry_repair/component_9_methods/"
+    }
+  ],
+  "remaining_major_reconstruction": [
+    {
+      "component": 20,
+      "vertices_inside_cutter_after_minor_repair": 115,
+      "minimum_margin_mm": -46.5755,
+      "remaining_clusters": [
+        0,
+        1
+      ],
+      "reason": "Minor clusters 2–5 are retained in Repair 006. The two major wearer-facing clusters require cutter-safe outward relief derived from the source ridge/depth landmarks. The result must not increase boundary edges or connected components, smooth the visible inner depth into a carrier-like field, or bridge the local gap with a full-perimeter annulus."
+    }
+  ],
+  "rejected_reconstruction_methods": [
+    {
+      "component": 20,
+      "method": "boundary-count-preserving cutter-conforming strip",
+      "result": "rejected visual method",
+      "topology_result": "64 connected components and 1756 boundary/nonmanifold edges preserved; zero noncontiguous manifold edges",
+      "clearance_result": "309 to 194 cutter penetrations; 741 to 519 overlaps; 42 replacement overlaps remain",
+      "reason": "Bicep-axial high-detail review shows that the broad smooth cutter-shaped field erases the source's stepped angular inner depth and reads as a carrier-like slab.",
+      "review": "validation_reviews/geometry_repair/component_20_boundary_r2_l16_o4/review.json"
+    },
+    {
+      "component": 20,
+      "method": "pointwise relief-preserving harmonic projection",
+      "result": "rejected numerical method",
+      "clearance_result": "Clearing variants leave 194 global penetrations but 730–742 overlaps.",
+      "reason": "Every tested topology-ring count reverses 8–22 triangles and the maximum affected-edge ratio reaches 11.8664.",
+      "report": "_validation/experiments/geometry_repair/component_20_methods/major_relief_harmonic_sweep.json"
+    },
+    {
+      "component": 20,
+      "method": "cluster-rigid core with harmonic boundary blend",
+      "result": "rejected numerical method",
+      "clearance_result": "The two cores require 48.205661 mm and 32.556071 mm translations; clearing variants reduce overlaps to 513–529.",
+      "reason": "Every tested blend reverses faces; variants that clear the selected clusters reverse 43–202 triangles.",
+      "report": "_validation/experiments/geometry_repair/component_20_methods/major_cluster_rigid_sweep.json"
+    },
+    {
+      "component": 20,
+      "method": "rigid relief-preserving cluster-1 core with full-perimeter annulus",
+      "result": "rejected visual method",
+      "topology_result": "64 connected components and 1756 boundary/nonmanifold edges preserved; zero noncontiguous manifold edges",
+      "clearance_result": "309 to 296 cutter penetrations; 741 to 704 overlaps",
+      "reason": "Dorsal and ventral review show the 60-edge annulus as a broad triangular shelf/wall with spike-like projections that crowds and partially bridges intentional negative space. The moved source core itself preserves relief.",
+      "review": "validation_reviews/geometry_repair/component_20_relief_core_c1_l1/review.json"
+    }
+  ],
+  "current_clearance": {
+    "vertices_inside_cutter": 309,
+    "vertices_below_reserved_margin": 328,
+    "cutter_triangle_overlaps": 741
+  },
+  "decision": "Retain Repairs 001–009. Component 20 minor clusters 2–5 are resolved; major clusters 0–1 require cutter-safe outward relief derived from source ridge/depth landmarks. Cutter-smooth replacement, pointwise projection, cluster-rigid harmonic blending, and a full-perimeter translated-core annulus are rejected. Component 9 follows with two local inner-wall replacements. Components 19, 36, 39, and 59 remain parked for controlled reconstruction."
+}

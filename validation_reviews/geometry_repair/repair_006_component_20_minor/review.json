@@ -1,0 +1,158 @@
+{
+  "mission_id": "geometry-repair-006-review",
+  "repair": "REPAIR_006_COMPONENT_20_MINOR_PATCHES",
+  "scope": "qualitative_delta_only",
+  "result": "pass",
+  "candidate_disposition": "retain_candidate",
+  "fitted_surface_promotion": false,
+  "does_this_repair_delta_look_ass": false,
+  "claims": [
+    {
+      "claim": "Local before/after delta introduces no silhouette break, registration drift, spike, slab, flattening, depth inversion, or neighboring-composition damage.",
+      "classification": "pass"
+    },
+    {
+      "claim": "Complete-view before/after delta introduces no silhouette break, registration drift, spike, slab, flattening, depth inversion, or neighboring-composition damage.",
+      "classification": "pass"
+    },
+    {
+      "claim": "Build-report topology, orientation, and distortion evidence is compatible with retaining the repair as a candidate.",
+      "classification": "pass"
+    },
+    {
+      "claim": "The evidence is sufficient to answer does_this_repair_delta_look_ass.",
+      "classification": "pass"
+    }
+  ],
+  "text_evidence": {
+    "build_report": "_validation/experiments/geometry_repair/component_20_methods/minor_clusters_trial/build_report.json",
+    "local_manifest": "_validation/experiments/geometry_repair/component_20_methods/minor_clusters_trial/local/manifest.json",
+    "complete_manifest": "_validation/experiments/geometry_repair/component_20_methods/minor_clusters_trial/complete/manifest.json",
+    "topology": {
+      "source_vertices": 7347,
+      "candidate_vertices": 7347,
+      "source_faces": 12564,
+      "candidate_faces": 12564,
+      "face_indices_unchanged": true,
+      "material_assignments_unchanged": true
+    },
+    "distortion": {
+      "affected_edge_ratio_minimum": 0.690127,
+      "affected_edge_ratio_median": 1.002779,
+      "affected_edge_ratio_p95": 1.086801,
+      "affected_edge_ratio_maximum": 1.319363,
+      "negative_orientation_locator_count": 0,
+      "maximum_displacement_mm": 14.163712
+    },
+    "clearance": {
+      "global_vertices_below_cutter_before": 354,
+      "global_vertices_below_cutter_after": 336,
+      "global_vertices_below_reserved_margin_before": 365,
+      "global_vertices_below_reserved_margin_after": 348,
+      "global_triangle_overlaps_before": 837,
+      "global_triangle_overlaps_after": 806,
+      "component_20_vertices_below_cutter_after": 115,
+      "component_20_vertices_below_reserved_margin_after": 118
+    }
+  },
+  "visual_evidence": {
+    "inspection_detail": "high",
+    "source_current_order": "row-major source then current for each named view",
+    "sanitization": {
+      "tool": "scripts/image_sanitization.py using ImageMagick",
+      "metadata_stripped": true,
+      "orientation_normalized": true,
+      "colorspace": "sRGB",
+      "bit_depth": 8,
+      "alpha": false,
+      "all_inspected_files_under_10000000_bytes": true
+    },
+    "inspected_pages": [
+      {
+        "path": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/local-page-01-dorsal-ventral.png",
+        "views": [
+          "local_dorsal",
+          "local_ventral"
+        ],
+        "size_bytes": 1359150,
+        "observation": "Registered source/current pairs with no repair-attributable gross silhouette break, spike, slab, flattening, depth inversion, or neighboring wrist/elbow damage."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/local-page-02-medial-lateral.png",
+        "views": [
+          "local_medial",
+          "local_lateral"
+        ],
+        "size_bytes": 1396385,
+        "observation": "Longitudinal folds, negative spaces, loop/cable, and elbow forms remain coherent; pre-existing jagged/open boundaries occur on both sides."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/local-page-03-bicep-axial.png",
+        "views": [
+          "local_bicep_axial"
+        ],
+        "size_bytes": 666588,
+        "observation": "Circumferential silhouette, broad facets, negative spaces, and neighboring hardware remain registered without new radial deformation."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/complete-page-01-dorsal-ventral.png",
+        "views": [
+          "complete_dorsal",
+          "complete_ventral"
+        ],
+        "size_bytes": 1498128,
+        "observation": "Full-arm outer silhouette, major gaps, layering, wrist termination, and elbow opening remain registered."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/complete-page-02-medial-lateral.png",
+        "views": [
+          "complete_medial",
+          "complete_lateral"
+        ],
+        "size_bytes": 1331084,
+        "observation": "Bent-arm composition, wearer-facing negative spaces, long forearm members, elbow hardware, and upper-arm plate silhouette remain stable."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/complete-page-03-three-quarter.png",
+        "views": [
+          "complete_dorsal_lateral_three_quarter",
+          "complete_ventral_medial_three_quarter"
+        ],
+        "size_bytes": 1399793,
+        "observation": "Oblique views preserve intentional open regions, upper-arm sweep, elbow cluster, and forearm shell without new discontinuity or depth reversal."
+      },
+      {
+        "path": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/complete-page-04-axial.png",
+        "views": [
+          "complete_wrist_axial",
+          "complete_bicep_axial"
+        ],
+        "size_bytes": 1668612,
+        "observation": "Circumferential silhouettes, nested gaps, broad facets, and adjacent hardware remain coherent without radial spike, slab, or flattening."
+      }
+    ]
+  },
+  "gate_classifications": {
+    "qualitative_delta": "pass",
+    "retain_candidate": "pass",
+    "fitted_surface_promotion": "deferred",
+    "anatomical_clearance": "fail"
+  },
+  "uncertainty": [
+    "Source and current use different display colors, reducing sensitivity to extremely subtle shading-only differences.",
+    "Matched cameras, local and complete coverage, and axial plus oblique views are sufficient for this bounded retain/reject decision.",
+    "The repair leaves 115 component-20 cutter penetrations and 118 reserved-margin violations, so it cannot support fitted-surface promotion."
+  ],
+  "ignored_test_review": "not-applicable",
+  "docs_help_consistency": "not-applicable",
+  "failures": [
+    {
+      "classification": "environment_tooling_failure",
+      "operation": "ImageMagick montage page generation",
+      "target": "_validation/geometry_repair/repair_006_component_20_minor/sanitized_review/pages/local-page-01-dorsal-ventral.png",
+      "reason": "The environment had no usable default montage font (RenderFreetype/1665).",
+      "resolution": "Used font-free ImageMagick +append/-append page composition, then sanitized all pages."
+    }
+  ],
+  "checkpoint": "validation_reviews/geometry_repair/repair_006_component_20_minor/checkpoint.md"
+}

@@ -1,0 +1,139 @@
+{
+  "mission_id": "component-20-relief-core-c1-l1-review",
+  "method": "rigid_relief_preserving_core_translation_with_one_layer_annulus",
+  "candidate": "EVAL_C20_RELIEF_CORE_C1_L1_AFTER",
+  "relative_to": "EVAL_C20_RELIEF_CORE_C1_L1_BEFORE",
+  "scope": "component_20_major_cluster_1_evaluation_only_review",
+  "result": "fail",
+  "candidate_disposition": "reject_method",
+  "continue_to_application_candidate": false,
+  "fitted_surface_promotion": false,
+  "does_this_repair_delta_look_ass": true,
+  "does_this_reconstruction_look_ass": true,
+  "claims": [
+    {
+      "claim": "The rigidly translated original 87-face faceted core preserves its recognizable local relief.",
+      "classification": "pass"
+    },
+    {
+      "claim": "The one-layer 60-edge/120-triangle annulus does not read as a wall or slab.",
+      "classification": "fail"
+    },
+    {
+      "claim": "The delta introduces no visible seam or spike.",
+      "classification": "fail"
+    },
+    {
+      "claim": "The delta introduces no depth inversion or registration loss.",
+      "classification": "pass"
+    },
+    {
+      "claim": "Intentional negative space remains undamaged and no unintended gap closure occurs.",
+      "classification": "fail"
+    },
+    {
+      "claim": "The evidence supports continuing this method to an application candidate.",
+      "classification": "fail"
+    }
+  ],
+  "first_concrete_failure": {
+    "classification": "in_scope_method_defect",
+    "view": "dorsal",
+    "description": "At the inner/elbow-side transition, the one-layer annulus forms a conspicuous fan of long nearly coplanar triangles. It reads as a broad sharp shelf or wall with multiple spike-like silhouette tips and crowds the source's deeper compact negative-space opening."
+  },
+  "text_evidence": {
+    "build_report": "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/build_report.json",
+    "checkpoint": "validation_reviews/geometry_repair/component_20_relief_core_c1_l1/checkpoint.md",
+    "source_core": {
+      "cluster_vertices": 31,
+      "faces": 87,
+      "vertices": 91,
+      "transition_edges": 60
+    },
+    "motion": {
+      "mode": "rigid_relief_preserving_translation",
+      "translation_mm": 32.556071
+    },
+    "annulus": {
+      "layers": 1,
+      "faces": 120
+    },
+    "topology": {
+      "connected_components_before": 64,
+      "connected_components_after": 64,
+      "boundary_edges_before": 1756,
+      "boundary_edges_after": 1756,
+      "nonmanifold_edges_before": 1756,
+      "nonmanifold_edges_after": 1756,
+      "noncontiguous_manifold_edges_before": 0,
+      "noncontiguous_manifold_edges_after": 0
+    },
+    "clearance": {
+      "vertices_below_cutter_before": 309,
+      "vertices_below_cutter_after": 296,
+      "triangle_overlaps_before": 741,
+      "triangle_overlaps_after": 704
+    }
+  },
+  "visual_evidence": {
+    "inspection_detail": "high",
+    "source_current_order": "source on left in gray; current on right in cyan",
+    "sanitization": {
+      "tool": "ImageMagick",
+      "metadata_stripped": true,
+      "orientation_normalized": true,
+      "colorspace": "sRGB",
+      "bit_depth": 8,
+      "alpha": false,
+      "all_inspected_files_under_10000000_bytes": true
+    },
+    "inspected_pairs": [
+      {
+        "path": "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/dorsal--source-left-current-right.png",
+        "size_bytes": 1554477,
+        "observation": "Current gains a dominant fan of long planar triangles at the inner elbow transition. The fan creates a broad shelf or wall, several spike-like outer-silhouette projections, and visibly compresses the source's dark local opening."
+      },
+      {
+        "path": "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/ventral--source-left-current-right.png",
+        "size_bytes": 1514378,
+        "observation": "The reverse view independently confirms a sharp triangular shelf projecting from the elbow/upper-forearm transition. It has no source counterpart and crowds the source's recessed gap."
+      },
+      {
+        "path": "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/medial--source-left-current-right.png",
+        "size_bytes": 1237187,
+        "observation": "The changed transition is mostly occluded, but the global arm pose, upper mass, wrist opening, long rails, and broad negative spaces remain registered; no whole-object registration loss or global depth inversion is visible."
+      }
+    ],
+    "verified_but_not_inspected_pairs": [
+      "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/lateral--source-left-current-right.png",
+      "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/dorsal_lateral_three_quarter--source-left-current-right.png",
+      "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/ventral_medial_three_quarter--source-left-current-right.png",
+      "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/wrist_axial--source-left-current-right.png",
+      "_validation/experiments/geometry_repair/component_20_methods/relief_core_c1_l1/review/pairs/bicep_axial--source-left-current-right.png"
+    ],
+    "decisive_observation": "The original core relief survives the rigid translation, but the one-layer annulus is visibly unacceptable: it replaces a compact recessed transition with a broad triangulated shelf or wall, creates spike-like projections in opposite views, and damages intentional negative space."
+  },
+  "gate_classifications": {
+    "core_relief_preservation": "pass",
+    "whole_arm_registration": "pass",
+    "no_wall_or_slab": "fail",
+    "no_seam_or_spike": "fail",
+    "negative_space_preservation": "fail",
+    "continue_to_application_candidate": "fail",
+    "fitted_surface_promotion": "not-applicable",
+    "anatomical_clearance": "fail"
+  },
+  "ignored_test_review": "not-applicable",
+  "docs_help_consistency": "not-applicable",
+  "failures": [
+    "The one-layer annulus creates a visible broad triangular shelf or wall.",
+    "The transition creates spike-like silhouette projections in both dorsal and ventral views.",
+    "The annulus crowds and partially bridges the source's intentional local negative space.",
+    "Exact clearance remains unresolved with 296 cutter penetrations and 704 triangle overlaps globally."
+  ],
+  "follow_up": [
+    "Reject this one-layer relief-core annulus method and do not apply it to the active repair scene.",
+    "Preserve the experiment, sanitized evidence, checkpoint, and review as method-bound evidence.",
+    "Retain the useful constraint that rigid movement preserves core relief, but use a transition strategy that distributes deformation without a broad fan of long triangles or gap closure."
+  ]
+}

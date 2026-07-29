@@ -58,6 +58,26 @@ lineages.
   shape key to the local fitted-surface candidate. It can defer excessive lifts
   and any topology neighborhood that would rotate a triangle more than
   90 degrees from the pre-rescue surface; it never promotes the result.
+- `blender/apply_bounded_clearance_patch.py` — applies one explicitly selected
+  shallow component mask as a reversible relative shape key, refuses an
+  exceeded displacement cap, and records topology, clearance, edge, and
+  orientation evidence. It never selects or visually approves a component.
+- `blender/create_clearance_patch_review.py` — creates disposable `EVAL_*`
+  pre/post objects for one patch so the existing matched-view renderers can
+  perform qualitative review.
+- `blender/analyze_component_proximity.py` — measures whether an explicit
+  clearance-failure cluster is actually coincident with another source
+  component. It is diagnostic-only and saves no geometry.
+- `blender/analyze_cluster_transition_topology.py` — inventories closed,
+  open, and branched face-transition graphs around explicit violation
+  clusters before a reconstruction assumes a loop topology.
+- `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
+  explicit violation clusters with topology-local harmonic transition
+  weights. It is diagnostic-only and saves no geometry.
+- `blender/try_relief_preserving_core_reconstruction.py` — creates
+  evaluation-only geometry by translating one closed faceted source patch
+  rigidly and reconnecting it through an explicit annulus. It never edits the
+  active candidate.
 
 ## Host-side Python
 
@@ -141,6 +161,13 @@ the `--` separator.
 
 The host contact-sheet helper uses a PEP 723 Pillow dependency managed by `uv`;
 it does not install Pillow into Blender.
+
+All raster-producing scripts require ImageMagick's `magick` executable. Set
+`MAGICK_PATH` when it is not on `PATH`. Each generated image is immediately
+replaced with an 8-bit, metadata-free, orientation-normalized sRGB derivative;
+sanitization failure stops the producing operation with the failed command and
+target path. Sanitized outputs larger than 10,000,000 bytes are marked unsafe
+for direct image-model review.
 
 By default it creates `comparison_review_sheet-01.png` and
 `comparison_review_sheet-02.png` for the eight canonical views. The manifest

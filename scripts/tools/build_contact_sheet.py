@@ -13,8 +13,15 @@ from collections.abc import Sequence
 import json
 import math
 from pathlib import Path
+import sys
 
 from PIL import Image, ImageDraw, ImageFont, __version__ as pillow_version
+
+SCRIPTS_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+
+from image_sanitization import sanitize_image  # noqa: E402
 
 
 BACKGROUND = "#071018"
@@ -413,10 +420,12 @@ def render_page(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(output_path, format="PNG", optimize=True)
+    sanitization = sanitize_image(output_path)
     return {
         "path": output_path,
         "views": list(page_views),
         "dimensions_px": [sheet_width, sheet_height],
+        "sanitization": sanitization,
     }
 
 
@@ -543,7 +552,9 @@ def main() -> int:
         {
             **record,
             "path": manifest_path(record["path"], output_dir),
-            "direct_image_model_review": True,
+            "direct_image_model_review": record["sanitization"][
+                "direct_image_model_review"
+            ],
             "detail_hint": "high",
         }
         for record in review_records

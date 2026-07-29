@@ -30,6 +30,8 @@ Current records:
 
 ## Supporting documentation
 
+- [Experiment notebook](../experiments/README.md) — lightweight qualitative
+  goals, observations, learnings, and links to local checkpoint evidence.
 - [Scripts](../scripts/README.md) — Blender and host-tool execution.
 - [Validation reviews](../validation_reviews/README.md) — qualitative review
   records retained in Git.
@@ -47,7 +49,9 @@ Current records:
 | Glossary | stable meanings | design arguments |
 | History | rejected methods and retained lessons | active authority |
 | Approach record | evidence-backed method, bounds, and continuation plan | unqualified promotion claims |
+| Experiment note | goals, approach, observations, learnings, and evidence links | mandatory schemas or automatic approval |
 
 Generated reports and renders remain under `_validation/`. Local Blender
 experiments and binary checkpoints remain under ignored `blender_files/`.
-Neither location replaces the concise durable record in this directory.
+Lightweight qualitative notes live under `experiments/`. None of these
+locations replaces the concise durable record in this directory.

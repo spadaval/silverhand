@@ -255,6 +255,158 @@ See the
 [regional clearance-deformation approach](approaches/regional-clearance-deformation.md)
 for the pilot evidence, method bounds, and continuation plan.
 
+## First stepwise geometry-repair pass
+
+The retained rescue was copied into a fresh ignored repair scene. Remaining
+components were then approached one at a time, with a checkpoint before each
+saved change and early rejection when a numerical or visual failure appeared.
+
+Component `0` was the only retained patch. A reversible masked shape key clears
+its two remaining penetrations without changing topology, materials, or the
+reviewed silhouette. It reduces total cutter penetrations from `424` to `422`
+and triangle overlaps from `1,051` to `1,037`.
+
+The same method does not generalize:
+
+- component `16` visibly narrows and contracts one edge to `27%`;
+- component `19` introduces a negative-orientation locator;
+- component `52` introduces two negative-orientation locators and extreme edge
+  distortion;
+- component `59` is a visible cuff brace layered against a neighboring clear
+  surface, so neither isolated movement nor pointwise projection preserves it.
+
+Lesson: “shallow” is not a sufficient repair classification. A bounded patch
+must pass local edge/orientation evidence and high-detail perceptual review.
+Stop reusing a method as soon as its failure pattern changes; park the region
+for another reconstruction strategy.
+
+## Hidden-side masked repair trials
+
+After the retained component-1 regional correction, the remaining medium and
+small failures were tested one at a time.
+
+Masked displacement was retained for components `25`, `37`, and `42` because
+their moved surfaces are buried in complete assembly views. These three repairs
+clear `43` cutter penetrations without changing topology or introducing face
+reversals.
+
+The same method was rejected for two visible wrist components:
+
+- component `36` introduces three reversed faces; the smooth compression
+  alternative visibly changes the hook profile;
+- component `39` introduces one reversed face; compression flattens and
+  rotates the detail, while a rigid lift visibly relocates it.
+
+Lesson: hidden-side visibility is the deciding constraint. A low vertex count,
+small penetrating set, or clean numerical clearance result does not justify a
+masked deformation when its effect reaches recognizable exterior geometry.
+
+## Component 9 structural-inner-wall trials
+
+The largest remaining failure was classified before further repair.
+Component `9` spans most of the wrist and forearm in one connected
+`2,508`-vertex surface, while its `163` penetrating vertices concentrate in
+two dominant wearer-facing inner-wall clusters.
+
+Every whole-component deformation is rejected:
+
+- a rigid direction cannot represent a component that wraps around multiple
+  stations and radial directions, and creates hundreds of new penetrations;
+- radial compression and uniform offset clear the cutter but reverse faces;
+- masked projection reverses `58` faces;
+- increasing diffusion to spread the projection raises the failure to
+  `90–125` reversed faces.
+
+Deleting the penetrating vertices removes `466` mostly interior faces without
+an obvious complete-view silhouette change. This is useful classification
+evidence, not a repair: the open holes still require a deliberate local inner
+surface.
+
+Lesson: a connected source component is not necessarily one deformation
+region. For a large structural shell, preserve the visible exterior and
+replace only the classified wearer-facing patches with local cutter-derived
+geometry. Classify nearly coincident neighboring layers before rebuilding so
+the same lumen is not constructed twice.
+
+## Component 20 classification and Repairs 006–009
+
+Component `20` was classified before reconstructing the nearly coincident
+component-9 inner wall. Its `135` reserved-margin failures form six clusters.
+A six-ring harmonic field was retained only for minor clusters 2–5. The two
+major wearer-facing clusters contain `87` and `32` failures and are not valid
+whole-component deformation targets.
+
+Three previously parked visible components were then revisited with different
+methods:
+
+- an eight-ring harmonic field clears component `16` without repeating the
+  severe ribbon narrowing caused by the earlier radial patch;
+- a `35 mm` shared regional field clears component `52` while preserving its
+  wrist gaps and neighboring registration;
+- a `45 mm` shared regional field clears component `57` while preserving the
+  intertwined wrist strips and opening.
+
+Repairs 006–009 preserve topology and materials, introduce no
+negative-orientation locators, and pass bounded sanitized local and complete
+matched-view review. They reduce global cutter penetrations from `354` to
+`309` and overlaps from `837` to `741`. They remain reversible fitted-surface
+candidates, not promotion.
+
+The first cutter-derived replacements for component-20 major clusters are
+rejected as transition-topology implementations. The raw patch splits the
+candidate into four additional components. Boundary-bridged and conforming
+variants retain the component count but increase boundary edges instead of
+joining the source transition chains cleanly.
+
+Lesson: a cutter-derived wearer-facing patch can identify the correct clearance
+surface without supplying a valid boundary transition. A retained replacement
+must preserve the reviewed exterior and must not increase either connected
+components or boundary-edge count.
+
+A later boundary-count-preserving strip satisfies those topology invariants:
+it keeps `64` connected components, `1,756` boundary/nonmanifold edges, and
+zero noncontiguous manifold edges while reducing penetrations from `309` to
+`194` and overlaps from `741` to `519`. It is still rejected. Sanitized
+high-detail bicep-axial review shows that the broad cutter-conforming strip
+replaces the source's stepped angular inner depth with a smooth convex
+carrier-like slab; `42` replacement overlaps also remain.
+
+Lesson: topology preservation and improved clearance are necessary but not
+sufficient. A wearer-facing reconstruction must carry forward the source's
+local relief and depth landmarks rather than using the cutter itself as the
+entire visible replacement surface.
+
+Two direct attempts to preserve that relief without changing topology are
+also rejected. Pointwise projection clears the two major component-20
+clusters but introduces `8–22` reversed triangles and an `11.8664` maximum
+edge ratio. Moving each cluster as a rigid core preserves its internal shape,
+but the required `48.205661 mm` and `32.556071 mm` translations cannot be
+harmonically blended back into the source: all tested blends reverse faces,
+and the fully clearing variants reverse `43–202`.
+
+A nearest-surface audit further rejects the hypothesis that component `20`
+can simply be deleted as a duplicate of component `9`. Their closest points
+reach `0.012323 mm`, but only two of the 118 major-cluster vertices lie within
+`0.1 mm`; the median nearest distance is `10.186440 mm`.
+
+Lesson: retain the original faceted cluster core under a coherent motion, but
+make the transition a bounded topology problem. Reconstruct only a narrow
+annulus between the translated core and retained source boundary instead of
+smearing the full motion through existing faces.
+
+That closed-core annulus was then tested on the smaller major cluster `1`.
+Numerically it is clean: the original `87`-face core moves rigidly, connected
+components and boundary counts are unchanged, winding remains contiguous,
+penetrations fall from `309` to `296`, and overlaps fall from `741` to `704`.
+Visually it is rejected. The `60`-edge, `120`-triangle annulus reads as a long
+planar shelf/wall with spike-like tips and partially bridges the source's
+local negative space. The translated core itself retains recognizable relief.
+
+Lesson: the source relief is useful evidence, but moving the complete patch
+and reconnecting its whole perimeter is not. Transfer the ridge/depth
+landmarks as cutter-safe outward relief; do not span the local gap with a
+continuous annulus.
+
 The active master was reduced from 533 to 162 objects. Legacy collections,
 duplicate references, cameras, missing image dependencies, and unused datablocks
 were removed after creating:

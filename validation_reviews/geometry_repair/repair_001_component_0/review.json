@@ -1,0 +1,78 @@
+{
+  "target_role": "bounded shallow-clearance patch candidate",
+  "target_object": "WORK_FITTED_SURFACE_CANDIDATE",
+  "source_object": "EVAL_REPAIR_001_BEFORE",
+  "date": "2026-07-28",
+  "units": "millimeters",
+  "geometric_tolerance_mm": 0.0001,
+  "method": {
+    "shape_key": "REPAIR_001_COMPONENT_0",
+    "relative_to": "FRAGMENT_RESCUE_CLEARANCE",
+    "component": 0,
+    "component_vertices": 107,
+    "initial_violating_vertices": 2,
+    "affected_vertices": 97,
+    "reserved_margin_mm": 1.6,
+    "maximum_displacement_cap_mm": 6.0,
+    "diffusion_iterations": 6,
+    "diffusion_factor": 0.65
+  },
+  "geometry_results": {
+    "topology_invariants": "PASS",
+    "face_indices_unchanged": true,
+    "material_assignments_unchanged": true,
+    "component_vertices_below_cutter_after": 0,
+    "component_vertices_below_reserved_margin_after": 0,
+    "global_vertices_below_cutter_before": 424,
+    "global_vertices_below_cutter_after": 422,
+    "global_vertices_below_reserved_margin_before": 433,
+    "global_vertices_below_reserved_margin_after": 431,
+    "cutter_triangle_overlaps_before": 1051,
+    "cutter_triangle_overlaps_after": 1037,
+    "negative_orientation_locators": 0,
+    "component_displacement_mm_median": 0.025035,
+    "component_displacement_mm_p95": 0.932326,
+    "component_displacement_mm_maximum": 5.955966,
+    "affected_edge_ratio_minimum": 0.509649,
+    "affected_edge_ratio_median": 0.999129,
+    "affected_edge_ratio_p95": 1.005162
+  },
+  "qualitative_assessment": {
+    "local_patch_delta_visual_review": "PASS",
+    "complete_candidate_delta_visual_review": "PASS",
+    "overall_fitted_surface_visual_review": "FAIL",
+    "summary": "The local and complete high-detail review pages show no new silhouette damage, exploded registration, spike, slab, or depth inversion. Smoother diffusion trials moved more of the component and either failed to improve the tightest edge or introduced orientation flips.",
+    "does_the_patch_delta_look_ass": false,
+    "does_the_overall_candidate_look_ass": true
+  },
+  "watch_items": [
+    "One 1.660253 mm source edge contracts to 0.846146 mm. This is not perceptible in the matched review but remains flagged for later thickness and print-detail review.",
+    "A 7.018186 mm edge adjacent to the maximum-displacement vertex contracts to 4.426199 mm. Preserve the reversible shape key until fitted-surface promotion."
+  ],
+  "promotion_gates": {
+    "gate_b_topology_invariants": "PASS",
+    "gate_b_bounded_patch_review": "PASS",
+    "gate_c_patch_delta_visual_review": "PASS",
+    "gate_c_overall_fitted_surface_visual_review": "FAIL",
+    "gate_d_anatomical_clearance": "FAIL"
+  },
+  "unresolved_failures": [
+    "422 candidate vertices remain inside the cutter.",
+    "1037 cutter triangle overlaps remain.",
+    "The parked wrist brace requires bounded visible reconstruction.",
+    "The complete fitted surface remains unapproved."
+  ],
+  "physical_test_status": "not_started",
+  "motion_claim": "none",
+  "milestone_status": "repair_patch_retained_candidate_not_promoted",
+  "evidence": {
+    "build_report": "_validation/geometry_repair/repair_001_component_0/build_report.json",
+    "local_review_sheet": "_validation/geometry_repair/repair_001_component_0/local_comparison/review_sheet.png",
+    "full_review_sheet_1": "_validation/geometry_repair/repair_001_component_0/full_comparison/review_sheet-01.png",
+    "full_review_sheet_2": "_validation/geometry_repair/repair_001_component_0/full_comparison/review_sheet-02.png",
+    "local_blend": "blender_files/Johnny_geometry_repair_work.blend",
+    "pre_repair_checkpoint": "blender_files/archive/Johnny_pre_repair_workflow_20260728.blend",
+    "before_fingerprint": "b2629b6176241a28814d37ede66ed6a3142c336f1bdea342a0efaf892c2e9e07",
+    "after_fingerprint": "0391d0d58848dda0bd911627dfc58fa61b77b55c345905a93053fe74a98576cc"
+  }
+}

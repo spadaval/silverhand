@@ -33,11 +33,32 @@ Read these files before changing the model:
 
 ## Image evidence safety
 
+- Image tooling is extremely fragile. All image generation, conversion,
+  inspection, and comparison must be delegated to a subagent. A parent agent
+  must never read an image directly.
+- Treat every image subagent as disposable: it may terminate at any image
+  operation, without returning a useful result. The parent agent must be able
+  to resume by starting a fresh subagent, even if this must be repeated hundreds
+  or thousands of times.
+- Image subagents must immediately write every useful observation, command,
+  output path, and decision to a durable text checkpoint. Do not defer
+  documentation until a batch or review is complete. The parent agent must
+  coordinate from those checkpoints rather than from image contents.
+- Sanitize every generated image with ImageMagick before it enters any
+  downstream image workflow. Produce a deliberately plain derivative: strip
+  metadata and profiles, normalize orientation, convert to sRGB, and write a
+  conventional 8-bit PNG or JPEG. Record the source and sanitized output paths
+  in the checkpoint. An image subagent may read only the sanitized derivative.
+- Check the sanitized file size before attempting image-model review. Never
+  submit an image larger than 10 MB to an image model. Oversized images may
+  still be generated and retained for human review, but must be marked
+  `direct_image_model_review: false`; create smaller sanitized derivatives for
+  model review.
 - Never inspect a full or archival contact sheet directly with an image model.
 - Use the paginated files listed in `render.contact_sheets` or inspect
   individual matched-view images.
-- Use high image detail for review sheets. Reserve original detail for a small,
-  explicit crop when exact pixels are necessary.
+- Always inspect images at high detail first. Use original detail only when the
+  high-detail version of that specific image or crop is not clear enough.
 - A full vertical contact sheet may be generated only as human archival
   evidence and must remain marked `direct_image_model_review: false`.
 

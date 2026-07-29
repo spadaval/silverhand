@@ -1,0 +1,40 @@
+{
+  "date": "2026-07-28",
+  "blend_file": "blender_files/Johnny_geometry_repair_work.blend",
+  "status": "retained_fitted_surface_candidate_not_promoted",
+  "reviewed_shape_key_chain": [
+    "REPAIR_001_COMPONENT_0",
+    "REPAIR_002_COMPONENT_1_REGIONAL",
+    "REPAIR_003_COMPONENT_25_MASKED",
+    "REPAIR_004_COMPONENT_37_MASKED",
+    "REPAIR_005_COMPONENT_42_MASKED"
+  ],
+  "programmatic_review": {
+    "units": "millimeters",
+    "vertices": 7347,
+    "faces": 12564,
+    "source_topology_unchanged": true,
+    "material_assignments_unchanged": true,
+    "cumulative_repair_orientation_locators": 0,
+    "vertices_inside_cutter": 354,
+    "vertices_below_reserved_margin": 365,
+    "cutter_triangle_overlaps": 837,
+    "minimum_margin_mm": -46.575477
+  },
+  "qualitative_review": {
+    "image_detail": "high",
+    "full_contact_sheet_inspected_directly": false,
+    "result": "No new exposed silhouette break, exploded registration, spike, slab, or depth inversion was found in the retained component-25, component-37, or component-42 assembly views.",
+    "evidence": [
+      "_validation/experiments/geometry_repair/component_25_methods/masked_context/",
+      "_validation/experiments/geometry_repair/component_37_methods/masked_context/",
+      "_validation/experiments/geometry_repair/component_42_methods/masked_context/"
+    ]
+  },
+  "watch_items": [
+    "Buried contracted edges in components 25, 37, and 42 require later solidification review.",
+    "Components 36 and 39 remain unrepaired because tested methods damaged visible geometry.",
+    "Components 9 and 20 contain 296 of the 354 remaining cutter penetrations.",
+    "The fitted surface still fails anatomical clearance and is not promoted."
+  ]
+}

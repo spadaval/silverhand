@@ -14,6 +14,12 @@ import sys
 import bpy
 from mathutils import Vector
 
+SCRIPTS_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+
+from image_sanitization import sanitize_image  # noqa: E402
+
 
 VIEWS = {
     "iso": Vector((1.3, -1.3, 0.9)),
@@ -140,6 +146,7 @@ def render_file(
         render_path = output_dir / f"{output_stem}--{view_name}.png"
         bpy.context.scene.render.filepath = str(render_path)
         bpy.ops.render.render(write_still=True)
+        sanitize_image(render_path)
         renders.append((view_name, render_path))
 
     for obj in imported:
@@ -228,7 +235,10 @@ def main() -> int:
             print(f"FAIL {relative_path}: {type(exc).__name__}: {exc}", file=sys.stderr)
         else:
             rendered.append((relative_path, images))
-            print(f"DONE {relative_path}: rendered {len(images)} views")
+            print(
+                f"DONE {relative_path}: rendered and sanitized "
+                f"{len(images)} views"
+            )
 
     write_index(output_dir, rendered, failures)
     print(f"Wrote preview index: {output_dir / 'index.html'}")
