@@ -256,6 +256,26 @@ preserve its relative offset, blend through both components locally, and keep
 the other 13 interface anchors exact. This does not authorize a component
 fusion or a global component-9 deformation.
 
+The selected three-ring coordinated staging move is conditionally accepted
+only as input to the authored liner:
+
+- both shared anchors reach the `1.7 mm` floor;
+- both pair-relative vectors remain exact;
+- the other 13 interface anchors remain exact;
+- it introduces no vertex failures or orientation locators;
+- affected edge ratios remain `0.522057–1.785424`;
+- component-9 overlaps fall from `389` to `387`;
+- component-20 overlaps rise from `264` to `266`;
+- global overlaps remain `653`.
+
+All 30 newly overlapping component-20 face/cutter pairs belong to the selected
+724-face removal set; none lies on retained exterior geometry. The staging
+move therefore remains a standalone `FAIL`, but is
+`CONDITIONAL_PASS_FOR_COMBINED_LINER_STAGE`. Its exact ignored evaluation
+checkpoint has SHA-256
+`393a7c1a29c96c876fe2be849c3b9a4e42c771416cd59b3f733a7f0c65342bcd`.
+The complete combined liner must revalidate every gate.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -298,3 +318,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_face_aware_sector/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_full_recon_map/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_inner_bowl/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_coordinated_interface/`

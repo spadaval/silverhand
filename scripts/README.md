@@ -97,6 +97,10 @@ lineages.
 - `blender/try_authored_inner_bowl_liner.py` — verifies the selected
   component-20 inner-bowl reconstruction authority and refuses construction
   when a frozen interface anchor is also a mandatory clearance failure.
+- `blender/try_coordinated_elbow_interface.py` — moves the two near-coincident
+  component-9/component-20 elbow pairs together through the smallest bounded
+  topology neighborhood and records whether the result is admissible as a
+  combined-liner staging state.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
