@@ -539,6 +539,19 @@ field. A later preflight may search bounded directions in the local normal
 plane to determine whether component-9 clearance and cutter margin can coexist
 at full width before another mesh is built.
 
+That direction-field preflight evaluates `4,896` fixed-section candidates per
+constituent. It proves full-width placement is feasible for the left arc and
+center bridge: B0 has five admissible candidates and B1 has nine. Their
+least-bad passing cases have zero component-9, cutter, and self overlaps with
+minimum cutter margins of `5.228782 mm` and `4.069370 mm`, respectively.
+
+The right arc B2 is the isolated blocker. None of its `4,896` cases passes.
+Its least-bad case clears both component `9` and the cutter, but has `10`
+self-overlap pairs, a `-0.541454 mm` cutter margin, and maximum aspect ratio
+`17.033039`. No v10 geometry is emitted. Preserve the feasible B0/B1 evidence
+and split only B2 at a natural legacy control before changing section width or
+expanding displacement bounds.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

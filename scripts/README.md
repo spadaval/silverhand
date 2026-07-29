@@ -152,6 +152,10 @@ lineages.
   and measured lap/cage contacts. Its one-direction displacement control
   clears component 9 but is rejected where the pieces enter the anatomical
   cutter or self-intersect.
+- `blender/preflight_direction_field_network_v10.py` — evaluates a bounded
+  normal-plane direction, distance, and roll grid for each v9 constituent and
+  records Pareto evidence without emitting geometry unless the complete
+  measured network is feasible.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
