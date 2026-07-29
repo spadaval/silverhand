@@ -1,8 +1,8 @@
 # Component 20 Landmark-Sector Reconstruction
 
-Status: **active evaluation; no geometry retained**
+Status: **active evaluation; minimal local interface reconstruction selected**
 
-Updated: 2026-07-28
+Updated: 2026-07-29
 
 ## Decision
 
@@ -360,10 +360,27 @@ unused, while retaining all 1,409 exterior faces and materials exactly:
 - only interface vertices `5840` and `5852` remain owned by component `20`;
   the other 13 mapped interface controls disappear with the bowl.
 
-This result is numerical evidence, not promotion. It requires disposable
-matched-view review to determine whether the missing bowl reads as an
-intentional open cage and whether minimal local junctions can restore the lost
-elbow anchors.
+Disposable matched-view review rejects the bare deletion as final geometry.
+The exterior identity survives, including the primary silhouette, long dorsal
+ribs, circular elbow aperture, and major accents. The missing bowl nevertheless
+reads as a catastrophic hole: the axial view becomes an almost empty ring, the
+retained islands look structurally unjoined, and no component-20 surface owns
+the 13-control component-9 interface arc.
+
+The same review passes a narrower reconstruction direction. Retain the exact
+1,409-face exterior cage and keep the center open, then:
+
+1. build a narrow, closed, positive-volume C-shaped band facing component `9`;
+2. pass the band through the 13 lost component-20 interface controls
+   `2054, 2055, 2058, 2060, 2062, 2064, 2074, 2108, 2111, 2114, 2115, 2118,
+   2119`;
+3. connect the band to each retained cage island with the shortest stable
+   local ribs or tabs;
+4. retain component-20 controls `5840` and `5852` as hard registration checks;
+5. preserve component `9` and the exterior cage exactly.
+
+Do not promote the bare open cage, refill the complete bowl, or create a global
+backing union. The local band/junction network is the active evaluation.
 
 ## Numerical gate
 
