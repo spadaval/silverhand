@@ -1,6 +1,6 @@
 # Silverhand — Current Status
 
-Updated: 2026-07-28
+Updated: 2026-07-29
 
 ## Active milestone
 
@@ -377,6 +377,17 @@ clear the local geometry gate and zero complete the unchanged v23 route
 contract. The obstruction therefore extends upstream of the authorized
 terminal subsegment. The next joint trial must re-author the earlier B2b/turn-
 bridge corridor; repeating terminal-only exit changes is not justified.
+
+The v25 authored-tail preflight exhausts that fixed upstream scope without
+mutation. It evaluates all `11,907` escape tuples, retains `3,570` local
+passes at `1,190` unique portals, and tests all `3,570` portal/endpoint routes.
+Every route fails the necessary radius-`1.2 mm` inscribed-capsule search on
+the same `4 mm` lattice, so none can contain the required
+`4.5–6.0 × 2.4 mm` rectangular rail. The named stop is
+`NO_SAFE_AUTHORED_TAIL_ROUTE_V25`. The next decision must deliberately expand
+into B1 or beyond the `12 mm` B2a suffix authority, or choose a different
+joint-interface architecture; another fixed-scope route iteration is not
+justified.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.

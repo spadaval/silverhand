@@ -211,8 +211,10 @@ lineages.
   each admitted portal without granting mutation authority.
 - `blender/preflight_authored_tail_v25.py` — checkpoints the exact combined
   B2a/turn-bridge/B2b authority, resolves the bounded A0–A3 anchor ledger, and
-  persists the hash-locked V25 search contract before any candidate generation.
-  Its current authority stage is read-only and emits no geometry.
+  exhausts the hash-locked authored-tail escape and route contract through
+  atomic, resumable shards. It uses a validated radius-`1.2 mm` inscribed
+  capsule only as a necessary no-path prefilter; capsule success never grants
+  a rectangular-rail result. The tool is read-only and emits no geometry.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
@@ -231,6 +233,9 @@ lineages.
   caps review pages at `2000 px`. A full vertical sheet requires the explicit
   `--archival-output` option and is not suitable for direct image-model review.
 - `tools/validate_stl_exports.py` — dependency-free binary STL audit.
+- `tools/merge_v25_route_shards.py` — verifies and merges the three completed
+  V25 capsule-route shards, then writes the final route, allowlist, and build
+  reports without changing Blender geometry.
 - `tools/inventory_reference_3mf.py` — inventory of the proven 3MF.
 - `tools/extract_reference_3mf_armor.py` — extraction of millimeter-native armor
   donors into ignored local working storage.

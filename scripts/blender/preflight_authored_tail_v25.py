@@ -6,8 +6,9 @@ the authority and A0-A3 boundary have been independently checkpointed.
 
 from __future__ import annotations
 
-from collections import Counter
+from collections import Counter, deque
 from hashlib import sha256
+from heapq import heappop, heappush
 import json
 from math import ceil, sqrt
 from pathlib import Path
@@ -658,6 +659,318 @@ def exact_candidate(
     return exact
 
 
+def cached_roll_evolving_astar(
+    nodes,
+    start,
+    end,
+    start_tangent,
+    end_tangent,
+    roll,
+    width,
+    obstacles,
+    corridor,
+):
+    edge_cache = {}
+
+    def edge_gate(first_key, second_key, first, second, edge_roll):
+        cache_key = (first_key, second_key, edge_roll)
+        if cache_key not in edge_cache:
+            edge_cache[cache_key] = v23.segment_gate(
+                first,
+                second,
+                edge_roll,
+                width,
+                obstacles,
+                corridor,
+            )
+        return edge_cache[cache_key]
+
+    initial = []
+    rejection_counts = Counter()
+    for key, point in nodes.items():
+        delta = point - start
+        if not 2.0 <= delta.length <= 7.0:
+            continue
+        if v23.turn_degrees(start_tangent, delta) > 45.0:
+            continue
+        gate, reason = edge_gate(
+            ("START",),
+            key,
+            start,
+            point,
+            roll,
+        )
+        if gate:
+            initial.append((key, delta.normalized()))
+        else:
+            rejection_counts[f"initial_{reason}"] += 1
+    queue = []
+    best = {}
+    parent = {}
+    serial = 0
+    for key, direction in initial:
+        cost = (nodes[key] - start).length
+        state = (key, tuple(round(value, 6) for value in direction), roll)
+        best[state] = cost
+        parent[state] = None
+        heappush(
+            queue,
+            (cost + (end - nodes[key]).length, serial, cost, state),
+        )
+        serial += 1
+    goal = None
+    while queue:
+        _, _, queued_cost, state = heappop(queue)
+        if queued_cost > best.get(state, float("inf")) + 1.0e-9:
+            continue
+        key, direction_values, state_roll = state
+        current = nodes[key]
+        incoming = Vector(direction_values)
+        cost = best[state]
+        delta_to_end = end - current
+        if (
+            2.0 <= delta_to_end.length <= 7.0
+            and v23.turn_degrees(incoming, delta_to_end) <= 45.0
+            and v23.turn_degrees(delta_to_end, end_tangent) <= 45.0
+        ):
+            gate, reason = edge_gate(
+                key,
+                ("END",),
+                current,
+                end,
+                state_roll,
+            )
+            if gate:
+                goal = state
+                break
+            rejection_counts[reason] += 1
+        li, ai, bi = key
+        for offset in v23.NEIGHBORS:
+            following_key = (
+                li + offset[0],
+                ai + offset[1],
+                bi + offset[2],
+            )
+            if following_key not in nodes:
+                continue
+            following = nodes[following_key]
+            outgoing = following - current
+            if v23.turn_degrees(incoming, outgoing) > 45.0:
+                continue
+            for roll_delta in (-15, 0, 15):
+                following_roll = state_roll + roll_delta
+                if not -180 <= following_roll <= 180:
+                    continue
+                gate, reason = edge_gate(
+                    key,
+                    following_key,
+                    current,
+                    following,
+                    following_roll,
+                )
+                if not gate:
+                    rejection_counts[reason] += 1
+                    continue
+                direction = outgoing.normalized()
+                following_state = (
+                    following_key,
+                    tuple(round(value, 6) for value in direction),
+                    following_roll,
+                )
+                following_cost = cost + outgoing.length
+                if following_cost >= best.get(
+                    following_state,
+                    float("inf"),
+                ):
+                    continue
+                best[following_state] = following_cost
+                parent[following_state] = state
+                heappush(
+                    queue,
+                    (
+                        following_cost + (end - following).length,
+                        serial,
+                        following_cost,
+                        following_state,
+                    ),
+                )
+                serial += 1
+    if goal is None:
+        return None, {
+            "expanded_state_count": len(best),
+            "edge_rejection_counts": dict(sorted(rejection_counts.items())),
+            "roll_evolution": "V23-equivalent ±15 degrees per 4 mm edge",
+            "memoized_edge_gate_count": len(edge_cache),
+        }
+    states = []
+    current = goal
+    while current is not None:
+        states.append(current)
+        current = parent[current]
+    states.reverse()
+    points = [start, *[nodes[state[0]] for state in states], end]
+    rolls = [roll, *[state[2] for state in states], states[-1][2]]
+    return {
+        "points": points,
+        "rolls": rolls,
+        "length_mm": sum(
+            (second - first).length
+            for first, second in zip(points, points[1:])
+        ),
+    }, {
+        "expanded_state_count": len(best),
+        "edge_rejection_counts": dict(sorted(rejection_counts.items())),
+        "roll_evolution": "V23-equivalent ±15 degrees per 4 mm edge",
+        "memoized_edge_gate_count": len(edge_cache),
+    }
+
+
+def validate_cached_astar(
+    report_path,
+    context,
+    corridor,
+    attribution,
+):
+    obstacles = v23.obstacle_context(context, corridor, attribution)
+    portal = v23.b2b_portal(corridor)
+    path = report_path.with_name("v25_cached_astar_equivalence.json")
+    payload = {
+        "operation": OPERATION,
+        "status": "CACHED_ASTAR_EQUIVALENCE_IN_PROGRESS",
+        "current_case_id": None,
+        "current_phase": None,
+        "case_count": 3,
+        "cases": [],
+        "all_cases_match": False,
+        "mutation_started": False,
+        "geometry_emitted": False,
+        "blend_saved": False,
+    }
+    atomic_json(path, payload)
+    cases = []
+    for endpoint in [
+        record
+        for record in v23.endpoint_candidates(context)
+        if record["accepted"]
+    ]:
+        start = portal["_center"]
+        end = Vector(endpoint["coordinate_mm"])
+        full_nodes, frame = v23.lattice_nodes(
+            start,
+            end,
+            portal["_normal"],
+        )
+        near_keys = sorted(
+            key
+            for key, point in full_nodes.items()
+            if 2.0 <= (point - start).length <= 7.0
+        )[:12]
+        nodes = {key: full_nodes[key] for key in near_keys}
+        toward = Vector((-0.451645434, 0.836417615, -0.310518861))
+        if toward.dot(start - end) < 0:
+            toward.negate()
+        arrival = -toward.normalized()
+        case_id = f"B2B_{endpoint['endpoint_id']}_W6_R0_N12"
+        payload["current_case_id"] = case_id
+        payload["current_phase"] = "ORIGINAL_V23_ASTAR_PENDING"
+        atomic_json(path, payload)
+        original_route, original_metrics = v23.astar(
+            nodes,
+            start,
+            end,
+            portal["_tangent"],
+            arrival,
+            0,
+            6.0,
+            obstacles,
+            corridor,
+        )
+        payload["current_phase"] = "CACHED_ASTAR_PENDING"
+        payload["original_partial"] = {
+            "polyline_found": original_route is not None,
+            **original_metrics,
+        }
+        atomic_json(path, payload)
+        cached_route, cached_metrics = cached_roll_evolving_astar(
+            nodes,
+            start,
+            end,
+            portal["_tangent"],
+            arrival,
+            0,
+            6.0,
+            obstacles,
+            corridor,
+        )
+        original_public = {
+            "polyline_found": original_route is not None,
+            "expanded_state_count": original_metrics[
+                "expanded_state_count"
+            ],
+            "edge_rejection_counts": original_metrics[
+                "edge_rejection_counts"
+            ],
+            "points_mm": (
+                point_list(original_route["points"])
+                if original_route is not None
+                else None
+            ),
+            "rolls": (
+                original_route["rolls"]
+                if original_route is not None
+                else None
+            ),
+        }
+        cached_public = {
+            "polyline_found": cached_route is not None,
+            "expanded_state_count": cached_metrics[
+                "expanded_state_count"
+            ],
+            "edge_rejection_counts": cached_metrics[
+                "edge_rejection_counts"
+            ],
+            "points_mm": (
+                point_list(cached_route["points"])
+                if cached_route is not None
+                else None
+            ),
+            "rolls": (
+                cached_route["rolls"]
+                if cached_route is not None
+                else None
+            ),
+        }
+        cases.append(
+            {
+                "case_id": case_id,
+                "node_count": len(nodes),
+                "search_frame": frame,
+                "original": original_public,
+                "cached": cached_public,
+                "match": original_public == cached_public,
+                "cached_memoized_edge_gate_count": cached_metrics[
+                    "memoized_edge_gate_count"
+                ],
+            }
+        )
+        payload["cases"] = cases
+        payload["current_phase"] = "CASE_CHECKPOINTED"
+        payload.pop("original_partial", None)
+        atomic_json(path, payload)
+    payload["status"] = "CACHED_ASTAR_EQUIVALENCE_CHECKPOINTED"
+    payload["current_case_id"] = None
+    payload["current_phase"] = None
+    payload["case_count"] = len(cases)
+    payload["all_cases_match"] = all(case["match"] for case in cases)
+    atomic_json(path, payload)
+    if not payload["all_cases_match"]:
+        raise RuntimeError(
+            f"{OPERATION}: cached roll-evolving A* differs from original "
+            f"V23 helper; evidence={path}"
+        )
+    return path
+
+
 def progress_template(contract_sha, authority_sha):
     return {
         "operation": OPERATION,
@@ -885,6 +1198,12 @@ def run_search(
     shard_contract_path = report_path.with_name(
         "v25_route_shard_contract.json"
     )
+    equivalence_path = report_path.with_name(
+        "v25_cached_astar_equivalence.json"
+    )
+    capsule_validation_path = report_path.with_name(
+        "v25_capsule_prefilter_validation.json"
+    )
     atomic_json(
         shard_contract_path,
         {
@@ -893,6 +1212,12 @@ def run_search(
             "authority_sha256": authority_sha,
             "contract_sha256": contract_sha,
             "portal_dedup_sha256": sha_file(portal_path),
+            "cached_astar_equivalence_sha256": sha_file(
+                equivalence_path
+            ),
+            "capsule_prefilter_validation_sha256": sha_file(
+                capsule_validation_path
+            ),
             "shard_count": 3,
             "assignment": "ordered_portal_index modulo shard_count",
             "ordered_portal_ids": [
@@ -1123,10 +1448,194 @@ def run_search(
     }
 
 
+def inscribed_capsule_path(
+    nodes,
+    start,
+    end,
+    obstacles,
+    corridor,
+):
+    radius = 1.2
+    point_cache = {}
+    edge_cache = {}
+    rejections = Counter()
+
+    def point_gate(point):
+        key = tuple(round(value, 6) for value in point)
+        if key not in point_cache:
+            cutter_margin = v24.v4.v2.point_margins(
+                [point],
+                corridor["target_length"],
+                corridor["grid"],
+            )[0]
+            if cutter_margin < 1.7 + radius:
+                point_cache[key] = (False, "capsule_cutter")
+            else:
+                result = (True, None)
+                for name, tree in obstacles["trees"].items():
+                    if v23.point_clearance(point, tree) < radius:
+                        result = (False, f"capsule_{name}")
+                        break
+                point_cache[key] = result
+        return point_cache[key]
+
+    def edge_gate(first_key, second_key, first, second):
+        key = (first_key, second_key)
+        if key in edge_cache:
+            return edge_cache[key]
+        length = (second - first).length
+        steps = max(1, int(ceil(length / 2.0)))
+        result = (True, None)
+        for index in range(steps + 1):
+            gate, reason = point_gate(first.lerp(second, index / steps))
+            if not gate:
+                result = (False, reason)
+                break
+        edge_cache[key] = result
+        return result
+
+    queue = deque()
+    parent = {}
+    for key, point in nodes.items():
+        distance = (point - start).length
+        if not 2.0 <= distance <= 7.0:
+            continue
+        gate, reason = edge_gate(("START",), key, start, point)
+        if gate:
+            parent[key] = None
+            queue.append(key)
+        else:
+            rejections[f"initial_{reason}"] += 1
+    goal = None
+    while queue:
+        key = queue.popleft()
+        current = nodes[key]
+        end_distance = (end - current).length
+        if 2.0 <= end_distance <= 7.0:
+            gate, reason = edge_gate(key, ("END",), current, end)
+            if gate:
+                goal = key
+                break
+            rejections[reason] += 1
+        li, ai, bi = key
+        for offset in v23.NEIGHBORS:
+            following_key = (
+                li + offset[0],
+                ai + offset[1],
+                bi + offset[2],
+            )
+            if following_key not in nodes or following_key in parent:
+                continue
+            following = nodes[following_key]
+            gate, reason = edge_gate(
+                key,
+                following_key,
+                current,
+                following,
+            )
+            if not gate:
+                rejections[reason] += 1
+                continue
+            parent[following_key] = key
+            queue.append(following_key)
+    if goal is None:
+        return None, {
+            "visited_node_count": len(parent),
+            "point_gate_count": len(point_cache),
+            "edge_gate_count": len(edge_cache),
+            "rejection_counts": dict(sorted(rejections.items())),
+            "capsule_radius_mm": radius,
+            "maximum_edge_sample_spacing_mm": 2.0,
+        }
+    keys = []
+    current = goal
+    while current is not None:
+        keys.append(current)
+        current = parent[current]
+    keys.reverse()
+    return [start, *[nodes[key] for key in keys], end], {
+        "visited_node_count": len(parent),
+        "point_gate_count": len(point_cache),
+        "edge_gate_count": len(edge_cache),
+        "rejection_counts": dict(sorted(rejections.items())),
+        "capsule_radius_mm": radius,
+        "maximum_edge_sample_spacing_mm": 2.0,
+    }
+
+
+def write_capsule_validation(report_path):
+    widths = [6.0, 5.25, 4.5]
+    radius = 1.2
+    cases = [
+        {
+            "width_mm": width,
+            "thickness_mm": 2.4,
+            "capsule_radius_mm": radius,
+            "contained_in_section": (
+                radius <= width / 2.0 and radius <= 2.4 / 2.0
+            ),
+        }
+        for width in widths
+    ]
+    segment_lengths = [4.0, 4.0 * sqrt(2.0), 4.0 * sqrt(3.0)]
+    spacing_cases = []
+    for length in segment_lengths:
+        steps = max(1, int(ceil(length / 2.0)))
+        spacing_cases.append(
+            {
+                "edge_length_mm": length,
+                "sample_step_count": steps,
+                "actual_spacing_mm": length / steps,
+                "within_2mm": length / steps <= 2.0 + 1.0e-9,
+            }
+        )
+    payload = {
+        "operation": OPERATION,
+        "status": "INSCRIBED_CAPSULE_NECESSITY_CHECKPOINTED",
+        "reasoning": (
+            "Every allowed rectangular section contains the same radius "
+            "1.2 mm longitudinal capsule. Any passing rectangular route "
+            "therefore implies a passing capsule centerline on the same "
+            "lattice. Capsule graph disconnection is a necessary-failure "
+            "proof; capsule success grants no rectangle result."
+        ),
+        "section_cases": cases,
+        "edge_spacing_cases": spacing_cases,
+        "cutter_center_margin_required_mm": 2.9,
+        "solid_obstacle_center_distance_required_mm": 1.2,
+        "all_cases_pass": all(
+            case["contained_in_section"] for case in cases
+        )
+        and all(case["within_2mm"] for case in spacing_cases),
+        "mutation_started": False,
+        "geometry_emitted": False,
+        "blend_saved": False,
+    }
+    path = report_path.with_name("v25_capsule_prefilter_validation.json")
+    atomic_json(path, payload)
+    if not payload["all_cases_pass"]:
+        raise RuntimeError(
+            f"{OPERATION}: inscribed capsule validation failed: {path}"
+        )
+    return path
+
+
 def route_shard_argument():
-    if "--route-shard" not in sys.argv:
+    option = next(
+        (
+            candidate
+            for candidate in (
+                "--route-shard",
+                "--capsule-route-shard",
+                "--full-route-shard",
+            )
+            if candidate in sys.argv
+        ),
+        None,
+    )
+    if option is None:
         return None
-    index = sys.argv.index("--route-shard")
+    index = sys.argv.index(option)
     try:
         shard_text, count_text = sys.argv[index + 1].split("/", 1)
         shard = int(shard_text)
@@ -1140,10 +1649,20 @@ def route_shard_argument():
             f"{OPERATION}: route shard must be 0/3, 1/3, or 2/3; "
             f"observed {shard}/{count}"
         )
-    return shard, count
+    return (
+        (
+            "full_roll"
+            if option == "--full-route-shard"
+            else "capsule"
+            if option == "--capsule-route-shard"
+            else "constant_roll"
+        ),
+        shard,
+        count,
+    )
 
 
-def run_constant_roll_shard(
+def run_capsule_shard(
     report_path,
     context,
     corridor,
@@ -1157,16 +1676,222 @@ def run_constant_roll_shard(
     shard_contract_path = report_path.with_name(
         "v25_route_shard_contract.json"
     )
+    validation_path = report_path.with_name(
+        "v25_capsule_prefilter_validation.json"
+    )
     for path in (
         authority_path,
         contract_path,
         portal_path,
         shard_contract_path,
+        validation_path,
+    ):
+        if not path.exists():
+            raise RuntimeError(
+                f"{OPERATION}: capsule shard {shard}/{shard_count} cannot "
+                f"start; missing shared checkpoint: {path}"
+            )
+    contract = json.loads(contract_path.read_text(encoding="utf-8"))
+    if contract["code_sha256"] != sha_file(Path(__file__)):
+        raise RuntimeError(
+            f"{OPERATION}: capsule shard code hash mismatch; rerun shared "
+            f"--escape-only preparation"
+        )
+    validation = json.loads(
+        validation_path.read_text(encoding="utf-8")
+    )
+    if not validation.get("all_cases_pass"):
+        raise RuntimeError(
+            f"{OPERATION}: capsule shard blocked by failed necessity "
+            f"validation: {validation_path}"
+        )
+    authority = json.loads(authority_path.read_text(encoding="utf-8"))
+    portal_payload = json.loads(portal_path.read_text(encoding="utf-8"))
+    shard_contract = json.loads(
+        shard_contract_path.read_text(encoding="utf-8")
+    )
+    assigned = set(shard_contract["shards"][str(shard)])
+    portals = [
+        portal
+        for portal in portal_payload["portals"]
+        if portal["portal_id"] in assigned
+    ]
+    progress_path = report_path.with_name(
+        f"v25_capsule_route_shard_{shard}_of_{shard_count}.json"
+    )
+    expected = {
+        "authority_sha256": sha_file(authority_path),
+        "contract_sha256": sha_file(contract_path),
+        "portal_dedup_sha256": sha_file(portal_path),
+        "shard_contract_sha256": sha_file(shard_contract_path),
+        "capsule_validation_sha256": sha_file(validation_path),
+    }
+    progress = {}
+    if progress_path.exists():
+        progress = json.loads(progress_path.read_text(encoding="utf-8"))
+        if any(progress.get(key) != value for key, value in expected.items()):
+            stale = progress_path.with_name(
+                f"{progress_path.stem}.stale-"
+                f"{progress.get('contract_sha256', 'unknown')[:12]}.json"
+            )
+            progress_path.replace(stale)
+            progress = {}
+    if not progress:
+        progress = {
+            "operation": OPERATION,
+            "status": "CAPSULE_ROUTE_SHARD_PENDING",
+            "shard": shard,
+            "shard_count": shard_count,
+            **expected,
+            "assigned_portal_ids": [
+                portal["portal_id"] for portal in portals
+            ],
+            "completed_route_ids": [],
+            "current_route_id": None,
+            "route_records": [],
+            "capsule_path_route_ids": [],
+            "rejection_counts": {},
+            "mutation_started": False,
+            "geometry_emitted": False,
+            "blend_saved": False,
+        }
+        atomic_json(progress_path, progress)
+    completed = set(progress["completed_route_ids"])
+    rejections = Counter(progress["rejection_counts"])
+    endpoint_map = {
+        record["endpoint_id"]: record
+        for record in v23.endpoint_candidates(context)
+        if record["accepted"]
+    }
+    anchor_map = {
+        record["anchor_id"]: dict(record)
+        for record in authority["ordered_anchors"]
+    }
+    obstacles = {
+        anchor_id: build_anchor_obstacles(
+            context,
+            corridor,
+            attribution,
+            anchor,
+        )
+        for anchor_id, anchor in anchor_map.items()
+    }
+    for portal in portals:
+        samples = [
+            Vector(point) for point in portal["sample_points_mm"]
+        ]
+        start = samples[-1]
+        obstacle = obstacles[portal["anchor_id"]]
+        for endpoint_id in portal["accepted_endpoint_ids"]:
+            route_id = f"{portal['portal_id']}:{endpoint_id}"
+            if route_id in completed:
+                continue
+            endpoint = endpoint_map[endpoint_id]
+            end = Vector(endpoint["coordinate_mm"])
+            nodes, frame = v23.lattice_nodes(
+                start,
+                end,
+                Vector((0.685143352, 0.548078537, 0.479779691)),
+            )
+            progress["status"] = "CAPSULE_ROUTE_PENDING"
+            progress["current_route_id"] = route_id
+            atomic_json(progress_path, progress)
+            path, metrics = inscribed_capsule_path(
+                nodes,
+                start,
+                end,
+                obstacle,
+                corridor,
+            )
+            record = {
+                "route_id": route_id,
+                "portal_id": portal["portal_id"],
+                "endpoint_id": endpoint_id,
+                "search_frame": frame,
+                **metrics,
+                "capsule_path_found": path is not None,
+                "result": (
+                    "FULL_ROLL_PENDING"
+                    if path is not None
+                    else "inscribed_capsule_no_path"
+                ),
+            }
+            if path is None:
+                rejections["inscribed_capsule_no_path"] += 1
+            else:
+                record["capsule_path_points_mm"] = point_list(path)
+                progress["capsule_path_route_ids"].append(route_id)
+            progress["route_records"].append(record)
+            progress["completed_route_ids"].append(route_id)
+            completed.add(route_id)
+            progress["current_route_id"] = None
+            progress["rejection_counts"] = dict(sorted(rejections.items()))
+            atomic_json(progress_path, progress)
+    progress["status"] = "CAPSULE_ROUTE_SHARD_COMPLETE"
+    atomic_json(progress_path, progress)
+    print(
+        json.dumps(
+            {
+                "status": progress["status"],
+                "shard": f"{shard}/{shard_count}",
+                "completed_routes": len(progress["completed_route_ids"]),
+                "capsule_paths": len(progress["capsule_path_route_ids"]),
+                "rejection_counts": progress["rejection_counts"],
+                "progress": str(progress_path),
+                "progress_sha256": sha_file(progress_path),
+                "mutation_started": False,
+                "geometry_emitted": False,
+                "blend_saved": False,
+            },
+            indent=2,
+        )
+    )
+    print(
+        f"DONE: capsule shard {shard}/{shard_count}; "
+        f"completed={len(progress['completed_route_ids'])}; "
+        f"full_pending={len(progress['capsule_path_route_ids'])}"
+    )
+    return 0
+
+
+def run_constant_roll_shard(
+    report_path,
+    context,
+    corridor,
+    attribution,
+    shard,
+    shard_count,
+    full_roll=False,
+):
+    authority_path = report_path.with_name("combined_tail_authority.json")
+    contract_path = report_path.with_name("v25_search_contract.json")
+    portal_path = report_path.with_name("v25_portal_dedup.json")
+    shard_contract_path = report_path.with_name(
+        "v25_route_shard_contract.json"
+    )
+    equivalence_path = report_path.with_name(
+        "v25_cached_astar_equivalence.json"
+    )
+    for path in (
+        authority_path,
+        contract_path,
+        portal_path,
+        shard_contract_path,
+        *([equivalence_path] if full_roll else []),
     ):
         if not path.exists():
             raise RuntimeError(
                 f"{OPERATION}: route shard {shard}/{shard_count} cannot "
                 f"start; required shared checkpoint is missing: {path}"
+            )
+    if full_roll:
+        equivalence = json.loads(
+            equivalence_path.read_text(encoding="utf-8")
+        )
+        if not equivalence.get("all_cases_match"):
+            raise RuntimeError(
+                f"{OPERATION}: full-roll shard blocked because cached A* "
+                f"equivalence did not pass: {equivalence_path}"
             )
     authority = json.loads(authority_path.read_text(encoding="utf-8"))
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
@@ -1196,13 +1921,22 @@ def run_constant_roll_shard(
         if portal["portal_id"] in assigned_ids
     ]
     progress_path = report_path.with_name(
-        f"v25_route_shard_{shard}_of_{shard_count}.json"
+        (
+            f"v25_full_route_shard_{shard}_of_{shard_count}.json"
+            if full_roll
+            else f"v25_route_shard_{shard}_of_{shard_count}.json"
+        )
     )
     expected = {
         "authority_sha256": sha_file(authority_path),
         "contract_sha256": sha_file(contract_path),
         "portal_dedup_sha256": sha_file(portal_path),
         "shard_contract_sha256": sha_file(shard_contract_path),
+        **(
+            {"cached_astar_equivalence_sha256": sha_file(equivalence_path)}
+            if full_roll
+            else {}
+        ),
     }
     if progress_path.exists():
         progress = json.loads(progress_path.read_text(encoding="utf-8"))
@@ -1218,7 +1952,11 @@ def run_constant_roll_shard(
     if not progress:
         progress = {
             "operation": OPERATION,
-            "status": "CONSTANT_ROLL_SHARD_PENDING",
+            "status": (
+                "FULL_ROLL_SHARD_PENDING"
+                if full_roll
+                else "CONSTANT_ROLL_SHARD_PENDING"
+            ),
             "shard": shard,
             "shard_count": shard_count,
             **expected,
@@ -1299,11 +2037,20 @@ def run_constant_roll_shard(
             if toward.dot(escape["end"] - end) < 0:
                 toward.negate()
             arrival = -toward.normalized()
-            progress["status"] = "CONSTANT_ROLL_ROUTE_PENDING"
+            progress["status"] = (
+                "FULL_ROLL_ROUTE_PENDING"
+                if full_roll
+                else "CONSTANT_ROLL_ROUTE_PENDING"
+            )
             progress["current_route_id"] = route_id
             progress["current_route_tuple_alias"] = tuple_id
             atomic_json(progress_path, progress)
-            route, metrics = v24.cached_constant_roll_astar(
+            search = (
+                cached_roll_evolving_astar
+                if full_roll
+                else v24.cached_constant_roll_astar
+            )
+            route, metrics = search(
                 nodes,
                 escape["end"],
                 end,
@@ -1324,7 +2071,13 @@ def run_constant_roll_shard(
                 "polyline_found": route is not None,
             }
             if route is None:
-                rejections["constant_roll_no_path_full_pending"] += 1
+                rejections[
+                    (
+                        "roll_evolving_no_path"
+                        if full_roll
+                        else "constant_roll_no_path_full_pending"
+                    )
+                ] += 1
             else:
                 scarf = exact_scarf_samples(
                     corridor["core"]["B2a"]["_samples"],
@@ -1387,10 +2140,16 @@ def run_constant_roll_shard(
         if selected is not None:
             break
     if selected is not None:
-        progress["status"] = "CONSTANT_ROLL_POSITIVE_ROUTE_SELECTED"
+        progress["status"] = (
+            "FULL_ROLL_POSITIVE_ROUTE_SELECTED"
+            if full_roll
+            else "CONSTANT_ROLL_POSITIVE_ROUTE_SELECTED"
+        )
     else:
         progress["status"] = (
-            "CONSTANT_ROLL_SHARD_COMPLETE_FULL_ROUTE_PENDING"
+            "FULL_ROLL_SHARD_COMPLETE_NO_PATH"
+            if full_roll
+            else "CONSTANT_ROLL_SHARD_COMPLETE_FULL_ROUTE_PENDING"
         )
     atomic_json(progress_path, progress)
     print(
@@ -1412,7 +2171,8 @@ def run_constant_roll_shard(
         )
     )
     print(
-        f"DONE: constant-roll shard {shard}/{shard_count} "
+        f"DONE: {'full-roll' if full_roll else 'constant-roll'} shard "
+        f"{shard}/{shard_count} "
         f"status={progress['status']}; "
         f"completed={len(progress['completed_route_ids'])}"
     )
@@ -1439,14 +2199,31 @@ def main():
         )
     shard_request = route_shard_argument()
     if shard_request is not None:
+        if shard_request[0] == "capsule":
+            return run_capsule_shard(
+                report_path,
+                context,
+                corridor,
+                attribution,
+                shard_request[1],
+                shard_request[2],
+            )
         return run_constant_roll_shard(
             report_path,
             context,
             corridor,
             attribution,
-            shard_request[0],
             shard_request[1],
+            shard_request[2],
+            full_roll=shard_request[0] == "full_roll",
         )
+    equivalence_path = validate_cached_astar(
+        report_path,
+        context,
+        corridor,
+        attribution,
+    )
+    capsule_validation_path = write_capsule_validation(report_path)
     c9_tree = BVHTree.FromPolygons(
         context["c9_points"],
         context["c9_faces"],
@@ -1590,6 +2367,10 @@ def main():
         "status": "V25_SEARCH_CONTRACT_CHECKPOINTED",
         "authority_sha256": authority_sha,
         "code_sha256": code_sha,
+        "cached_astar_equivalence_sha256": sha_file(equivalence_path),
+        "capsule_prefilter_validation_sha256": sha_file(
+            capsule_validation_path
+        ),
         "ordered_anchor_ids": [
             anchor["anchor_id"] for anchor in authority["ordered_anchors"]
         ],
@@ -1739,6 +2520,16 @@ def main():
         "combined_tail_authority_sha256": authority_sha,
         "v25_search_contract": str(contract_path),
         "v25_search_contract_sha256": sha_file(contract_path),
+        "v25_cached_astar_equivalence": str(equivalence_path),
+        "v25_cached_astar_equivalence_sha256": sha_file(
+            equivalence_path
+        ),
+        "v25_capsule_prefilter_validation": str(
+            capsule_validation_path
+        ),
+        "v25_capsule_prefilter_validation_sha256": sha_file(
+            capsule_validation_path
+        ),
         "v25_progress": str(search["progress_path"]),
         "v25_progress_sha256": sha_file(search["progress_path"]),
         "v25_portal_dedup": str(search["portal_path"]),

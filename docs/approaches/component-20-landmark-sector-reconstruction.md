@@ -810,6 +810,16 @@ produced. This rejects terminal-only B2b exit reauthoring: the next joint
 method must expand upstream into the earlier B2b/turn-bridge corridor while
 retaining exact source fingerprints and C9 attribution.
 
+V25 exhausts that upstream authored-tail scope without mutation. Of `11,907`
+fixed escape tuples, `3,570` pass locally and reduce to `1,190` unique
+portals. The three endpoint choices yield `3,570` complete route queries. A
+necessary radius-`1.2 mm` inscribed-capsule search on the same `4 mm` lattice
+finds no path for any query; every allowed `4.5–6.0 × 2.4 mm` rectangular
+section contains that capsule, so no rectangular rail can pass the fixed
+contract. Zero routes survive to full-roll search. This records
+`NO_SAFE_AUTHORED_TAIL_ROUTE_V25`: expanding into B1, replacing more than
+`12 mm` of B2a, or changing the route architecture requires a new decision.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
