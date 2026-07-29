@@ -719,6 +719,21 @@ preservation also pass. No boolean, shared loft, carrier, or global backing is
 used. V17 remains evaluation-only pending qualitative review of the visible
 pads and lap junctions.
 
+V17 fails its first dorsal qualitative gate. The three constituents collapse
+visually into a tiny stacked cross at the T1/T0 seam: pad footprints are not
+externally legible, bridge laps read as block boundaries, and the overhangs
+form cross/spur silhouette defects. The multi-constituent method is acceptable
+for cosplay construction, but this local network cannot frame the dominant
+opening by itself.
+
+Retain V17 as evidence for one valid local junction, not as the complete
+repair. A full reconstruction needs a second, spatially separated T1→T0
+junction at the opposite aperture edge so the two connections define an open
+perimeter bay. Use flush co-planar scarf laps contained beneath at least
+`6 mm` of visibly directional terminal footprint, with no perpendicular block
+overhang. The two-junction network must preserve the central opening and must
+not become a global backing plate or repeat v12's free loop/harness.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
