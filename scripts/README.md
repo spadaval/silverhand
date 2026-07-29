@@ -209,6 +209,10 @@ lineages.
   rings, evaluates the ordered R8→R5 trims, then resumably exhausts the bounded
   R5/R6/R7 terminal-subsegment family and reruns the lower-route contract from
   each admitted portal without granting mutation authority.
+- `blender/preflight_authored_tail_v25.py` — checkpoints the exact combined
+  B2a/turn-bridge/B2b authority, resolves the bounded A0–A3 anchor ledger, and
+  persists the hash-locked V25 search contract before any candidate generation.
+  Its current authority stage is read-only and emits no geometry.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
