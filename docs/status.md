@@ -403,9 +403,18 @@ dependency cells `007`, `009`, and `011`. It preserves the reviewed visible
 complement, intentional `NO_FLOOR` openness, exact negative space, a
 `>=12 mm` flex gap, exact terminals, and `>=1.7 mm` cutter clearance. The
 `<=12`-cell limit survives only as a checkpoint/recovery batch bound. The
-first milestone is a read-only, hash-verified aggregate mask and dependency
-DAG; surface construction cannot begin until the flex gap is solved, and
-solids, motion, yokes, TPU, and Gates E/F/G remain deferred.
+read-only aggregate mask and dependency DAG are checkpointed. The translated
+fixed global gap frame is now exhaustively rejected: every one of its `8,059`
+placements intersects the immutable complement. Stage 2b therefore authorizes
+only a finite, fingerprinted local source-surface family: one ordered C20 cut
+chain and one ordered C9 cut chain, a ruled/local convex-prism empty footprint,
+and exact widths, source-led orientations, and local normal depths. The
+footprint must remain inside the same 26-cell aggregate; it may not use the
+cutter as visible geometry or disturb terminals, non-flex negative space, or
+`NO_FLOOR`. The first Stage 2b milestone checkpoints the family without
+evaluating or emitting geometry. Surface construction remains stopped until a
+local member proves the `>=12 mm` gap; solids, motion, yokes, TPU, and Gates
+E/F/G remain deferred.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.

@@ -354,6 +354,189 @@ the gap, generate geometry, request images, mutate a mesh, or save a Blend.
 - blend_saved: false
 - images_requested: false
 - promotion: `NOT_PROMOTED`
+
+## V27 Stage 2b contract revision — bounded local source-surface flex gap
+
+Contract status: `V27_STAGE2B_LOCAL_GAP_CONTRACT_AUTHORED`
+
+The independently reviewed fixed-frame result at commit `7b1ee11` exhausts
+only the translated global `FLEX_GAP_MINIMUM_CORE`. Stage 2b deliberately
+replaces that frame with a local gap bounded by two source-surface cut chains.
+It does not expand the aggregate, relabel a face, authorize a carrier, or
+authorize Stage 3 surface construction.
+
+### Frozen and superseded authority
+
+- Hash-verify the corrected Stage 0/1 aggregate authority, its receipt, the
+  frozen input attestation, and every V26 authority already named by the
+  aggregate authority.
+- The exact 26-cell aggregate, its 266 source faces, 20 ordered boundary loops,
+  four terminal chains, immutable complement, non-flex negative-space cells,
+  and 12,523 `NO_FLOOR` exclusions remain frozen.
+- Only the placement shape of `FLEX_GAP_MINIMUM_CORE` is superseded. Its
+  `12.0 mm` minimum empty chord remains the acceptance threshold. The other
+  295 negative-space cells remain exact keepouts.
+- `v27_flex_gap_authority.json` remains retained failure evidence. Stage 2b
+  writes new versioned authority and receipt files; it must not overwrite the
+  fixed-frame result.
+
+### Exact local chain family
+
+Build the selected C20 and C9 half-edge graphs from source topology, using only
+faces in the exact aggregate mask. A base chain is a simple ordered source-edge
+path whose endpoints lie on exact ordered aggregate-boundary loops, whose
+interior vertices are not boundary vertices, and whose edges have no immutable
+face incidence. A chain may touch a frozen terminal only at an exact recorded
+terminal vertex and may not use a terminal edge.
+
+Enumerate base chains without geometric flood fill:
+
+1. take every ordered endpoint pair on distinct boundary-loop records of the
+   same component;
+2. retain endpoint pairs connected through the selected aggregate graph;
+3. emit the three deterministic shortest vertex-simple paths by source-edge
+   length, with ties broken by the complete ordered vertex-ID tuple; and
+4. reject a path that repeats a vertex, traverses an aggregate boundary edge
+   except at an endpoint, leaves the component mask, or crosses an exact
+   barrier/keepout incidence.
+
+A Stage 2b chain pair contains one retained C20 path and one retained C9 path.
+For each component, define its source-led station axis from the centroid of its
+exact lower terminal chain toward the centroid of its exact upper terminal
+chain. Orient a path from the lower endpoint dot-product station toward the
+upper; reverse by lexicographic endpoint identity only when the stations tie.
+Pair only paths whose endpoint order agrees and whose normalized-arclength
+correspondence is non-crossing. This makes the two opposed cut chains explicit
+without pretending C9 and C20 are one topological sheet.
+
+### Source-led local frames and finite parameter grid
+
+At every base-chain vertex, derive:
+
+- tangent: centered path-edge tangent, with one-sided endpoint tangents;
+- normal: normalized, area-weighted normal of incident selected source
+  triangles, sign fixed by source winding; and
+- chord: normalized cross product of normal and tangent, with sign from C20
+  toward the paired C9 chain.
+
+Parallel-transport the frame along each chain. A zero-length tangent, opposing
+adjacent normals, or frame sign flip is a candidate rejection. The cutter must
+not choose or flip tangent, normal, chord, or chain order.
+
+For every base-chain pair, enumerate this complete grid:
+
+- requested empty chord width: `[12, 14, 16, 18] mm`;
+- chord orientation about the source normal:
+  `[-30, -20, -10, 0, 10, 20, 30] degrees`;
+- C20 and C9 signed local normal depth independently:
+  `[-12, -8, -4, -2, 0, 2, 4, 8, 12] mm`; and
+- chord displacement allocation from C20 to C9:
+  `[0, 0.25, 0.5, 0.75, 1.0]`.
+
+At each normalized-arclength correspondence, let `p20` and `p9` be the base
+points, let the oriented local chord after the selected rotation be `c`, let
+`d = dot(p9 - p20, c)`, let `delta = max(0, requested_width - d)`, and let `a`
+be the selected allocation. Before normal depth, the displaced pair is
+`p20 - a * delta * c` and `p9 + (1-a) * delta * c`. Depth and chord offsets use
+a piecewise-linear endpoint taper that is exactly zero at both
+source-boundary endpoints and reaches the grid value over the middle 50
+percent of normalized arclength. Intersections with source triangles are
+solved exactly and recorded as ordered barycentric cut coordinates; they are
+not snapped to nearby vertices.
+
+The matched cut chains define a ruled empty strip. Each corresponding ruled
+quad is split by the lexicographically smaller diagonal and enclosed by its
+local convex prism. Prism depth is exactly the maximum absolute selected
+normal depth plus `1.7 mm`; transverse extent is the selected chord width and
+never the fixed-frame transverse/depth envelope. The union of these local
+prisms is only an empty-gap collision/removal footprint. It is not emitted as
+visible geometry, a hidden carrier, a cutter surface, or a reconstruction
+base.
+
+Before evaluation, write the sorted base-chain records, parameter grid, ruled
+quad/prism records, and a semantic fingerprint. Evaluation may not add a chain,
+orientation, width, depth, or displacement allocation.
+
+### Exact acceptance
+
+A member is `V27_LOCAL_FLEX_GAP_SOLVED` only when all of these hold:
+
+- the relative interiors of both cut chains and every ruled prism intersect
+  only exact aggregate faces; immutable source triangles have zero-area
+  intersection and may meet only at already shared aggregate-boundary
+  coordinates;
+- both components contribute a nonempty authorized removal, all removed faces
+  belong to the exact 26-cell mask, and unique face ownership is preserved;
+- ordered chain correspondence has no reversal or ruled-quad self-intersection
+  and every exact local chord measurement is at least the requested width and
+  never below `12.0 mm`;
+- all four terminal polylines remain exact, ordered, disjoint from the open gap
+  footprint, and at least `1.7 mm` from the cutter;
+- the ruled-prism union is disjoint from every non-flex aperture,
+  source-open-route, and central-opening keepout by combined-half-space
+  feasibility;
+- all 12,523 `NO_FLOOR` samples remain openness: none is used as a seed,
+  interpolant, floor, side wall, or permission to enlarge the footprint;
+- every retained or newly cut boundary segment is at least `1.7 mm` from the
+  exact cutter under triangle/segment distance plus adaptive samples at no more
+  than `1.0 mm` spacing; and
+- the cutter is referenced only by those collision and clearance tests.
+
+Shared-boundary contact is not immutable removal. Any positive-area immutable
+intersection, out-of-mask triangle fragment, terminal-edge use, or
+non-flex-keepout intersection rejects the member.
+
+### Stage 2b hard stops
+
+- `V27_LOCAL_GAP_INPUT_HASH_MISMATCH`
+- `V27_LOCAL_GAP_NO_ELIGIBLE_C20_CHAIN`
+- `V27_LOCAL_GAP_NO_ELIGIBLE_C9_CHAIN`
+- `V27_LOCAL_GAP_NO_ORDERED_CHAIN_PAIR`
+- `V27_LOCAL_GAP_FRAME_DEGENERATE`
+- `V27_LOCAL_GAP_FAMILY_NOT_PREENUMERATED`
+- `V27_LOCAL_GAP_AGGREGATE_MASK_EXPANSION_REQUIRED`
+- `V27_LOCAL_GAP_IMMUTABLE_INTERSECTION`
+- `V27_LOCAL_GAP_TERMINAL_CONFLICT`
+- `V27_LOCAL_GAP_NEGATIVE_SPACE_OR_NO_FLOOR_CONFLICT`
+- `V27_LOCAL_GAP_CUTTER_CLEARANCE_FAILED`
+- `V27_NO_VALID_LOCAL_12MM_FLEX_GAP`
+
+If no member passes, record the best counterexample per rejection class,
+including exact chain IDs, parameter tuple, face/cell IDs, minimum chord and
+cutter margin, intersection witnesses, and fingerprints. Face classification
+must remain frozen unless the complete local family identifies a specific
+immutable face or finite face set as the sole remaining barrier after every
+other gate passes. That result is
+`V27_LOCAL_GAP_SPECIFIC_REVIEWED_BARRIER_IDENTIFIED`; it requests a separate
+review and does not itself authorize relabeling.
+
+### Safety and first implementation milestone
+
+Stage 2b is read-only. It may write JSON/text authority and receipts only. It
+must not mutate a mesh, emit candidate geometry, save a Blend, request image
+work, run Gate B/D, or promote anything.
+
+The first implementation slice is:
+
+1. implement a read-only local-gap family builder that hash-verifies the
+   corrected Stage 0/1 and frozen V26 inputs;
+2. enumerate and fingerprint the eligible C20 and C9 base chains, ordered
+   chain pairs, exact parameter grid, and ruled local-prism definitions;
+3. prove every chain edge and prism seed belongs only to the exact aggregate
+   and no terminal edge or `NO_FLOOR` record supplied construction data;
+4. execute twice and require byte-identical authority plus semantic
+   fingerprint; and
+5. stop at `V27_LOCAL_GAP_FAMILY_CHECKPOINTED` before evaluating a member.
+
+Only a separately reviewed family authority may proceed to exact member
+evaluation. Stage 3 remains stopped until an evaluated member records
+`V27_LOCAL_FLEX_GAP_SOLVED`.
+
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
 - next_action: determine whether compact evidence contains every exact
   cell-level floor-conflict incidence
 
