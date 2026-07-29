@@ -196,6 +196,11 @@ lineages.
   topology mask and immutable cage complement, reconstructs the proven v12
   broad C-band corridor, and exhausts the bounded upper/lower Hermite approach
   searches before permitting any evaluation-copy topology replacement.
+- `blender/build_joint_c9_c20_elbow_v22.py` — reconstructs and attributes every
+  upper/lower v21 approach overlap to exact C9/C20 source faces and vertices,
+  verifies the authoritative proximal C9 wearer classification, and forbids
+  channel preflight or mutation until one lower variant passes the fixed
+  clearance, quality, and classification gates.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

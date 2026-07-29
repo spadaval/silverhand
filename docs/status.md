@@ -355,6 +355,14 @@ No v21 topology was changed or geometry promoted. The immediate decision is
 either a wider component-20 landing replacement or a joint
 component-9/component-20 elbow-interface reconstruction.
 
+The joint v22 attribution preflight is also complete without mutation. It
+recovers exact C9/C20 overlap identities for all `30` bounded terminal
+approaches, but every lower variant crosses `5–19` exterior-facing
+component-20 faces; six also leave the proximal C9 wearer class. A local C9
+channel alone is therefore not authorized. The next joint trial must
+re-author the approach corridor from the exact attributed face evidence before
+defining either component's topology mask.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 

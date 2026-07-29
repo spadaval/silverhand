@@ -779,6 +779,17 @@ landing/topology replacement, or reconstruct the shared component-9/component-
 20 elbow interface jointly. Do not infer either expansion from the failed
 four-face trial.
 
+V22 begins the authorized joint-interface scope with exact read-only
+attribution of all `15` upper and `15` lower approach variants. The proximal
+component-9 wearer class resolves exactly to `86` vertices and `238` incident
+faces. No lower variant is eligible for channel construction: every one
+intersects `5–19` exterior-facing component-20 faces, and six also touch
+component-9 faces outside the proximal wearer set. Consequently no C9/C20
+allowlist, channel gap, or topology mutation is authorized. The next joint
+method must use these exact attributed face IDs to re-author the corridor or
+define a deliberately wider visible C20 reconstruction; relieving C9 alone is
+insufficient.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
