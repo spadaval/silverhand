@@ -800,6 +800,16 @@ fitting, so no visible replacement island can be classified. The next bounded
 repair must move or trim the B2b exit itself; further routing from the current
 portal is not justified.
 
+V24 checkpoints the exact ten-ring B2b authority before testing that exit
+change. Ordered trims `R8→R5` produce three locally clear departures and zero
+complete v23 routes; `R5` has no locally valid departure. The fallback
+exhausts `675` bounded terminal replacements anchored only at R5/R6/R7.
+`62` pass their local length, source, and cutter gates, but none completes the
+unchanged route contract. No topology, geometry, Blend file, or image is
+produced. This rejects terminal-only B2b exit reauthoring: the next joint
+method must expand upstream into the earlier B2b/turn-bridge corridor while
+retaining exact source fingerprints and C9 attribution.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

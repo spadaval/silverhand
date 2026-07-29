@@ -205,6 +205,10 @@ lineages.
   B2b/T0 portals and obstacle catalogs, runs the bounded orientation-aware
   lower-route and exterior-C20-relaxed fallback ledgers, and emits only
   checksummed read-only route/allowlist decisions.
+- `blender/preflight_b2b_exit_v24.py` — checkpoints all ten exact v12 B2b
+  rings, evaluates the ordered R8→R5 trims, then resumably exhausts the bounded
+  R5/R6/R7 terminal-subsegment family and reruns the lower-route contract from
+  each admitted portal without granting mutation authority.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

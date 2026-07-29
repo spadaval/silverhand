@@ -369,6 +369,15 @@ tangent-continuous scarf leaving the fixed B2b exit; no path reaches spline
 fitting. The immediate numeric dependency is therefore a bounded B2b exit
 trim/reauthoring, not a broader free-space search from the same portal.
 
+The v24 B2b exit preflight exhausts that bounded dependency without mutation.
+Exact trims at `R8`, `R7`, and `R6` clear the local departure but produce no
+complete route; the `R5` trim cannot clear the required local `2 mm`
+departure. Of `675` bounded R5/R6/R7 terminal-subsegment replacements, `62`
+clear the local geometry gate and zero complete the unchanged v23 route
+contract. The obstruction therefore extends upstream of the authorized
+terminal subsegment. The next joint trial must re-author the earlier B2b/turn-
+bridge corridor; repeating terminal-only exit changes is not justified.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 
