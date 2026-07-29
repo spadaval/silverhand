@@ -606,10 +606,26 @@ Disposable review confirms the machine validity but rejects promotion.
 The problem is now the graph contract, not section size or obstacle clearance.
 The reported B0 cage landing tests overlap against the union of all retained
 cage faces. In matched views, the complete new network reads as a robust loop
-rooted in one lower/side region; it does not visibly reach the upper major cage
-island and therefore leaves the decisive upper-to-lower discontinuity intact.
+in one lower/side region; it does not visibly reach the upper major cage island
+and therefore leaves the decisive upper-to-lower discontinuity intact.
 Square caps, hooks, rectangular nubs, a cross-shaped block, and a thin sliver
 also keep the local junctions from reading as deliberate structure.
+
+A subsequent terminal audit finds that the v12 landing gate was weaker still:
+it tested B0 against the complete 11,840-face open-scene object, not the
+1,409-face retained component-20 cage. The cage resolves into four explicit
+terminals:
+
+- `T_CAGE_0`: `376` vertices, `553` faces;
+- `T_CAGE_1`: `466` vertices, `814` faces;
+- `T_CAGE_2`: `25` vertices, `40` faces;
+- `T_CAGE_3`: `4` vertices, `2` faces.
+
+V12 B0 has zero triangle overlaps with every terminal. Its reported `152`
+“cage” pairs are entirely nonterminal: `64` hit source component `0` and `88`
+hit source component `25`. The abstract v12 cage-root gate is invalid and the
+network is not physically rooted in retained component `20`, despite its
+internally connected new-constituent graph.
 
 The next candidate must replace the abstract `B(root)` node with named
 retained-cage connected components. Require measured terminal contact and an

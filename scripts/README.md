@@ -164,6 +164,10 @@ lineages.
   admissible broad constituents and adds a bounded embedded local bridge only
   where direct overlap is unavailable. It emits review geometry only after
   the complete measured cage-rooted graph and all machine gates pass.
+- `blender/preflight_distinct_cage_terminals_v13.py` — extracts the four
+  connected components of the retained 1,409-face component-20 cage,
+  attributes known source controls, and audits prior landing evidence against
+  explicit terminal IDs without emitting geometry.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
