@@ -115,3 +115,112 @@ The named aggregate-authority audit does **not** pass. Do not begin flex-gap
 solving or candidate construction from this DAG.
 
 Review completed: `2026-07-29T21:08:28Z`
+
+---
+
+## Re-review — commit `abbb116`
+
+Re-review role: Agent Factory `review`
+
+Re-review started: `2026-07-29T21:18:15Z`
+
+Re-review completed: `2026-07-29T21:19:42Z`
+
+Scope: read-only verification of the two prior findings and preservation of the
+previously verified aggregate claims. No gap solve, geometry construction,
+source mutation, image work, Blend save, or promotion was authorized or
+performed.
+
+### Findings
+
+No blocking findings.
+
+### Prior finding resolution
+
+- **Resolved — Stage 0 attestation.**
+  `v27_input_attestation.json` records:
+  - status `V27_INPUT_AUTHORITIES_FROZEN`;
+  - exact input Blend path and SHA-256
+    `68deef0bf80fdcfe2d592c81c1625061d93bcbc41e25e405a35d551e5dfc7823`;
+  - Blender runtime `5.2.0 LTS Beta`, tuple `[5, 2, 0]`;
+  - scene `Scene`, Metric/Millimeters units, and
+    `scale_length = 0.0010000000474974513`;
+  - exact object/datablock identities, topology counts, material-slot counts,
+    and geometry fingerprints for
+    `EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER` /
+    `EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER_MESH` and
+    `WORK_FITTED_SURFACE_CANDIDATE` /
+    `WORK_FITTED_SURFACE_CANDIDATE_MESH`;
+  - source fingerprints
+    `aaf473c8d127896bb7fa46cee96b7b56a4a6710bac203a977051393cf3136558`
+    and
+    `70180fc9e48bc346e446ccf49c3d6b79b2ca8d105cc5cab3c1806c6b7beb2326`;
+  - explicit false safety flags for mutation, geometry, Blend save, image
+    work, and promotion.
+
+  The aggregate builder hash-verifies the attestation at SHA-256
+  `0c10b913be5647e53c623d2de62ab064874cfcc5d7a16b147f0139561e679bce`.
+  Two independent background Blender replays produced that exact byte hash and
+  matched the committed artifact.
+
+- **Resolved — exact ordered aggregate boundaries.**
+  Independent reconstruction from the authority proved:
+  - the source aggregate boundary contains exactly 260 unique normalized
+    edges;
+  - the 20 emitted records contain exactly 260 normalized edges;
+  - the emitted edge multiset is edge-disjoint and exactly equals the source
+    aggregate-boundary edge set;
+  - every record is nonempty and reports `is_simple_loop: true`,
+    `is_simple_path: false`;
+  - every ordered sequence closes at its first vertex, repeats no other
+    vertex, traverses every member edge exactly once, and has degree two at
+    every member vertex;
+  - no branched or empty ordered record remains.
+
+  This resolves
+  `V27_AGGREGATE_BOUNDARY_LOOPS_NOT_MATERIALIZED`.
+
+### Preserved claims
+
+Direct comparison with the pre-fix committed authority confirms no change to:
+
+- the exact 26-cell mask, its 185 C20 and 81 C9 faces, unique ownership,
+  immutable overlap, or maximum-mask containment;
+- any of the four complete terminal incidence records;
+- all 571 negative-space incidence records;
+- all 63 aggregate floor conflicts, 35 excluded conflicts, the complete
+  98-record accounting, or the 12,523 excluded `NO_FLOOR` samples;
+- the seven cell SCC memberships, `[7, 12, 7]` batch memberships, maximum SCC
+  size seven, or batch bound;
+- any safety flag or promotion state.
+
+The dependency fingerprint changes only because the former nine branched
+boundary nodes were replaced with the 20 exact loop nodes and their
+dependencies.
+
+### Repeatability and static checks
+
+- Two independent aggregate-builder runs were byte-identical and each produced
+  committed authority SHA-256
+  `43c0b161d71a3ef2b6471f0ab63ab5ea71641554a5254354a2d31db58a2ed338`.
+- Two independent Stage 0 background-Blender runs were byte-identical and each
+  produced committed attestation SHA-256
+  `0c10b913be5647e53c623d2de62ab064874cfcc5d7a16b147f0139561e679bce`.
+- Commit `abbb116` contains no model, image, or Blend change. The builder
+  remains a JSON-only authority operation. The attestation opens the frozen
+  Blend read-only and invokes no save operator.
+
+### Residual risk
+
+- This audit approves only the corrected Stage 0/Stage 1 authority. It does
+  not approve a flex-gap placement, candidate surface, or Gate B/D/C result.
+- The deterministic cycle decomposition is valid for this exact frozen
+  260-edge authority. A future changed boundary graph must repeat the exact
+  exhaustive partition audit rather than generalizing this result.
+
+### Re-review result
+
+`PASS_V27_ORDERED_BOUNDARY_AND_STAGE0_AUDIT`
+
+Both prior findings are resolved. The corrected read-only aggregate authority
+may proceed to the separately gated exact flex-gap solve.
