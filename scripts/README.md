@@ -127,6 +127,11 @@ lineages.
   attachment-cap degeneracies, omits its optional high-aspect micro-tab,
   applies a robust new-vertex clearance floor, and attributes every remaining
   component-9 overlap to a constituent and nearest band segment.
+- `blender/build_asymmetric_elbow_interface_rail_v4.py` — evaluates
+  component-9-side routing, exact-control feasibility, bounded chord detours,
+  non-anchor route simplification, rotating cross-sections, and one local
+  width sweep for a rail-only Repair-014 candidate. Its final folded detour is
+  retained as a rejected control.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

@@ -439,6 +439,31 @@ the broad ribbon asymmetrically on the component-20 side of its exact control
 route and reroute that junction. Do not globally narrow the band or move
 component `9`.
 
+### Rejected asymmetric rail controls
+
+The rail-only v4 sequence proves that all 13 required anchors are individually
+feasible, but several straight source-control chords cross component `9`.
+Bounded midpoint and two-waypoint sweeps cannot route `2064→2065` or
+`2064→2067` around that barrier within `12 mm`. Progressive removal of
+non-anchor route controls finds a feasible simplified route:
+
+- replace the intermediate cross-rail controls with direct `2064→2118`;
+- replace non-anchor `2110` with direct `2111→2108`;
+- retain every required anchor exactly.
+
+A rotating asymmetric rectangle on this route reduces non-tip component-9
+contacts to six, all on `2111→2108`, while the rest of the non-tip rail is
+clear. A later fixed-orientation detour and seven-case local width sweep from
+`6.0` down to `3.0 mm` does not solve the collision and introduces `54–55`
+self-overlap pairs. Width is not the blocker; the detour orientation folds the
+rail.
+
+Do not tune more global asymmetry or taper values. Return to the last
+self-intersection-free simplified route and locally notch, miter, or bevel only
+the remaining component-9 collision neighborhood against an explicit clearance
+envelope. A bounded movement of the adjacent non-tip controls is acceptable
+only if exact preservation is proven incompatible with a clean local notch.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
