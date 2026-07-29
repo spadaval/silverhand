@@ -518,6 +518,27 @@ plates or rails. It must report every relaxed control and displacement,
 preserve the visible cage and open center, and pass the same component-9,
 cutter, topology, wall-margin, and quality gates before visual review.
 
+The first three-constituent realization proves that this partition can clear
+component `9` and form a measured structural graph, but not with one scalar
+translation direction per constituent. Its least-bad selection has zero
+component-9 overlaps and measured contact counts of `18` for the B0 cage
+landing, `27` for B0–B1, and `39` for B1–B2. Every constituent is closed,
+positive-volume, contiguous, nondegenerate, fixed at approximately
+`6.0 × 2.4 mm`, and within the triangle-quality bounds. It still fails:
+
+- B0 enters the cutter in `9` pairs and reaches `-2.848886 mm` margin;
+- B1 has `2` self-overlap pairs and only `0.334421 mm` cutter margin;
+- B2 enters the cutter in `4` pairs, reaches `-1.638994 mm` margin, and has
+  `18` self-overlap pairs.
+
+All 13 legacy interface controls are therefore explicitly relaxed in this
+failed result; six are coordinate-coincident but belong to an infeasible
+constituent and are not claimed exact. Keep the three-piece partition as
+useful evidence, but reject the single away-from-component-9 displacement
+field. A later preflight may search bounded directions in the local normal
+plane to determine whether component-9 clearance and cutter margin can coexist
+at full width before another mesh is built.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

@@ -147,6 +147,11 @@ lineages.
   `6.0 × 2.4 mm` minimum-twist rail on the v6 route. The bounded control is
   rejected because restoring full width on one monolithic exact-control sweep
   reintroduces component-9 and self intersections.
+- `blender/build_broad_constituent_network_v9.py` — replaces the monolithic
+  sweep with three independently closed, fixed-width structural constituents
+  and measured lap/cage contacts. Its one-direction displacement control
+  clears component 9 but is rejected where the pieces enter the anatomical
+  cutter or self-intersect.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
