@@ -24,28 +24,11 @@ DEFAULT_AUTHORITY = (
     / "v26_exposure_cell_authority.json"
 )
 EXPECTED_AUTHORITY_SHA256 = (
-    "ba8850ee85608ff293605d649f9ab811a53bebdffeb738586b6e5d703a79b7cb"
+    "1b716b8b2415145d31850bd09a2cdf001fb3ed30a1e65822f33124393ca59507"
 )
-EXPECTED_ROUND_FACE_IDS = {
-    "C9": [1439, 1574, 1580, 1586, 1587, 1589, 1610, 1658, 1675, 1677, 1709],
-    "C20": [
-        2909,
-        2911,
-        2964,
-        3084,
-        3089,
-        3111,
-        3129,
-        7483,
-        8779,
-        8811,
-        8817,
-        8840,
-        8843,
-        8855,
-        12515,
-    ],
-}
+ROUND_INDEX = 2
+EXPECTED_REVIEWED_FACE_COUNT = 45
+EXPECTED_ROUND_FACE_IDS = {"C9": [], "C20": []}
 
 
 def sha_file(path):
@@ -83,7 +66,54 @@ def parse_arguments():
     return parser.parse_args()
 
 
-def required_bridge_records(authority):
+def reviewed_face_authority(authority):
+    revision = authority["contract_revision"]
+    base = {
+        "concealed_wearer_side_removable": sorted(
+            revision["concealed_wearer_side_removable_face_ids"]
+        ),
+        "visible_silhouette_rim_opening_immutable": sorted(
+            revision["visible_silhouette_rim_opening_immutable_face_ids"]
+        ),
+    }
+    bridge = revision["bridge_classification_round_01"]
+    round_01 = {
+        key: sorted(value)
+        for key, value in bridge.items()
+        if key.endswith("_face_ids")
+    }
+    base_ids = {
+        face_id for face_ids in base.values() for face_id in face_ids
+    }
+    round_01_ids = {
+        face_id for face_ids in round_01.values() for face_id in face_ids
+    }
+    if base_ids & round_01_ids:
+        raise RuntimeError(
+            f"{OPERATION}: base and round-01 reviewed authorities overlap: "
+            f"{sorted(base_ids & round_01_ids)}"
+        )
+    excluded = base_ids | round_01_ids
+    if len(base_ids) != 19 or len(round_01_ids) != 26:
+        raise RuntimeError(
+            f"{OPERATION}: reviewed authority counts changed; "
+            f"base={len(base_ids)}, round_01={len(round_01_ids)}, "
+            "expected base=19 and round_01=26"
+        )
+    if len(excluded) != EXPECTED_REVIEWED_FACE_COUNT:
+        raise RuntimeError(
+            f"{OPERATION}: reviewed exclusion count is {len(excluded)}, "
+            f"expected={EXPECTED_REVIEWED_FACE_COUNT}"
+        )
+    return {
+        "base": base,
+        "bridge_round_01": round_01,
+        "excluded_source_face_ids": sorted(excluded),
+        "excluded_source_face_count": len(excluded),
+    }
+
+
+def required_bridge_records(authority, excluded_face_ids):
     required_cells = set(
         authority["seed_covering_subset"]["selected_cell_ids"]
     )
@@ -98,6 +128,15 @@ def required_bridge_records(authority):
             f"exposure authority: {sorted(unknown)}"
         )
 
+    ambiguous = {
+        component: set(
+            authority["immutable_complements"][component][
+                "ambiguous_source_face_ids"
+            ]
+        )
+        for component in ("C9", "C20")
+    }
+    excluded_face_ids = set(excluded_face_ids)
     touched = defaultdict(set)
     edge_witnesses = defaultdict(list)
     for cell in authority["exposure_cells"]:
@@ -109,6 +148,14 @@ def required_bridge_records(authority):
             if "EXPOSURE_CLASS_SEAM" not in edge["barrier_reasons"]:
                 continue
             for face_id in edge["complement_incident_face_ids"]:
+                if face_id in excluded_face_ids:
+                    continue
+                if face_id not in ambiguous[component]:
+                    raise RuntimeError(
+                        f"{OPERATION}: source face {component}:{face_id} "
+                        "touches a required exposure cell but is not current "
+                        "EXTERIOR_OR_AMBIGUOUS authority"
+                    )
                 key = (component, int(face_id))
                 touched[key].add(cell_id)
                 edge_witnesses[key].append(
@@ -155,13 +202,18 @@ def required_bridge_records(authority):
 
 def text_report(report):
     lines = [
-        "# V26 ambiguous bridge-face review batch",
+        f"# V26 ambiguous bridge-face review batch round {ROUND_INDEX:02d}",
         "",
         f"Status: `{report['status']}`",
         "",
         (
             "Ranking: descending required seed-covering cells merged, then "
             "component and source face ID."
+        ),
+        "",
+        (
+            f"Already-reviewed faces excluded: "
+            f"{report['reviewed_face_exclusion']['excluded_source_face_count']}."
         ),
         "",
         "| Rank | Component | Face | Required cells merged | Touched cells |",
@@ -199,7 +251,11 @@ def main():
             f"expected={EXPECTED_AUTHORITY_SHA256}"
         )
     authority = json.loads(authority_path.read_text(encoding="utf-8"))
-    records = required_bridge_records(authority)
+    reviewed = reviewed_face_authority(authority)
+    records = required_bridge_records(
+        authority,
+        reviewed["excluded_source_face_ids"],
+    )
     face_ids = {
         component: sorted(
             record["source_face_id"]
@@ -216,7 +272,12 @@ def main():
     report = {
         "operation": OPERATION,
         "mission": MISSION,
-        "status": "V26_AMBIGUOUS_BRIDGE_REVIEW_BATCH_CHECKPOINTED",
+        "status": (
+            "V26_AMBIGUOUS_BRIDGE_REVIEW_BATCH_CHECKPOINTED"
+            if records
+            else "V26_NO_ADDITIONAL_AMBIGUOUS_BRIDGE_FACES"
+        ),
+        "round_index": ROUND_INDEX,
         "scope": (
             "read-only ambiguous face selection for later delegated visual "
             "classification"
@@ -242,8 +303,16 @@ def main():
         "required_seed_covering_cell_count": len(
             authority["seed_covering_subset"]["selected_cell_ids"]
         ),
+        "reviewed_face_exclusion": reviewed,
         "batch_face_count": len(records),
         "face_ids_by_component": face_ids,
+        "batch_touched_required_cell_ids": sorted(
+            {
+                cell_id
+                for record in records
+                for cell_id in record["touched_required_cell_ids"]
+            }
+        ),
         "ordered_faces": records,
         "safety": {
             "images_read": False,
