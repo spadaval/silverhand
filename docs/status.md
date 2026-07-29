@@ -389,6 +389,23 @@ into B1 or beyond the `12 mm` B2a suffix authority, or choose a different
 joint-interface architecture; another fixed-scope route iteration is not
 justified.
 
+The v26 static-interface preflight also closes without mutation. Exact
+cutter, negative-space, floor-ownership, exposure, terminal, and five rounds
+of disposable sanitized face-review authority establish valid upper and lower
+boundary-coincident terminals, but the complete wearer-side demand requires
+`23` exposure cells against v26's aggregate cap of `12`. Its truthful named
+stop is `NO_SEED_COVERING_EXPOSURE_CELL_SUBSET_V26`; the cap and result remain
+unchanged.
+
+V27 now deliberately authorizes the aggregate `23`-cell C9/C20 wearer-side
+interface reconstruction while preserving the exact reviewed visible
+complement, intentional `NO_FLOOR` openness, exact negative space, a
+`>=12 mm` flex gap, exact terminals, and `>=1.7 mm` cutter clearance. The
+`<=12`-cell limit survives only as a checkpoint/recovery batch bound. The
+first milestone is a read-only, hash-verified aggregate mask and dependency
+DAG; surface construction cannot begin until the flex gap is solved, and
+solids, motion, yokes, TPU, and Gates E/F/G remain deferred.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 
