@@ -363,6 +363,12 @@ channel alone is therefore not authorized. The next joint trial must
 re-author the approach corridor from the exact attributed face evidence before
 defining either component's topology mask.
 
+The v23 free-space preflight also stops read-only. All `315` primary and
+`315` exterior-C20-relaxed route tuples are blocked at the first `6 mm`
+tangent-continuous scarf leaving the fixed B2b exit; no path reaches spline
+fitting. The immediate numeric dependency is therefore a bounded B2b exit
+trim/reauthoring, not a broader free-space search from the same portal.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 

@@ -790,6 +790,16 @@ method must use these exact attributed face IDs to re-author the corridor or
 define a deliberately wider visible C20 reconstruction; relieving C9 alone is
 insufficient.
 
+V23 performs the bounded orientation-aware free-space search with exact
+portals and obstacles. E0/E1/E2 are valid T0 endpoints; E3 cannot contain the
+required `10 × 7 mm` landing. All `315` primary tuples and all `315`
+exterior-C20-relaxed fallback tuples fail before graph expansion: the required
+first `6 mm` tangent-continuous scarf at the immutable B2b exit is
+cutter-blocked (`987` initial cutter rejections). No route reaches spline
+fitting, so no visible replacement island can be classified. The next bounded
+repair must move or trim the B2b exit itself; further routing from the current
+portal is not justified.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

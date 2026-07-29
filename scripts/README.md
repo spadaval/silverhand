@@ -201,6 +201,10 @@ lineages.
   verifies the authoritative proximal C9 wearer classification, and forbids
   channel preflight or mutation until one lower variant passes the fixed
   clearance, quality, and classification gates.
+- `blender/preflight_free_space_lower_route_v23.py` — checkpoints the exact
+  B2b/T0 portals and obstacle catalogs, runs the bounded orientation-aware
+  lower-route and exterior-C20-relaxed fallback ledgers, and emits only
+  checksummed read-only route/allowlist decisions.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
