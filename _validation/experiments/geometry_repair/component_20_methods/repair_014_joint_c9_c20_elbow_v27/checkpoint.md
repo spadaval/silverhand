@@ -532,6 +532,49 @@ Only a separately reviewed family authority may proceed to exact member
 evaluation. Stage 3 remains stopped until an evaluated member records
 `V27_LOCAL_FLEX_GAP_SOLVED`.
 
+### V27-LOCAL-001 — Stage 2b family builder started
+
+- started_from_commit: `3ee52eb6415349107c174c16d4f636d632febea5`
+- operation: implement the first read-only Stage 2b milestone as
+  `scripts/blender/build_v27_local_gap_family.py`
+- required_outputs: atomic full family authority plus compact receipt under
+  this V27 evidence directory
+- required_proof: hash-verify the corrected Stage 0/1 authority, receipt,
+  attestation, and frozen V26 inputs; enumerate exact aggregate-topology C20
+  and C9 base chains, ordered non-crossing pairs, the complete finite parameter
+  grid, and deterministic ruled-prism definitions; prove no terminal edge,
+  immutable incidence, barrier edge, or `NO_FLOOR` datum supplies construction
+  input
+- planned_terminal_result: `V27_LOCAL_GAP_FAMILY_CHECKPOINTED`
+- evaluation_started: false
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+
+### V27-LOCAL-002 — implementation handoff checkpoint
+
+- result: family-builder design completed but no script or family artifact was
+  materialized by the first implementation worker
+- verified_topology_scope: C20 has 185 selected faces and 16 ordered boundary
+  loops; C9 has 81 selected faces and four ordered boundary loops
+- planned_algorithm: three deterministic Yen paths per reachable
+  distinct-loop endpoint pair, source-led frames, exact edge exclusions,
+  ordered non-crossing pair filter, and a factorized 5,040-member parameter
+  grid per retained pair
+- retained_work: contract and this text checkpoint only; there is no
+  uncheckpointed code or generated authority to resume
+- evaluation_started: false
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: a fresh implementation worker materializes
+  `scripts/blender/build_v27_local_gap_family.py` incrementally from the
+  committed Stage 2b contract and this exact handoff
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false
