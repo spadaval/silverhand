@@ -416,6 +416,21 @@ whose current separations are `5.553838–10.537240 mm`. The broad candidate
 remains evaluation-only; it requires both local attachment retopology and
 disposable matched-view review of layer order and junction appearance.
 
+The v3 numerical cleanup removes the optional high-aspect micro-tab, replaces
+the four degenerate attachment caps, and separates preserved source endpoints
+from the `1.61 mm` new-vertex margin gate. All named machine gates then pass:
+new geometry has at least `1.699992 mm` cutter margin, every constituent is
+closed and internally non-self-intersecting, and attachment aspect ratio is at
+most `4.881516`.
+
+This cleanup does not solve layer order. It localizes `164` component-9
+triangle contacts: `126` belong to the band and `38` to the island-1/island-3
+junction. The band contacts occupy both outer anchor arcs; the middle route
+from `2065→2067` through `2071→2073` is clear. A later construction must place
+the broad ribbon asymmetrically on the component-20 side of its exact control
+route and reroute that junction. Do not globally narrow the band or move
+component `9`.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

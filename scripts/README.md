@@ -123,6 +123,10 @@ lineages.
   route plus closed local attachment solids whose contact graph joins all four
   retained cage islands. It preserves the same open center and source evidence
   and reports local width, component-9 contact, and cutter-clearance gates.
+- `blender/build_local_elbow_interface_band_v3.py` — removes the v2
+  attachment-cap degeneracies, omits its optional high-aspect micro-tab,
+  applies a robust new-vertex clearance floor, and attributes every remaining
+  component-9 overlap to a constituent and nearest band segment.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
