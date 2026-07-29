@@ -113,6 +113,11 @@ lineages.
 - `blender/try_remove_component20_inner_bowl.py` — evaluates the deliberate
   destructive cosplay simplification that retains the mapped exterior cage
   and removes the complete collision bowl without filling or capping it.
+- `blender/build_local_elbow_interface_band.py` — builds an evaluation-only,
+  closed C-shaped component-20 interface band and local cage-island junctions
+  on the rejected open-cage base. It preserves the exterior cage and component
+  9 exactly, keeps the central bowl open, and records clearance, registration,
+  topology, volume, contact, and self-intersection gates.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
