@@ -413,8 +413,16 @@ machine result is therefore `gate_pass=false` on `new_vertex_margin` and
 The new network also has `162` triangle contacts with component `9`. Those
 contacts are not permission to fuse the 11 non-tip historical interface pairs,
 whose current separations are `5.553838–10.537240 mm`. The broad candidate
-remains evaluation-only; it requires both local attachment retopology and
-disposable matched-view review of layer order and junction appearance.
+remains evaluation-only.
+
+Disposable matched-view review validates the structural concept and scale:
+`INTENTIONAL_OPEN_CENTER`, `ELBOW_INTERFACE_CONTINUITY`,
+`STRUCTURAL_SUBSTANTIALITY`, `EXTERIOR_IDENTITY`, and `NO_GLOBAL_BACKING` pass.
+The broad rail frames the aperture as deliberate negative space and organizes
+the four islands without recreating the bowl. `C9_LAYER_ORDER` and
+`LOCAL_GUSSET_READ` fail: distributed rail fragments appear through component
+`9` in every projection, while square-ended junctions read as blocks, hooks,
+and stubs.
 
 The v3 numerical cleanup removes the optional high-aspect micro-tab, replaces
 the four degenerate attachment caps, and separates preserved source endpoints
