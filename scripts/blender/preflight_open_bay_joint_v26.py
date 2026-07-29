@@ -194,6 +194,19 @@ def face_normal(points, face):
 def filtered_c9_faces(context, c9, target_length):
     proximal = set(c9["proximal"]["incident_face_ids"])
     known_immutable = {1667, 1669, 1670, 1671}
+    component_faces = set(c9["component_face_ids"])
+    edge_faces = defaultdict(set)
+    for face_id in component_faces:
+        face = context["staged_faces"][face_id]
+        for first, second in zip(face, (*face[1:], face[0])):
+            edge_faces[tuple(sorted((first, second)))].add(face_id)
+    open_boundary_faces = {
+        face_id
+        for linked in edge_faces.values()
+        if len(linked) == 1
+        for face_id in linked
+    }
+    grid = v4.cutter_grid(context["cutter"])[0]
     accepted = []
     rejected = {}
     for face_id in sorted(proximal):
@@ -207,18 +220,30 @@ def filtered_c9_faces(context, c9, target_length):
             target_length,
         )
         dot = face_normal(context["staged_points"], face).dot(radial)
+        face_margin = min(
+            point_margins(
+                [context["staged_points"][vertex] for vertex in face],
+                target_length,
+                grid,
+            )
+        )
         reasons = []
         if face_id in known_immutable:
             reasons.append("known_nonproximal_face")
         if not (226.809330 <= station * target_length <= 288.964970):
             reasons.append("outside_proximal_station_bound")
-        if dot >= 0.0:
-            reasons.append("not_wearer_facing_by_normal")
+        if face_id in open_boundary_faces:
+            reasons.append("open_rim_or_boundary_face")
+        if abs(dot) < 0.15:
+            reasons.append("radial_silhouette_face")
+        if face_margin >= 4.0:
+            reasons.append("not_local_to_cutter_failure")
         if reasons:
             rejected[str(face_id)] = {
                 "reasons": reasons,
                 "station_mm": round(station * target_length, 6),
                 "normal_dot_radial": round(dot, 9),
+                "minimum_face_cutter_margin_mm": round(face_margin, 9),
             }
         else:
             accepted.append(face_id)
@@ -1336,7 +1361,8 @@ def evaluate_static_candidate(context, authority, values):
             },
             "C9_face_level_exposure_evidence": {
                 "classifier": (
-                    "proximal_station_and_negative_normal_dot_radial"
+                    "proximal_station, non-rim, non-silhouette, "
+                    "cutter-local face classifier"
                 ),
                 "incident_landing_face_ids": c9_landing_faces,
             },
@@ -1501,6 +1527,7 @@ def static_main():
         "code_sha256": code_sha,
         "input_blend_sha256": context["blend_sha"],
         "completed_tuple_ids": [],
+        "completed_candidate_records": [],
         "next_tuple_id": static_tuple_id(tuples[0]),
         "first_passing_complete_candidate": None,
         "latest_exact_overlap_arrays": None,
@@ -1547,6 +1574,7 @@ def static_main():
         record = evaluate_static_candidate(context, authority, values)
         records.append(record)
         progress["completed_tuple_ids"].append(record["tuple_id"])
+        progress["completed_candidate_records"].append(record)
         progress["latest_exact_overlap_arrays"] = record[
             "exact_overlap_arrays"
         ]
