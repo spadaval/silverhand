@@ -176,6 +176,31 @@ triangle/cutter collision evidence, not vertex margins alone. It must freeze
 the named exterior landmarks and drive colliding faces outward as a coherent
 local floor.
 
+### Rejected same-topology face-aware sector
+
+A deterministic ring-4 solver froze the exact outer transition, source-open
+chain, and every named landmark, then used cutter-triangle intersections to
+coordinate the remaining wearer-side vertices. Its initial `1.7 mm` floor:
+
+- cleared all 31 cluster failures;
+- reduced ring-4 overlapping faces from `77` to `70`;
+- increased global overlaps from `653` to `733`;
+- introduced seven source-normal reversals;
+- displaced affected vertices by up to `31.396805 mm`;
+- changed affected edge lengths by factors of `0.100166–3.149865`;
+- preserved topology, winding counts, the outside fingerprint, and all frozen
+  controls.
+
+The first outward face-correction step could not satisfy strict orientation,
+so the solver stopped without a second run. This rejects same-topology ring-4
+displacement. Do not tune its step or regularization factors.
+
+The remaining justified escalation is authored topology between preserved
+exterior seams. Before changing topology, map the complete component-20 visible
+shell, hidden wearer-side floor, open boundaries, and attachment seams. The
+reconstruction may replace the wearer-side architecture, but must retain the
+reviewed game-model exterior and intentional openings.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -215,3 +240,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_sector_retopo/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_patch/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_fan_feasibility/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_face_aware_sector/`

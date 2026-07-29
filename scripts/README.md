@@ -91,6 +91,9 @@ lineages.
   searches one interior control point against explicit cutter-floor and
   orientation constraints. It records why a winding-safe fan still fails the
   triangle-overlap gate.
+- `blender/try_face_aware_sector_reconstruction.py` — tests one deterministic
+  ring-4 wearer-side displacement driven by cutter-triangle collisions while
+  freezing the reviewed landmark and boundary controls.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
