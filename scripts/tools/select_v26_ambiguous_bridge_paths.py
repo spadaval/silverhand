@@ -14,17 +14,12 @@ from hashlib import sha256
 import itertools
 import json
 from pathlib import Path
-import sys
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-if str(SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPT_DIR))
-
-import select_v26_ambiguous_bridge_faces as bridge_faces  # noqa: E402
 
 
 OPERATION = "V26_AMBIGUOUS_BRIDGE_PATH_SELECTOR"
 MISSION = "R014-JOINT-C9-C20-ELBOW-V26"
+ROUND_INDEX = 3
+SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent.parent
 AUTHORITY_DIR = (
     ROOT
@@ -37,9 +32,15 @@ EXPECTED_CELL_SHA256 = (
     "85a1a31f4ecb43dab16461684d53ba9d7e9c5090c1202dd021b101778b97edca"
 )
 EXPECTED_EXPOSURE_SHA256 = (
-    "1b716b8b2415145d31850bd09a2cdf001fb3ed30a1e65822f33124393ca59507"
+    "57788b26989db892cd30d7035b686e00f4bfef49e311e74073b32729ec84a9c9"
 )
 MAXIMUM_BATCH_FACE_COUNT = 26
+EXPECTED_REVIEWED_COUNTS = {
+    "base": 19,
+    "bridge_round_01": 26,
+    "bridge_round_02": 25,
+    "total": 70,
+}
 NON_TRAVERSABLE_BARRIER_REASONS = {
     "C20_CLOSED_APERTURE_ROUTE",
     "C20_DETERMINISTIC_FLEX_CUT_CHAIN",
@@ -129,10 +130,116 @@ def blocked_edges(cell_authority):
     return blocked
 
 
+def classification_face_ids(classification):
+    result = set()
+    for groups in classification["classifications"].values():
+        if isinstance(groups, dict):
+            for face_ids in groups.values():
+                result.update(face_ids)
+        else:
+            result.update(groups)
+    return result
+
+
+def reviewed_face_authority(exposure_authority):
+    sources = exposure_authority["source_authorities"]
+    source_keys = {
+        "base": "face_visual_classification",
+        "bridge_round_01": "bridge_visual_classification",
+        "bridge_round_02": "bridge_visual_classification_round_02",
+    }
+    contracts = {
+        "base": (
+            set(
+                exposure_authority["contract_revision"][
+                    "concealed_wearer_side_removable_face_ids"
+                ]
+            )
+            | set(
+                exposure_authority["contract_revision"][
+                    "visible_silhouette_rim_opening_immutable_face_ids"
+                ]
+            )
+        ),
+    }
+    records = {}
+    for label, source_key in source_keys.items():
+        source = sources[source_key]
+        path = ROOT / source["path"]
+        actual_sha = sha_file(path)
+        if actual_sha != source["sha256"]:
+            raise RuntimeError(
+                f"{OPERATION}: reviewed classification hash mismatch for "
+                f"'{path}'; actual={actual_sha}; expected={source['sha256']}"
+            )
+        classification = json.loads(path.read_text(encoding="utf-8"))
+        face_ids = classification_face_ids(classification)
+        if label == "base":
+            if face_ids != contracts["base"]:
+                raise RuntimeError(
+                    f"{OPERATION}: base reviewed faces disagree with current "
+                    "exposure contract"
+                )
+        else:
+            contract = exposure_authority["contract_revision"][
+                f"bridge_classification_round_{label[-2:]}"
+            ]
+            contract_ids = {
+                face_id
+                for key, values in contract.items()
+                if key.endswith("_face_ids")
+                for face_id in values
+            }
+            if face_ids != contract_ids:
+                raise RuntimeError(
+                    f"{OPERATION}: {label} reviewed faces disagree with "
+                    "current exposure contract"
+                )
+        if len(face_ids) != EXPECTED_REVIEWED_COUNTS[label]:
+            raise RuntimeError(
+                f"{OPERATION}: {label} reviewed face count is "
+                f"{len(face_ids)}, expected={EXPECTED_REVIEWED_COUNTS[label]}"
+            )
+        records[label] = {
+            "path": str(path),
+            "sha256": actual_sha,
+            "status": classification["status"],
+            "source_face_ids": sorted(face_ids),
+            "source_face_count": len(face_ids),
+        }
+    overlaps = {}
+    for first, second in itertools.combinations(sorted(records), 2):
+        overlap = set(records[first]["source_face_ids"]) & set(
+            records[second]["source_face_ids"]
+        )
+        if overlap:
+            overlaps[f"{first}__{second}"] = sorted(overlap)
+    if overlaps:
+        raise RuntimeError(
+            f"{OPERATION}: reviewed classification rounds overlap: {overlaps}"
+        )
+    excluded = {
+        face_id
+        for record in records.values()
+        for face_id in record["source_face_ids"]
+    }
+    if len(excluded) != EXPECTED_REVIEWED_COUNTS["total"]:
+        raise RuntimeError(
+            f"{OPERATION}: reviewed exclusion count is {len(excluded)}, "
+            f"expected={EXPECTED_REVIEWED_COUNTS['total']}"
+        )
+    return {
+        "classification_authorities": records,
+        "excluded_source_face_ids": sorted(excluded),
+        "excluded_source_face_count": len(excluded),
+        "every_visible_or_unresolved_reviewed_face_is_a_hard_barrier": True,
+    }
+
+
 def exact_graph(cell_authority, exposure_authority):
     faces, components, materials, edge_faces = face_topology(cell_authority)
     blocked = blocked_edges(cell_authority)
-    reviewed = bridge_faces.reviewed_face_authority(exposure_authority)
+    reviewed = reviewed_face_authority(exposure_authority)
     reviewed_ids = set(reviewed["excluded_source_face_ids"])
     ambiguous = {
         component: (
@@ -460,7 +567,7 @@ def merge_summary(cell_ids, pairs):
 
 def text_report(report):
     lines = [
-        "# V26 ambiguous bridge-path review batch round 02",
+        f"# V26 ambiguous bridge-path review batch round {ROUND_INDEX:02d}",
         "",
         f"Status: `{report['status']}`",
         "",
@@ -540,6 +647,7 @@ def main():
     report = {
         "operation": OPERATION,
         "mission": MISSION,
+        "round_index": ROUND_INDEX,
         "status": "V26_AMBIGUOUS_BRIDGE_PATH_BATCH_CHECKPOINTED",
         "input": {
             "cell_authority": {
