@@ -690,6 +690,22 @@ project it to the receiving cage, offset it outward by `2.4 mm`, and loft its
 inward edge into the proven narrow V5702→V1784 neck. Another symmetric
 width-only fan is not admissible.
 
+V16 proves the terminal-tangent pad geometry but cannot emit a one-piece
+candidate. Its best `10 × 7 mm` pads pass terminal attribution (`22/8`),
+unrelated/C9/cutter clearance, `2.087573 mm` minimum cutter margin, anti-fin
+projection ratios, solid/quality checks, and source preservation. Exactly two
+non-adjacent self-overlaps remain where the lower pad is lofted into the neck.
+Cyclic, endpoint, intermediate-ring, diagonal, boolean, and remesh variants
+either preserve those intersections or introduce worse topology/quality
+failures. Do not repeat those one-piece shoulder variants.
+
+The next bounded construction should retain the proven visible pad and neck
+forms as three separately closed constituents—upper pad, narrow bridge, and
+lower pad—with explicit local overlapping lap junctions. This matches the
+project rule that each printable constituent be closed and positive-volume,
+avoids destructive retained-cage edits, and moves the unresolved operation
+from a self-intersecting loft to two measurable local structural junctions.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

@@ -174,6 +174,10 @@ lineages.
 - `blender/build_surface_following_fan_saddles_v15.py` — preserves v14's
   proven T1-to-T0 route and midspan while rebuilding only the two terminal
   transitions as broad, embedded, two-stage fan saddles.
+- `blender/build_projected_terminal_surface_pads_v16.py` — evaluates
+  independently projected T1/T0 surface pads and rejects emission unless their
+  terminal-local footprints, narrow shared route, and shoulder topology clear
+  every collision, self-overlap, quality, and preservation gate.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
