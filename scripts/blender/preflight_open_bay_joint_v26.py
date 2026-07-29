@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 from hashlib import sha256
+import heapq
 import itertools
 import json
 from math import acos, degrees
@@ -84,6 +85,7 @@ STATIC_WIDTHS_MM = (4.0, 6.0, 8.0)
 STATIC_LENGTHS_MM = (4.0, 6.0, 8.0)
 STATIC_OUTWARD_OFFSETS_MM = (0.0, 0.5, 1.0)
 NEGATIVE_SPACE_KEEP_OUT_MM = 0.6
+TERMINAL_COORDINATE_TOLERANCE_MM = 0.00001
 
 
 def stable_hash(value):
@@ -191,6 +193,698 @@ def face_normal(points, face):
     return normal.normalized() if normal.length > 1.0e-12 else normal
 
 
+def source_edge_context(context):
+    edge_ids = {
+        tuple(sorted(edge.vertices)): edge.index
+        for edge in context["staged"].data.edges
+    }
+    edge_faces = defaultdict(list)
+    edge_winding = {}
+    for face_id, face in enumerate(context["staged_faces"]):
+        for first, second in zip(face, (*face[1:], face[0])):
+            key = tuple(sorted((first, second)))
+            edge_faces[key].append(face_id)
+            edge_winding[(face_id, key)] = [first, second]
+    return edge_ids, edge_faces, edge_winding
+
+
+def ordered_boundary_paths(face_ids, context):
+    face_ids = set(face_ids)
+    edge_ids, edge_faces, edge_winding = source_edge_context(context)
+    half_edges = []
+    for key, linked in edge_faces.items():
+        inside = sorted(face_ids & set(linked))
+        if len(inside) != 1:
+            continue
+        face_id = inside[0]
+        first, second = edge_winding[(face_id, key)]
+        outside = sorted(set(linked) - face_ids)
+        half_edges.append(
+            {
+                "source_edge_id": edge_ids[key],
+                "vertex_ids": [first, second],
+                "inside_face_id": face_id,
+                "outside_face_ids": outside,
+                "source_edge_incidence": len(linked),
+                "manifold_status": (
+                    "MANIFOLD"
+                    if len(linked) == 2
+                    else "SOURCE_OPEN"
+                    if len(linked) == 1
+                    else "NONMANIFOLD"
+                ),
+            }
+        )
+    unused = {record["source_edge_id"]: record for record in half_edges}
+    paths = []
+
+    def make_path(records):
+        vertex_ids = [records[0]["vertex_ids"][0]]
+        vertex_ids.extend(record["vertex_ids"][1] for record in records)
+        path = {
+            "status": (
+                "CLOSED" if vertex_ids[0] == vertex_ids[-1] else "OPEN"
+            ),
+            "vertex_ids": vertex_ids,
+            "source_edge_ids": [
+                record["source_edge_id"] for record in records
+            ],
+            "edge_records": records,
+            "coordinates_mm": point_list(
+                context["staged_points"][vertex] for vertex in vertex_ids
+            ),
+        }
+        path["fingerprint"] = stable_hash(path)
+        return path
+
+    while unused:
+        starts = defaultdict(list)
+        ends = Counter()
+        for record in unused.values():
+            starts[record["vertex_ids"][0]].append(record)
+            ends[record["vertex_ids"][1]] += 1
+        open_starts = sorted(
+            vertex
+            for vertex, records in starts.items()
+            if len(records) > ends[vertex]
+        )
+        start_vertex = (
+            open_starts[0]
+            if open_starts
+            else min(
+                min(record["vertex_ids"])
+                for record in unused.values()
+            )
+        )
+        candidates = sorted(
+            starts.get(start_vertex, []),
+            key=lambda record: record["source_edge_id"],
+        )
+        if not candidates:
+            candidates = [
+                min(
+                    unused.values(),
+                    key=lambda record: (
+                        min(record["vertex_ids"]),
+                        record["source_edge_id"],
+                    ),
+                )
+            ]
+        records = []
+        current = candidates[0]
+        first_vertex = current["vertex_ids"][0]
+        while current["source_edge_id"] in unused:
+            records.append(unused.pop(current["source_edge_id"]))
+            next_vertex = records[-1]["vertex_ids"][1]
+            next_records = sorted(
+                (
+                    record
+                    for record in unused.values()
+                    if record["vertex_ids"][0] == next_vertex
+                ),
+                key=lambda record: record["source_edge_id"],
+            )
+            if not next_records:
+                break
+            current = next_records[0]
+            if next_vertex == first_vertex:
+                break
+        paths.append(make_path(records))
+    simple_paths = []
+    pending = [path["edge_records"] for path in paths]
+    while pending:
+        records = pending.pop()
+        vertices = [records[0]["vertex_ids"][0]]
+        vertices.extend(record["vertex_ids"][1] for record in records)
+        seen = {}
+        split = None
+        for index, vertex in enumerate(vertices):
+            if vertex in seen and not (
+                seen[vertex] == 0 and index == len(vertices) - 1
+            ):
+                split = (seen[vertex], index)
+                break
+            seen[vertex] = index
+        if split is None:
+            simple_paths.append(make_path(records))
+            continue
+        first, last = split
+        pending.append(records[first:last])
+        remainder = records[:first] + records[last:]
+        if remainder:
+            pending.append(remainder)
+    paths = simple_paths
+    paths.sort(
+        key=lambda path: (
+            0 if path["status"] == "CLOSED" else 1,
+            min(path["source_edge_ids"]),
+        )
+    )
+    for index, path in enumerate(paths):
+        path["path_id"] = f"BOUNDARY_PATH_{index:03d}"
+    return paths
+
+
+def shortest_mask_edge_path(context, face_ids, first_vertex, last_vertex):
+    allowed_edges = set()
+    for face_id in face_ids:
+        face = context["staged_faces"][face_id]
+        allowed_edges.update(
+            tuple(sorted(edge))
+            for edge in zip(face, (*face[1:], face[0]))
+        )
+    neighbors = defaultdict(list)
+    for first, second in allowed_edges:
+        distance = (context["staged_points"][first] - context["staged_points"][second]).length
+        neighbors[first].append((second, distance))
+        neighbors[second].append((first, distance))
+    queue = [(0.0, (first_vertex,), first_vertex)]
+    best = {}
+    while queue:
+        distance, path, vertex = heapq.heappop(queue)
+        if vertex in best and best[vertex] <= distance:
+            continue
+        best[vertex] = distance
+        if vertex == last_vertex:
+            return list(path), distance
+        for neighbor, edge_length in sorted(neighbors[vertex]):
+            heapq.heappush(
+                queue,
+                (distance + edge_length, (*path, neighbor), neighbor),
+            )
+    raise RuntimeError(
+        f"{OPERATION}: flex-cut path {first_vertex}->{last_vertex} "
+        "does not exist inside the exact maximum mask"
+    )
+
+
+def cell_mask_record(name, face_ids, context, target_length):
+    record = mask_record(
+        name,
+        face_ids,
+        context["staged_points"],
+        context["staged_faces"],
+        context["staged_materials"],
+    )
+    stations = []
+    normals = Vector()
+    for vertex in record["vertex_ids"]:
+        station, _, _, _ = v4.radial_coordinates(
+            context["staged_points"][vertex],
+            target_length,
+        )
+        stations.append(station * target_length)
+    for face_id in face_ids:
+        normals += face_normal(
+            context["staged_points"],
+            context["staged_faces"][face_id],
+        )
+    source_normal = (
+        normals.normalized() if normals.length > 1.0e-12 else normals
+    )
+    record.update(
+        {
+            "ordered_boundary_paths": ordered_boundary_paths(
+                face_ids,
+                context,
+            ),
+            "material_indices": sorted(
+                {
+                    context["staged_materials"][face_id]
+                    for face_id in face_ids
+                }
+            ),
+            "station_range_mm": [
+                round(min(stations), 9),
+                round(max(stations), 9),
+            ],
+            "aggregate_source_normal": [
+                round(float(value), 12) for value in source_normal
+            ],
+        }
+    )
+    return record
+
+
+def atomic_cells(component, face_ids, barrier_edges, context, target_length):
+    face_ids = set(face_ids)
+    _, edge_faces, _ = source_edge_context(context)
+    adjacency = defaultdict(set)
+    for edge, linked in edge_faces.items():
+        inside = sorted(face_ids & set(linked))
+        if len(inside) != 2 or edge in barrier_edges:
+            continue
+        first, second = inside
+        adjacency[first].add(second)
+        adjacency[second].add(first)
+    remaining = set(face_ids)
+    components = []
+    while remaining:
+        seed = min(remaining)
+        stack = [seed]
+        cell = set()
+        while stack:
+            face_id = stack.pop()
+            if face_id in cell:
+                continue
+            cell.add(face_id)
+            stack.extend(sorted(adjacency[face_id] - cell, reverse=True))
+        remaining -= cell
+        components.append(sorted(cell))
+    components.sort(key=lambda cell: min(cell))
+    cells = []
+    face_to_cell = {}
+    for index, cell in enumerate(components):
+        cell_id = f"ATOMIC_CELL_{component}_{index:03d}"
+        record = cell_mask_record(
+            cell_id,
+            cell,
+            context,
+            target_length,
+        )
+        record["component"] = component
+        cells.append(record)
+        for face_id in cell:
+            face_to_cell[face_id] = cell_id
+    return cells, face_to_cell
+
+
+def build_cell_authority(context, joint_authority):
+    mapping = context["mapping"]
+    target_length = float(
+        bpy.data.objects[v4.CANDIDATE_NAME]["target_length_mm"]
+    )
+    c20_faces = set(
+        joint_authority["masks"]["C20_INNER_BOWL_REPLACEABLE_BASE"][
+            "face_ids"
+        ]
+    )
+    c9_faces = set(
+        joint_authority["masks"]["C9_PROXIMAL_REPLACEABLE_BASE"]["face_ids"]
+    )
+    if (len(c20_faces), len(c9_faces)) != (724, 238):
+        raise RuntimeError(
+            f"{OPERATION}: AUTHORITY_MISMATCH_V26; exact maximum mask "
+            f"counts are C20={len(c20_faces)}, C9={len(c9_faces)}, "
+            "expected C20=724, C9=238"
+    )
+    edge_ids, edge_faces, _ = source_edge_context(context)
+    reasons = defaultdict(set)
+
+    def add_edges(records, reason):
+        for record in records:
+            edge = tuple(sorted(record["vertex_ids"]))
+            if edge in edge_ids:
+                reasons[edge].add(reason)
+
+    seam_groups = mapping["exact_full_inner_bowl_seam"]["boundary_groups"]
+    for group in seam_groups:
+        add_edges(
+            (
+                {"vertex_ids": edge}
+                for edge in group["edge_vertex_ids"]
+            ),
+            (
+                "C20_SOURCE_OPEN_OR_APERTURE_ROUTE"
+                if group["status"] == "open"
+                else "C20_CLOSED_APERTURE_ROUTE"
+            ),
+        )
+    add_edges(
+        mapping["exact_major_preserved_ridges"]["edge_records"],
+        "C20_NAMED_RIDGE_OR_DEPTH_BREAK",
+    )
+    add_edges(
+        mapping["exact_source_open_edges"]["edge_records"],
+        "SOURCE_OPEN_ROUTE",
+    )
+    c20_boundary = ordered_boundary_paths(c20_faces, context)
+    c9_boundary = ordered_boundary_paths(c9_faces, context)
+    for path in c20_boundary:
+        add_edges(path["edge_records"], "C20_MAXIMUM_MASK_BOUNDARY")
+    for path in c9_boundary:
+        add_edges(
+            path["edge_records"],
+            "C9_REVIEWED_AMBIGUOUS_OR_MAXIMUM_MASK_BOUNDARY",
+        )
+    for component, face_ids in (("C20", c20_faces), ("C9", c9_faces)):
+        for edge, linked in edge_faces.items():
+            inside = sorted(face_ids & set(linked))
+            if len(inside) != 2:
+                continue
+            first, second = inside
+            if (
+                context["staged_materials"][first]
+                != context["staged_materials"][second]
+            ):
+                reasons[edge].add(f"{component}_MATERIAL_BOUNDARY")
+    flex_chains = []
+    for component, face_ids, boundary_paths, first, last in (
+        ("C20", c20_faces, c20_boundary, 2074, 2119),
+        ("C9", c9_faces, c9_boundary, 1257, 1295),
+    ):
+        boundary_vertices = sorted(
+            {
+                vertex
+                for path in boundary_paths
+                for vertex in path["vertex_ids"]
+            }
+        )
+        upper_boundary = min(
+            boundary_vertices,
+            key=lambda vertex: (
+                (
+                    context["staged_points"][vertex]
+                    - context["staged_points"][first]
+                ).length,
+                vertex,
+            ),
+        )
+        lower_boundary = min(
+            (vertex for vertex in boundary_vertices if vertex != upper_boundary),
+            key=lambda vertex: (
+                (
+                    context["staged_points"][vertex]
+                    - context["staged_points"][last]
+                ).length,
+                vertex,
+            ),
+        )
+        upper_vertices, upper_length = shortest_mask_edge_path(
+            context,
+            face_ids,
+            upper_boundary,
+            first,
+        )
+        middle_vertices, middle_length = shortest_mask_edge_path(
+            context,
+            face_ids,
+            first,
+            last,
+        )
+        lower_vertices, lower_length = shortest_mask_edge_path(
+            context,
+            face_ids,
+            last,
+            lower_boundary,
+        )
+        vertices = (
+            upper_vertices
+            + middle_vertices[1:]
+            + lower_vertices[1:]
+        )
+        length = upper_length + middle_length + lower_length
+        edges = [
+            tuple(sorted(edge))
+            for edge in zip(vertices, vertices[1:])
+        ]
+        for edge in edges:
+            reasons[edge].add(f"{component}_DETERMINISTIC_FLEX_CUT_CHAIN")
+        chain = {
+            "chain_id": f"{component}_FLEX_CUT_CHAIN",
+            "component": component,
+            "ordered_vertex_ids": vertices,
+            "ordered_source_edge_ids": [edge_ids[edge] for edge in edges],
+            "coordinates_mm": point_list(
+                context["staged_points"][vertex] for vertex in vertices
+            ),
+            "length_mm": round(length, 9),
+            "algorithm": (
+                "nearest_distinct_maximum_boundary_vertices_then_"
+                "lexicographically_tiebroken_shortest_source_edge_paths_"
+                "through_exact_upper_and_lower_registration_landmarks"
+            ),
+        }
+        chain["fingerprint"] = stable_hash(chain)
+        flex_chains.append(chain)
+    c20_barriers = {
+        edge
+        for edge, edge_reasons in reasons.items()
+        if any(reason.startswith("C20_") or reason == "SOURCE_OPEN_ROUTE"
+               for reason in edge_reasons)
+    }
+    c9_barriers = {
+        edge
+        for edge, edge_reasons in reasons.items()
+        if any(reason.startswith("C9_") for reason in edge_reasons)
+    }
+    c20_cells, c20_face_to_cell = atomic_cells(
+        "C20",
+        c20_faces,
+        c20_barriers,
+        context,
+        target_length,
+    )
+    c9_cells, c9_face_to_cell = atomic_cells(
+        "C9",
+        c9_faces,
+        c9_barriers,
+        context,
+        target_length,
+    )
+    face_to_cell = {**c20_face_to_cell, **c9_face_to_cell}
+    graph_records = []
+    for edge in sorted(reasons, key=lambda item: edge_ids[item]):
+        linked_cells = sorted(
+            {
+                face_to_cell[face_id]
+                for face_id in edge_faces[edge]
+                if face_id in face_to_cell
+            }
+        )
+        if len(linked_cells) != 2:
+            continue
+        graph_records.append(
+            {
+                "source_edge_id": edge_ids[edge],
+                "vertex_ids": list(edge),
+                "cell_ids": linked_cells,
+                "barrier_reasons": sorted(reasons[edge]),
+            }
+        )
+    barrier_inventory = []
+    for edge in sorted(reasons, key=lambda item: edge_ids[item]):
+        barrier_inventory.append(
+            {
+                "source_edge_id": edge_ids[edge],
+                "vertex_ids": list(edge),
+                "adjacent_source_face_ids": sorted(edge_faces[edge]),
+                "barrier_reasons": sorted(reasons[edge]),
+            }
+        )
+    component_faces = {
+        "C20": c20_faces | set(
+            joint_authority["masks"]["C20_EXTERIOR_CAGE_IMMUTABLE"][
+                "face_ids"
+            ]
+        ),
+        "C9": set(
+            joint_authority["c9_classifier"]["component_face_ids"]
+        ),
+    }
+    complements = {}
+    for component, maximum in (("C20", c20_faces), ("C9", c9_faces)):
+        complement_ids = sorted(component_faces[component] - maximum)
+        full_record = mask_record(
+            f"{component}_IMMUTABLE_COMPLEMENT_V2",
+            complement_ids,
+            context["staged_points"],
+            context["staged_faces"],
+            context["staged_materials"],
+        )
+        complements[component] = {
+            "name": full_record["name"],
+            "face_ids": complement_ids,
+            "face_count": len(complement_ids),
+            "vertex_count": len(full_record["vertex_ids"]),
+            "fingerprint": full_record["fingerprint"],
+        }
+
+    def terminal_records(component, paths, upper_vertex, lower_vertex):
+        records = []
+        for role, landmark in (
+            ("UPPER", upper_vertex),
+            ("LOWER", lower_vertex),
+        ):
+            path = min(
+                paths,
+                key=lambda item: (
+                    min(
+                        (
+                            context["staged_points"][vertex]
+                            - context["staged_points"][landmark]
+                        ).length
+                        for vertex in item["vertex_ids"]
+                    ),
+                    item["path_id"],
+                ),
+            )
+            nearest_index = min(
+                range(len(path["vertex_ids"])),
+                key=lambda index: (
+                    context["staged_points"][path["vertex_ids"][index]]
+                    - context["staged_points"][landmark]
+                ).length,
+            )
+            edge_indices = sorted(
+                {
+                    max(0, min(nearest_index - 1, len(path["edge_records"]) - 1)),
+                    max(0, min(nearest_index, len(path["edge_records"]) - 1)),
+                }
+            )
+            edges = [path["edge_records"][index] for index in edge_indices]
+            record = {
+                "terminal_id": f"{role}_{component}_MAXIMUM_BOUNDARY",
+                "role": role,
+                "component": component,
+                "registration_landmark_vertex_id": landmark,
+                "boundary_path_id": path["path_id"],
+                "ordered_source_edge_ids": [
+                    edge["source_edge_id"] for edge in edges
+                ],
+                "ordered_boundary_vertex_ids": [
+                    path["vertex_ids"][index]
+                    for index in range(
+                        edge_indices[0],
+                        edge_indices[-1] + 2,
+                    )
+                ],
+                "exact_source_coordinates_mm": point_list(
+                    context["staged_points"][path["vertex_ids"][index]]
+                    for index in range(
+                        edge_indices[0],
+                        edge_indices[-1] + 2,
+                    )
+                ),
+                "candidate_incident_face_ids": sorted(
+                    {edge["inside_face_id"] for edge in edges}
+                ),
+                "retained_incident_face_ids": sorted(
+                    {
+                        face_id
+                        for edge in edges
+                        for face_id in edge["outside_face_ids"]
+                    }
+                ),
+                "source_winding": [
+                    edge["vertex_ids"] for edge in edges
+                ],
+                "candidate_material_indices": sorted(
+                    {
+                        context["staged_materials"][edge["inside_face_id"]]
+                        for edge in edges
+                    }
+                ),
+                "retained_material_indices": sorted(
+                    {
+                        context["staged_materials"][face_id]
+                        for edge in edges
+                        for face_id in edge["outside_face_ids"]
+                    }
+                ),
+                "future_candidate_coordinate_identity_tolerance_mm": (
+                    TERMINAL_COORDINATE_TOLERANCE_MM
+                ),
+                "coincidence_contract": (
+                    "future candidate must reuse these exact source vertex "
+                    "coordinates and ordered source edges"
+                ),
+            }
+            record["fingerprint"] = stable_hash(record)
+            records.append(record)
+        return records
+
+    terminals = (
+        terminal_records("C20", c20_boundary, 2074, 2119)
+        + terminal_records("C9", c9_boundary, 1257, 1295)
+    )
+    authority = {
+        "operation": "V26_CELL_AUTHORITY_EXTRACTION",
+        "mission": "R014-JOINT-C9-C20-ELBOW-V26",
+        "status": "V26_CELL_AUTHORITY_V2_CHECKPOINTED",
+        "input_blend": str(context["blend_path"]),
+        "input_blend_sha256": context["blend_sha"],
+        "source_joint_authority_fingerprint": stable_hash(joint_authority),
+        "scope": {
+            "read_only": True,
+            "exposure_rays": False,
+            "keepouts": False,
+            "cutter_evidence": False,
+            "single_floor_ownership": False,
+            "candidate_construction_or_search": False,
+            "mutation_authority": False,
+            "geometry_emitted": False,
+            "blend_saved": False,
+            "image_work_requested": False,
+        },
+        "maximum_masks": {
+            "C20": {
+                "face_ids": sorted(c20_faces),
+                "face_count": len(c20_faces),
+                "fingerprint": joint_authority["masks"][
+                    "C20_INNER_BOWL_REPLACEABLE_BASE"
+                ]["fingerprint"],
+                "ordered_boundary_paths": c20_boundary,
+            },
+            "C9": {
+                "face_ids": sorted(c9_faces),
+                "face_count": len(c9_faces),
+                "fingerprint": joint_authority["masks"][
+                    "C9_PROXIMAL_REPLACEABLE_BASE"
+                ]["fingerprint"],
+                "ordered_boundary_paths": c9_boundary,
+            },
+        },
+        "immutable_complements": complements,
+        "barriers": {
+            "inventory": barrier_inventory,
+            "deterministic_flex_cut_chains": flex_chains,
+            "source": (
+                "35-degree basin seam, source-open/aperture routes, named "
+                "ridge/depth-break records, material boundaries, reviewed "
+                "C9 maximum boundary, and exact flex-cut chains"
+            ),
+        },
+        "atomic_cells": {
+            "ordering": "(component, minimum_source_face_id)",
+            "forced_landmark_unions": False,
+            "C20": c20_cells,
+            "C9": c9_cells,
+        },
+        "barrier_separated_cell_graph": {
+            "nodes": [
+                {
+                    "cell_id": cell["name"],
+                    "component": cell["component"],
+                    "minimum_source_face_id": min(cell["face_ids"]),
+                }
+                for cell in (*c20_cells, *c9_cells)
+            ],
+            "barrier_adjacencies": graph_records,
+            "nonbarrier_cross_cell_adjacencies": [],
+        },
+        "terminal_boundary_coincidence": {
+            "coordinate_tolerance_mm": TERMINAL_COORDINATE_TOLERANCE_MM,
+            "records": terminals,
+        },
+        "source_datablock_proof": joint_authority["source_datablock_proof"],
+        "promotion": "NOT_PROMOTED",
+    }
+    authority["summary"] = {
+        "C20_maximum_face_count": len(c20_faces),
+        "C9_maximum_face_count": len(c9_faces),
+        "C20_boundary_path_count": len(c20_boundary),
+        "C9_boundary_path_count": len(c9_boundary),
+        "C20_atomic_cell_count": len(c20_cells),
+        "C9_atomic_cell_count": len(c9_cells),
+        "barrier_edge_count": len(barrier_inventory),
+        "barrier_cell_adjacency_count": len(graph_records),
+        "terminal_record_count": len(terminals),
+    }
+    authority["fingerprint"] = stable_hash(authority)
+    return authority
+
+
 def filtered_c9_faces(context, c9, target_length):
     proximal = set(c9["proximal"]["incident_face_ids"])
     known_immutable = {1667, 1669, 1670, 1671}
@@ -290,19 +984,19 @@ def exact_authority(context):
         context["mapping"]["reconstruction_scope"]["rebuild_face_ids"]
     )
     c20_cage = sorted(context["retained_face_ids"])
-    c9_filtered, c9_rejected = filtered_c9_faces(
-        context,
-        c9,
-        target_length,
-    )
+    c9_proximal_maximum = sorted(c9["proximal"]["incident_face_ids"])
     c9_ring = optional_transition_ring(
-        set(c9_filtered),
+        set(c9_proximal_maximum),
         set(c9["component_face_ids"]),
         context["staged_faces"],
     )
-    maximum_replaceable = set(c20_bowl) | set(c9_filtered) | set(c9_ring)
+    maximum_replaceable = (
+        set(c20_bowl) | set(c9_proximal_maximum) | set(c9_ring)
+    )
     c9_complement = sorted(
-        set(c9["component_face_ids"]) - set(c9_filtered) - set(c9_ring)
+        set(c9["component_face_ids"])
+        - set(c9_proximal_maximum)
+        - set(c9_ring)
     )
     all_c9_c20 = set(c9["component_face_ids"]) | set(c20_bowl) | set(c20_cage)
     unrelated = sorted(
@@ -349,7 +1043,7 @@ def exact_authority(context):
         ),
         "C9_PROXIMAL_REPLACEABLE_BASE": mask_record(
             "C9_PROXIMAL_REPLACEABLE_BASE",
-            c9_filtered,
+            c9_proximal_maximum,
             context["staged_points"],
             context["staged_faces"],
             context["staged_materials"],
@@ -410,8 +1104,11 @@ def exact_authority(context):
         ),
         "c9_classifier": {
             "proximal_source": c9["proximal"],
-            "accepted_face_ids": c9_filtered,
-            "rejected_face_evidence": c9_rejected,
+            "status": "PENDING_AUTHORITATIVE_RAY_CLASSIFIER",
+            "component_face_ids": sorted(c9["component_face_ids"]),
+            "maximum_face_ids": c9_proximal_maximum,
+            "accepted_face_ids": [],
+            "rejected_face_evidence": {},
             "optional_transition_ring_face_ids": c9_ring,
         },
         "negative_space": {
@@ -1473,6 +2170,39 @@ def static_main():
         "motion": False,
         "blend_mutation_authorized": False,
     }
+    if "--cell-authority-only" in sys.argv:
+        cell_authority = build_cell_authority(context, authority)
+        cell_authority_path = report_path.with_name(
+            "v26_cell_authority.json"
+        )
+        atomic_json(cell_authority_path, cell_authority)
+        ledger = {
+            "tool": Path(__file__).name,
+            "operation": "V26_CELL_AUTHORITY_EXTRACTION",
+            "mission": "R014-JOINT-C9-C20-ELBOW-V26",
+            "status": "V26_CELL_AUTHORITY_V2_CHECKPOINTED",
+            "input_blend": str(context["blend_path"]),
+            "input_blend_sha256": context["blend_sha"],
+            "code_sha256": code_sha,
+            "v26_cell_authority": str(cell_authority_path),
+            "v26_cell_authority_sha256": sha_file(cell_authority_path),
+            "v26_cell_authority_fingerprint": cell_authority[
+                "fingerprint"
+            ],
+            "summary": cell_authority["summary"],
+            "mutation_started": False,
+            "geometry_emitted": False,
+            "blend_saved": False,
+            "image_work_requested": False,
+            "promotion": "NOT_PROMOTED",
+        }
+        atomic_json(report_path, ledger)
+        print(json.dumps(ledger, indent=2))
+        print(
+            "DONE: V26 exact barrier-separated cell authority "
+            "checkpointed; mutation_started=False; geometry_emitted=False"
+        )
+        return 0
     authority_path = report_path.with_name("v26_joint_authority.json")
     atomic_json(authority_path, authority)
     authority_sha = sha_file(authority_path)
