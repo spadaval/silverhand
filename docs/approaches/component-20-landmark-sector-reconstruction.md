@@ -276,6 +276,32 @@ checkpoint has SHA-256
 `393a7c1a29c96c876fe2be849c3b9a4e42c771416cd59b3f733a7f0c65342bcd`.
 The complete combined liner must revalidate every gate.
 
+### Rejected single-chart inner-bowl liner
+
+The first topology-changing liner treated the complete 35° basin as one
+polygonal chart. It preserved the exterior fingerprint, all interface controls,
+component-9 overlaps, connected-component count, and open-boundary counts.
+It also reduced global cutter overlaps from `653` to `449`.
+
+The construction is nevertheless rejected:
+
+- replacement overlaps stalled at `48`;
+- it introduced `16` noncontiguous manifold edges;
+- `104` replacement triangles were degenerate;
+- the replacement aspect ratio reached `1758.442672`;
+- `3,713` replacement triangles opposed the removed-region mean normal.
+
+The basin has two outer cycles sharing one articulation vertex plus two
+apertures, and it is strongly nonplanar. A single-plane tessellation creates
+long cross-bowl chords before subdivision. Projecting those chords onto the
+curved cutter folds the patch. Do not tune the single-chart floor, subdivision,
+or outward correction.
+
+The next authored architecture must split the same 724-face basin along durable
+ridge and valley routes into several locally planar charts. Charts must share
+exact internal seams and collectively preserve the same 143-edge external
+boundary, interface controls, source-open routes, and aperture loops.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -319,3 +345,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_full_recon_map/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_inner_bowl/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_coordinated_interface/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_combined_inner_bowl_liner/`

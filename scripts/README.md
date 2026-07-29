@@ -101,6 +101,9 @@ lineages.
   component-9/component-20 elbow pairs together through the smallest bounded
   topology neighborhood and records whether the result is admissible as a
   combined-liner staging state.
+- `blender/build_combined_authored_inner_bowl_liner.py` — evaluates one
+  topology-changing component-20 inner-bowl liner from the coordinated elbow
+  stage. Its single-chart construction is retained as a rejected control.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
