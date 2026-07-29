@@ -171,6 +171,9 @@ lineages.
 - `blender/build_upper_lower_terminal_bridge_v14.py` — searches an explicitly
   attributed flared saddle between the upper and lower major component-20
   terminals and rejects contact with every unrelated source component.
+- `blender/build_surface_following_fan_saddles_v15.py` — preserves v14's
+  proven T1-to-T0 route and midspan while rebuilding only the two terminal
+  transitions as broad, embedded, two-stage fan saddles.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

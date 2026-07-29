@@ -667,6 +667,18 @@ wide by `8 mm` long, with at least `1.5 mm` measured embed and rounded or
 mitered exposed shoulders. Recheck the four orthogonal views before spending
 an image operation on the elbow-axial gate.
 
+V15 implements that bounded terminal-only correction and passes its machine
+gates. It keeps the exact V5702→V1784 centerline at `120°`, expands both ends
+through a symmetric two-stage ramp to `10 mm`, realizes `7.869187 mm` terminal
+landings with `5 mm` embed, and retains a `4.500001 mm` minimum width and
+`2.4 mm` thickness. Measured T1/T0 overlaps are `8/7`; unrelated source,
+T2/T3, component-9, cutter, and self overlaps remain zero, with
+`2.363913 mm` minimum cutter margin. The result is one closed positive solid
+with no degenerate triangles, `6.654346°` minimum angle, and `8.629667`
+maximum aspect ratio. The recovered retained-cage fingerprint, materials,
+component `9`, open center, tip gap, and hard controls are exact. V15 remains
+evaluation-only until the fan landings pass qualitative review.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
