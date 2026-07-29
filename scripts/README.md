@@ -160,6 +160,10 @@ lineages.
   arc splits at V2111 and V2108 while preserving v10's feasible left and
   center placements. It isolates missing local junctions without emitting an
   incomplete network.
+- `blender/build_connection_aware_network_v12.py` — jointly selects four
+  admissible broad constituents and adds a bounded embedded local bridge only
+  where direct overlap is unavailable. It emits review geometry only after
+  the complete measured cage-rooted graph and all machine gates pass.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

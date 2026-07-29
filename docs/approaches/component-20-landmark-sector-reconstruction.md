@@ -561,6 +561,42 @@ none of the admissible V2108-split B2a/B2b pairs overlap. No v11 geometry is
 emitted. Keep the four feasible broad constituents and evaluate short,
 separately closed local bridge junctions between them.
 
+### Connection-aware machine pass
+
+Joint selection of all admissible broad pieces produces the first complete
+machine-pass network. Four fixed-width constituents form two direct overlaps;
+a single short local bridge closes the remaining B2a–B2b gap:
+
+- B0 cage landing: `152` measured overlaps;
+- B0–B1: `19` measured overlaps;
+- B1–B2a: `27` measured overlaps;
+- B2a–bridge and bridge–B2b: `11` and `37` measured overlaps.
+
+The bridge spans a `9.879956 mm` endpoint gap. It is `6.0 mm` wide at its
+`1.5 mm` embedded terminal flares, narrows to `4.5 mm` internally, and remains
+`2.4 mm` thick. It has zero component-9, cutter, and self overlaps,
+`4.617902 mm` minimum cutter margin, `13.415411°` minimum triangle angle, and
+`4.310167` maximum aspect ratio.
+
+The complete network passes all named machine gates:
+
+- all four broad pieces and the bridge are closed, positive-volume,
+  contiguous, and internally self-clear;
+- component-9 and network cutter overlaps are zero;
+- minimum constituent cutter margin is `2.088698 mm`;
+- broad width is `5.999992–6.000006 mm` and thickness is
+  `2.399993–2.400006 mm`;
+- aggregate minimum angle is `4.070079°`, maximum aspect is `11.670955`, and
+  there are no degenerate triangles;
+- the retained 1,409-face cage/material fingerprint, hard controls V5840 and
+  V5852, open center, and `30.588488 mm` tip gap remain exact.
+
+This result explicitly relaxes all 13 legacy interface controls by
+`4.5–8.0 mm`; they are registration evidence, not retained geometry. The
+network remains evaluation-only until disposable high-detail review passes
+exterior identity, intentional negative space, substantiality, component-9
+layer order, and local bridge/junction read.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
