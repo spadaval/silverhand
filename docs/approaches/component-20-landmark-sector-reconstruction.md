@@ -201,6 +201,41 @@ shell, hidden wearer-side floor, open boundaries, and attachment seams. The
 reconstruction may replace the wearer-side architecture, but must retain the
 reviewed game-model exterior and intentional openings.
 
+## Selected full inner-bowl reconstruction
+
+Disposable high-detail review rejects rebuilding all of component `20`.
+Component `20` is the recognizable upper-arm/elbow shell: both dorsal and
+ventral sides carry longitudinal ribs, plates, apertures, and silhouette loops.
+Those features are the game-model exterior and remain source authority.
+
+The selected reconstruction scope floods outward from both exact failure
+clusters until a source edge reaches a `35°` dihedral barrier:
+
+- preserve `1,409` exterior-cage faces exactly;
+- replace `724` wearer-facing inner-bowl faces;
+- register to `127` exact seam edges across five independent groups;
+- keep three seam groups as open routes with `51`, `46`, and `18` edges;
+- preserve two closed aperture loops with `8` and `4` edges;
+- never merge the five groups into one annulus.
+
+The `25°` boundary leaves avoidable small inner islands. The `45°` boundary
+enters a recognizable raised exterior panel, and the `60°` boundary branches.
+The `35°` basin is therefore the accepted authored topology boundary, not a
+tunable parameter.
+
+Component `20` can be reconstructed independently from component `9` only with
+component `9` as read-only collision context. Freeze the 15 component-20
+vertices within `1 mm` of component `9`, including:
+
+- component-20 vertex `2074` to component-9 vertex `1257` at `0.012323 mm`;
+- component-20 vertex `2119` to component-9 vertex `1295` at `0.040267 mm`.
+
+The implementation architecture is a preserved exterior cage plus a
+low-complexity cutter-safe inner-bowl liner. Use a coarse radial/axial grid,
+retain macro bowl and recessed-strip depth, add only local transition loops,
+and preserve every opening. This is still fitted-surface work; printable wall
+thickness and final structural junctions remain later milestones.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -241,3 +276,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_patch/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_fan_feasibility/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_face_aware_sector/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_full_recon_map/`
