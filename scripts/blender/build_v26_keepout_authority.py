@@ -1029,6 +1029,8 @@ def build_authority():
             "promotion": "NOT_PROMOTED",
         },
         "inputs": {
+            "implementation_code": str(Path(__file__).resolve()),
+            "implementation_code_sha256": sha_file(Path(__file__).resolve()),
             "joint_authority": str(JOINT_AUTHORITY),
             "joint_authority_sha256": sha_file(JOINT_AUTHORITY),
             "cell_authority": str(CELL_AUTHORITY),
