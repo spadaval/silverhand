@@ -1,12 +1,12 @@
 {
-  "aggregate_boundary_component_count": 9,
+  "aggregate_boundary_component_count": 20,
   "aggregate_mask_fingerprint": "7a3d59c45f0d639e330007c529158024197cfadf3409f4b2bd4f4ee21d49b1a7",
   "aggregate_source_face_count": {
     "C20": 185,
     "C9": 81
   },
   "authority_path": "/Users/supadava/Projects/experimental/silverhand/_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_aggregate_authority.json",
-  "authority_sha256": "552544386bb3f3012527b2bfd819986c1c7b3f82d5d4585b01feb426e4ad78af",
+  "authority_sha256": "43c0b161d71a3ef2b6471f0ab63ab5ea71641554a5254354a2d31db58a2ed338",
   "batch_cell_counts": [
     7,
     12,
@@ -14,7 +14,7 @@
   ],
   "cell_scc_count": 7,
   "complete_terminal_incidence_count": 4,
-  "dependency_graph_fingerprint": "61220fe966c6e46cd13c82178ad816d9015fa4ef44e41c93f9bb593035296248",
+  "dependency_graph_fingerprint": "bce82ce425ee8e7a8c5b37ea901cdb2512011bb02eb0cd89e4be369fe8ef2c6b",
   "floor_conflict_count": 63,
   "floor_conflict_exclusion_count": 35,
   "full_floor_conflict_record_count": 98,
@@ -33,7 +33,7 @@
     "promotion": "NOT_PROMOTED"
   },
   "selected_cell_count": 26,
-  "semantic_fingerprint": "37b46af6aff610bcdc2d40fad68373c8ea49958b8d3799c5a6de1b92c9969020",
+  "semantic_fingerprint": "49d1cb3de55ba2d18928fa9fdc4d59a5261ba4a0e27dc77bd55b47d66745415c",
   "status": "V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED",
   "terminal_incidence_count": 4
 }

@@ -40,6 +40,7 @@ revised.
 
 | Authority | Frozen path | SHA-256 |
 | --- | --- | --- |
+| Read-only Blender/source attestation | `v27_input_attestation.json` | `0c10b913be5647e53c623d2de62ab064874cfcc5d7a16b147f0139561e679bce` |
 | Final exposure-cell authority after visual rounds 01–05 | `../repair_014_joint_c9_c20_elbow_v26/v26_exposure_cell_authority.json` | `bba29d185676ed6dadaa77c81b37ae8d05f149886a3151887b2804c88bc9b0a5` |
 | Exact boundary-coincident terminal authority | `../repair_014_joint_c9_c20_elbow_v26/v26_terminal_authority.json` | `159cbf3a3ddacf0a6628d7f4d2f5bf5a69161727176095871ef3899e7d807c1d` |
 | Exact cutter authority | `../repair_014_joint_c9_c20_elbow_v26/v26_cutter_authority.json` | `52baafbc473c0e85952b80c4db56bb5620310fb82aa7b23bd55f529e83b78d45` |
@@ -518,3 +519,118 @@ the gap, generate geometry, request images, mutate a mesh, or save a Blend.
 - promotion: `NOT_PROMOTED`
 - next_action: independently review the revised authority, then solve the
   exact `>=12 mm` flex gap before any candidate geometry
+### V27-AUTH-008 — ordered aggregate boundary implementation start
+
+- role: Agent Factory `implement`
+- review_hard_stop: `V27_AGGREGATE_BOUNDARY_LOOPS_NOT_MATERIALIZED`
+- inherited_counterexample: four of nine aggregate boundary connected records
+  contain degree-4 vertex touches and empty `ordered_vertex_ids`; the largest
+  cited C20 graph contains 65 exact boundary edges
+- authorized_change: preserve the revised exact 26-cell aggregate mask and
+  every aggregate boundary edge exactly once while decomposing each
+  vertex-touching graph into deterministically ordered, edge-disjoint simple
+  source-oriented loops or paths with complementary source winding evidence
+- prohibited: gap solving, candidate geometry, source mutation, image work,
+  Blend saves, promotion, edge suppression, and degree-4 relabeling
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: inspect the revised 26-cell authority/checkpoint and exact review
+  counterexamples, then patch only the aggregate boundary materialization
+
+### V27-AUTH-009 — Stage 0 read-only metadata inspection authorized
+
+- operation: materialize the missing exact Stage 0 scene attestation required
+  by independent review
+- reason_blend_open_is_required: frozen JSON authorities contain exact units,
+  object/datablock identities, and source fingerprints, but do not record the
+  Blender runtime/file version
+- exact_background_command:
+  `/Applications/Blender.app/Contents/MacOS/Blender --background blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v24.blend --python-expr <read-only JSON metadata expression>`
+- read_only_expression_scope: report `bpy.app.version_string`,
+  `bpy.data.version`, scene unit settings, and the exact object/datablock/count
+  identities for `EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER` and
+  `CUT_CLEARANCE_ANATOMY_STRAIGHT`
+- save_operator_allowed: false
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: run the exact background read-only inspection, reconcile its
+  output with frozen authority identities, and embed the attestation in the
+  regenerated aggregate authority
+
+### V27-AUTH-010 — Stage 0 metadata inspected
+
+- operation: read exact source-scene metadata in Blender background mode
+- runtime_version: `5.2.0 LTS Beta`
+- runtime_version_tuple: `[5, 2, 0]`
+- blend_file_version: `[5, 2, 44]`
+- scene_units: `METRIC`, `MILLIMETERS`,
+  `scale_length = 0.0010000000474974513`
+- source_object: `EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER`, type `MESH`,
+  datablock `EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER_MESH`, 7,347
+  vertices, 12,564 polygons
+- cutter_object: `CUT_CLEARANCE_ANATOMY_STRAIGHT`, type `MESH`, datablock
+  `CUT_CLEARANCE_ANATOMY_STRAIGHT_MESH`, 408 vertices, 386 polygons
+- reconciliation: all units, object/datablock identities, and counts match the
+  frozen V26 joint/cutter authorities exactly
+- save_operator_invoked: false
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: implement oriented edge-disjoint simple boundary decomposition,
+  complementary winding validation, and the exact Stage 0 authority block
+
+### V27-AUTH-011 — repeatable Stage 0 attestation checkpointed
+
+- operation: materialize the V27-AUTH-010 metadata inspection as a
+  repeat-identical machine-readable source attestation with exact mesh
+  fingerprints
+- attestation_code_sha256:
+  `648e85d974ab077370945446e90eb412281702b847091e72c1b38ca54c4d520b`
+- attestation_sha256:
+  `0c10b913be5647e53c623d2de62ab064874cfcc5d7a16b147f0139561e679bce`
+- source_object_fingerprint:
+  `aaf473c8d127896bb7fa46cee96b7b56a4a6710bac203a977051393cf3136558`
+- fitted_shape_key_object_fingerprint:
+  `70180fc9e48bc346e446ccf49c3d6b79b2ca8d105cc5cab3c1806c6b7beb2326`
+- repeatability: `DONE`; two background attestation runs were byte-identical
+- result: `V27_INPUT_AUTHORITIES_FROZEN`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+
+### V27-AUTH-012 — ordered aggregate boundary audit passed
+
+- operation: replace branched connected-boundary summaries with a
+  deterministic edge-disjoint decomposition into ordered simple source
+  boundary loops
+- builder_code_sha256:
+  `bdf56add14750578d045d8e1ab84002863cf9017188d48369607f3f9b8a3c268`
+- authority_sha256:
+  `43c0b161d71a3ef2b6471f0ab63ab5ea71641554a5254354a2d31db58a2ed338`
+- receipt_sha256:
+  `f4d1e3190999bd22bb9477953bd541f41c0d65b2dba86f729d854920ca0dc938`
+- exact_boundary_partition: 260 unique edges, 20 ordered simple loops, every
+  edge present exactly once, no empty orderings, no branched output record
+- frozen_input_attestation_verified: true
+- repeatability: `DONE`; two authority and receipt runs were byte-identical
+- named_audit: `PASS_V27_ORDERED_BOUNDARY_AND_STAGE0_AUDIT`
+- prior_review_stop_resolved:
+  `V27_AGGREGATE_BOUNDARY_LOOPS_NOT_MATERIALIZED`
+- hard_stops: none
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: independent re-review of the ordered boundary and Stage 0
+  attestation before the exact flex-gap solver starts

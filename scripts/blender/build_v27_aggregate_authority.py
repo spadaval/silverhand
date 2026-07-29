@@ -37,6 +37,10 @@ MAXIMUM_BATCH_CELL_COUNT = 12
 INTERSECTION_TOLERANCE_MM = 1e-7
 
 FROZEN_INPUTS = {
+    "input_attestation": (
+        V27 / "v27_input_attestation.json",
+        "0c10b913be5647e53c623d2de62ab064874cfcc5d7a16b147f0139561e679bce",
+    ),
     "exposure_cell_authority": (
         V26 / "v26_exposure_cell_authority.json",
         "bba29d185676ed6dadaa77c81b37ae8d05f149886a3151887b2804c88bc9b0a5",
@@ -259,27 +263,30 @@ def build_boundary_components(
             selected_edges.add(edge)
             for vertex in edge:
                 pending.extend(sorted(vertex_to_edges[vertex] & unvisited))
-        vertices = sorted({vertex for edge in selected_edges for vertex in edge})
-        degrees = {
-            vertex: sum(vertex in edge for edge in selected_edges)
-            for vertex in vertices
-        }
-        ordered_vertices: list[int] = []
-        simple_loop = bool(vertices) and all(degree == 2 for degree in degrees.values())
-        simple_path = (
-            bool(vertices)
-            and list(degrees.values()).count(1) == 2
-            and all(degree in {1, 2} for degree in degrees.values())
+        parts: list[tuple[set[tuple[int, int]], list[int]]] = []
+        component_vertices = sorted(
+            {vertex for edge in selected_edges for vertex in edge}
         )
-        if simple_loop or simple_path:
+        component_degrees = {
+            vertex: sum(vertex in edge for edge in selected_edges)
+            for vertex in component_vertices
+        }
+        if all(degree == 2 for degree in component_degrees.values()) or (
+            list(component_degrees.values()).count(1) == 2
+            and all(degree in {1, 2} for degree in component_degrees.values())
+        ):
             adjacency: dict[int, list[int]] = defaultdict(list)
             for first, second in selected_edges:
                 adjacency[first].append(second)
                 adjacency[second].append(first)
             start = (
-                min(vertex for vertex, degree in degrees.items() if degree == 1)
-                if simple_path
-                else min(vertices)
+                min(
+                    vertex
+                    for vertex, degree in component_degrees.items()
+                    if degree == 1
+                )
+                if 1 in component_degrees.values()
+                else min(component_vertices)
             )
             previous = None
             current = start
@@ -296,25 +303,104 @@ def build_boundary_components(
                     break
                 ordered_vertices.append(following)
                 previous, current = current, following
-        payload = {
-            "component": component,
-            "edge_vertex_pairs": [list(edge) for edge in sorted(selected_edges)],
-            "immutable_incident_face_ids": sorted(
-                {
-                    face
-                    for edge in selected_edges
-                    for face in edge_records[edge]["immutable_incident_face_ids"]
-                }
-            ),
-            "is_simple_loop": simple_loop,
-            "is_simple_path": simple_path,
-            "ordered_vertex_ids": ordered_vertices,
-            "vertex_degrees": {
-                str(vertex): degrees[vertex] for vertex in sorted(degrees)
-            },
-        }
-        payload["fingerprint"] = stable_hash(payload)
-        components.append(payload)
+            parts.append((selected_edges, ordered_vertices))
+        else:
+            remaining = set(selected_edges)
+            while remaining:
+                seed_edge = min(remaining)
+                start, second = seed_edge
+                path = [start, second]
+                path_edges = [seed_edge]
+                visited_vertices = {start, second}
+
+                def close_cycle(current: int) -> bool:
+                    choices = sorted(
+                        edge
+                        for edge in vertex_to_edges[current] & remaining
+                        if edge not in path_edges
+                    )
+                    for edge in choices:
+                        following = edge[1] if edge[0] == current else edge[0]
+                        if following == start:
+                            if len(path) < 3:
+                                continue
+                            path.append(start)
+                            path_edges.append(edge)
+                            return True
+                        if following in visited_vertices:
+                            continue
+                        visited_vertices.add(following)
+                        path.append(following)
+                        path_edges.append(edge)
+                        if close_cycle(following):
+                            return True
+                        path_edges.pop()
+                        path.pop()
+                        visited_vertices.remove(following)
+                    return False
+
+                if not close_cycle(second):
+                    raise RuntimeError(
+                        f"{OPERATION}: could not decompose branched aggregate "
+                        f"boundary for {component}; seed_edge={seed_edge}, "
+                        f"remaining_edge_count={len(remaining)}"
+                    )
+                cycle_edges = set(path_edges)
+                remaining -= cycle_edges
+                parts.append((cycle_edges, path))
+
+        for part_edges, ordered_vertices in parts:
+            vertices = sorted(
+                {vertex for edge in part_edges for vertex in edge}
+            )
+            degrees = {
+                vertex: sum(vertex in edge for edge in part_edges)
+                for vertex in vertices
+            }
+            simple_loop = (
+                len(ordered_vertices) >= 4
+                and ordered_vertices[0] == ordered_vertices[-1]
+                and len(set(ordered_vertices[:-1]))
+                == len(ordered_vertices) - 1
+                and all(degree == 2 for degree in degrees.values())
+            )
+            simple_path = (
+                len(ordered_vertices) >= 2
+                and ordered_vertices[0] != ordered_vertices[-1]
+                and len(set(ordered_vertices)) == len(ordered_vertices)
+                and list(degrees.values()).count(1) == 2
+                and all(degree in {1, 2} for degree in degrees.values())
+            )
+            if not (simple_loop or simple_path):
+                raise RuntimeError(
+                    f"{OPERATION}: decomposed aggregate boundary is not a "
+                    f"simple loop or path for {component}; "
+                    f"edge_count={len(part_edges)}"
+                )
+            payload = {
+                "component": component,
+                "edge_vertex_pairs": [
+                    list(edge) for edge in sorted(part_edges)
+                ],
+                "immutable_incident_face_ids": sorted(
+                    {
+                        face
+                        for edge in part_edges
+                        for face in edge_records[edge][
+                            "immutable_incident_face_ids"
+                        ]
+                    }
+                ),
+                "is_simple_loop": simple_loop,
+                "is_simple_path": simple_path,
+                "ordered_vertex_ids": ordered_vertices,
+                "vertex_degrees": {
+                    str(vertex): degrees[vertex]
+                    for vertex in sorted(degrees)
+                },
+            }
+            payload["fingerprint"] = stable_hash(payload)
+            components.append(payload)
     components.sort(key=lambda value: value["edge_vertex_pairs"])
     for index, component_record in enumerate(components):
         component_record["boundary_id"] = (

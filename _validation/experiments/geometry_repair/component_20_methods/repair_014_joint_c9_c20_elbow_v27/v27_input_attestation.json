@@ -1,0 +1,54 @@
+{
+  "blender": {
+    "version": "5.2.0 LTS Beta",
+    "version_tuple": [
+      5,
+      2,
+      0
+    ]
+  },
+  "input_blend": "/Users/supadava/Projects/experimental/silverhand/blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v24.blend",
+  "input_blend_sha256": "68deef0bf80fdcfe2d592c81c1625061d93bcbc41e25e405a35d551e5dfc7823",
+  "objects": {
+    "EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER": {
+      "edge_count": 19876,
+      "geometry_fingerprint": "aaf473c8d127896bb7fa46cee96b7b56a4a6710bac203a977051393cf3136558",
+      "loop_count": 37996,
+      "material_slot_count": 1,
+      "mesh_datablock": "EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER_MESH",
+      "object": "EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER",
+      "object_type": "MESH",
+      "polygon_count": 12564,
+      "vertex_count": 7347
+    },
+    "WORK_FITTED_SURFACE_CANDIDATE": {
+      "edge_count": 19876,
+      "geometry_fingerprint": "70180fc9e48bc346e446ccf49c3d6b79b2ca8d105cc5cab3c1806c6b7beb2326",
+      "loop_count": 37996,
+      "material_slot_count": 1,
+      "mesh_datablock": "WORK_FITTED_SURFACE_CANDIDATE_MESH",
+      "object": "WORK_FITTED_SURFACE_CANDIDATE",
+      "object_type": "MESH",
+      "polygon_count": 12564,
+      "vertex_count": 7347
+    }
+  },
+  "operation": "ATTEST_V27_INPUTS",
+  "safety": {
+    "blend_saved": false,
+    "geometry_emitted": false,
+    "image_work_requested": false,
+    "mutation_started": false,
+    "promotion": "NOT_PROMOTED"
+  },
+  "scene": {
+    "name": "Scene",
+    "units": {
+      "length_unit": "MILLIMETERS",
+      "scale_length": 0.0010000000474974513,
+      "system": "METRIC"
+    }
+  },
+  "semantic_fingerprint": "7410529dec6d6466e650ac3c2773400662ec077a7bbc16b95f317e70a8534dc1",
+  "status": "V27_INPUT_AUTHORITIES_FROZEN"
+}
