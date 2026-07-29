@@ -168,6 +168,9 @@ lineages.
   connected components of the retained 1,409-face component-20 cage,
   attributes known source controls, and audits prior landing evidence against
   explicit terminal IDs without emitting geometry.
+- `blender/build_upper_lower_terminal_bridge_v14.py` — searches an explicitly
+  attributed flared saddle between the upper and lower major component-20
+  terminals and rejects contact with every unrelated source component.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

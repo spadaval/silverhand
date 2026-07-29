@@ -641,6 +641,22 @@ only the topology and terminal/junction shapes. Use embedded flared saddles or
 gussets, not another free loop, and reject exposed square, hooked, stubbed, or
 spiked ends.
 
+The exact V5702/V1784 representatives provide a first machine-pass explicit
+terminal bridge. A direct seven-ring saddle at `120°` roll embeds `1.5 mm`
+into both `T_CAGE_1` and `T_CAGE_0`, with three measured overlaps at each end.
+All six full-scene contacts belong to those selected terminals; unrelated
+source, T2, T3, component-9, cutter, and self overlaps are zero.
+
+The bridge is `6.0 mm` wide at its embedded ends, transitions through
+`5.25 mm`, narrows to `4.5 mm` internally, and remains `2.4 mm` thick. Minimum
+cutter margin is `2.703769 mm`; it is closed, contiguous, and positive-volume
+with `13.643691°` minimum angle, `4.239386` maximum aspect ratio, and no
+degenerate triangles. The retained cage fingerprint/materials, component `9`,
+open center, tip gap, and hard controls remain exact. This is the first result
+with an authoritative `upper major → bridge → lower major` graph, but it
+remains evaluation-only pending qualitative review of the single-saddle
+composition and terminal form.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
