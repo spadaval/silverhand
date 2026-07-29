@@ -134,6 +134,24 @@ the wearer-facing topology. It does not permit a smooth carrier slab, filled
 negative space, lost ridge routes, displaced registration, or a pressure-like
 inner shelf.
 
+### Rejected seven-face retessellation
+
+The smallest topology-changing cell was the complete seven-triangle fan around
+source vertex `4863`, bounded in order by source vertices
+`4860, 4861, 4864, 4865, 4866, 4867, 4869`. The cell is disjoint from every
+frozen opening, ridge, and depth-break chain.
+
+After the 31 cluster vertices were placed at the authored `1.7 mm` floor, all
+`42` triangulations of that boundary were tested. None kept every replacement
+triangle aligned with the source cell's winding. No evaluation object or
+candidate geometry was created, saved, or submitted for image review.
+
+Do not relax the winding gate or retry another diagonal choice inside this
+same seven-face boundary. The next bounded test retains the original fan and
+checks whether vertex `4863` has a cutter-safe feasible position that preserves
+all seven incident triangle orientations. If that feasible region is empty,
+the authored boundary must widen beyond this cell.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -171,3 +189,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_landmarks_tool_test/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_relief_trial/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_sector_retopo/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_patch/`

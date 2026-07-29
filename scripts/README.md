@@ -83,6 +83,10 @@ lineages.
   tapered-row reconstruction between an exact retained transition and
   source-open path while transferring bounded source relief. It creates
   evaluation objects only and never promotes a result.
+- `blender/try_authored_landmark_patch.py` — tests the smallest authored
+  component-20 floor cell by exhaustively checking its boundary
+  triangulations. It records a construction blocker without saving geometry
+  when no winding-compatible result exists.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
