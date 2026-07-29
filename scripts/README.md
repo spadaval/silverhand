@@ -178,6 +178,10 @@ lineages.
   independently projected T1/T0 surface pads and rejects emission unless their
   terminal-local footprints, narrow shared route, and shoulder topology clear
   every collision, self-overlap, quality, and preservation gate.
+- `blender/build_three_constituent_lap_network_v17.py` — preserves the
+  terminal-local pads and narrow route as three independently closed solids,
+  accepting only measured local pad/bridge laps that complete the explicit
+  T1-to-T0 structural graph without a boolean union or global backing.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

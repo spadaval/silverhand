@@ -706,6 +706,19 @@ project rule that each printable constituent be closed and positive-volume,
 avoids destructive retained-cage edits, and moves the unresolved operation
 from a self-intersecting loft to two measurable local structural junctions.
 
+V17 implements that three-constituent network and passes all machine gates at
+the first `1.5 mm` bridge lap. The measured graph is
+`T1 → upper pad → bridge → lower pad → T0`, with overlap counts
+`14 → 11 → 13 → 8` and zero direct pad-to-pad overlap. Each constituent is
+independently closed, consistently oriented, positive-volume, one-component,
+self-clear, and free of unrelated/T2/T3/component-9/cutter contact. Combined
+minimum cutter margin is `2.087573 mm`; minimum triangle angles are
+`12.182264°`, `13.643691°`, and `6.897367°`, and maximum aspect ratios remain
+below `7.688`. The terminal-tangent anti-fin metrics and exact source
+preservation also pass. No boolean, shared loft, carrier, or global backing is
+used. V17 remains evaluation-only pending qualitative review of the visible
+pads and lap junctions.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
