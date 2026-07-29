@@ -87,6 +87,10 @@ lineages.
   component-20 floor cell by exhaustively checking its boundary
   triangulations. It records a construction blocker without saving geometry
   when no winding-compatible result exists.
+- `blender/try_authored_fan_feasibility.py` — retains that source fan and
+  searches one interior control point against explicit cutter-floor and
+  orientation constraints. It records why a winding-safe fan still fails the
+  triangle-overlap gate.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

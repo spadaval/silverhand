@@ -152,6 +152,30 @@ checks whether vertex `4863` has a cutter-safe feasible position that preserves
 all seven incident triangle orientations. If that feasible region is empty,
 the authored boundary must widen beyond this cell.
 
+### Rejected single-control fan solve
+
+A bounded half-space search retained the seven-face fan and treated vertex
+`4863` as its only authored control. The other 30 cluster vertices were placed
+at the `1.7 mm` floor. The best of `304` deterministic control positions:
+
+- cleared all 31 reserved-margin failures;
+- preserved all seven incident triangle orientations, with a worst normal dot
+  of `0.585329`;
+- preserved topology, winding counts, and the exact outside fingerprint;
+- left a weak `1.314405°` minimum triangle angle;
+- increased the measured local-cell overlaps from `49` to `89`;
+- increased global cutter-triangle overlaps from `653` to `701`.
+
+This proves that vertex `4863` is not the remaining control problem. The
+independently clamped surrounding faces cross the curved cutter even when the
+central fan is orientation-safe. Do not retry single-control positions or
+submit this result for image review.
+
+The next bounded method must coordinate the ring-4 wearer-side surface using
+triangle/cutter collision evidence, not vertex margins alone. It must freeze
+the named exterior landmarks and drive colliding faces outward as a coherent
+local floor.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -190,3 +214,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_relief_trial/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_sector_retopo/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_patch/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_fan_feasibility/`
