@@ -677,7 +677,18 @@ T2/T3, component-9, cutter, and self overlaps remain zero, with
 with no degenerate triangles, `6.654346°` minimum angle, and `8.629667`
 maximum aspect ratio. The recovered retained-cage fingerprint, materials,
 component `9`, open center, tip gap, and hard controls are exact. V15 remains
-evaluation-only until the fan landings pass qualitative review.
+evaluation-only.
+
+V15 fails its first decision-rich qualitative view. The wider terminal reads
+as a flat fin or arrowhead projecting from an abrupt seam, not as a saddle
+following either receiving surface; it also damages the local silhouette
+despite leaving the retained source exact. This bounds the failure to
+orientation and topology rather than width. A next candidate must replace the
+normal-to-centerline fan rings with separate terminal-tangent pads: construct
+an approximately `10 × 8 mm` footprint in each terminal's local surface frame,
+project it to the receiving cage, offset it outward by `2.4 mm`, and loft its
+inward edge into the proven narrow V5702→V1784 neck. Another symmetric
+width-only fan is not admissible.
 
 ## Numerical gate
 
