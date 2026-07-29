@@ -382,6 +382,40 @@ The same review passes a narrower reconstruction direction. Retain the exact
 Do not promote the bare open cage, refill the complete bowl, or create a global
 backing union. The local band/junction network is the active evaluation.
 
+The first local network is a rejected scale control. Its `1.6 mm`-wide by
+`1.8 mm`-deep rail passes the machine gates with zero cutter or internal
+self-intersections and restores all 13 controls exactly. High-detail review
+nevertheless shows a crooked wire inside the original catastrophic opening.
+Its four square links read as spikes or toothpicks, and the rail disappears
+behind and re-emerges across component `9`. Do not tune that uniformly narrow
+construction.
+
+The structural-width escalation follows the corrected 21-control route,
+including source control `2110`, and uses a `6.0 mm` ribbon width with
+`2.4 mm` outward radial thickness. Its first numerical candidate:
+
+- needs no local width collapse and has zero internal self-intersections;
+- is closed, consistently wound, and has positive volume `1192.902715 mm³`;
+- adds five individually closed local attachment solids whose contact graph
+  joins the band and all four retained cage islands;
+- has zero cutter overlaps, but its `1.599998 mm` minimum sampled margin misses
+  the exact `1.6 mm` construction floor by `0.000002 mm`;
+- preserves the 1,409-face exterior cage, component `9`, all 13 restored
+  controls, controls `5840/5852`, and the `30.588488 mm` C-tip gap exactly;
+- leaves global cutter overlaps at `401`, including `387` on component `9` and
+  `14` on the retained component-20 cage.
+
+Four attachment solids also each contain one degenerate audit triangle; the
+optional `0.430970 mm` micro-tab reaches aspect ratio `13.909031`. The exact
+machine result is therefore `gate_pass=false` on `new_vertex_margin` and
+`triangle_quality`, despite the other structural and collision gates passing.
+
+The new network also has `162` triangle contacts with component `9`. Those
+contacts are not permission to fuse the 11 non-tip historical interface pairs,
+whose current separations are `5.553838–10.537240 mm`. The broad candidate
+remains evaluation-only; it requires both local attachment retopology and
+disposable matched-view review of layer order and junction appearance.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

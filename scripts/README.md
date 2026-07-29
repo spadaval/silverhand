@@ -118,6 +118,11 @@ lineages.
   on the rejected open-cage base. It preserves the exterior cage and component
   9 exactly, keeps the central bowl open, and records clearance, registration,
   topology, volume, contact, and self-intersection gates.
+- `blender/build_local_elbow_interface_band_v2.py` — evaluates the structural
+  width escalation: a broad closed ribbon following the reviewed 21-control
+  route plus closed local attachment solids whose contact graph joins all four
+  retained cage islands. It preserves the same open center and source evidence
+  and reports local width, component-9 contact, and cutter-clearance gates.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
