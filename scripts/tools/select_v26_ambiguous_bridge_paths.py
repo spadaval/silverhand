@@ -18,7 +18,7 @@ from pathlib import Path
 
 OPERATION = "V26_AMBIGUOUS_BRIDGE_PATH_SELECTOR"
 MISSION = "R014-JOINT-C9-C20-ELBOW-V26"
-ROUND_INDEX = 3
+ROUND_INDEX = 4
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent.parent
 AUTHORITY_DIR = (
@@ -32,14 +32,15 @@ EXPECTED_CELL_SHA256 = (
     "85a1a31f4ecb43dab16461684d53ba9d7e9c5090c1202dd021b101778b97edca"
 )
 EXPECTED_EXPOSURE_SHA256 = (
-    "57788b26989db892cd30d7035b686e00f4bfef49e311e74073b32729ec84a9c9"
+    "1ea6ea406fa5057d08822ccb0121728394b546d4836bc444896855f0f0a2f7a6"
 )
 MAXIMUM_BATCH_FACE_COUNT = 26
 EXPECTED_REVIEWED_COUNTS = {
     "base": 19,
     "bridge_round_01": 26,
     "bridge_round_02": 25,
-    "total": 70,
+    "bridge_round_03": 23,
+    "total": 93,
 }
 NON_TRAVERSABLE_BARRIER_REASONS = {
     "C20_CLOSED_APERTURE_ROUTE",
@@ -147,6 +148,7 @@ def reviewed_face_authority(exposure_authority):
         "base": "face_visual_classification",
         "bridge_round_01": "bridge_visual_classification",
         "bridge_round_02": "bridge_visual_classification_round_02",
+        "bridge_round_03": "bridge_visual_classification_round_03",
     }
     contracts = {
         "base": (
@@ -648,7 +650,11 @@ def main():
         "operation": OPERATION,
         "mission": MISSION,
         "round_index": ROUND_INDEX,
-        "status": "V26_AMBIGUOUS_BRIDGE_PATH_BATCH_CHECKPOINTED",
+        "status": (
+            "V26_AMBIGUOUS_BRIDGE_PATH_BATCH_CHECKPOINTED"
+            if paths
+            else "NO_LEGAL_AMBIGUOUS_BRIDGE_PATHS_V26_ROUND_04"
+        ),
         "input": {
             "cell_authority": {
                 "path": str(cell_path),
