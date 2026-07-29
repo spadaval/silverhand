@@ -236,6 +236,26 @@ retain macro bowl and recessed-strip depth, add only local transition loops,
 and preserve every opening. This is still fitted-surface work; printable wall
 thickness and final structural junctions remain later milestones.
 
+### Shared elbow-interface exception
+
+Inner-bowl construction preflight found that two of the 15 nominally frozen
+component-9 interface vertices are themselves in component-20 cluster `0`:
+
+- component-20 vertex `2074` has cutter margin `-10.190998 mm` and requires at
+  least `11.890998 mm` of motion to reach the `1.7 mm` floor;
+- component-20 vertex `2119` has cutter margin `-8.024861 mm` and requires at
+  least `9.724861 mm` of motion.
+
+Freezing those vertices and clearing both component-20 clusters are mutually
+exclusive. No liner geometry was created under the contradictory contract.
+
+Treat the two near-coincident pairs as a shared elbow junction:
+component-20 `2074` with component-9 `1257`, and component-20 `2119` with
+component-9 `1295`. Their first bounded trial must move each pair together,
+preserve its relative offset, blend through both components locally, and keep
+the other 13 interface anchors exact. This does not authorize a component
+fusion or a global component-9 deformation.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -277,3 +297,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_fan_feasibility/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_face_aware_sector/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_full_recon_map/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_inner_bowl/`

@@ -94,6 +94,9 @@ lineages.
 - `blender/try_face_aware_sector_reconstruction.py` — tests one deterministic
   ring-4 wearer-side displacement driven by cutter-triangle collisions while
   freezing the reviewed landmark and boundary controls.
+- `blender/try_authored_inner_bowl_liner.py` — verifies the selected
+  component-20 inner-bowl reconstruction authority and refuses construction
+  when a frozen interface anchor is also a mandatory clearance failure.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
