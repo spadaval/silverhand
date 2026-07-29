@@ -239,7 +239,7 @@ such edges plus one edge expanded to `2.088288`; component `42` has one edge
 contracted to `0.448621`. Those buried regions are explicit later
 solidification watch items.
 
-Four further repairs are retained as reversible candidates after independent,
+Eight further repairs are retained as reversible candidates after independent,
 sanitized, high-detail local and complete matched-view review:
 
 | Repair | Component | Method | Global cutter vertices before → after | Global overlaps before → after |
@@ -248,26 +248,32 @@ sanitized, high-detail local and complete matched-view review:
 | `REPAIR_007_COMPONENT_16_HARMONIC` | 16 | eight-ring harmonic field | 336 → 334 | 806 → 792 |
 | `REPAIR_008_COMPONENT_52_REGIONAL` | 52 | `35 mm` shared regional rigid field | 334 → 326 | 792 → 769 |
 | `REPAIR_009_COMPONENT_57_REGIONAL` | 57 | `45 mm` shared regional rigid field | 326 → 309 | 769 → 741 |
+| `REPAIR_010_COMPONENT_59_REGIONAL` | 59 | `40 mm` shared regional rigid field | 309 → 282 | 741 → 701 |
+| `REPAIR_011_COMPONENT_36_REGIONAL` | 36 | `30 mm` shared regional rigid field | 282 → 278 | 701 → 692 |
+| `REPAIR_012_COMPONENT_39_REGIONAL` | 39 | `25 mm` shared regional rigid field | 278 → 265 | 692 → 675 |
+| `REPAIR_013_COMPONENT_19_CLUSTER_RIGID` | 19 | six-ring harmonic transition around one rigid cluster | 265 → 258 | 675 → 653 |
 
-Repairs 006–009 preserve all source vertices, faces, face indices, and material
+Repairs 006–013 preserve all source vertices, faces, face indices, and material
 assignments and introduce no negative-orientation locators. Each bounded delta
 answers `does_this_repair_delta_look_ass: false`. Component `16`, component
-`52`, and component `57` now have zero vertices below either the cutter or the
-reserved wall. Repair 006 clears only the four minor component-20 clusters;
-`115` component-20 vertices remain inside the cutter.
+`19`, component `36`, component `39`, component `52`, component `57`, and
+component `59` now have zero vertices below either the cutter or the reserved
+wall. Repair 006 clears only the four minor component-20 clusters; `115`
+component-20 vertices remain inside the cutter.
 
-The active scene and its pre-review checkpoint are byte-identical at SHA-256
-`35f3f8243022d6335df4ee60066a8041e4f1240e2c9462475e91f54f3fa2ca92`:
+The active scene and its post-Repair-013 checkpoint are byte-identical at
+SHA-256
+`ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`:
 
 - `blender_files/Johnny_geometry_repair_work.blend`
-- `blender_files/checkpoints/geometry_repair/pre_review_repairs_006_009_20260728.blend`
+- `blender_files/checkpoints/geometry_repair/post_repair_013_component_19_20260728.blend`
 
-Components `36` and `39` are now classified and parked:
-
-- component `36`: masked displacement flips three faces; depth compression
-  visibly changes the wrist hook;
-- component `39`: masked displacement flips one face; depth compression
-  flattens and rotates the wrist detail; rigid lifting breaks registration.
+The earlier failed radial, compression, and isolated-lift trials for components
+`19`, `36`, `39`, and `59` remain rejected. Repairs 010–013 supersede the
+decision to park those components by using different bounded methods. The
+component-19 cluster field is especially local: a `5.430353 mm` rigid motion
+of seven core vertices is blended through only 53 affected vertices, with
+edge ratios bounded to `0.827474–1.088134`.
 
 Component `9` is also classified, but no geometry is retained from its trials.
 It is a `2,508`-vertex structural surface spanning much of the wrist and
@@ -343,13 +349,11 @@ reconstruct coincident component-9 and component-20 inner layers twice.
 The earlier shallow radial-patch method remains rejected for components `16`,
 `19`, and `52`: component `16` visibly narrows, component `19` introduces a
 flipped triangle, and component `52` produces severe edge collapse/stretch
-plus two flipped triangles. Repairs 007 and 008 supersede only the failed
-component-16 and component-52 methods, not those rejection lessons. The visible
-cuff brace at component `59` remains parked for bounded visible reconstruction.
+plus two flipped triangles. Repairs 007, 008, and 013 supersede those failed
+methods without invalidating the rejection lessons.
 
-No other remaining component qualifies for further shallow automatic lifting.
-The repair workflow must now classify or reconstruct one bounded region at a
-time.
+Only components `9` and `20` remain offending. Neither qualifies for further
+shallow automatic lifting; each requires bounded wearer-facing reconstruction.
 
 Evidence:
 
@@ -369,6 +373,10 @@ Evidence:
 - `validation_reviews/geometry_repair/repair_007_component_16_harmonic/review.json`
 - `validation_reviews/geometry_repair/repair_008_component_52_regional/review.json`
 - `validation_reviews/geometry_repair/repair_009_component_57_regional/review.json`
+- `validation_reviews/geometry_repair/repair_010_component_59_regional/review.json`
+- `validation_reviews/geometry_repair/repair_011_component_36_regional/review.json`
+- `validation_reviews/geometry_repair/repair_012_component_39_regional/review.json`
+- `validation_reviews/geometry_repair/repair_013_component_19_cluster_rigid/review.json`
 - `validation_reviews/geometry_repair/component_20_boundary_r2_l16_o4/review.json`
 - `validation_reviews/geometry_repair/component_20_relief_core_c1_l1/review.json`
 
@@ -438,8 +446,9 @@ transformation evidence, not a salvage library for production.
 
 ## Immediate next work
 
-1. Preserve Repairs 001–009 and the exact pre-review checkpoint with SHA-256
-   `35f3f8243022d6335df4ee60066a8041e4f1240e2c9462475e91f54f3fa2ca92`.
+1. Preserve Repairs 001–013 and the exact post-Repair-013 checkpoint with
+   SHA-256
+   `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
 2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
 3. For component `20`, replace only major clusters 0 and 1 with local
    wearer-facing surfaces that retain the source's stepped angular depth.
@@ -449,18 +458,16 @@ transformation evidence, not a salvage library for production.
 4. After component `20`, preserve component `9`'s exterior and rebuild only
    its two dominant wearer-facing patches. Do not rerun whole-component
    displacement or wider diffusion.
-5. Return to parked components `19`, `36`, `39`, and `59` only with a
-   controlled reconstruction method.
-6. Delegate every image operation to a disposable subagent. Sanitize and size
+5. Delegate every image operation to a disposable subagent. Sanitize and size
    checkpoint every derivative before high-detail review; never replay
    unsanitized historical image outputs.
-7. Repeat triangle-orientation, distortion, matched-view, and exact
+6. Repeat triangle-orientation, distortion, matched-view, and exact
    surface-clearance evidence after every bounded reconstruction.
-8. Promote a fitted surface master only after qualitative visual and digital
+7. Promote a fitted surface master only after qualitative visual and digital
    clearance review.
-9. Begin hidden solidification and connectivity work only after that
+8. Begin hidden solidification and connectivity work only after that
     promotion.
-10. Defer the approximately `30°` priority wear pose and broader elbow mobility
+9. Defer the approximately `30°` priority wear pose and broader elbow mobility
    until the static straight composition is accepted.
 
 ## Deferred decisions already recorded

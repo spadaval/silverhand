@@ -74,6 +74,9 @@ lineages.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
+- `blender/apply_cluster_rigid_clearance.py` — applies one explicitly selected
+  cluster as a coherent rigid core with a topology-local harmonic transition
+  in a reversible relative shape key.
 - `blender/try_relief_preserving_core_reconstruction.py` — creates
   evaluation-only geometry by translating one closed faceted source patch
   rigidly and reconnecting it through an explicit annulus. It never edits the

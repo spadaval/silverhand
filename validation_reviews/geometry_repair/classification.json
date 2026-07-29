@@ -85,52 +85,45 @@
       "vertices_inside_cutter_before": 12,
       "vertices_inside_cutter_after": 0,
       "review": "validation_reviews/geometry_repair/repair_009_component_57_regional/review.json"
-    }
-  ],
-  "parked_components": [
-    {
-      "component": 19,
-      "classification": "bounded reconstruction review required",
-      "station_range_mm": [342.35, 414.07],
-      "vertices_inside_cutter": 7,
-      "minimum_margin_mm": -3.9193,
-      "reason": "The non-saving radial trial creates one negative-orientation locator and contracts one affected edge to 0.317958.",
-      "rejected_trial": "_validation/geometry_repair/component_19_trial/build_report.json"
     },
     {
       "component": 59,
-      "classification": "visible cuff brace requiring bounded visible reconstruction",
-      "station_range_mm": [0.12, 13.55],
-      "vertices_inside_cutter": 15,
-      "minimum_margin_mm": -11.7483,
-      "nearest_component": 56,
-      "nearest_distance_mm": 0.149,
-      "reason": "The brace is visually meaningful and immediately layered against a clear neighboring component. Isolated movement breaks registration; pointwise movement crushes its profile."
+      "shape_key": "REPAIR_010_COMPONENT_59_REGIONAL",
+      "classification": "visible cuff brace with shared 40 mm regional correction",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 15,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_010_component_59_regional/review.json"
     },
     {
       "component": 36,
-      "classification": "visible wrist hook requiring controlled reconstruction",
-      "station_range_mm": [
-        29.0,
-        132.0
-      ],
-      "vertices_inside_cutter": 7,
-      "minimum_margin_mm": -9.799073,
-      "reason": "Masked displacement introduces three reversed faces; depth compression visibly changes the exposed wrist hook.",
-      "rejected_trial": "_validation/experiments/geometry_repair/component_36_methods/"
+      "shape_key": "REPAIR_011_COMPONENT_36_REGIONAL",
+      "classification": "visible wrist hook with shared 30 mm regional correction",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 6,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_011_component_36_regional/review.json"
     },
     {
       "component": 39,
-      "classification": "visible compact wrist detail requiring controlled reconstruction",
-      "station_range_mm": [
-        4.0,
-        76.0
-      ],
-      "vertices_inside_cutter": 10,
-      "minimum_margin_mm": -11.080595,
-      "reason": "Masked displacement introduces one reversed face; compression flattens the detail and rigid lifting breaks registration.",
-      "rejected_trial": "_validation/experiments/geometry_repair/component_39_methods/"
+      "shape_key": "REPAIR_012_COMPONENT_39_REGIONAL",
+      "classification": "visible compact wrist detail with shared 25 mm regional correction",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 10,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_012_component_39_regional/review.json"
     },
+    {
+      "component": 19,
+      "shape_key": "REPAIR_013_COMPONENT_19_CLUSTER_RIGID",
+      "classification": "upper-arm plate with one coherent cluster-rigid core and six-ring harmonic transition",
+      "result": "retained reversible candidate",
+      "vertices_inside_cutter_before": 7,
+      "vertices_inside_cutter_after": 0,
+      "review": "validation_reviews/geometry_repair/repair_013_component_19_cluster_rigid/review.json"
+    }
+  ],
+  "parked_components": [
     {
       "component": 9,
       "classification": "large structural shell with two dominant wearer-facing inner-wall failures",
@@ -195,9 +188,9 @@
     }
   ],
   "current_clearance": {
-    "vertices_inside_cutter": 309,
-    "vertices_below_reserved_margin": 328,
-    "cutter_triangle_overlaps": 741
+    "vertices_inside_cutter": 258,
+    "vertices_below_reserved_margin": 275,
+    "cutter_triangle_overlaps": 653
   },
-  "decision": "Retain Repairs 001–009. Component 20 minor clusters 2–5 are resolved; major clusters 0–1 require cutter-safe outward relief derived from source ridge/depth landmarks. Cutter-smooth replacement, pointwise projection, cluster-rigid harmonic blending, and a full-perimeter translated-core annulus are rejected. Component 9 follows with two local inner-wall replacements. Components 19, 36, 39, and 59 remain parked for controlled reconstruction."
+  "decision": "Retain Repairs 001–013. Components 19, 36, 39, and 59 are cleared by independently reviewed reversible fields. Component 20 minor clusters 2–5 are resolved; major clusters 0–1 require cutter-safe outward relief derived from source ridge/depth landmarks. Cutter-smooth replacement, pointwise projection, cluster-rigid harmonic blending of 32–48 mm motions, and a full-perimeter translated-core annulus are rejected. Component 9 follows with two local inner-wall replacements. Only components 9 and 20 remain offending."
 }

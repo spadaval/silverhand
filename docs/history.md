@@ -407,6 +407,36 @@ and reconnecting its whole perimeter is not. Transfer the ridge/depth
 landmarks as cutter-safe outward relief; do not span the local gap with a
 continuous annulus.
 
+## Easy follow-up repairs 010–013
+
+Four previously parked components were revisited without repeating their
+failed pointwise, compression, or isolated-lift methods.
+
+Components `59`, `36`, and `39` were cleared with shared regional rigid fields
+using `40 mm`, `30 mm`, and `25 mm` falloffs. Each target moves coherently
+while nearby source geometry shares the transition. Sanitized local and
+assembly review retained the cuff brace, wrist hook, and compact wrist strip
+without fusion, gap closure, flattening, inversion, or collateral damage.
+
+Component `19` could not use a whole-component regional direction because its
+upper-arm plate wraps too broadly. Its seven violating vertices instead form
+one coherent rigid core. A `5.430353 mm` motion blended through a six-ring
+harmonic transition affects only 53 vertices, clears the component, introduces
+no reversed faces, and bounds affected-edge ratios to
+`0.827474–1.088134`. The reviewed plate relief and open U-shaped
+cross-section remain intact.
+
+Together, Repairs 010–013 reduce global cutter penetrations from `309` to
+`258`, reserved-margin failures from `328` to `275`, and overlaps from `741`
+to `653`.
+
+Lesson: a failed deformation family does not condemn a component. Small
+visible parts may accept a shared regional field when registration is reviewed
+in context; a compact collision cluster on a broad component may accept a
+coherent rigid core with a short topology-local transition. The valid motion
+scale matters: the same cluster-rigid blend that works at `5.43 mm` remains
+rejected for component `20`'s `32–48 mm` major-cluster motions.
+
 The active master was reduced from 533 to 162 objects. Legacy collections,
 duplicate references, cameras, missing image dependencies, and unused datablocks
 were removed after creating:

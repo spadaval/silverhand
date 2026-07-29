@@ -1,6 +1,6 @@
 # Regional Clearance Deformation
 
-Status: **promising method; no geometry promoted**
+Status: **retained reversible repair method; fitted surface not promoted**
 
 Updated: 2026-07-28
 
@@ -110,8 +110,9 @@ and assembly review, their bounded masks were retained as Repairs 003–005:
 This method is not valid merely because a component is small. Components `36`
 and `39` are similarly sized but their collision reaches visible wrist
 geometry. Their masked trials introduced three and one reversed faces
-respectively, while non-folding alternatives visibly changed their form or
-registration. They are parked for controlled reconstruction.
+respectively, while compression and isolated-lift alternatives visibly changed
+their form or registration. Those method families remain rejected even though
+later shared regional fields cleared both components.
 
 The practical rule is therefore: use a masked field only when the displaced
 surface is demonstrably buried in assembly context, not as an automatic repair
@@ -131,6 +132,32 @@ closing wrist gaps, fusing neighboring parts, or exposing a falloff boundary
 in sanitized high-detail matched views. Their affected-edge ratios remain
 bounded at `0.857286–1.185305` and `0.768105–1.213738`. These are reviewed
 local decisions, not reusable radius constants.
+
+Three additional reviewed regional fields extend that evidence:
+
+- component `59`: `40 mm` falloff, `14.739078 mm` target motion, `1,018`
+  affected vertices, edge ratios `0.506504–1.475953`;
+- component `36`: `30 mm` falloff, `4.382899 mm` target motion, `1,195`
+  affected vertices, edge ratios `0.811078–1.197074`;
+- component `39`: `25 mm` falloff, `13.094812 mm` target motion, `790`
+  affected vertices, edge ratios `0.369226–1.736243`.
+
+All three clear their targets without orientation reversals. Independent
+sanitized local and assembly review retains their recognizable shapes,
+registration, and negative spaces. The wider distortion tails on components
+`59` and `39` remain explicit watch items; visual review, not a universal edge
+ratio threshold, is what permits these reversible candidates.
+
+Component `19` establishes a related but narrower method. A whole-component
+regional direction cannot clear its broad wrapping plate within `50 mm`.
+Instead, one seven-vertex collision cluster moves as a coherent rigid core by
+`5.430353 mm`; a six-ring topology-local harmonic transition affects only 53
+vertices. The target clears with no reversed faces and edge ratios of
+`0.827474–1.088134`. Sanitized high-detail review preserves the faceted plate,
+ridges, side fin, open U-shaped cross-section, and upper-arm registration.
+This cluster-rigid method is valid here because the motion and transition are
+small. It does not rehabilitate the same method for component `20`'s
+`32–48 mm` major-cluster motions.
 
 Component `9` establishes the large-component boundary. Although its dominant
 collisions are buried inner walls, the connected source surface wraps across
@@ -215,6 +242,10 @@ Generated evidence:
 - `_validation/pilot_reconstruction/iteration_2_component59/context_*`.
 - `_validation/experiments/geometry_repair/component_1_methods/`;
 - `experiments/geometry_repair/component_1_methods/README.md`.
+- `_validation/experiments/geometry_repair/component_59_methods/repair_010_f40/`;
+- `_validation/experiments/geometry_repair/component_36_methods/repair_011_f30/`;
+- `_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/`;
+- `_validation/experiments/geometry_repair/component_19_methods/repair_013_r6/`.
 
 At this checkpoint:
 

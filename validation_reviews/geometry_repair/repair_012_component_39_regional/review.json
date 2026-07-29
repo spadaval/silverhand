@@ -1,0 +1,135 @@
+{
+  "mission_id": "geometry-repair-012-review",
+  "repair": "REPAIR_012_COMPONENT_39_REGIONAL",
+  "relative_to": "REPAIR_011_COMPONENT_36_REGIONAL",
+  "scope": "qualitative_delta_only",
+  "result": "pass",
+  "candidate_disposition": "retain_candidate",
+  "fitted_surface_promotion": false,
+  "does_this_repair_delta_look_ass": false,
+  "claims": [
+    {
+      "claim": "The compact visible Component 39 wrist detail remains recognizable and registered.",
+      "classification": "pass"
+    },
+    {
+      "claim": "Repair 012 introduces no unacceptable flattening, rotation, gap closure, fusion, spike, slab, depth inversion, abrupt seam, or collateral wrist damage.",
+      "classification": "pass"
+    },
+    {
+      "claim": "The 13.094812 mm motion and wide affected-edge distortion tail do not manifest as visually destructive geometry.",
+      "classification": "pass"
+    },
+    {
+      "claim": "The bounded sanitized evidence is sufficient to answer does_this_repair_delta_look_ass.",
+      "classification": "pass"
+    }
+  ],
+  "text_evidence": {
+    "build_report": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/build_report.json",
+    "canonical_manifest": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/manifest.json",
+    "local_manifest": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/local/manifest.json",
+    "patch": {
+      "component": 39,
+      "component_vertices": 96,
+      "initially_violating_vertices": 10,
+      "affected_vertices": 790,
+      "falloff_mm": 25.0,
+      "translation_mm": 13.094812,
+      "translation_direction": [
+        -0.326381,
+        -0.782572,
+        0.530147
+      ]
+    },
+    "topology": {
+      "source_vertices": 7347,
+      "candidate_vertices": 7347,
+      "source_faces": 12564,
+      "candidate_faces": 12564,
+      "face_indices_unchanged": true,
+      "material_assignments_unchanged": true
+    },
+    "distortion": {
+      "affected_edge_ratio_minimum": 0.369226,
+      "affected_edge_ratio_median": 1.02702,
+      "affected_edge_ratio_p95": 1.452809,
+      "affected_edge_ratio_maximum": 1.736243,
+      "negative_orientation_locator_count": 0
+    },
+    "clearance": {
+      "global_vertices_below_cutter_before": 278,
+      "global_vertices_below_cutter_after": 265,
+      "global_vertices_below_reserved_margin_before": 297,
+      "global_vertices_below_reserved_margin_after": 282,
+      "global_triangle_overlaps_before": 692,
+      "global_triangle_overlaps_after": 675,
+      "component_39_vertices_below_cutter_after": 0,
+      "component_39_vertices_below_reserved_margin_after": 0
+    }
+  },
+  "visual_evidence": {
+    "inspection_detail": "high",
+    "source_current_order": "source on left in gray; current on right in cyan",
+    "sanitization": {
+      "tool": "scripts/image_sanitization.py using ImageMagick",
+      "metadata_stripped": true,
+      "orientation_normalized": true,
+      "colorspace": "sRGB",
+      "bit_depth": 8,
+      "alpha": false,
+      "all_inspected_files_under_10000000_bytes": true
+    },
+    "inspected_pairs": [
+      {
+        "path": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/local/pair--dorsal.png",
+        "size_bytes": 625688,
+        "observation": "The crooked centerline, broad angular cap, narrow midsection, and blunt lower foot remain recognizable without wholesale rotation, flattening, spike, slab, inversion, or abrupt seam."
+      },
+      {
+        "path": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/local/pair--lateral.png",
+        "size_bytes": 588544,
+        "observation": "The shallow bowed run, long taper, raised shoulder, and blunt cap preserve coherent depth; redistributed curvature does not become a collapse, reversal, spike, flat slab, pinched fold, or abrupt seam."
+      },
+      {
+        "path": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/local/pair--dorsal_lateral_three_quarter.png",
+        "size_bytes": 558173,
+        "observation": "The thin faceted rail, gradual bow, raised shoulder, broad terminal plate, and stepped transition remain intact; the numerical distortion tail does not appear as tearing, fold-over, spike, plate collapse, or discontinuity."
+      },
+      {
+        "path": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/pair--wrist_axial.png",
+        "size_bytes": 1578374,
+        "observation": "The wrist opening, internal negative space, cuff rings, and external loops remain registered and open with no new wall, bridge, slab, spike, fusion, or depth-order failure."
+      },
+      {
+        "path": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/pair--dorsal_lateral_three_quarter.png",
+        "size_bytes": 1353134,
+        "observation": "The wrist assembly, circular insets, rails, layered cuff, and forearm shell remain registered without a new bridge, carrier slab, fused neighbor, seam, or collateral shift."
+      },
+      {
+        "path": "_validation/experiments/geometry_repair/component_39_methods/repair_012_f25/review/pair--ventral_medial_three_quarter.png",
+        "size_bytes": 1312619,
+        "observation": "The opposing view preserves cuff, rails, open channels, forearm shell, and separated upper-arm masses without fusion, gap closure, inversion, carrier wall, seam, or collateral displacement."
+      }
+    ]
+  },
+  "gate_classifications": {
+    "qualitative_delta": "pass",
+    "retain_candidate": "pass",
+    "fitted_surface_promotion": "deferred",
+    "anatomical_clearance": "fail"
+  },
+  "uncertainty": [
+    "Source and current use different display colors, reducing sensitivity to extremely subtle shading-only differences.",
+    "The affected-edge ratio range is unusually wide despite no visible destructive manifestation in the inspected projections.",
+    "The repair leaves 265 global cutter penetrations, 282 reserved-margin violations, and 675 triangle overlaps, so it cannot support fitted-surface promotion."
+  ],
+  "ignored_test_review": "not-applicable",
+  "docs_help_consistency": "not-applicable",
+  "failures": [],
+  "follow_up": [
+    "Parent workflow may retain Repair 012 as a reversible candidate and continue with the next bounded easy component.",
+    "Do not claim fitted-surface promotion until remaining global clearance failures and all required promotion gates are resolved."
+  ],
+  "checkpoint": "validation_reviews/geometry_repair/repair_012_component_39_regional/checkpoint.md"
+}
