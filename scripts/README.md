@@ -215,6 +215,12 @@ lineages.
   atomic, resumable shards. It uses a validated radius-`1.2 mm` inscribed
   capsule only as a necessary no-path prefilter; capsule success never grants
   a rectangular-rail result. The tool is read-only and emits no geometry.
+- `blender/preflight_open_bay_joint_v26.py` — checkpoints exact C9/C20,
+  negative-space, cutter, and immutable-complement authority before testing a
+  finite source-led two-cell static interface family with an explicit flex
+  gap. It records face-level hidden-floor ownership and sampled Gate-B/Gate-D
+  evidence only; it emits no geometry and grants no mutation, volume,
+  connectivity, or motion claim.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
