@@ -110,6 +110,9 @@ lineages.
 - `blender/build_cylindrical_uv_inner_bowl_liner.py` — checks whether the
   complete liner boundary is simple in the arm's axial-angle coordinates and
   refuses construction while exact crossing edges remain.
+- `blender/try_remove_component20_inner_bowl.py` — evaluates the deliberate
+  destructive cosplay simplification that retains the mapped exterior cage
+  and removes the complete collision bowl without filling or capping it.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

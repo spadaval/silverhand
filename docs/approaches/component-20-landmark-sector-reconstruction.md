@@ -346,6 +346,25 @@ This is not automatic promotion or printable approval. It tests whether a
 minimal later liner and structural junctions are preferable to reconstructing
 the source bowl.
 
+The open-cage evaluation removes exactly 724 faces and 318 vertices that become
+unused, while retaining all 1,409 exterior faces and materials exactly:
+
+- component-20 cutter penetrations fall from `110` to `0`;
+- component-20 reserved-margin failures fall from `196` to `39`;
+- component-20 cutter-triangle overlaps fall from `266` to `14`;
+- global overlaps fall from `653` to `401`;
+- component-9 remains exactly at `387` overlaps;
+- 127 new boundary edges remain in the expected `51/46/18` open groups and
+  `8/4` closed loops;
+- the cage separates into three additional connected pieces;
+- only interface vertices `5840` and `5852` remain owned by component `20`;
+  the other 13 mapped interface controls disappear with the bowl.
+
+This result is numerical evidence, not promotion. It requires disposable
+matched-view review to determine whether the missing bowl reads as an
+intentional open cage and whether minimal local junctions can restore the lost
+elbow anchors.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -392,3 +411,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_combined_inner_bowl_liner/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_boundary_cycle_liner/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_cylindrical_uv_liner/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_open_cage_simplification/`
