@@ -42,6 +42,9 @@ FACE_VISUAL_CLASSIFICATION = EVIDENCE / "face_visual/classification.json"
 BRIDGE_VISUAL_CLASSIFICATION = (
     EVIDENCE / "face_visual/bridge_classification_round_01.json"
 )
+BRIDGE_VISUAL_CLASSIFICATION_ROUND_02 = (
+    EVIDENCE / "face_visual/bridge_classification_round_02.json"
+)
 OUTPUT = EVIDENCE / "v26_exposure_cell_authority.json"
 PRE_VISUAL_SEMANTIC_FINGERPRINT = (
     "b5a5caec522112542dc0220428897ece79fcb698b0f80df19739ef389eb25d94"
@@ -63,6 +66,16 @@ PRE_BRIDGE_STALE_PATH = EVIDENCE / (
     "v26_exposure_cell_authority.stale-"
     f"{PRE_BRIDGE_SEMANTIC_FINGERPRINT[:12]}.json"
 )
+PRE_BRIDGE_ROUND_02_SEMANTIC_FINGERPRINT = (
+    "8d21879225a181868a30e52871c67987e6ab6da4651e9b43c2a4c002a711061e"
+)
+PRE_BRIDGE_ROUND_02_OUTPUT_SHA256 = (
+    "1b716b8b2415145d31850bd09a2cdf001fb3ed30a1e65822f33124393ca59507"
+)
+PRE_BRIDGE_ROUND_02_STALE_PATH = EVIDENCE / (
+    "v26_exposure_cell_authority.stale-"
+    f"{PRE_BRIDGE_ROUND_02_SEMANTIC_FINGERPRINT[:12]}.json"
+)
 
 EXPECTED_HASHES = {
     "joint_authority": (
@@ -83,6 +96,9 @@ EXPECTED_HASHES = {
     "bridge_visual_classification": (
         "e38138b03abb22d411107a064aae99d53d1b82b3d28a3fb5b72ef422827f1c7f"
     ),
+    "bridge_visual_classification_round_02": (
+        "224278d5aadaa2ef3dbeef11be9b73d7a706ec861fe0991c8be3eb8ae300d4cb"
+    ),
     "current_audit": (
         "3abe6e1b73e0790ce3eea762abe7556dd56dc78a39816f2547808fdc17d71ffd"
     ),
@@ -94,8 +110,8 @@ ELIGIBLE_GAP_FACES = [2921, 2922, 2999, 3000, 3001, 3002, 8687]
 INTERFACE_C9_VERTICES = [1257, 1295]
 MAXIMUM_SELECTED_CELLS = 12
 EXPECTED_EXPOSURE_COUNTS = {
-    "C20": {"WEARER_FACING": 213, "EXTERIOR_OR_AMBIGUOUS": 511},
-    "C9": {"WEARER_FACING": 56, "EXTERIOR_OR_AMBIGUOUS": 182},
+    "C20": {"WEARER_FACING": 220, "EXTERIOR_OR_AMBIGUOUS": 504},
+    "C9": {"WEARER_FACING": 66, "EXTERIOR_OR_AMBIGUOUS": 172},
 }
 EXPECTED_VISUAL_CONCEALED = {
     1621,
@@ -147,6 +163,35 @@ EXPECTED_BRIDGE_CONCEALED = {
 }
 EXPECTED_BRIDGE_IMMUTABLE = {2909, 2911}
 EXPECTED_BRIDGE_UNRESOLVED = {12515}
+EXPECTED_BRIDGE_ROUND_02_CONCEALED = {
+    1430,
+    1434,
+    1438,
+    1648,
+    1649,
+    2230,
+    2240,
+    2266,
+    2267,
+    2282,
+    3043,
+    3044,
+    3045,
+    7526,
+    9083,
+    9084,
+    9180,
+}
+EXPECTED_BRIDGE_ROUND_02_IMMUTABLE = {
+    2227,
+    2276,
+    7477,
+    7479,
+    7548,
+    7550,
+    8686,
+    8689,
+}
 
 
 def canonical_bytes(value):
@@ -289,6 +334,56 @@ def bridge_visual_overrides(authority):
     return concealed, immutable, unresolved
 
 
+def bridge_visual_overrides_round_02(authority):
+    expected_status = "DONE_BRIDGE_SOURCE_FACE_CLASSIFICATION_ROUND_02_V26"
+    if authority.get("status") != expected_status:
+        raise RuntimeError(
+            f"{OPERATION}: bridge round-02 classification is not DONE; "
+            f"expected={expected_status!r}, "
+            f"status={authority.get('status')!r}"
+        )
+    classifications = authority["classifications"]
+    concealed = flatten_visual_group(
+        classifications["concealed_wearer_side_removable"]
+    )
+    immutable = flatten_visual_group(
+        classifications["visible_silhouette_rim_opening_immutable"]
+    )
+    unresolved = flatten_visual_group(classifications["unresolved"])
+    if concealed != EXPECTED_BRIDGE_ROUND_02_CONCEALED:
+        raise RuntimeError(
+            f"{OPERATION}: bridge round-02 concealed exact-set mismatch; "
+            f"expected={sorted(EXPECTED_BRIDGE_ROUND_02_CONCEALED)}, "
+            f"observed={sorted(concealed)}"
+        )
+    if immutable != EXPECTED_BRIDGE_ROUND_02_IMMUTABLE:
+        raise RuntimeError(
+            f"{OPERATION}: bridge round-02 immutable exact-set mismatch; "
+            f"expected={sorted(EXPECTED_BRIDGE_ROUND_02_IMMUTABLE)}, "
+            f"observed={sorted(immutable)}"
+        )
+    if unresolved:
+        raise RuntimeError(
+            f"{OPERATION}: bridge round-02 unresolved faces remain: "
+            f"{sorted(unresolved)}"
+        )
+    if concealed & immutable:
+        raise RuntimeError(
+            f"{OPERATION}: bridge round-02 classes overlap: "
+            f"{sorted(concealed & immutable)}"
+        )
+    counts = authority["counts"]
+    if (
+        int(counts["concealed_wearer_side_removable"]),
+        int(counts["visible_silhouette_rim_opening_immutable"]),
+        int(counts["unresolved"]),
+    ) != (17, 8, 0):
+        raise RuntimeError(
+            f"{OPERATION}: bridge round-02 count mismatch: {counts}"
+        )
+    return concealed, immutable
+
+
 def preserve_pre_visual_authority(output):
     if not output.exists():
         return
@@ -360,6 +455,49 @@ def preserve_pre_bridge_authority(output):
             f"{OPERATION}: failed to preserve byte-exact pre-bridge authority; "
             f"target={PRE_BRIDGE_STALE_PATH}, "
             f"expected={PRE_BRIDGE_OUTPUT_SHA256}, actual={stale_hash}"
+        )
+
+
+def preserve_pre_bridge_round_02_authority(output):
+    if not output.exists():
+        return
+    current_hash = sha_file(output)
+    current = read_json(output)
+    current_round_02_hash = (
+        current.get("source_authorities", {})
+        .get("bridge_visual_classification_round_02", {})
+        .get("sha256")
+    )
+    if (
+        current_round_02_hash
+        == EXPECTED_HASHES["bridge_visual_classification_round_02"]
+    ):
+        return
+    if current_hash != PRE_BRIDGE_ROUND_02_OUTPUT_SHA256:
+        raise RuntimeError(
+            f"{OPERATION}: existing output has an unknown pre-round-02 hash; "
+            f"target={output}, "
+            f"expected={PRE_BRIDGE_ROUND_02_OUTPUT_SHA256}, "
+            f"actual={current_hash}"
+        )
+    if PRE_BRIDGE_ROUND_02_STALE_PATH.exists():
+        stale_hash = sha_file(PRE_BRIDGE_ROUND_02_STALE_PATH)
+        if stale_hash != PRE_BRIDGE_ROUND_02_OUTPUT_SHA256:
+            raise RuntimeError(
+                f"{OPERATION}: pre-round-02 stale target has the wrong hash; "
+                f"target={PRE_BRIDGE_ROUND_02_STALE_PATH}, "
+                f"expected={PRE_BRIDGE_ROUND_02_OUTPUT_SHA256}, "
+                f"actual={stale_hash}"
+            )
+        return
+    shutil.copy2(output, PRE_BRIDGE_ROUND_02_STALE_PATH)
+    stale_hash = sha_file(PRE_BRIDGE_ROUND_02_STALE_PATH)
+    if stale_hash != PRE_BRIDGE_ROUND_02_OUTPUT_SHA256:
+        raise RuntimeError(
+            f"{OPERATION}: failed to preserve byte-exact pre-round-02 "
+            f"authority; target={PRE_BRIDGE_ROUND_02_STALE_PATH}, "
+            f"expected={PRE_BRIDGE_ROUND_02_OUTPUT_SHA256}, "
+            f"actual={stale_hash}"
         )
 
 
@@ -665,6 +803,9 @@ def main():
         "floor_summary": FLOOR_SUMMARY,
         "face_visual_classification": FACE_VISUAL_CLASSIFICATION,
         "bridge_visual_classification": BRIDGE_VISUAL_CLASSIFICATION,
+        "bridge_visual_classification_round_02": (
+            BRIDGE_VISUAL_CLASSIFICATION_ROUND_02
+        ),
         "current_audit": CURRENT_AUDIT,
         "v22_attribution": V22_ATTRIBUTION,
     }
@@ -692,6 +833,13 @@ def main():
         bridge_immutable,
         bridge_unresolved,
     ) = bridge_visual_overrides(bridge_visual)
+    bridge_visual_round_02 = read_json(
+        BRIDGE_VISUAL_CLASSIFICATION_ROUND_02
+    )
+    (
+        bridge_round_02_concealed,
+        bridge_round_02_immutable,
+    ) = bridge_visual_overrides_round_02(bridge_visual_round_02)
     compact_exposure = compact_exposure_projection(FLOOR_AUTHORITY)
 
     faces, coordinates, component_faces = source_geometry(old_cells)
@@ -707,6 +855,8 @@ def main():
         | bridge_concealed
         | bridge_immutable
         | bridge_unresolved
+        | bridge_round_02_concealed
+        | bridge_round_02_immutable
     )
     missing_reviewed = reviewed_faces - set(exposure)
     if missing_reviewed:
@@ -767,13 +917,33 @@ def main():
             record["class_reasons"] = [
                 "BRIDGE_ROUND_01_UNRESOLVED_IMMUTABLE"
             ]
+        elif face_id in bridge_round_02_concealed:
+            record["bridge_visual_contract_round_02"] = (
+                "CONCEALED_WEARER_SIDE_REMOVABLE"
+            )
+            record["classification"] = "WEARER_FACING"
+            record["class_reasons"] = [
+                "BRIDGE_ROUND_02_CONCEALED_WEARER_SIDE_REMOVABLE"
+            ]
+        elif face_id in bridge_round_02_immutable:
+            record["bridge_visual_contract_round_02"] = (
+                "VISIBLE_SILHOUETTE_RIM_OPENING_IMMUTABLE"
+            )
+            record["classification"] = "EXTERIOR_OR_AMBIGUOUS"
+            record["class_reasons"] = [
+                "BRIDGE_ROUND_02_VISIBLE_IMMUTABLE"
+            ]
         record["post_visual_contract_fingerprint"] = stable_hash(record)
     changed_exposure_labels = {
         face_id
         for face_id, record in exposure.items()
         if record["classification"] != base_exposure_labels[face_id]
     }
-    expected_changed_labels = visual_concealed | bridge_concealed
+    expected_changed_labels = (
+        visual_concealed
+        | bridge_concealed
+        | bridge_round_02_concealed
+    )
     if changed_exposure_labels != expected_changed_labels:
         raise RuntimeError(
             f"{OPERATION}: visual contract changed the wrong exposure labels; "
@@ -1187,6 +1357,29 @@ def main():
                     "superseded by reviewed bridge classification round 01"
                 ),
             },
+            "bridge_classification_round_02": {
+                "status": bridge_visual_round_02["status"],
+                "concealed_wearer_side_removable_face_ids": sorted(
+                    bridge_round_02_concealed
+                ),
+                "visible_immutable_face_ids": sorted(
+                    bridge_round_02_immutable
+                ),
+                "unresolved_immutable_face_ids": [],
+                "additive_to_prior_visual_contracts": True,
+            },
+            "pre_bridge_round_02_authority_history": {
+                "path": str(
+                    PRE_BRIDGE_ROUND_02_STALE_PATH.relative_to(ROOT)
+                ),
+                "sha256": PRE_BRIDGE_ROUND_02_OUTPUT_SHA256,
+                "semantic_fingerprint": (
+                    PRE_BRIDGE_ROUND_02_SEMANTIC_FINGERPRINT
+                ),
+                "reason": (
+                    "superseded by reviewed bridge classification round 02"
+                ),
+            },
         },
         "code_sha256": sha_file(Path(__file__).resolve()),
         "barrier_contract": {
@@ -1290,8 +1483,22 @@ def main():
                 for face_id in bridge_unresolved
             ),
             "exactly_thirty_three_additive_labels_changed": (
+                (visual_concealed | bridge_concealed)
+                <= changed_exposure_labels
+                and len(visual_concealed | bridge_concealed) == 33
+            ),
+            "exactly_seventeen_round_02_labels_changed_to_wearer_facing": (
+                bridge_round_02_concealed <= changed_exposure_labels
+                and len(bridge_round_02_concealed) == 17
+            ),
+            "eight_round_02_visible_faces_remain_immutable": all(
+                exposure[face_id]["classification"]
+                == "EXTERIOR_OR_AMBIGUOUS"
+                for face_id in bridge_round_02_immutable
+            ),
+            "exactly_fifty_additive_labels_changed": (
                 changed_exposure_labels == expected_changed_labels
-                and len(changed_exposure_labels) == 33
+                and len(changed_exposure_labels) == 50
             ),
         },
         "mutation_started": False,
@@ -1307,6 +1514,7 @@ def main():
     if arguments.output.resolve() == OUTPUT.resolve():
         preserve_pre_visual_authority(arguments.output)
         preserve_pre_bridge_authority(arguments.output)
+        preserve_pre_bridge_round_02_authority(arguments.output)
     atomic_json(arguments.output, report)
     print(
         f"DONE {OPERATION}: {len(new_cells)} wearer-facing cells; "
