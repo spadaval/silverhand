@@ -745,6 +745,16 @@ Therefore a second branch cannot be attached solely to the current retained
 T1/T0 open edges under the accepted section and routing bounds. Do not repeat
 or widen this endpoint search automatically.
 
+V19 tests whether a bounded outward coordinate relief can make the cleanest
+V1780→V1789 route wearable. It stops before mutation because the source
+landing topology is not local: the upper seed already reaches `8.538188 mm`,
+while lower incident faces reach `9.455095`, `18.954622`, and `51.896919 mm`;
+the only fully local lower face enters the existing Branch-A footprint. The
+V1781 fallback shares the same invalid lower core. Coordinate deformation
+would therefore move a broad, unrelated region. Any further work at this
+landing requires explicit topology replacement in an evaluation copy, with
+the unmodified cage retained as evidence.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

@@ -185,6 +185,9 @@ lineages.
 - `blender/preflight_second_terminal_pair_v18.py` — performs the read-only
   exhaustive 98×68 opposite-perimeter terminal-pair and bounded-route search,
   with durable staging/prefix checkpoints and no geometry or Blend save.
+- `blender/build_local_destructive_landing_relief_v19.py` — resolves and
+  fingerprints the strictly bounded destructive landing masks, stopping before
+  mutation when either the primary or sole fallback violates a hard mask gate.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
