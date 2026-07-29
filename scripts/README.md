@@ -188,6 +188,10 @@ lineages.
 - `blender/build_local_destructive_landing_relief_v19.py` — resolves and
   fingerprints the strictly bounded destructive landing masks, stopping before
   mutation when either the primary or sole fallback violates a hard mask gate.
+- `blender/build_elevated_surface_saddles_v20.py` — evaluates the exact
+  six-solid two-branch elevated-saddle search at V1780/V1789, preserving the
+  v16 scene authority and emitting nothing unless every contact, clearance,
+  topology, quality, graph, cross-over, and preservation gate passes.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

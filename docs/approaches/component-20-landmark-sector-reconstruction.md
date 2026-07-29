@@ -755,6 +755,15 @@ would therefore move a broad, unrelated region. Any further work at this
 landing requires explicit topology replacement in an evaluation copy, with
 the unmodified cage retained as evidence.
 
+V20 tests a reversible alternative to source-face surgery: independently
+closed `10 × 7 mm` elevated saddles at V1780/V1789 with common deck rises from
+`1.35` through `1.60 mm` and contained scarves. All `18` rise/depth candidates
+fail. The first saddle/bridge/lower-saddle margins are only `0.093281`,
+`1.397090`, and `1.176989 mm`, and every candidate also creates direct
+Branch-A/Branch-B cross-over. Thus added standoffs cannot recover clearance
+or spatial separation while keeping the required footprint. Do not repeat
+exact-cage saddle attachment at this endpoint pair.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
