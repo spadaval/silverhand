@@ -654,8 +654,18 @@ with `13.643691°` minimum angle, `4.239386` maximum aspect ratio, and no
 degenerate triangles. The retained cage fingerprint/materials, component `9`,
 open center, tip gap, and hard controls remain exact. This is the first result
 with an authoritative `upper major → bridge → lower major` graph, but it
-remains evaluation-only pending qualitative review of the single-saddle
-composition and terminal form.
+remains evaluation-only.
+
+The v14 qualitative review rejects promotion despite that machine pass. Four
+sanitized orthogonal terminal overlays independently show the exposed bridge
+as a short tab, nub, shim, or shelf. Its numerical end flare is buried inside
+the retained terminals, so neither landing visibly spreads load into the cage
+and the large opening still reads as catastrophic rather than deliberately
+framed. Preserve the proven V5702→V1784 route and midspan, but rebuild only its
+terminal transitions as surface-following fan saddles approximately `10 mm`
+wide by `8 mm` long, with at least `1.5 mm` measured embed and rounded or
+mitered exposed shoulders. Recheck the four orthogonal views before spending
+an image operation on the elbow-axial gate.
 
 ## Numerical gate
 
