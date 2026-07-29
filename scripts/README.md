@@ -71,6 +71,18 @@ lineages.
 - `blender/analyze_cluster_transition_topology.py` — inventories closed,
   open, and branched face-transition graphs around explicit violation
   clusters before a reconstruction assumes a loop topology.
+- `blender/analyze_reconstruction_landmarks.py` — verifies an explicit active
+  repair checkpoint and records stable source vertex, edge, and face IDs,
+  topology-ring boundary candidates, source open-boundary contacts, geometric
+  cues, and cutter margins for one bounded reconstruction region. It is
+  diagnostic-only and saves no geometry.
+- `blender/try_landmark_relief_reconstruction.py` — tests fixed-boundary
+  differential-coordinate reconstruction against explicit cutter-floor
+  constraints. It creates evaluation objects only and never promotes a result.
+- `blender/try_landmark_sector_retopology.py` — tests topology-changing,
+  tapered-row reconstruction between an exact retained transition and
+  source-open path while transferring bounded source relief. It creates
+  evaluation objects only and never promotes a result.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

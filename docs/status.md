@@ -290,10 +290,12 @@ penetrating vertices removes `466` interior faces and confirms that the outer
 silhouette is mostly unaffected, but the resulting open lumen holes are not a
 retained repair.
 
-Component `20`, only `0.012323 mm` from component `9`, is now classified into
-six violation clusters. Repair 006 retains bounded harmonic corrections for
-minor clusters 2–5. Major clusters 0 and 1 contain `87` and `32`
-reserved-margin failures and require wearer-facing surface replacement.
+Component `20`, only `0.012323 mm` from component `9`, was originally
+classified into six violation clusters. Repair 006 retains bounded harmonic
+corrections for minor clusters 2–5. On the exact post-Repair-013 base, major
+clusters 0 and 1 contain `87` and `31` reserved-margin failures and require
+wearer-facing surface replacement. The former `32` count is stale: Repair
+006's transition also cleared adjacent vertex `4860`.
 
 The first cutter-derived replacement trials are not retained. An unbridged
 patch splits the candidate from `64` to `68` connected components and raises
@@ -379,6 +381,7 @@ Evidence:
 - `validation_reviews/geometry_repair/repair_013_component_19_cluster_rigid/review.json`
 - `validation_reviews/geometry_repair/component_20_boundary_r2_l16_o4/review.json`
 - `validation_reviews/geometry_repair/component_20_relief_core_c1_l1/review.json`
+- [Component 20 landmark-sector reconstruction](approaches/component-20-landmark-sector-reconstruction.md)
 
 ## Cleanup baseline
 
