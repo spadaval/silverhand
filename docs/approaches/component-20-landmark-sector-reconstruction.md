@@ -552,6 +552,15 @@ self-overlap pairs, a `-0.541454 mm` cutter margin, and maximum aspect ratio
 and split only B2 at a natural legacy control before changing section width or
 expanding displacement bounds.
 
+Splitting B2 at V2111 leaves the terminal piece infeasible (`16/0`
+admissible candidates). Splitting at V2108 makes both pieces independently
+feasible (`2/45` admissible candidates), so the sharp-turn decomposition is
+accepted as the next structural partition. Direct overlap is not a valid
+junction mechanism, however: the preserved B0/B1 pair has zero overlaps, and
+none of the admissible V2108-split B2a/B2b pairs overlap. No v11 geometry is
+emitted. Keep the four feasible broad constituents and evaluate short,
+separately closed local bridge junctions between them.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

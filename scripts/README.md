@@ -156,6 +156,10 @@ lineages.
   normal-plane direction, distance, and roll grid for each v9 constituent and
   records Pareto evidence without emitting geometry unless the complete
   measured network is feasible.
+- `blender/preflight_b2_sharp_turn_split_v11.py` — compares fixed-width right
+  arc splits at V2111 and V2108 while preserving v10's feasible left and
+  center placements. It isolates missing local junctions without emitting an
+  incomplete network.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
