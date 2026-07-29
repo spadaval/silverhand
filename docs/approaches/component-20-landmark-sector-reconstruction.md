@@ -464,6 +464,30 @@ the remaining component-9 collision neighborhood against an explicit clearance
 envelope. A bounded movement of the adjacent non-tip controls is acceptable
 only if exact preservation is proven incompatible with a clean local notch.
 
+The exact-anchor vertex-push notch is also rejected. It leaves all six non-tip
+component-9 contacts, introduces one self-overlap, collapses the inherited
+adaptive width to `1.008416 mm`, and either exceeds the `2 mm` movement bound or
+stalls at the bound without improvement.
+
+A two-anchor transition sweep provides the first component-9-clear rail:
+
+- `63` of `81` cases pass every named machine gate;
+- the minimum change keeps `V2111` exact and moves only `V2108` by `0.5 mm`
+  away from component `9`;
+- the adjacent two rings blend through `0.333333 mm` and `0.166667 mm`;
+- all remaining non-tip component-9 contacts fall to zero;
+- the other 11 required anchors remain exact;
+- the rail remains closed, consistently wound, positive-volume,
+  self-intersection-free, and cutter-clear;
+- minimum cutter margin is `1.699990 mm`, minimum angle is `4.406157°`, and
+  maximum aspect ratio is `6.570828`.
+
+This is a rail-routing machine pass, not visual or structural promotion. It
+inherits the non-folded v4f adaptive width profile of
+`1.008416–6.000003 mm`; therefore it does not yet satisfy the visually
+validated substantial-width contract across the full route. Restore a
+non-folding full-width sweep before final visual review.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

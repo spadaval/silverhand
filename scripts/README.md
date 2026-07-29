@@ -132,6 +132,13 @@ lineages.
   non-anchor route simplification, rotating cross-sections, and one local
   width sweep for a rail-only Repair-014 candidate. Its final folded detour is
   retained as a rejected control.
+- `blender/build_local_c9_clear_notch_v5.py` — tests a bounded vertex-push
+  notch against component 9 on the last non-folded v4 rail. The mechanism is a
+  rejected control because it neither clears the collision nor preserves
+  self-intersection and displacement bounds.
+- `blender/build_anchor_transition_sweep_v6.py` — sweeps two local anchor
+  transitions on the non-folded rail and selects the minimum-displacement
+  component-9-clear result while preserving the other 11 anchors exactly.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

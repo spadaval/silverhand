@@ -66,6 +66,9 @@ SWEEP_ANGLE_DEGREES = (
 LOCAL_SPAN_WIDTH_MM = float(
     os.environ.get("REPAIR014_V4_LOCAL_WIDTH_MM", "6.0")
 )
+ADAPTIVE_MINIMUM_HALF_WIDTH_MM = float(
+    os.environ.get("REPAIR014_V4_ADAPTIVE_MIN_HALF_WIDTH_MM", "1.5")
+)
 
 
 def report_argument() -> Path:
@@ -962,7 +965,7 @@ def main() -> int:
     v2.OPERATION = OPERATION
     v2.__file__ = __file__
     v2.MAXIMUM_SAMPLE_SPACING_MM = 2.0
-    v2.MINIMUM_HALF_WIDTH_MM = 1.5
+    v2.MINIMUM_HALF_WIDTH_MM = ADAPTIVE_MINIMUM_HALF_WIDTH_MM
     v2.load_contract = rail_only_contract
     v2.sample_route = obstacle_following_sample_route
     v2.ribbon_geometry = asymmetric_ribbon_geometry
