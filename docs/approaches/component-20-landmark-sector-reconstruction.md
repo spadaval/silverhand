@@ -734,6 +734,17 @@ perimeter bay. Use flush co-planar scarf laps contained beneath at least
 overhang. The two-junction network must preserve the central opening and must
 not become a global backing plate or repeat v12's free loop/harness.
 
+V18 exhaustively preflights the exact retained open-edge universe:
+`98` T1 candidates × `68` T0 candidates = `6,664` endpoint pairs. After
+endpoint/pad/scarf staging, `5,782` pairs entered the fixed direct/one-bend
+route search. None pass. Only seven routes are spatially valid enough for
+collision evaluation; the cleanest are V1780→V1789 and V1781→V1789, both with
+zero C9/cutter/unrelated/self overlaps, but their cutter margins are only
+`0.468386 mm` and `0.385848 mm`. The required `1.7 mm` margin cannot be met.
+Therefore a second branch cannot be attached solely to the current retained
+T1/T0 open edges under the accepted section and routing bounds. Do not repeat
+or widen this endpoint search automatically.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

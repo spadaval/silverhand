@@ -182,6 +182,9 @@ lineages.
   terminal-local pads and narrow route as three independently closed solids,
   accepting only measured local pad/bridge laps that complete the explicit
   T1-to-T0 structural graph without a boolean union or global backing.
+- `blender/preflight_second_terminal_pair_v18.py` — performs the read-only
+  exhaustive 98×68 opposite-perimeter terminal-pair and bounded-route search,
+  with durable staging/prefix checkpoints and no geometry or Blend save.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
