@@ -345,6 +345,16 @@ The next bounded trial should transfer the source ridge/depth landmarks as
 outward relief on a cutter-safe base. Do not repeat pointwise projection, a
 smooth cutter-only field, a harmonic blend of the full `32–48 mm` motion, or a
 full-perimeter annulus around a translated core.
+
+Repair 014 has now exhausted the bounded component-20-only reconstruction
+scope through v21. A broad `6 × 2.4 mm` C9-clear frame corridor is numerically
+recoverable, but neither bounded terminal approach can reach the retained
+cage: every upper variant intersects source outside the four-face topology
+allowlist, and every lower variant also intersects immutable component `9`.
+No v21 topology was changed or geometry promoted. The immediate decision is
+either a wider component-20 landing replacement or a joint
+component-9/component-20 elbow-interface reconstruction.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 

@@ -192,6 +192,10 @@ lineages.
   six-solid two-branch elevated-saddle search at V1780/V1789, preserving the
   v16 scene authority and emitting nothing unless every contact, clearance,
   topology, quality, graph, cross-over, and preservation gate passes.
+- `blender/build_full_authored_frame_v21.py` — checkpoints the exact four-face
+  topology mask and immutable cage complement, reconstructs the proven v12
+  broad C-band corridor, and exhausts the bounded upper/lower Hermite approach
+  searches before permitting any evaluation-copy topology replacement.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.

@@ -764,6 +764,21 @@ Branch-A/Branch-B cross-over. Thus added standoffs cannot recover clearance
 or spatial separation while keeping the required footprint. Do not repeat
 exact-cage saddle attachment at this endpoint pair.
 
+V21 authorizes a four-face topology replacement and reconstructs the exact
+v12 C9-clear broad corridor before mutation. Neither bounded terminal approach
+exists. All `15` V3895→B0 variants intersect non-allowlisted retained source
+faces (at least `27` pairs); all `15` B2b→V1894 variants intersect both
+non-allowlisted source (at least `37` pairs) and unchanged component `9` (at
+least `23` pairs). The sequence stops before changing the cage. The broad
+corridor itself remains valid, but it cannot be rooted through only faces
+`5753`, `5772`, `2741`, and `4711` while component `9` stays immutable.
+
+This exhausts the accepted component-20-only attachment scope. Continuing
+requires a new decision: either authorize a materially wider component-20
+landing/topology replacement, or reconstruct the shared component-9/component-
+20 elbow interface jointly. Do not infer either expansion from the failed
+four-face trial.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
