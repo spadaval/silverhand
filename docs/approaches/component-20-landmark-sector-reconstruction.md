@@ -627,6 +627,12 @@ hit source component `25`. The abstract v12 cage-root gate is invalid and the
 network is not physically rooted in retained component `20`, despite its
 internally connected new-constituent graph.
 
+Sanitized five-view terminal mapping assigns `T_CAGE_1` to the upper major
+island, `T_CAGE_0` to the lower major island and its connected brace/arch,
+`T_CAGE_2` to the small diagonal-middle lozenge, and `T_CAGE_3` to the
+two-face side remnant. The required wearable terminal pair is therefore
+`T_CAGE_1 ↔ T_CAGE_0`; the smaller terminals cannot substitute for either.
+
 The next candidate must replace the abstract `B(root)` node with named
 retained-cage connected components. Require measured terminal contact and an
 explicit path from the upper major island through the network to the lower
