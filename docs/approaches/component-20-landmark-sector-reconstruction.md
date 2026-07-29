@@ -326,6 +326,26 @@ coordinates. First prove that the 123-edge boundary and its aperture loops are
 simple in unwrapped cylindrical coordinates; only then build a structured
 radial/axial liner.
 
+The cylindrical gate also rejects a single global chart. After excluding the
+expected winding cut at edge `15480`, the 123-edge loop has four genuine
+crossings:
+
+- edge `8056` with `10557`;
+- edge `13026` with `1560`;
+- edge `19587` with `14223`;
+- edge `15804` with `1203`.
+
+The 8-edge outer loop and both aperture loops are simple. No UV liner geometry
+was created.
+
+Because this is a cosplay build and the mapped bowl carries less signature
+detail than its rim and exterior cage, evaluate one deliberate destructive
+simplification before authoring that seam network: remove the 724-face bowl
+without filling it and retain the 1,409-face exterior cage as an open shell.
+This is not automatic promotion or printable approval. It tests whether a
+minimal later liner and structural junctions are preferable to reconstructing
+the source bowl.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -371,3 +391,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_coordinated_interface/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_combined_inner_bowl_liner/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_boundary_cycle_liner/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_cylindrical_uv_liner/`

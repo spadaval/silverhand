@@ -107,6 +107,9 @@ lineages.
 - `blender/build_boundary_cycle_inner_bowl_liner.py` — separates the complete
   removed-region boundary cycles and evaluates them as independent planar
   charts. Its large nonplanar chart is retained as a rejected control.
+- `blender/build_cylindrical_uv_inner_bowl_liner.py` — checks whether the
+  complete liner boundary is simple in the arm's axial-angle coordinates and
+  refuses construction while exact crossing edges remain.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
