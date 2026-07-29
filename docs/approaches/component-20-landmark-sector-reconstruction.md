@@ -302,6 +302,30 @@ ridge and valley routes into several locally planar charts. Charts must share
 exact internal seams and collectively preserve the same 143-edge external
 boundary, interface controls, source-open routes, and aperture loops.
 
+### Rejected complete-boundary cycle liner
+
+The complete removed-region boundary resolves to a `123`-edge outer cycle, an
+independent `8`-edge outer cycle, and `8`- and `4`-edge aperture loops. The
+123-edge outer cycle and 8-edge aperture meet at source vertex `2008`; the
+trial used chart-local coincident occurrences rather than recreating source
+bridge face `5798`.
+
+Separating the complete cycles removes cross-lobe triangles but does not make
+the large outer chart planar:
+
+- the small 8-edge outer chart is cutter-clear but has nine reversals;
+- the 123-edge chart stalls at 52 cutter overlaps;
+- the 123-edge chart contains 3,678 reversals;
+- global overlaps improve from `653` to `453`;
+- retained geometry, component-9 state, and interface vectors remain exact;
+- topology and triangle-quality gates fail.
+
+Do not increase collision iterations or retry three-dimensional planar
+tessellation. The next parameterization must use the arm's native axial-angle
+coordinates. First prove that the 123-edge boundary and its aperture loops are
+simple in unwrapped cylindrical coordinates; only then build a structured
+radial/axial liner.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
@@ -346,3 +370,4 @@ cluster `0` and component `9` remain unresolved.
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_authored_inner_bowl/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_coordinated_interface/`
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_combined_inner_bowl_liner/`
+- `_validation/experiments/geometry_repair/component_20_methods/repair_014_boundary_cycle_liner/`

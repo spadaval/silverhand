@@ -104,6 +104,9 @@ lineages.
 - `blender/build_combined_authored_inner_bowl_liner.py` — evaluates one
   topology-changing component-20 inner-bowl liner from the coordinated elbow
   stage. Its single-chart construction is retained as a rejected control.
+- `blender/build_boundary_cycle_inner_bowl_liner.py` — separates the complete
+  removed-region boundary cycles and evaluates them as independent planar
+  charts. Its large nonplanar chart is retained as a rejected control.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
