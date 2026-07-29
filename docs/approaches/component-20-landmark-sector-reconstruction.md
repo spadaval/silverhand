@@ -597,6 +597,28 @@ network remains evaluation-only until disposable high-detail review passes
 exterior identity, intentional negative space, substantiality, component-9
 layer order, and local bridge/junction read.
 
+Disposable review confirms the machine validity but rejects promotion.
+`EXTERIOR_IDENTITY`, `STRUCTURAL_SUBSTANTIALITY`, `C9_LAYER_ORDER`,
+`NO_GLOBAL_BACKING`, and `NO_NEW_SILHOUETTE_REGISTRATION_DAMAGE` pass.
+`INTENTIONAL_OPEN_CENTER`, `ELBOW_INTERFACE_CONTINUITY`,
+`LOCAL_JUNCTION_BRIDGE_READ`, and `NO_CATASTROPHIC_OPENING` fail.
+
+The problem is now the graph contract, not section size or obstacle clearance.
+The reported B0 cage landing tests overlap against the union of all retained
+cage faces. In matched views, the complete new network reads as a robust loop
+rooted in one lower/side region; it does not visibly reach the upper major cage
+island and therefore leaves the decisive upper-to-lower discontinuity intact.
+Square caps, hooks, rectangular nubs, a cross-shaped block, and a thin sliver
+also keep the local junctions from reading as deliberate structure.
+
+The next candidate must replace the abstract `B(root)` node with named
+retained-cage connected components. Require measured terminal contact and an
+explicit path from the upper major island through the network to the lower
+major island. Preserve v12's section dimensions and collision gates; replace
+only the topology and terminal/junction shapes. Use embedded flared saddles or
+gussets, not another free loop, and reject exposed square, hooked, stubbed, or
+spiked ends.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
