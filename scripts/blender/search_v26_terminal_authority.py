@@ -66,17 +66,18 @@ INPUTS = {
         AUTHORITY_DIR / "authority_review.md",
         "c7efbcfce71eea84a6e0e75092c1f8e5e60cdf16e3e9ecb5700c35ff409ec325",
     ),
+    "face_visual_classification": (
+        AUTHORITY_DIR / "face_visual/classification.json",
+        "d3f7dfbfff0fdaa6f50c65f6d26aa60c32567f5b3711d474ef335714a14794cf",
+    ),
 }
 
 # The two cutter-penetrating C9 faces, their current ambiguous companions, and
-# the already-reviewed ambiguous lower-C20 fixture are never eligible.
+# the visually confirmed silhouette/rim face are never eligible.
 FORBIDDEN_FACE_IDS = {
     1613,
     1617,
     1696,
-    1700,
-    3102,
-    3103,
 }
 
 
@@ -102,6 +103,34 @@ def atomic_json(path, value):
         encoding="utf-8",
     )
     temporary.replace(path)
+
+
+def archive_existing(path):
+    """Preserve a completed authority before starting a superseding run."""
+    path = Path(path)
+    if not path.exists():
+        return None
+    digest = sha_file(path)
+    archived = path.with_name(
+        f"{path.stem}.stale-{digest[:12]}{path.suffix}"
+    )
+    if archived.exists():
+        if sha_file(archived) != digest:
+            raise RuntimeError(
+                f"{OPERATION}: stale artifact hash collision for "
+                f"'{archived}'"
+            )
+        return {
+            "path": str(archived),
+            "sha256": digest,
+            "already_archived": True,
+        }
+    path.replace(archived)
+    return {
+        "path": str(archived),
+        "sha256": digest,
+        "already_archived": False,
+    }
 
 
 def argument(name):
@@ -219,7 +248,60 @@ def negative_space_edge_ids(authority, edge_ids_by_vertices):
     return result, {str(key): sorted(value) for key, value in sources.items()}
 
 
-def exposure_sets(ownership):
+def visual_classification_sets(authority):
+    if authority["status"] != "DONE_SOURCE_FACE_CLASSIFICATION_V26":
+        raise RuntimeError(
+            f"{OPERATION}: visual classification status is "
+            f"{authority['status']!r}, expected "
+            "'DONE_SOURCE_FACE_CLASSIFICATION_V26'"
+        )
+    if authority["authority"]["blend_sha256"] != EXPECTED_BLEND_SHA256:
+        raise RuntimeError(
+            f"{OPERATION}: visual classification Blend authority mismatch"
+        )
+    classifications = authority["classifications"]
+    if classifications["unresolved"]:
+        raise RuntimeError(
+            f"{OPERATION}: visual classification still has unresolved faces: "
+            f"{classifications['unresolved']}"
+        )
+    result = {
+        "C20": {"wearer": set(), "immutable": set()},
+        "C9": {"wearer": set(), "immutable": set()},
+    }
+    for class_name, target in (
+        ("concealed_wearer_side_removable", "wearer"),
+        ("visible_silhouette_rim_opening_immutable", "immutable"),
+    ):
+        for group, face_ids in classifications[class_name].items():
+            component = "C20" if group.endswith("_c20") else "C9"
+            result[component][target].update(face_ids)
+    for component in ("C20", "C9"):
+        overlap = result[component]["wearer"] & result[component]["immutable"]
+        if overlap:
+            raise RuntimeError(
+                f"{OPERATION}: visual classification overlaps for "
+                f"{component}: {sorted(overlap)}"
+            )
+    expected = {
+        "C9": {
+            "wearer": {1621, 1676, 1700, 2243, 2244},
+            "immutable": {1613, 1617, 1619, 1623, 1696},
+        },
+        "C20": {
+            "wearer": {2663, 3102, 3103, 8839, 8844},
+            "immutable": {3065, 3066, 8699, 8700},
+        },
+    }
+    if result != expected:
+        raise RuntimeError(
+            f"{OPERATION}: visual classification exact face authority "
+            f"mismatch; actual={result}; expected={expected}"
+        )
+    return result
+
+
+def exposure_sets(ownership, visual_authority):
     """Stream the five exposure ID pairs; never load the 315 MiB ledger."""
     full = ownership["full_authority"]
     ledger_path = Path(full["path"])
@@ -286,6 +368,7 @@ def exposure_sets(ownership):
             f"'{ledger_path}', expected={len(cell_ids)}"
         )
     result = {}
+    visual = visual_classification_sets(visual_authority)
     for component in ("C20", "C9"):
         wearer = set()
         ambiguous = set()
@@ -300,9 +383,31 @@ def exposure_sets(ownership):
                 f"{OPERATION}: exposure authority overlaps for {component}: "
                 f"{sorted(wearer & ambiguous)}"
             )
+        maximum = wearer | ambiguous
+        visual_faces = visual[component]["wearer"] | visual[component]["immutable"]
+        if not visual_faces <= maximum:
+            raise RuntimeError(
+                f"{OPERATION}: visual classification leaves the {component} "
+                f"maximum exposure authority: {sorted(visual_faces - maximum)}"
+            )
+        wearer.difference_update(visual[component]["immutable"])
+        ambiguous.difference_update(visual[component]["wearer"])
+        wearer.update(visual[component]["wearer"])
+        ambiguous.update(visual[component]["immutable"])
+        if wearer & ambiguous:
+            raise RuntimeError(
+                f"{OPERATION}: corrected exposure authority overlaps for "
+                f"{component}: {sorted(wearer & ambiguous)}"
+            )
+        if wearer | ambiguous != maximum:
+            raise RuntimeError(
+                f"{OPERATION}: corrected exposure authority changed the "
+                f"{component} maximum face set"
+            )
         result[component] = {
             "wearer": wearer,
             "immutable": ambiguous,
+            "visual_override": visual[component],
         }
     return result
 
@@ -500,6 +605,7 @@ def old_terminal_landmarks(cell_authority):
 def main():
     report_path = Path(argument("--report")).resolve()
     report_path.parent.mkdir(parents=True, exist_ok=True)
+    stale_artifact = archive_existing(report_path)
     actual_hashes = {
         name: sha_file(path)
         for name, (path, _) in INPUTS.items()
@@ -554,6 +660,7 @@ def main():
                 "component/role fixture, with a chain used by at most one role"
             ),
         },
+        "superseded_artifact": stale_artifact,
         "search_started": False,
         "mutation_started": False,
         "geometry_emitted": False,
@@ -568,7 +675,10 @@ def main():
         authorities["negative_space"],
         edge_ids,
     )
-    exposure = exposure_sets(authorities["ownership_summary"])
+    exposure = exposure_sets(
+        authorities["ownership_summary"],
+        authorities["face_visual_classification"],
+    )
     edges, rejected_edges = boundary_edge_records(
         context,
         exposure,
@@ -791,6 +901,12 @@ def main():
             component: {
                 "wearer_facing_face_count": len(exposure[component]["wearer"]),
                 "immutable_face_count": len(exposure[component]["immutable"]),
+                "visual_override": {
+                    key: sorted(value)
+                    for key, value in exposure[component][
+                        "visual_override"
+                    ].items()
+                },
             }
             for component in ("C20", "C9")
         },

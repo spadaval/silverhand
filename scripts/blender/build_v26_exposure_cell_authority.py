@@ -12,6 +12,7 @@ from collections import defaultdict, deque
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import subprocess
 
 
@@ -37,7 +38,18 @@ JOINT_AUTHORITY = EVIDENCE / "v26_joint_authority.json"
 CELL_AUTHORITY = EVIDENCE / "v26_cell_authority.json"
 FLOOR_AUTHORITY = EVIDENCE / "v26_floor_ownership_authority.json"
 FLOOR_SUMMARY = EVIDENCE / "v26_floor_ownership_summary.json"
+FACE_VISUAL_CLASSIFICATION = EVIDENCE / "face_visual/classification.json"
 OUTPUT = EVIDENCE / "v26_exposure_cell_authority.json"
+PRE_VISUAL_SEMANTIC_FINGERPRINT = (
+    "b5a5caec522112542dc0220428897ece79fcb698b0f80df19739ef389eb25d94"
+)
+PRE_VISUAL_OUTPUT_SHA256 = (
+    "e3f65cf6e71959c48e12b616022b3196dd42e28e518ab106fbfb1680caca0d2b"
+)
+PRE_VISUAL_STALE_PATH = EVIDENCE / (
+    "v26_exposure_cell_authority.stale-"
+    f"{PRE_VISUAL_SEMANTIC_FINGERPRINT[:12]}.json"
+)
 
 EXPECTED_HASHES = {
     "joint_authority": (
@@ -52,6 +64,9 @@ EXPECTED_HASHES = {
     "floor_summary": (
         "2a054e9290869a6b647b4da1fa52f98e6537c8bca2a3b12546374ff788c982a9"
     ),
+    "face_visual_classification": (
+        "d3f7dfbfff0fdaa6f50c65f6d26aa60c32567f5b3711d474ef335714a14794cf"
+    ),
     "current_audit": (
         "3abe6e1b73e0790ce3eea762abe7556dd56dc78a39816f2547808fdc17d71ffd"
     ),
@@ -63,8 +78,31 @@ ELIGIBLE_GAP_FACES = [2921, 2922, 2999, 3000, 3001, 3002, 8687]
 INTERFACE_C9_VERTICES = [1257, 1295]
 MAXIMUM_SELECTED_CELLS = 12
 EXPECTED_EXPOSURE_COUNTS = {
-    "C20": {"WEARER_FACING": 196, "EXTERIOR_OR_AMBIGUOUS": 528},
-    "C9": {"WEARER_FACING": 40, "EXTERIOR_OR_AMBIGUOUS": 198},
+    "C20": {"WEARER_FACING": 201, "EXTERIOR_OR_AMBIGUOUS": 523},
+    "C9": {"WEARER_FACING": 45, "EXTERIOR_OR_AMBIGUOUS": 193},
+}
+EXPECTED_VISUAL_CONCEALED = {
+    1621,
+    1676,
+    1700,
+    2243,
+    2244,
+    2663,
+    3102,
+    3103,
+    8839,
+    8844,
+}
+EXPECTED_VISUAL_IMMUTABLE = {
+    1613,
+    1617,
+    1619,
+    1623,
+    1696,
+    3065,
+    3066,
+    8699,
+    8700,
 }
 
 
@@ -102,6 +140,101 @@ def atomic_json(path, value):
         encoding="utf-8",
     )
     temporary.replace(path)
+
+
+def flatten_visual_group(group):
+    return {
+        int(face_id)
+        for face_ids in group.values()
+        for face_id in face_ids
+    }
+
+
+def visual_overrides(authority):
+    if authority.get("status") != "DONE_SOURCE_FACE_CLASSIFICATION_V26":
+        raise RuntimeError(
+            f"{OPERATION}: face-visual classification is not DONE; "
+            f"status={authority.get('status')!r}"
+        )
+    classifications = authority["classifications"]
+    concealed = flatten_visual_group(
+        classifications["concealed_wearer_side_removable"]
+    )
+    immutable = flatten_visual_group(
+        classifications["visible_silhouette_rim_opening_immutable"]
+    )
+    unresolved = {
+        int(face_id) for face_id in classifications["unresolved"]
+    }
+    if concealed != EXPECTED_VISUAL_CONCEALED:
+        raise RuntimeError(
+            f"{OPERATION}: concealed/removable face contract mismatch; "
+            f"expected={sorted(EXPECTED_VISUAL_CONCEALED)}, "
+            f"observed={sorted(concealed)}"
+        )
+    if immutable != EXPECTED_VISUAL_IMMUTABLE:
+        raise RuntimeError(
+            f"{OPERATION}: visible immutable face contract mismatch; "
+            f"expected={sorted(EXPECTED_VISUAL_IMMUTABLE)}, "
+            f"observed={sorted(immutable)}"
+        )
+    if unresolved:
+        raise RuntimeError(
+            f"{OPERATION}: unresolved reviewed faces remain: "
+            f"{sorted(unresolved)}"
+        )
+    if concealed & immutable:
+        raise RuntimeError(
+            f"{OPERATION}: face-visual classes overlap: "
+            f"{sorted(concealed & immutable)}"
+        )
+    counts = authority["counts"]
+    if (
+        int(counts["concealed_wearer_side_removable"]),
+        int(counts["visible_silhouette_rim_opening_immutable"]),
+        int(counts["unresolved"]),
+    ) != (10, 9, 0):
+        raise RuntimeError(
+            f"{OPERATION}: face-visual count contract mismatch: {counts}"
+        )
+    return concealed, immutable
+
+
+def preserve_pre_visual_authority(output):
+    if not output.exists():
+        return
+    current_hash = sha_file(output)
+    current = read_json(output)
+    current_visual_hash = (
+        current.get("source_authorities", {})
+        .get("face_visual_classification", {})
+        .get("sha256")
+    )
+    if current_visual_hash == EXPECTED_HASHES["face_visual_classification"]:
+        return
+    if current_hash != PRE_VISUAL_OUTPUT_SHA256:
+        raise RuntimeError(
+            f"{OPERATION}: existing output has an unknown pre-contract hash; "
+            f"target={output}, expected={PRE_VISUAL_OUTPUT_SHA256}, "
+            f"actual={current_hash}"
+        )
+    if PRE_VISUAL_STALE_PATH.exists():
+        stale_hash = sha_file(PRE_VISUAL_STALE_PATH)
+        if stale_hash != PRE_VISUAL_OUTPUT_SHA256:
+            raise RuntimeError(
+                f"{OPERATION}: stale-history target already exists with the "
+                f"wrong hash; target={PRE_VISUAL_STALE_PATH}, "
+                f"expected={PRE_VISUAL_OUTPUT_SHA256}, actual={stale_hash}"
+            )
+        return
+    shutil.copy2(output, PRE_VISUAL_STALE_PATH)
+    stale_hash = sha_file(PRE_VISUAL_STALE_PATH)
+    if stale_hash != PRE_VISUAL_OUTPUT_SHA256:
+        raise RuntimeError(
+            f"{OPERATION}: failed to preserve byte-exact pre-visual authority; "
+            f"target={PRE_VISUAL_STALE_PATH}, "
+            f"expected={PRE_VISUAL_OUTPUT_SHA256}, actual={stale_hash}"
+        )
 
 
 def edge_pairs(face):
@@ -404,6 +537,7 @@ def main():
         "cell_authority": CELL_AUTHORITY,
         "floor_authority": FLOOR_AUTHORITY,
         "floor_summary": FLOOR_SUMMARY,
+        "face_visual_classification": FACE_VISUAL_CLASSIFICATION,
         "current_audit": CURRENT_AUDIT,
         "v22_attribution": V22_ATTRIBUTION,
     }
@@ -423,11 +557,64 @@ def main():
     audit = read_json(CURRENT_AUDIT)
     v22 = read_json(V22_ATTRIBUTION)
     floor_summary = read_json(FLOOR_SUMMARY)
+    face_visual = read_json(FACE_VISUAL_CLASSIFICATION)
+    visual_concealed, visual_immutable = visual_overrides(face_visual)
     compact_exposure = compact_exposure_projection(FLOOR_AUTHORITY)
 
     faces, coordinates, component_faces = source_geometry(old_cells)
     joint_faces = all_joint_faces(joint)
     exposure, old_cell_by_face = exposure_records(compact_exposure)
+    base_exposure_labels = {
+        face_id: record["classification"]
+        for face_id, record in exposure.items()
+    }
+    reviewed_faces = visual_concealed | visual_immutable
+    missing_reviewed = reviewed_faces - set(exposure)
+    if missing_reviewed:
+        raise RuntimeError(
+            f"{OPERATION}: reviewed faces are outside exposure authority: "
+            f"{sorted(missing_reviewed)}"
+        )
+    unexpected_base_classes = {
+        face_id: exposure[face_id]["classification"]
+        for face_id in reviewed_faces
+        if exposure[face_id]["classification"] != "EXTERIOR_OR_AMBIGUOUS"
+    }
+    if unexpected_base_classes:
+        raise RuntimeError(
+            f"{OPERATION}: reviewed override faces do not have the expected "
+            f"ambiguous base class: {unexpected_base_classes}"
+        )
+    for face_id in sorted(reviewed_faces):
+        record = exposure[face_id]
+        record["base_classification"] = record["classification"]
+        record["face_visual_contract"] = (
+            "CONCEALED_WEARER_SIDE_REMOVABLE"
+            if face_id in visual_concealed
+            else "VISIBLE_SILHOUETTE_RIM_OPENING_IMMUTABLE"
+        )
+        if face_id in visual_concealed:
+            record["classification"] = "WEARER_FACING"
+            record["class_reasons"] = [
+                "REVIEWED_CONCEALED_WEARER_SIDE_REMOVABLE"
+            ]
+        else:
+            record["classification"] = "EXTERIOR_OR_AMBIGUOUS"
+            record["class_reasons"] = [
+                "REVIEWED_VISIBLE_SILHOUETTE_RIM_OPENING_IMMUTABLE"
+            ]
+        record["post_visual_contract_fingerprint"] = stable_hash(record)
+    changed_exposure_labels = {
+        face_id
+        for face_id, record in exposure.items()
+        if record["classification"] != base_exposure_labels[face_id]
+    }
+    if changed_exposure_labels != visual_concealed:
+        raise RuntimeError(
+            f"{OPERATION}: visual contract changed the wrong exposure labels; "
+            f"expected={sorted(visual_concealed)}, "
+            f"observed={sorted(changed_exposure_labels)}"
+        )
     if set(exposure) != set(faces):
         raise RuntimeError(
             f"{OPERATION}: exposure/topology face mismatch; "
@@ -625,14 +812,37 @@ def main():
             record["fingerprint"] = stable_hash(record)
             barrier_cell_adjacency.append(record)
 
+    visual_groups = face_visual["classifications"][
+        "concealed_wearer_side_removable"
+    ]
+    gap_c20_faces = sorted(
+        set(ELIGIBLE_GAP_FACES)
+        | {int(face_id) for face_id in visual_groups["flex_gap_c20"]}
+    )
+    gap_c9_faces = sorted(
+        int(face_id) for face_id in visual_groups["flex_gap_c9"]
+    )
     seed_sets = []
     seed_sets.append(
         seed_summary(
-            "ELIGIBLE_FLEX_GAP_REMOVAL_SEEDS",
+            "ELIGIBLE_FLEX_GAP_C20_REMOVAL_SEEDS",
             "C20",
-            "seven exact authority-review faces",
+            (
+                "seven exact authority-review faces plus reviewed concealed "
+                "C20 flex-gap faces"
+            ),
             classify_seed_faces(
-                ELIGIBLE_GAP_FACES, "C20", exposure, global_cell_by_face
+                gap_c20_faces, "C20", exposure, global_cell_by_face
+            ),
+        )
+    )
+    seed_sets.append(
+        seed_summary(
+            "ELIGIBLE_FLEX_GAP_C9_REMOVAL_SEEDS",
+            "C9",
+            "reviewed concealed C9 flex-gap faces",
+            classify_seed_faces(
+                gap_c9_faces, "C9", exposure, global_cell_by_face
             ),
         )
     )
@@ -772,6 +982,30 @@ def main():
             name: {"path": str(path.relative_to(ROOT)), "sha256": hashes[name]}
             for name, path in paths.items()
         },
+        "contract_revision": {
+            "face_visual_classification_status": face_visual["status"],
+            "concealed_wearer_side_removable_face_ids": sorted(
+                visual_concealed
+            ),
+            "visible_silhouette_rim_opening_immutable_face_ids": sorted(
+                visual_immutable
+            ),
+            "changed_base_exposure_label_face_ids": sorted(
+                changed_exposure_labels
+            ),
+            "unchanged_reviewed_immutable_face_ids": sorted(visual_immutable),
+            "all_unreviewed_exposure_labels_unchanged": all(
+                exposure[face_id]["classification"]
+                == base_exposure_labels[face_id]
+                for face_id in set(exposure) - reviewed_faces
+            ),
+            "pre_visual_authority_history": {
+                "path": str(PRE_VISUAL_STALE_PATH.relative_to(ROOT)),
+                "sha256": PRE_VISUAL_OUTPUT_SHA256,
+                "semantic_fingerprint": PRE_VISUAL_SEMANTIC_FINGERPRINT,
+                "reason": "superseded by reviewed face-visual contract",
+            },
+        },
         "code_sha256": sha_file(Path(__file__).resolve()),
         "barrier_contract": {
             "prior_barrier_edge_count": len(barrier_inventory),
@@ -850,6 +1084,15 @@ def main():
                 }
             ),
             "no_floor_samples_are_not_seeds": True,
+            "exactly_ten_visual_labels_changed_to_wearer_facing": (
+                changed_exposure_labels == visual_concealed
+                and len(changed_exposure_labels) == 10
+            ),
+            "nine_visible_reviewed_faces_remain_immutable": all(
+                exposure[face_id]["classification"]
+                == "EXTERIOR_OR_AMBIGUOUS"
+                for face_id in visual_immutable
+            ),
         },
         "mutation_started": False,
         "geometry_emitted": False,
@@ -861,6 +1104,8 @@ def main():
         "promotion": "NOT_REQUESTED",
     }
     report["semantic_fingerprint"] = stable_hash(report)
+    if arguments.output.resolve() == OUTPUT.resolve():
+        preserve_pre_visual_authority(arguments.output)
     atomic_json(arguments.output, report)
     print(
         f"DONE {OPERATION}: {len(new_cells)} wearer-facing cells; "
