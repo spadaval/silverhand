@@ -3,8 +3,8 @@
     "cell_boundary_dependencies": {
       "EXPOSURE_CELL_C20_000": [
         "AGGREGATE_BOUNDARY_C20_000",
-        "AGGREGATE_BOUNDARY_C20_007",
-        "AGGREGATE_BOUNDARY_C20_008"
+        "AGGREGATE_BOUNDARY_C20_006",
+        "AGGREGATE_BOUNDARY_C20_007"
       ],
       "EXPOSURE_CELL_C20_002": [
         "AGGREGATE_BOUNDARY_C20_003"
@@ -19,12 +19,21 @@
         "AGGREGATE_BOUNDARY_C20_003"
       ],
       "EXPOSURE_CELL_C20_006": [
-        "AGGREGATE_BOUNDARY_C20_005"
+        "AGGREGATE_BOUNDARY_C20_004"
+      ],
+      "EXPOSURE_CELL_C20_007": [
+        "AGGREGATE_BOUNDARY_C20_004"
       ],
       "EXPOSURE_CELL_C20_008": [
-        "AGGREGATE_BOUNDARY_C20_006"
+        "AGGREGATE_BOUNDARY_C20_005"
+      ],
+      "EXPOSURE_CELL_C20_009": [
+        "AGGREGATE_BOUNDARY_C20_004"
       ],
       "EXPOSURE_CELL_C20_010": [
+        "AGGREGATE_BOUNDARY_C20_003"
+      ],
+      "EXPOSURE_CELL_C20_011": [
         "AGGREGATE_BOUNDARY_C20_003"
       ],
       "EXPOSURE_CELL_C20_012": [
@@ -773,6 +782,18 @@
             2119
           ],
           [
+            2113,
+            2115
+          ],
+          [
+            2113,
+            2116
+          ],
+          [
+            2115,
+            2116
+          ],
+          [
             2115,
             2118
           ],
@@ -797,7 +818,7 @@
             2123
           ]
         ],
-        "fingerprint": "719f9f230ba4d8aad7ca8dbb2e3a54a0548b12be157a0d4fcbb00d2067899b16",
+        "fingerprint": "1f03e9db61a87a4cdddeb8581a906e5ec78bd8933f083acf9aad2a73efe9d433",
         "immutable_incident_face_ids": [
           2713,
           2715,
@@ -817,12 +838,14 @@
           3086,
           3087,
           3091,
+          3101,
           3104,
           3109,
           3114,
           3119,
           3131,
           3132,
+          3138,
           3139,
           3143,
           3147,
@@ -870,7 +893,9 @@
           "2101": 2,
           "2103": 2,
           "2104": 2,
-          "2115": 2,
+          "2113": 2,
+          "2115": 4,
+          "2116": 2,
           "2117": 2,
           "2118": 2,
           "2119": 4,
@@ -883,6 +908,18 @@
         "boundary_id": "AGGREGATE_BOUNDARY_C20_004",
         "component": "C20",
         "edge_vertex_pairs": [
+          [
+            1899,
+            1905
+          ],
+          [
+            1899,
+            2080
+          ],
+          [
+            1905,
+            2020
+          ],
           [
             1960,
             1993
@@ -919,71 +956,6 @@
             2016,
             2070
           ],
-          [
-            2020,
-            2067
-          ],
-          [
-            2067,
-            2068
-          ],
-          [
-            2068,
-            2069
-          ],
-          [
-            2069,
-            2070
-          ]
-        ],
-        "fingerprint": "8c1d6a6399e93dc9483412b9886e89549ec34cc5e172f2a6c7cf227e95a8ccc1",
-        "immutable_incident_face_ids": [
-          2915,
-          2996,
-          3003,
-          3004,
-          3063,
-          3065,
-          3066
-        ],
-        "is_simple_loop": true,
-        "is_simple_path": false,
-        "ordered_vertex_ids": [
-          1960,
-          1993,
-          2020,
-          2067,
-          2068,
-          2069,
-          2070,
-          2016,
-          2015,
-          1979,
-          1983,
-          1988,
-          2019,
-          1960
-        ],
-        "vertex_degrees": {
-          "1960": 2,
-          "1979": 2,
-          "1983": 2,
-          "1988": 2,
-          "1993": 2,
-          "2015": 2,
-          "2016": 2,
-          "2019": 2,
-          "2020": 2,
-          "2067": 2,
-          "2068": 2,
-          "2069": 2,
-          "2070": 2
-        }
-      },
-      {
-        "boundary_id": "AGGREGATE_BOUNDARY_C20_005",
-        "component": "C20",
-        "edge_vertex_pairs": [
           [
             2031,
             2034
@@ -1042,46 +1014,74 @@
           ],
           [
             2063,
+            2066
+          ],
+          [
+            2063,
             2079
+          ],
+          [
+            2063,
+            2080
+          ],
+          [
+            2066,
+            2067
+          ],
+          [
+            2067,
+            2068
+          ],
+          [
+            2068,
+            2069
+          ],
+          [
+            2069,
+            2070
           ]
         ],
-        "fingerprint": "98f9baf0b61d7646d83d0ff612eac85c45ce495ec7e5b58d7652e9b88f74a114",
+        "fingerprint": "04357ca6289a4a8ad0f0f252796d0fa4e30ae953c6eea9d5fdd4ae19d2979be1",
         "immutable_incident_face_ids": [
+          2750,
+          2915,
           2963,
           2967,
           2969,
           2971,
           2973,
           2990,
+          2993,
+          2994,
+          3003,
+          3004,
           3014,
           3019,
           3020,
           3029,
           3041,
           3046,
-          3050
+          3050,
+          3054,
+          3063,
+          3065,
+          3066
         ],
-        "is_simple_loop": true,
+        "is_simple_loop": false,
         "is_simple_path": false,
-        "ordered_vertex_ids": [
-          2031,
-          2034,
-          2042,
-          2044,
-          2046,
-          2074,
-          2033,
-          2032,
-          2037,
-          2039,
-          2079,
-          2063,
-          2061,
-          2078,
-          2035,
-          2031
-        ],
+        "ordered_vertex_ids": [],
         "vertex_degrees": {
+          "1899": 2,
+          "1905": 2,
+          "1960": 2,
+          "1979": 2,
+          "1983": 2,
+          "1988": 2,
+          "1993": 2,
+          "2015": 2,
+          "2016": 2,
+          "2019": 2,
+          "2020": 2,
           "2031": 2,
           "2032": 2,
           "2033": 2,
@@ -1093,14 +1093,20 @@
           "2044": 2,
           "2046": 2,
           "2061": 2,
-          "2063": 2,
+          "2063": 4,
+          "2066": 2,
+          "2067": 2,
+          "2068": 2,
+          "2069": 2,
+          "2070": 2,
           "2074": 2,
           "2078": 2,
-          "2079": 2
+          "2079": 2,
+          "2080": 2
         }
       },
       {
-        "boundary_id": "AGGREGATE_BOUNDARY_C20_006",
+        "boundary_id": "AGGREGATE_BOUNDARY_C20_005",
         "component": "C20",
         "edge_vertex_pairs": [
           [
@@ -1137,7 +1143,7 @@
         }
       },
       {
-        "boundary_id": "AGGREGATE_BOUNDARY_C20_007",
+        "boundary_id": "AGGREGATE_BOUNDARY_C20_006",
         "component": "C20",
         "edge_vertex_pairs": [
           [
@@ -1176,7 +1182,7 @@
         }
       },
       {
-        "boundary_id": "AGGREGATE_BOUNDARY_C20_008",
+        "boundary_id": "AGGREGATE_BOUNDARY_C20_007",
         "component": "C20",
         "edge_vertex_pairs": [
           [
@@ -2253,6 +2259,71 @@
       },
       {
         "barrier_reasons": [
+          "C20_NAMED_RIDGE_OR_DEPTH_BREAK"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [
+          2750
+        ],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_009"
+        ],
+        "selected_incident_face_ids": [
+          3055
+        ],
+        "source_edge_ids": [
+          8050
+        ],
+        "vertex_ids": [
+          1899,
+          1905
+        ]
+      },
+      {
+        "barrier_reasons": [
+          "EXPOSURE_CLASS_SEAM"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [
+          3054
+        ],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_009"
+        ],
+        "selected_incident_face_ids": [
+          3053
+        ],
+        "source_edge_ids": [],
+        "vertex_ids": [
+          1899,
+          2080
+        ]
+      },
+      {
+        "barrier_reasons": [
+          "C20_MAXIMUM_MASK_BOUNDARY",
+          "C20_NAMED_RIDGE_OR_DEPTH_BREAK",
+          "C20_SOURCE_OPEN_OR_APERTURE_ROUTE",
+          "MAXIMUM_MASK_OPEN_BOUNDARY"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_007"
+        ],
+        "selected_incident_face_ids": [
+          2996
+        ],
+        "source_edge_ids": [
+          3129
+        ],
+        "vertex_ids": [
+          1905,
+          2020
+        ]
+      },
+      {
+        "barrier_reasons": [
           "C20_MAXIMUM_MASK_BOUNDARY",
           "C20_SOURCE_OPEN_OR_APERTURE_ROUTE",
           "MAXIMUM_MASK_OPEN_BOUNDARY"
@@ -2788,28 +2859,6 @@
       },
       {
         "barrier_reasons": [
-          "C20_DETERMINISTIC_FLEX_CUT_CHAIN"
-        ],
-        "component": "C20",
-        "immutable_incident_face_ids": [
-          2996
-        ],
-        "incident_cell_ids": [
-          "EXPOSURE_CELL_C20_004"
-        ],
-        "selected_incident_face_ids": [
-          2997
-        ],
-        "source_edge_ids": [
-          10567
-        ],
-        "vertex_ids": [
-          2020,
-          2067
-        ]
-      },
-      {
-        "barrier_reasons": [
           "EXPOSURE_CLASS_SEAM"
         ],
         "component": "C20",
@@ -3096,6 +3145,29 @@
       },
       {
         "barrier_reasons": [
+          "C20_NAMED_RIDGE_OR_DEPTH_BREAK",
+          "EXPOSURE_CLASS_SEAM"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [
+          2993
+        ],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_009"
+        ],
+        "selected_incident_face_ids": [
+          3052
+        ],
+        "source_edge_ids": [
+          17929
+        ],
+        "vertex_ids": [
+          2063,
+          2066
+        ]
+      },
+      {
+        "barrier_reasons": [
           "EXPOSURE_CLASS_SEAM"
         ],
         "component": "C20",
@@ -3112,6 +3184,26 @@
         "vertex_ids": [
           2063,
           2079
+        ]
+      },
+      {
+        "barrier_reasons": [
+          "EXPOSURE_CLASS_SEAM"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [
+          3050
+        ],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_009"
+        ],
+        "selected_incident_face_ids": [
+          3052
+        ],
+        "source_edge_ids": [],
+        "vertex_ids": [
+          2063,
+          2080
         ]
       },
       {
@@ -3152,6 +3244,26 @@
         "vertex_ids": [
           2065,
           2076
+        ]
+      },
+      {
+        "barrier_reasons": [
+          "EXPOSURE_CLASS_SEAM"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [
+          2994
+        ],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_007"
+        ],
+        "selected_incident_face_ids": [
+          2995
+        ],
+        "source_edge_ids": [],
+        "vertex_ids": [
+          2066,
+          2067
         ]
       },
       {
@@ -3555,6 +3667,68 @@
         "vertex_ids": [
           2104,
           2119
+        ]
+      },
+      {
+        "barrier_reasons": [
+          "EXPOSURE_CLASS_SEAM"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [
+          3101
+        ],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_011"
+        ],
+        "selected_incident_face_ids": [
+          3102
+        ],
+        "source_edge_ids": [],
+        "vertex_ids": [
+          2113,
+          2115
+        ]
+      },
+      {
+        "barrier_reasons": [
+          "EXPOSURE_CLASS_SEAM"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [
+          3138
+        ],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_011"
+        ],
+        "selected_incident_face_ids": [
+          3102
+        ],
+        "source_edge_ids": [],
+        "vertex_ids": [
+          2113,
+          2116
+        ]
+      },
+      {
+        "barrier_reasons": [
+          "C20_MAXIMUM_MASK_BOUNDARY",
+          "MAXIMUM_MASK_OPEN_BOUNDARY",
+          "SOURCE_OPEN_ROUTE"
+        ],
+        "component": "C20",
+        "immutable_incident_face_ids": [],
+        "incident_cell_ids": [
+          "EXPOSURE_CELL_C20_011"
+        ],
+        "selected_incident_face_ids": [
+          3102
+        ],
+        "source_edge_ids": [
+          8121
+        ],
+        "vertex_ids": [
+          2115,
+          2116
         ]
       },
       {
@@ -6909,10 +7083,10 @@
     ]
   },
   "aggregate_mask": {
-    "cell_count": 23,
-    "fingerprint": "f55537d83057803c924cf3fde6959bcb8184d72079f82ab2d8f3cb486d12b137",
+    "cell_count": 26,
+    "fingerprint": "7a3d59c45f0d639e330007c529158024197cfadf3409f4b2bd4f4ee21d49b1a7",
     "immutable_complement_source_face_count": {
-      "C20": 545,
+      "C20": 539,
       "C9": 157
     },
     "immutable_complement_source_face_ids": {
@@ -7007,8 +7181,6 @@
         2992,
         2993,
         2994,
-        2995,
-        2996,
         3003,
         3004,
         3005,
@@ -7049,10 +7221,7 @@
         3049,
         3050,
         3051,
-        3052,
-        3053,
         3054,
-        3055,
         3056,
         3057,
         3058,
@@ -7093,7 +7262,6 @@
         3099,
         3100,
         3101,
-        3102,
         3104,
         3105,
         3106,
@@ -7638,8 +7806,11 @@
       "EXPOSURE_CELL_C20_004",
       "EXPOSURE_CELL_C20_005",
       "EXPOSURE_CELL_C20_006",
+      "EXPOSURE_CELL_C20_007",
       "EXPOSURE_CELL_C20_008",
+      "EXPOSURE_CELL_C20_009",
       "EXPOSURE_CELL_C20_010",
+      "EXPOSURE_CELL_C20_011",
       "EXPOSURE_CELL_C20_012",
       "EXPOSURE_CELL_C20_013",
       "EXPOSURE_CELL_C20_017",
@@ -7657,7 +7828,7 @@
       "EXPOSURE_CELL_C9_004"
     ],
     "source_face_count": {
-      "C20": 179,
+      "C20": 185,
       "C9": 81
     },
     "source_face_ids": {
@@ -7702,6 +7873,8 @@
         2962,
         2964,
         2966,
+        2995,
+        2996,
         2997,
         2998,
         2999,
@@ -7717,12 +7890,16 @@
         3043,
         3044,
         3045,
+        3052,
+        3053,
+        3055,
         3076,
         3083,
         3084,
         3088,
         3089,
         3090,
+        3102,
         3103,
         3110,
         3111,
@@ -7928,7 +8105,7 @@
     },
     "unique_face_ownership": true
   },
-  "code_sha256": "eab9839de351366b29912c5c9ea5814d2a8161ee7872be86bc1a62df63aaaa4b",
+  "code_sha256": "a8d4e418dc7b9cf4fe3ca97ed5d914a7487a5a238811d37c95f94fd517f921ba",
   "dependency_graph": {
     "batches": [
       {
@@ -7943,50 +8120,52 @@
           "EXPOSURE_CELL_C20_028",
           "EXPOSURE_CELL_C20_029"
         ],
-        "fingerprint": "32d926deb7f76e9b4b3e1d5967a1d052239382130f931b3daac313783b581d60",
+        "fingerprint": "a79494a428860e41525a35a031a74133a6a9559aa2676446c3ed878ce1a221e0",
         "scc_indices": [
-          10
+          9
         ]
       },
       {
         "batch_index": 1,
-        "cell_count": 11,
+        "cell_count": 12,
         "cell_ids": [
           "EXPOSURE_CELL_C20_002",
           "EXPOSURE_CELL_C20_003",
           "EXPOSURE_CELL_C20_005",
           "EXPOSURE_CELL_C20_010",
+          "EXPOSURE_CELL_C20_011",
           "EXPOSURE_CELL_C20_012",
           "EXPOSURE_CELL_C20_013",
           "EXPOSURE_CELL_C20_004",
           "EXPOSURE_CELL_C20_006",
-          "EXPOSURE_CELL_C20_008",
-          "EXPOSURE_CELL_C20_020",
-          "EXPOSURE_CELL_C20_023"
+          "EXPOSURE_CELL_C20_007",
+          "EXPOSURE_CELL_C20_009",
+          "EXPOSURE_CELL_C20_008"
         ],
-        "fingerprint": "0dd3bae4a0e58b70f102c3dcb395d92208014926227769dbdc0ab0a3884f87e8",
+        "fingerprint": "5590f26613dff5ce9519803bb3e2b19eadac95b9ed5801699312a239c126eeca",
         "scc_indices": [
+          10,
           11,
-          12,
-          13,
-          14,
-          15,
-          16
+          12
         ]
       },
       {
         "batch_index": 2,
-        "cell_count": 5,
+        "cell_count": 7,
         "cell_ids": [
+          "EXPOSURE_CELL_C20_020",
+          "EXPOSURE_CELL_C20_023",
           "EXPOSURE_CELL_C9_000",
           "EXPOSURE_CELL_C9_001",
           "EXPOSURE_CELL_C9_002",
           "EXPOSURE_CELL_C9_003",
           "EXPOSURE_CELL_C9_004"
         ],
-        "fingerprint": "4d912cae477dac2f04d94d854552b9eb72e961f245c1c58d7b06a3bd6a8eaa34",
+        "fingerprint": "48c07ab0a68581390129e4a987f680e3d00d796e5eeed9918d2e67cd445ea29a",
         "scc_indices": [
-          17
+          13,
+          14,
+          15
         ]
       }
     ],
@@ -8002,54 +8181,51 @@
           "EXPOSURE_CELL_C20_028",
           "EXPOSURE_CELL_C20_029"
         ],
-        "scc_index": 10
+        "scc_index": 9
       },
       {
-        "cell_count": 6,
+        "cell_count": 7,
         "cell_ids": [
           "EXPOSURE_CELL_C20_002",
           "EXPOSURE_CELL_C20_003",
           "EXPOSURE_CELL_C20_005",
           "EXPOSURE_CELL_C20_010",
+          "EXPOSURE_CELL_C20_011",
           "EXPOSURE_CELL_C20_012",
           "EXPOSURE_CELL_C20_013"
+        ],
+        "scc_index": 10
+      },
+      {
+        "cell_count": 4,
+        "cell_ids": [
+          "EXPOSURE_CELL_C20_004",
+          "EXPOSURE_CELL_C20_006",
+          "EXPOSURE_CELL_C20_007",
+          "EXPOSURE_CELL_C20_009"
         ],
         "scc_index": 11
       },
       {
         "cell_count": 1,
         "cell_ids": [
-          "EXPOSURE_CELL_C20_004"
+          "EXPOSURE_CELL_C20_008"
         ],
         "scc_index": 12
       },
       {
         "cell_count": 1,
         "cell_ids": [
-          "EXPOSURE_CELL_C20_006"
+          "EXPOSURE_CELL_C20_020"
         ],
         "scc_index": 13
       },
       {
         "cell_count": 1,
         "cell_ids": [
-          "EXPOSURE_CELL_C20_008"
-        ],
-        "scc_index": 14
-      },
-      {
-        "cell_count": 1,
-        "cell_ids": [
-          "EXPOSURE_CELL_C20_020"
-        ],
-        "scc_index": 15
-      },
-      {
-        "cell_count": 1,
-        "cell_ids": [
           "EXPOSURE_CELL_C20_023"
         ],
-        "scc_index": 16
+        "scc_index": 14
       },
       {
         "cell_count": 5,
@@ -8060,365 +8236,373 @@
           "EXPOSURE_CELL_C9_003",
           "EXPOSURE_CELL_C9_004"
         ],
-        "scc_index": 17
+        "scc_index": 15
       }
     ],
     "condensed_edges": [
       {
         "source_scc": 0,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 1,
-        "target_scc": 16
-      },
-      {
-        "source_scc": 2,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 3,
-        "target_scc": 11
-      },
-      {
-        "source_scc": 4,
-        "target_scc": 12
-      },
-      {
-        "source_scc": 5,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 6,
         "target_scc": 14
       },
       {
-        "source_scc": 7,
+        "source_scc": 2,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 3,
         "target_scc": 10
+      },
+      {
+        "source_scc": 4,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 5,
+        "target_scc": 12
+      },
+      {
+        "source_scc": 6,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 7,
+        "target_scc": 9
       },
       {
         "source_scc": 8,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
-        "source_scc": 9,
-        "target_scc": 17
+        "source_scc": 16,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 17,
+        "target_scc": 9
       },
       {
         "source_scc": 18,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 19,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 20,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 21,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 22,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 23,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 24,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 25,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 26,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 27,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 28,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 29,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 30,
-        "target_scc": 17
+        "target_scc": 9
+      },
+      {
+        "source_scc": 30,
+        "target_scc": 15
       },
       {
         "source_scc": 31,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 32,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 32,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 33,
-        "target_scc": 10
+        "target_scc": 9
+      },
+      {
+        "source_scc": 33,
+        "target_scc": 15
       },
       {
         "source_scc": 34,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 35,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 35,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 36,
-        "target_scc": 10
+        "target_scc": 9
+      },
+      {
+        "source_scc": 36,
+        "target_scc": 15
       },
       {
         "source_scc": 37,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 38,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 38,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 39,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 40,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 41,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 42,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 43,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 44,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 45,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 46,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 47,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 48,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 49,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 50,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 51,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 52,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 53,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 54,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 55,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 56,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 57,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 58,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 59,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 60,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 61,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 62,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 63,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 64,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 65,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 66,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 67,
-        "target_scc": 12
+        "target_scc": 15
       },
       {
         "source_scc": 68,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 69,
-        "target_scc": 17
+        "target_scc": 11
       },
       {
         "source_scc": 70,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 71,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 72,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 73,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 74,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 75,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 76,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 77,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 78,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 79,
-        "target_scc": 12
+        "target_scc": 10
       },
       {
         "source_scc": 80,
-        "target_scc": 12
+        "target_scc": 10
       },
       {
         "source_scc": 81,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 82,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 83,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 84,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 85,
-        "target_scc": 11
+        "target_scc": 9
       },
       {
         "source_scc": 86,
-        "target_scc": 11
+        "target_scc": 9
       },
       {
         "source_scc": 87,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 88,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 89,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 90,
-        "target_scc": 12
+        "target_scc": 9
       },
       {
         "source_scc": 91,
-        "target_scc": 12
+        "target_scc": 9
       },
       {
         "source_scc": 92,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 93,
-        "target_scc": 10
+        "target_scc": 11
+      },
+      {
+        "source_scc": 94,
+        "target_scc": 11
       },
       {
         "source_scc": 94,
@@ -8426,155 +8610,151 @@
       },
       {
         "source_scc": 95,
-        "target_scc": 12
-      },
-      {
-        "source_scc": 95,
-        "target_scc": 14
+        "target_scc": 9
       },
       {
         "source_scc": 96,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 97,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 98,
-        "target_scc": 12
+        "target_scc": 9
       },
       {
         "source_scc": 99,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 100,
-        "target_scc": 12
+        "target_scc": 9
       },
       {
         "source_scc": 101,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 102,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 103,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 104,
-        "target_scc": 12
+        "target_scc": 15
       },
       {
         "source_scc": 105,
-        "target_scc": 17
+        "target_scc": 9
+      },
+      {
+        "source_scc": 105,
+        "target_scc": 14
       },
       {
         "source_scc": 106,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 106,
-        "target_scc": 16
+        "target_scc": 15
       },
       {
         "source_scc": 107,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 108,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 109,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 110,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 111,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 112,
-        "target_scc": 17
+        "target_scc": 10
       },
       {
         "source_scc": 113,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 114,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 115,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 116,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 117,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
         "source_scc": 118,
-        "target_scc": 11
+        "target_scc": 9
       },
       {
         "source_scc": 119,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 120,
-        "target_scc": 17
+        "target_scc": 10
       },
       {
         "source_scc": 121,
-        "target_scc": 11
+        "target_scc": 9
       },
       {
         "source_scc": 122,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 123,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 124,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 125,
-        "target_scc": 10
+        "target_scc": 15
       },
       {
         "source_scc": 126,
-        "target_scc": 17
-      },
-      {
-        "source_scc": 127,
-        "target_scc": 11
-      },
-      {
-        "source_scc": 128,
-        "target_scc": 11
-      },
-      {
-        "source_scc": 129,
         "target_scc": 10
       },
       {
+        "source_scc": 127,
+        "target_scc": 10
+      },
+      {
+        "source_scc": 128,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 128,
+        "target_scc": 15
+      },
+      {
         "source_scc": 129,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 130,
@@ -8582,35 +8762,51 @@
       },
       {
         "source_scc": 131,
-        "target_scc": 11
+        "target_scc": 9
       },
       {
         "source_scc": 132,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 133,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 134,
-        "target_scc": 10
+        "target_scc": 14
       },
       {
         "source_scc": 135,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 136,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 137,
-        "target_scc": 16
+        "target_scc": 10
+      },
+      {
+        "source_scc": 137,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 138,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 138,
+        "target_scc": 10
       },
       {
         "source_scc": 138,
         "target_scc": 11
+      },
+      {
+        "source_scc": 138,
+        "target_scc": 13
       },
       {
         "source_scc": 138,
@@ -8622,39 +8818,31 @@
       },
       {
         "source_scc": 139,
-        "target_scc": 11
-      },
-      {
-        "source_scc": 139,
-        "target_scc": 12
-      },
-      {
-        "source_scc": 139,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 139,
-        "target_scc": 17
+        "target_scc": 13
       },
       {
         "source_scc": 140,
-        "target_scc": 11
+        "target_scc": 10
       },
       {
-        "source_scc": 140,
-        "target_scc": 15
+        "source_scc": 141,
+        "target_scc": 9
       },
       {
         "source_scc": 141,
         "target_scc": 11
       },
       {
-        "source_scc": 142,
-        "target_scc": 10
+        "source_scc": 141,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 141,
+        "target_scc": 15
       },
       {
         "source_scc": 142,
-        "target_scc": 12
+        "target_scc": 9
       },
       {
         "source_scc": 142,
@@ -8662,171 +8850,163 @@
       },
       {
         "source_scc": 142,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 142,
-        "target_scc": 17
+        "target_scc": 14
       },
       {
         "source_scc": 143,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 143,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 143,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 144,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 144,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 145,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 145,
-        "target_scc": 16
+        "target_scc": 9
       },
       {
         "source_scc": 146,
-        "target_scc": 10
+        "target_scc": 9
+      },
+      {
+        "source_scc": 146,
+        "target_scc": 14
       },
       {
         "source_scc": 147,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 147,
-        "target_scc": 16
+        "target_scc": 9
       },
       {
         "source_scc": 148,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
-        "source_scc": 149,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 149,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 149,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 150,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 150,
-        "target_scc": 12
-      },
-      {
-        "source_scc": 150,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 150,
-        "target_scc": 17
-      },
-      {
-        "source_scc": 151,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 151,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 151,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 152,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 152,
-        "target_scc": 12
-      },
-      {
-        "source_scc": 152,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 152,
-        "target_scc": 17
-      },
-      {
-        "source_scc": 153,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 153,
-        "target_scc": 12
-      },
-      {
-        "source_scc": 153,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 153,
-        "target_scc": 14
-      },
-      {
-        "source_scc": 153,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 153,
-        "target_scc": 17
-      },
-      {
-        "source_scc": 154,
+        "source_scc": 148,
         "target_scc": 11
       },
       {
-        "source_scc": 154,
+        "source_scc": 148,
         "target_scc": 13
       },
       {
-        "source_scc": 154,
-        "target_scc": 14
+        "source_scc": 149,
+        "target_scc": 9
       },
       {
-        "source_scc": 154,
+        "source_scc": 149,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 149,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 149,
+        "target_scc": 15
+      },
+      {
+        "source_scc": 150,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 150,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 150,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 151,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 151,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 151,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 151,
+        "target_scc": 15
+      },
+      {
+        "source_scc": 152,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 152,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 152,
+        "target_scc": 12
+      },
+      {
+        "source_scc": 152,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 152,
+        "target_scc": 15
+      },
+      {
+        "source_scc": 153,
+        "target_scc": 10
+      },
+      {
+        "source_scc": 153,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 153,
+        "target_scc": 12
+      },
+      {
+        "source_scc": 153,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 153,
         "target_scc": 15
       },
       {
         "source_scc": 154,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 155,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
-        "source_scc": 156,
-        "target_scc": 10
+        "source_scc": 155,
+        "target_scc": 13
       },
       {
-        "source_scc": 156,
+        "source_scc": 155,
         "target_scc": 15
       },
       {
         "source_scc": 156,
-        "target_scc": 17
+        "target_scc": 9
+      },
+      {
+        "source_scc": 156,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 157,
+        "target_scc": 9
       },
       {
         "source_scc": 157,
@@ -8834,47 +9014,59 @@
       },
       {
         "source_scc": 157,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 158,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 158,
         "target_scc": 11
       },
       {
-        "source_scc": 158,
-        "target_scc": 12
+        "source_scc": 157,
+        "target_scc": 13
       },
       {
-        "source_scc": 158,
+        "source_scc": 157,
         "target_scc": 15
       },
       {
         "source_scc": 158,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 159,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 160,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 161,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 162,
-        "target_scc": 10
+        "target_scc": 9
+      },
+      {
+        "source_scc": 162,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 162,
+        "target_scc": 12
+      },
+      {
+        "source_scc": 162,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 162,
+        "target_scc": 15
       },
       {
         "source_scc": 163,
-        "target_scc": 10
+        "target_scc": 9
+      },
+      {
+        "source_scc": 163,
+        "target_scc": 11
       },
       {
         "source_scc": 163,
@@ -8882,19 +9074,15 @@
       },
       {
         "source_scc": 163,
-        "target_scc": 14
-      },
-      {
-        "source_scc": 163,
         "target_scc": 15
       },
       {
-        "source_scc": 163,
-        "target_scc": 17
+        "source_scc": 164,
+        "target_scc": 9
       },
       {
         "source_scc": 164,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 164,
@@ -8905,12 +9093,12 @@
         "target_scc": 15
       },
       {
-        "source_scc": 164,
-        "target_scc": 17
+        "source_scc": 165,
+        "target_scc": 10
       },
       {
         "source_scc": 165,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 165,
@@ -8921,8 +9109,8 @@
         "target_scc": 15
       },
       {
-        "source_scc": 165,
-        "target_scc": 17
+        "source_scc": 166,
+        "target_scc": 10
       },
       {
         "source_scc": 166,
@@ -8930,47 +9118,43 @@
       },
       {
         "source_scc": 166,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 166,
         "target_scc": 15
       },
       {
-        "source_scc": 166,
-        "target_scc": 17
-      },
-      {
         "source_scc": 167,
-        "target_scc": 11
-      },
-      {
-        "source_scc": 167,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 167,
-        "target_scc": 17
+        "target_scc": 10
       },
       {
         "source_scc": 168,
-        "target_scc": 11
+        "target_scc": 9
       },
       {
-        "source_scc": 169,
+        "source_scc": 168,
         "target_scc": 10
       },
       {
+        "source_scc": 168,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 168,
+        "target_scc": 15
+      },
+      {
         "source_scc": 169,
-        "target_scc": 11
+        "target_scc": 9
+      },
+      {
+        "source_scc": 169,
+        "target_scc": 13
       },
       {
         "source_scc": 169,
         "target_scc": 15
       },
       {
-        "source_scc": 169,
-        "target_scc": 17
+        "source_scc": 170,
+        "target_scc": 9
       },
       {
         "source_scc": 170,
@@ -8978,11 +9162,15 @@
       },
       {
         "source_scc": 170,
-        "target_scc": 15
+        "target_scc": 13
       },
       {
         "source_scc": 170,
-        "target_scc": 17
+        "target_scc": 15
+      },
+      {
+        "source_scc": 171,
+        "target_scc": 9
       },
       {
         "source_scc": 171,
@@ -8990,15 +9178,15 @@
       },
       {
         "source_scc": 171,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 171,
         "target_scc": 15
       },
       {
-        "source_scc": 171,
-        "target_scc": 17
+        "source_scc": 172,
+        "target_scc": 9
       },
       {
         "source_scc": 172,
@@ -9006,15 +9194,15 @@
       },
       {
         "source_scc": 172,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 172,
         "target_scc": 15
       },
       {
-        "source_scc": 172,
-        "target_scc": 17
+        "source_scc": 173,
+        "target_scc": 9
       },
       {
         "source_scc": 173,
@@ -9022,15 +9210,15 @@
       },
       {
         "source_scc": 173,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 173,
         "target_scc": 15
       },
       {
-        "source_scc": 173,
-        "target_scc": 17
+        "source_scc": 174,
+        "target_scc": 9
       },
       {
         "source_scc": 174,
@@ -9038,15 +9226,15 @@
       },
       {
         "source_scc": 174,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 174,
         "target_scc": 15
       },
       {
-        "source_scc": 174,
-        "target_scc": 17
+        "source_scc": 175,
+        "target_scc": 9
       },
       {
         "source_scc": 175,
@@ -9054,15 +9242,15 @@
       },
       {
         "source_scc": 175,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 175,
         "target_scc": 15
       },
       {
-        "source_scc": 175,
-        "target_scc": 17
+        "source_scc": 176,
+        "target_scc": 9
       },
       {
         "source_scc": 176,
@@ -9070,15 +9258,15 @@
       },
       {
         "source_scc": 176,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 176,
         "target_scc": 15
       },
       {
-        "source_scc": 176,
-        "target_scc": 17
+        "source_scc": 177,
+        "target_scc": 9
       },
       {
         "source_scc": 177,
@@ -9086,15 +9274,15 @@
       },
       {
         "source_scc": 177,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 177,
         "target_scc": 15
       },
       {
-        "source_scc": 177,
-        "target_scc": 17
+        "source_scc": 178,
+        "target_scc": 9
       },
       {
         "source_scc": 178,
@@ -9102,15 +9290,15 @@
       },
       {
         "source_scc": 178,
-        "target_scc": 11
+        "target_scc": 13
       },
       {
         "source_scc": 178,
         "target_scc": 15
       },
       {
-        "source_scc": 178,
-        "target_scc": 17
+        "source_scc": 179,
+        "target_scc": 9
       },
       {
         "source_scc": 179,
@@ -9122,15 +9310,15 @@
       },
       {
         "source_scc": 179,
-        "target_scc": 15
+        "target_scc": 13
       },
       {
         "source_scc": 179,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 180,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 180,
@@ -9138,15 +9326,15 @@
       },
       {
         "source_scc": 180,
-        "target_scc": 12
+        "target_scc": 13
       },
       {
         "source_scc": 180,
         "target_scc": 15
       },
       {
-        "source_scc": 180,
-        "target_scc": 17
+        "source_scc": 181,
+        "target_scc": 9
       },
       {
         "source_scc": 181,
@@ -9154,15 +9342,19 @@
       },
       {
         "source_scc": 181,
-        "target_scc": 12
+        "target_scc": 11
+      },
+      {
+        "source_scc": 181,
+        "target_scc": 13
       },
       {
         "source_scc": 181,
         "target_scc": 15
       },
       {
-        "source_scc": 181,
-        "target_scc": 17
+        "source_scc": 182,
+        "target_scc": 9
       },
       {
         "source_scc": 182,
@@ -9174,19 +9366,15 @@
       },
       {
         "source_scc": 182,
-        "target_scc": 12
+        "target_scc": 13
       },
       {
         "source_scc": 182,
         "target_scc": 15
       },
       {
-        "source_scc": 182,
-        "target_scc": 17
-      },
-      {
         "source_scc": 183,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 183,
@@ -9194,39 +9382,35 @@
       },
       {
         "source_scc": 183,
-        "target_scc": 12
+        "target_scc": 13
       },
       {
         "source_scc": 183,
         "target_scc": 15
       },
       {
-        "source_scc": 183,
-        "target_scc": 17
+        "source_scc": 184,
+        "target_scc": 9
       },
       {
         "source_scc": 184,
-        "target_scc": 10
+        "target_scc": 11
       },
       {
         "source_scc": 184,
-        "target_scc": 12
+        "target_scc": 13
       },
       {
         "source_scc": 184,
         "target_scc": 15
-      },
-      {
-        "source_scc": 184,
-        "target_scc": 17
       },
       {
         "source_scc": 185,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 185,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 185,
@@ -9237,8 +9421,8 @@
         "target_scc": 15
       },
       {
-        "source_scc": 185,
-        "target_scc": 17
+        "source_scc": 186,
+        "target_scc": 9
       },
       {
         "source_scc": 186,
@@ -9246,7 +9430,7 @@
       },
       {
         "source_scc": 186,
-        "target_scc": 12
+        "target_scc": 11
       },
       {
         "source_scc": 186,
@@ -9255,14 +9439,10 @@
       {
         "source_scc": 186,
         "target_scc": 15
-      },
-      {
-        "source_scc": 186,
-        "target_scc": 17
       },
       {
         "source_scc": 187,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 187,
@@ -9277,8 +9457,8 @@
         "target_scc": 15
       },
       {
-        "source_scc": 187,
-        "target_scc": 17
+        "source_scc": 188,
+        "target_scc": 9
       },
       {
         "source_scc": 188,
@@ -9293,8 +9473,8 @@
         "target_scc": 15
       },
       {
-        "source_scc": 188,
-        "target_scc": 17
+        "source_scc": 189,
+        "target_scc": 9
       },
       {
         "source_scc": 189,
@@ -9306,51 +9486,59 @@
       },
       {
         "source_scc": 189,
-        "target_scc": 15
+        "target_scc": 12
       },
       {
         "source_scc": 189,
-        "target_scc": 17
+        "target_scc": 13
       },
       {
-        "source_scc": 190,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 190,
-        "target_scc": 11
-      },
-      {
-        "source_scc": 190,
-        "target_scc": 14
-      },
-      {
-        "source_scc": 190,
+        "source_scc": 189,
         "target_scc": 15
       },
       {
         "source_scc": 190,
-        "target_scc": 17
+        "target_scc": 9
       },
       {
         "source_scc": 191,
         "target_scc": 10
       },
       {
+        "source_scc": 191,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 191,
+        "target_scc": 12
+      },
+      {
+        "source_scc": 191,
+        "target_scc": 15
+      },
+      {
+        "source_scc": 192,
+        "target_scc": 9
+      },
+      {
         "source_scc": 192,
         "target_scc": 11
       },
       {
         "source_scc": 192,
-        "target_scc": 14
+        "target_scc": 13
       },
       {
         "source_scc": 192,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 193,
-        "target_scc": 10
+        "target_scc": 9
+      },
+      {
+        "source_scc": 193,
+        "target_scc": 11
       },
       {
         "source_scc": 193,
@@ -9361,12 +9549,20 @@
         "target_scc": 15
       },
       {
-        "source_scc": 193,
-        "target_scc": 17
+        "source_scc": 194,
+        "target_scc": 9
       },
       {
         "source_scc": 194,
         "target_scc": 10
+      },
+      {
+        "source_scc": 194,
+        "target_scc": 11
+      },
+      {
+        "source_scc": 194,
+        "target_scc": 12
       },
       {
         "source_scc": 194,
@@ -9375,10 +9571,6 @@
       {
         "source_scc": 194,
         "target_scc": 15
-      },
-      {
-        "source_scc": 194,
-        "target_scc": 17
       },
       {
         "source_scc": 195,
@@ -9390,19 +9582,11 @@
       },
       {
         "source_scc": 195,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 195,
-        "target_scc": 14
-      },
-      {
-        "source_scc": 195,
         "target_scc": 15
       },
       {
-        "source_scc": 195,
-        "target_scc": 17
+        "source_scc": 196,
+        "target_scc": 10
       },
       {
         "source_scc": 196,
@@ -9414,7 +9598,11 @@
       },
       {
         "source_scc": 196,
-        "target_scc": 17
+        "target_scc": 15
+      },
+      {
+        "source_scc": 197,
+        "target_scc": 10
       },
       {
         "source_scc": 197,
@@ -9422,19 +9610,15 @@
       },
       {
         "source_scc": 197,
-        "target_scc": 12
+        "target_scc": 13
       },
       {
         "source_scc": 197,
-        "target_scc": 14
-      },
-      {
-        "source_scc": 197,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 198,
-        "target_scc": 11
+        "target_scc": 9
       },
       {
         "source_scc": 198,
@@ -9443,10 +9627,6 @@
       {
         "source_scc": 198,
         "target_scc": 15
-      },
-      {
-        "source_scc": 198,
-        "target_scc": 17
       },
       {
         "source_scc": 199,
@@ -9454,11 +9634,19 @@
       },
       {
         "source_scc": 199,
-        "target_scc": 15
+        "target_scc": 11
       },
       {
         "source_scc": 199,
-        "target_scc": 17
+        "target_scc": 15
+      },
+      {
+        "source_scc": 200,
+        "target_scc": 9
+      },
+      {
+        "source_scc": 200,
+        "target_scc": 10
       },
       {
         "source_scc": 200,
@@ -9470,7 +9658,7 @@
       },
       {
         "source_scc": 200,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 201,
@@ -9489,36 +9677,24 @@
         "target_scc": 15
       },
       {
-        "source_scc": 201,
-        "target_scc": 17
-      },
-      {
         "source_scc": 202,
         "target_scc": 11
-      },
-      {
-        "source_scc": 202,
-        "target_scc": 13
-      },
-      {
-        "source_scc": 202,
-        "target_scc": 15
-      },
-      {
-        "source_scc": 202,
-        "target_scc": 17
       },
       {
         "source_scc": 203,
-        "target_scc": 12
+        "target_scc": 9
+      },
+      {
+        "source_scc": 203,
+        "target_scc": 14
       },
       {
         "source_scc": 204,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 204,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 205,
@@ -9526,175 +9702,175 @@
       },
       {
         "source_scc": 205,
-        "target_scc": 16
-      },
-      {
-        "source_scc": 206,
         "target_scc": 11
       },
       {
+        "source_scc": 205,
+        "target_scc": 12
+      },
+      {
+        "source_scc": 205,
+        "target_scc": 15
+      },
+      {
         "source_scc": 206,
-        "target_scc": 13
+        "target_scc": 9
       },
       {
         "source_scc": 206,
         "target_scc": 14
       },
       {
-        "source_scc": 206,
-        "target_scc": 17
+        "source_scc": 207,
+        "target_scc": 9
       },
       {
         "source_scc": 207,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 207,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 208,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 208,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 209,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 209,
-        "target_scc": 16
+        "target_scc": 13
       },
       {
-        "source_scc": 210,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 210,
+        "source_scc": 209,
         "target_scc": 15
       },
       {
         "source_scc": 210,
-        "target_scc": 17
+        "target_scc": 9
+      },
+      {
+        "source_scc": 210,
+        "target_scc": 14
       },
       {
         "source_scc": 211,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 211,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 212,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 212,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 213,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 213,
-        "target_scc": 16
+        "target_scc": 15
       },
       {
         "source_scc": 214,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 214,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 215,
-        "target_scc": 10
-      },
-      {
-        "source_scc": 215,
-        "target_scc": 17
+        "target_scc": 11
       },
       {
         "source_scc": 216,
-        "target_scc": 16
+        "target_scc": 14
+      },
+      {
+        "source_scc": 217,
+        "target_scc": 10
       },
       {
         "source_scc": 217,
         "target_scc": 11
-      },
-      {
-        "source_scc": 217,
-        "target_scc": 12
       },
       {
         "source_scc": 218,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 219,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 219,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 220,
-        "target_scc": 11
-      },
-      {
-        "source_scc": 220,
-        "target_scc": 17
-      },
-      {
-        "source_scc": 221,
         "target_scc": 10
       },
       {
-        "source_scc": 221,
+        "source_scc": 220,
         "target_scc": 15
       },
       {
         "source_scc": 221,
-        "target_scc": 17
+        "target_scc": 9
+      },
+      {
+        "source_scc": 221,
+        "target_scc": 13
+      },
+      {
+        "source_scc": 221,
+        "target_scc": 15
       },
       {
         "source_scc": 222,
-        "target_scc": 16
+        "target_scc": 14
       },
       {
         "source_scc": 223,
-        "target_scc": 10
+        "target_scc": 9
       },
       {
         "source_scc": 223,
-        "target_scc": 12
+        "target_scc": 11
+      },
+      {
+        "source_scc": 223,
+        "target_scc": 13
       },
       {
         "source_scc": 223,
         "target_scc": 15
       },
       {
-        "source_scc": 223,
-        "target_scc": 17
-      },
-      {
-        "source_scc": 225,
+        "source_scc": 224,
         "target_scc": 11
       },
       {
+        "source_scc": 225,
+        "target_scc": 10
+      },
+      {
         "source_scc": 226,
-        "target_scc": 17
+        "target_scc": 15
       },
       {
         "source_scc": 227,
-        "target_scc": 17
+        "target_scc": 15
       }
     ],
     "edges": [
@@ -9780,6 +9956,12 @@
         "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
         "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_003",
         "source_identifier": "AGGREGATE_BOUNDARY_C20_003",
+        "target": "EXPOSURE_CELL_C20_011"
+      },
+      {
+        "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
+        "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_003",
+        "source_identifier": "AGGREGATE_BOUNDARY_C20_003",
         "target": "EXPOSURE_CELL_C20_012"
       },
       {
@@ -9796,26 +9978,38 @@
       },
       {
         "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
+        "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_004",
+        "source_identifier": "AGGREGATE_BOUNDARY_C20_004",
+        "target": "EXPOSURE_CELL_C20_006"
+      },
+      {
+        "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
+        "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_004",
+        "source_identifier": "AGGREGATE_BOUNDARY_C20_004",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
+        "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_004",
+        "source_identifier": "AGGREGATE_BOUNDARY_C20_004",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
         "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_005",
         "source_identifier": "AGGREGATE_BOUNDARY_C20_005",
-        "target": "EXPOSURE_CELL_C20_006"
+        "target": "EXPOSURE_CELL_C20_008"
       },
       {
         "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
         "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_006",
         "source_identifier": "AGGREGATE_BOUNDARY_C20_006",
-        "target": "EXPOSURE_CELL_C20_008"
+        "target": "EXPOSURE_CELL_C20_000"
       },
       {
         "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
         "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_007",
         "source_identifier": "AGGREGATE_BOUNDARY_C20_007",
-        "target": "EXPOSURE_CELL_C20_000"
-      },
-      {
-        "dependency_kind": "IMMUTABLE_BOUNDARY_INCIDENCE",
-        "source": "BOUNDARY::AGGREGATE_BOUNDARY_C20_008",
-        "source_identifier": "AGGREGATE_BOUNDARY_C20_008",
         "target": "EXPOSURE_CELL_C20_000"
       },
       {
@@ -9892,6 +10086,12 @@
       },
       {
         "dependency_kind": "SHARED_BOUNDARY_EDGE",
+        "source": "EXPOSURE_CELL_C20_004",
+        "source_identifier": "e03f58a7df19b908bc3d2e07a89eb9e3fa96264d89dc16c6df29cab21e8be456",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_EDGE",
         "source": "EXPOSURE_CELL_C20_005",
         "source_identifier": "099ef77420a2f5505fa9a166bb661b936861b8e3837d6b970e7bbbb06c8b51fc",
         "target": "EXPOSURE_CELL_C20_002"
@@ -9901,6 +10101,36 @@
         "source": "EXPOSURE_CELL_C20_005",
         "source_identifier": "203f18236ae3fdb5c9c24c90d8f39710b5b6149b2fd61bebe2adc6af0fe36a2f",
         "target": "EXPOSURE_CELL_C20_003"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_VERTEX",
+        "source": "EXPOSURE_CELL_C20_006",
+        "source_identifier": "b6b98c0114f06b15cbd79b6e616a1d2b7e8c2cb520abf0a5e5b56241945fa53c",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_EDGE",
+        "source": "EXPOSURE_CELL_C20_007",
+        "source_identifier": "e03f58a7df19b908bc3d2e07a89eb9e3fa96264d89dc16c6df29cab21e8be456",
+        "target": "EXPOSURE_CELL_C20_004"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_EDGE",
+        "source": "EXPOSURE_CELL_C20_007",
+        "source_identifier": "82579774a6e1e5dc065d5de002248bd14a2091b359ff9a3b984ce8cc53b490e7",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_EDGE",
+        "source": "EXPOSURE_CELL_C20_009",
+        "source_identifier": "82579774a6e1e5dc065d5de002248bd14a2091b359ff9a3b984ce8cc53b490e7",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_VERTEX",
+        "source": "EXPOSURE_CELL_C20_009",
+        "source_identifier": "b6b98c0114f06b15cbd79b6e616a1d2b7e8c2cb520abf0a5e5b56241945fa53c",
+        "target": "EXPOSURE_CELL_C20_006"
       },
       {
         "dependency_kind": "SHARED_BOUNDARY_VERTEX",
@@ -9916,9 +10146,21 @@
       },
       {
         "dependency_kind": "SHARED_BOUNDARY_VERTEX",
+        "source": "EXPOSURE_CELL_C20_011",
+        "source_identifier": "6152d4135247a43ce5e6450a6c6512b5a209df9021171cde149686a362bb9968",
+        "target": "EXPOSURE_CELL_C20_012"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_VERTEX",
         "source": "EXPOSURE_CELL_C20_012",
         "source_identifier": "6eb64e41dc1e0e5de28d0ba0f740d00b0124d16da92a535b40651bf64d33b678",
         "target": "EXPOSURE_CELL_C20_010"
+      },
+      {
+        "dependency_kind": "SHARED_BOUNDARY_VERTEX",
+        "source": "EXPOSURE_CELL_C20_012",
+        "source_identifier": "6152d4135247a43ce5e6450a6c6512b5a209df9021171cde149686a362bb9968",
+        "target": "EXPOSURE_CELL_C20_011"
       },
       {
         "dependency_kind": "SHARED_BOUNDARY_EDGE",
@@ -10540,12 +10782,30 @@
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03077",
+        "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03077",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03077",
+        "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03077",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03113",
         "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03113",
         "target": "EXPOSURE_CELL_C20_004"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03113",
+        "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03113",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
         "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
         "target": "EXPOSURE_CELL_C20_004"
@@ -10554,7 +10814,19 @@
         "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
         "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
+        "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
         "target": "EXPOSURE_CELL_C20_008"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
+        "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
+        "target": "EXPOSURE_CELL_C20_009"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
@@ -10921,6 +11193,12 @@
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_001",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_001",
         "target": "EXPOSURE_CELL_C20_010"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_001",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_001",
+        "target": "EXPOSURE_CELL_C20_011"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
@@ -11352,6 +11630,12 @@
         "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_015",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_015",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_015",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_015",
         "target": "EXPOSURE_CELL_C20_008"
       },
       {
@@ -11413,6 +11697,12 @@
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_016",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_016",
         "target": "EXPOSURE_CELL_C20_008"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_016",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_016",
+        "target": "EXPOSURE_CELL_C20_009"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
@@ -12828,6 +13118,12 @@
         "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_054",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_054",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_054",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_054",
         "target": "EXPOSURE_CELL_C20_010"
       },
       {
@@ -12888,7 +13184,19 @@
         "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_056",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_056",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_056",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_056",
         "target": "EXPOSURE_CELL_C20_008"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_056",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_056",
+        "target": "EXPOSURE_CELL_C20_009"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
@@ -13003,6 +13311,12 @@
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_059",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_059",
         "target": "EXPOSURE_CELL_C20_008"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_059",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_059",
+        "target": "EXPOSURE_CELL_C20_009"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
@@ -13080,6 +13394,12 @@
         "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_060",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_060",
+        "target": "EXPOSURE_CELL_C20_011"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_060",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_060",
         "target": "EXPOSURE_CELL_C20_012"
       },
       {
@@ -13098,7 +13418,19 @@
         "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_061",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_061",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_061",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_061",
         "target": "EXPOSURE_CELL_C20_008"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_061",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_061",
+        "target": "EXPOSURE_CELL_C20_009"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
@@ -13270,6 +13602,18 @@
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_067",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_067",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_067",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_067",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_068",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_068",
         "target": "EXPOSURE_CELL_C20_000"
@@ -13582,6 +13926,18 @@
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_083",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_083",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_083",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_083",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_086",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_086",
         "target": "EXPOSURE_CELL_C20_023"
@@ -13669,6 +14025,12 @@
         "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_098",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_098",
         "target": "EXPOSURE_CELL_C20_010"
+      },
+      {
+        "dependency_kind": "KEEPOUT_INCIDENCE",
+        "source": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_098",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_098",
+        "target": "EXPOSURE_CELL_C20_011"
       },
       {
         "dependency_kind": "KEEPOUT_INCIDENCE",
@@ -13768,6 +14130,24 @@
       },
       {
         "dependency_kind": "TERMINAL_INCIDENCE",
+        "source": "TERMINAL::C20_CHAIN_17929_5618",
+        "source_identifier": "C20_CHAIN_17929_5618",
+        "target": "EXPOSURE_CELL_C20_007"
+      },
+      {
+        "dependency_kind": "TERMINAL_INCIDENCE",
+        "source": "TERMINAL::C20_CHAIN_17929_5618",
+        "source_identifier": "C20_CHAIN_17929_5618",
+        "target": "EXPOSURE_CELL_C20_009"
+      },
+      {
+        "dependency_kind": "TERMINAL_INCIDENCE",
+        "source": "TERMINAL::C20_CHAIN_3151_8123",
+        "source_identifier": "C20_CHAIN_3151_8123",
+        "target": "EXPOSURE_CELL_C20_011"
+      },
+      {
+        "dependency_kind": "TERMINAL_INCIDENCE",
         "source": "TERMINAL::C20_CHAIN_3151_8123",
         "source_identifier": "C20_CHAIN_3151_8123",
         "target": "EXPOSURE_CELL_C20_012"
@@ -13785,7 +14165,7 @@
         "target": "EXPOSURE_CELL_C9_001"
       }
     ],
-    "fingerprint": "4ee5ce5193d3bb048d38bf4c197bf88bac4ec4d8af3fd2ed917d1e28e6bbf9f7",
+    "fingerprint": "61220fe966c6e46cd13c82178ad816d9015fa4ef44e41c93f9bb593035296248",
     "maximum_batch_cell_count": 12,
     "nodes": [
       {
@@ -13827,11 +14207,6 @@
         "kind": "IMMUTABLE_COMPLEMENT_BOUNDARY",
         "node_id": "BOUNDARY::AGGREGATE_BOUNDARY_C20_007",
         "source_identifier": "AGGREGATE_BOUNDARY_C20_007"
-      },
-      {
-        "kind": "IMMUTABLE_COMPLEMENT_BOUNDARY",
-        "node_id": "BOUNDARY::AGGREGATE_BOUNDARY_C20_008",
-        "source_identifier": "AGGREGATE_BOUNDARY_C20_008"
       },
       {
         "kind": "IMMUTABLE_COMPLEMENT_BOUNDARY",
@@ -13877,14 +14252,32 @@
       {
         "component": "C20",
         "kind": "EXPOSURE_CELL",
+        "node_id": "EXPOSURE_CELL_C20_007",
+        "source_face_count": 2
+      },
+      {
+        "component": "C20",
+        "kind": "EXPOSURE_CELL",
         "node_id": "EXPOSURE_CELL_C20_008",
         "source_face_count": 1
       },
       {
         "component": "C20",
         "kind": "EXPOSURE_CELL",
+        "node_id": "EXPOSURE_CELL_C20_009",
+        "source_face_count": 3
+      },
+      {
+        "component": "C20",
+        "kind": "EXPOSURE_CELL",
         "node_id": "EXPOSURE_CELL_C20_010",
         "source_face_count": 19
+      },
+      {
+        "component": "C20",
+        "kind": "EXPOSURE_CELL",
+        "node_id": "EXPOSURE_CELL_C20_011",
+        "source_face_count": 1
       },
       {
         "component": "C20",
@@ -14355,6 +14748,11 @@
         "kind": "SOURCE_OPEN_ROUTE",
         "node_id": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_01804",
         "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_01804"
+      },
+      {
+        "kind": "SOURCE_OPEN_ROUTE",
+        "node_id": "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03077",
+        "source_identifier": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03077"
       },
       {
         "kind": "SOURCE_OPEN_ROUTE",
@@ -14968,6 +15366,11 @@
       },
       {
         "kind": "CENTRAL_OPENING",
+        "node_id": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_083",
+        "source_identifier": "CENTRAL_OPENING_FAN_CELL_083"
+      },
+      {
+        "kind": "CENTRAL_OPENING",
         "node_id": "KEEPOUT::CENTRAL_OPENING_FAN_CELL_086",
         "source_identifier": "CENTRAL_OPENING_FAN_CELL_086"
       },
@@ -15078,15 +15481,9 @@
       },
       {
         "node_ids": [
-          "BOUNDARY::AGGREGATE_BOUNDARY_C20_008"
-        ],
-        "scc_index": 8
-      },
-      {
-        "node_ids": [
           "BOUNDARY::AGGREGATE_BOUNDARY_C9_000"
         ],
-        "scc_index": 9
+        "scc_index": 8
       },
       {
         "node_ids": [
@@ -15098,7 +15495,7 @@
           "EXPOSURE_CELL_C20_028",
           "EXPOSURE_CELL_C20_029"
         ],
-        "scc_index": 10
+        "scc_index": 9
       },
       {
         "node_ids": [
@@ -15106,40 +15503,38 @@
           "EXPOSURE_CELL_C20_003",
           "EXPOSURE_CELL_C20_005",
           "EXPOSURE_CELL_C20_010",
+          "EXPOSURE_CELL_C20_011",
           "EXPOSURE_CELL_C20_012",
           "EXPOSURE_CELL_C20_013"
+        ],
+        "scc_index": 10
+      },
+      {
+        "node_ids": [
+          "EXPOSURE_CELL_C20_004",
+          "EXPOSURE_CELL_C20_006",
+          "EXPOSURE_CELL_C20_007",
+          "EXPOSURE_CELL_C20_009"
         ],
         "scc_index": 11
       },
       {
         "node_ids": [
-          "EXPOSURE_CELL_C20_004"
+          "EXPOSURE_CELL_C20_008"
         ],
         "scc_index": 12
       },
       {
         "node_ids": [
-          "EXPOSURE_CELL_C20_006"
+          "EXPOSURE_CELL_C20_020"
         ],
         "scc_index": 13
       },
       {
         "node_ids": [
-          "EXPOSURE_CELL_C20_008"
-        ],
-        "scc_index": 14
-      },
-      {
-        "node_ids": [
-          "EXPOSURE_CELL_C20_020"
-        ],
-        "scc_index": 15
-      },
-      {
-        "node_ids": [
           "EXPOSURE_CELL_C20_023"
         ],
-        "scc_index": 16
+        "scc_index": 14
       },
       {
         "node_ids": [
@@ -15149,1193 +15544,1205 @@
           "EXPOSURE_CELL_C9_003",
           "EXPOSURE_CELL_C9_004"
         ],
-        "scc_index": 17
+        "scc_index": 15
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_00967"
         ],
-        "scc_index": 18
+        "scc_index": 16
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_00968"
         ],
-        "scc_index": 19
+        "scc_index": 17
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_00969"
         ],
-        "scc_index": 20
+        "scc_index": 18
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_00970"
         ],
-        "scc_index": 21
+        "scc_index": 19
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_00980"
         ],
-        "scc_index": 22
+        "scc_index": 20
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_00981"
         ],
-        "scc_index": 23
+        "scc_index": 21
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05338"
         ],
-        "scc_index": 24
+        "scc_index": 22
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05352"
         ],
-        "scc_index": 25
+        "scc_index": 23
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05366"
         ],
-        "scc_index": 26
+        "scc_index": 24
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05379"
         ],
-        "scc_index": 27
+        "scc_index": 25
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05391"
         ],
-        "scc_index": 28
+        "scc_index": 26
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05392"
         ],
-        "scc_index": 29
+        "scc_index": 27
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05402"
         ],
-        "scc_index": 30
+        "scc_index": 28
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05403"
         ],
-        "scc_index": 31
+        "scc_index": 29
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05412"
         ],
-        "scc_index": 32
+        "scc_index": 30
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05413"
         ],
-        "scc_index": 33
+        "scc_index": 31
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05414"
         ],
-        "scc_index": 34
+        "scc_index": 32
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05421"
         ],
-        "scc_index": 35
+        "scc_index": 33
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05422"
         ],
-        "scc_index": 36
+        "scc_index": 34
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05423"
         ],
-        "scc_index": 37
+        "scc_index": 35
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05429"
         ],
-        "scc_index": 38
+        "scc_index": 36
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05430"
         ],
-        "scc_index": 39
+        "scc_index": 37
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05431"
         ],
-        "scc_index": 40
+        "scc_index": 38
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05674"
         ],
-        "scc_index": 41
+        "scc_index": 39
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05682"
         ],
-        "scc_index": 42
+        "scc_index": 40
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05689"
         ],
-        "scc_index": 43
+        "scc_index": 41
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05695"
         ],
-        "scc_index": 44
+        "scc_index": 42
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05700"
         ],
-        "scc_index": 45
+        "scc_index": 43
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05704"
         ],
-        "scc_index": 46
+        "scc_index": 44
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05707"
         ],
-        "scc_index": 47
+        "scc_index": 45
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_05816"
         ],
-        "scc_index": 48
+        "scc_index": 46
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_08333"
         ],
-        "scc_index": 49
+        "scc_index": 47
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_08334"
         ],
-        "scc_index": 50
+        "scc_index": 48
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_08335"
         ],
-        "scc_index": 51
+        "scc_index": 49
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_10939"
         ],
-        "scc_index": 52
+        "scc_index": 50
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_10953"
         ],
-        "scc_index": 53
+        "scc_index": 51
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_10966"
         ],
-        "scc_index": 54
+        "scc_index": 52
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_10978"
         ],
-        "scc_index": 55
+        "scc_index": 53
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_10989"
         ],
-        "scc_index": 56
+        "scc_index": 54
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11330"
         ],
-        "scc_index": 57
+        "scc_index": 55
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11331"
         ],
-        "scc_index": 58
+        "scc_index": 56
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11332"
         ],
-        "scc_index": 59
+        "scc_index": 57
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11333"
         ],
-        "scc_index": 60
+        "scc_index": 58
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11334"
         ],
-        "scc_index": 61
+        "scc_index": 59
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11335"
         ],
-        "scc_index": 62
+        "scc_index": 60
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11336"
         ],
-        "scc_index": 63
+        "scc_index": 61
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_11337"
         ],
-        "scc_index": 64
+        "scc_index": 62
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13573"
         ],
-        "scc_index": 65
+        "scc_index": 63
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13574"
         ],
-        "scc_index": 66
+        "scc_index": 64
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13583"
         ],
-        "scc_index": 67
+        "scc_index": 65
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13584"
         ],
-        "scc_index": 68
+        "scc_index": 66
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13757"
         ],
-        "scc_index": 69
+        "scc_index": 67
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13759"
         ],
-        "scc_index": 70
+        "scc_index": 68
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13768"
         ],
-        "scc_index": 71
+        "scc_index": 69
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13777"
         ],
-        "scc_index": 72
+        "scc_index": 70
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13823"
         ],
-        "scc_index": 73
+        "scc_index": 71
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13824"
         ],
-        "scc_index": 74
+        "scc_index": 72
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13825"
         ],
-        "scc_index": 75
+        "scc_index": 73
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13826"
         ],
-        "scc_index": 76
+        "scc_index": 74
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13827"
         ],
-        "scc_index": 77
+        "scc_index": 75
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13828"
         ],
-        "scc_index": 78
+        "scc_index": 76
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13829"
         ],
-        "scc_index": 79
+        "scc_index": 77
       },
       {
         "node_ids": [
           "FLOOR::GAP_FLOOR_13830"
         ],
-        "scc_index": 80
+        "scc_index": 78
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_03_CELL_000"
         ],
-        "scc_index": 81
+        "scc_index": 79
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_03_CELL_001"
         ],
-        "scc_index": 82
+        "scc_index": 80
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_03_CELL_002"
         ],
-        "scc_index": 83
+        "scc_index": 81
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_03_CELL_003"
         ],
-        "scc_index": 84
+        "scc_index": 82
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_03_CELL_004"
         ],
-        "scc_index": 85
+        "scc_index": 83
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_03_CELL_005"
         ],
-        "scc_index": 86
+        "scc_index": 84
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_04_CELL_000"
         ],
-        "scc_index": 87
+        "scc_index": 85
       },
       {
         "node_ids": [
           "KEEPOUT::C20_APERTURE_LOOP_04_CELL_001"
         ],
-        "scc_index": 88
+        "scc_index": 86
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_00605"
         ],
-        "scc_index": 89
+        "scc_index": 87
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_00611"
         ],
-        "scc_index": 90
+        "scc_index": 88
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_00618"
         ],
-        "scc_index": 91
+        "scc_index": 89
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_01802"
         ],
-        "scc_index": 92
+        "scc_index": 90
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_01804"
         ],
-        "scc_index": 93
+        "scc_index": 91
+      },
+      {
+        "node_ids": [
+          "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03077"
+        ],
+        "scc_index": 92
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03113"
         ],
-        "scc_index": 94
+        "scc_index": 93
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_03129"
         ],
-        "scc_index": 95
+        "scc_index": 94
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_06529"
         ],
-        "scc_index": 96
+        "scc_index": 95
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_06824"
         ],
-        "scc_index": 97
+        "scc_index": 96
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_08071"
         ],
-        "scc_index": 98
+        "scc_index": 97
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_09038"
         ],
-        "scc_index": 99
+        "scc_index": 98
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_10555"
         ],
-        "scc_index": 100
+        "scc_index": 99
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_11781"
         ],
-        "scc_index": 101
+        "scc_index": 100
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_16348"
         ],
-        "scc_index": 102
+        "scc_index": 101
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_16966"
         ],
-        "scc_index": 103
+        "scc_index": 102
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_00_EDGE_17899"
         ],
-        "scc_index": 104
+        "scc_index": 103
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_01557"
         ],
-        "scc_index": 105
+        "scc_index": 104
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_01796"
         ],
-        "scc_index": 106
+        "scc_index": 105
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_01843"
         ],
-        "scc_index": 107
+        "scc_index": 106
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_01879"
         ],
-        "scc_index": 108
+        "scc_index": 107
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_03054"
         ],
-        "scc_index": 109
+        "scc_index": 108
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_04325"
         ],
-        "scc_index": 110
+        "scc_index": 109
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_05568"
         ],
-        "scc_index": 111
+        "scc_index": 110
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_06868"
         ],
-        "scc_index": 112
+        "scc_index": 111
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_08042"
         ],
-        "scc_index": 113
+        "scc_index": 112
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_08056"
         ],
-        "scc_index": 114
+        "scc_index": 113
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_08058"
         ],
-        "scc_index": 115
+        "scc_index": 114
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_08084"
         ],
-        "scc_index": 116
+        "scc_index": 115
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_10520"
         ],
-        "scc_index": 117
+        "scc_index": 116
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_10557"
         ],
-        "scc_index": 118
+        "scc_index": 117
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_11866"
         ],
-        "scc_index": 119
+        "scc_index": 118
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_13024"
         ],
-        "scc_index": 120
+        "scc_index": 119
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_13026"
         ],
-        "scc_index": 121
+        "scc_index": 120
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_13981"
         ],
-        "scc_index": 122
+        "scc_index": 121
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_14255"
         ],
-        "scc_index": 123
+        "scc_index": 122
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_14285"
         ],
-        "scc_index": 124
+        "scc_index": 123
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_14286"
         ],
-        "scc_index": 125
+        "scc_index": 124
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_15441"
         ],
-        "scc_index": 126
+        "scc_index": 125
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_15447"
         ],
-        "scc_index": 127
+        "scc_index": 126
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_15455"
         ],
-        "scc_index": 128
+        "scc_index": 127
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_16656"
         ],
-        "scc_index": 129
+        "scc_index": 128
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_16657"
         ],
-        "scc_index": 130
+        "scc_index": 129
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_17881"
         ],
-        "scc_index": 131
+        "scc_index": 130
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_19167"
         ],
-        "scc_index": 132
+        "scc_index": 131
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_19197"
         ],
-        "scc_index": 133
+        "scc_index": 132
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_01_EDGE_19265"
         ],
-        "scc_index": 134
+        "scc_index": 133
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_02_EDGE_01539"
         ],
-        "scc_index": 135
+        "scc_index": 134
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_02_EDGE_16552"
         ],
-        "scc_index": 136
+        "scc_index": 135
       },
       {
         "node_ids": [
           "KEEPOUT::C20_SOURCE_OPEN_ROUTE_02_EDGE_16553"
         ],
-        "scc_index": 137
+        "scc_index": 136
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_000"
         ],
-        "scc_index": 138
+        "scc_index": 137
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_001"
         ],
-        "scc_index": 139
+        "scc_index": 138
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_002"
         ],
-        "scc_index": 140
+        "scc_index": 139
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_003"
         ],
-        "scc_index": 141
+        "scc_index": 140
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_004"
         ],
-        "scc_index": 142
+        "scc_index": 141
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_005"
         ],
-        "scc_index": 143
+        "scc_index": 142
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_006"
         ],
-        "scc_index": 144
+        "scc_index": 143
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_007"
         ],
-        "scc_index": 145
+        "scc_index": 144
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_008"
         ],
-        "scc_index": 146
+        "scc_index": 145
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_009"
         ],
-        "scc_index": 147
+        "scc_index": 146
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_010"
         ],
-        "scc_index": 148
+        "scc_index": 147
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_011"
         ],
-        "scc_index": 149
+        "scc_index": 148
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_012"
         ],
-        "scc_index": 150
+        "scc_index": 149
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_013"
         ],
-        "scc_index": 151
+        "scc_index": 150
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_014"
         ],
-        "scc_index": 152
+        "scc_index": 151
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_015"
         ],
-        "scc_index": 153
+        "scc_index": 152
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_016"
         ],
-        "scc_index": 154
+        "scc_index": 153
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_017"
         ],
-        "scc_index": 155
+        "scc_index": 154
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_018"
         ],
-        "scc_index": 156
+        "scc_index": 155
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_019"
         ],
-        "scc_index": 157
+        "scc_index": 156
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_020"
         ],
-        "scc_index": 158
+        "scc_index": 157
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_021"
         ],
-        "scc_index": 159
+        "scc_index": 158
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_022"
         ],
-        "scc_index": 160
+        "scc_index": 159
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_023"
         ],
-        "scc_index": 161
+        "scc_index": 160
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_024"
         ],
-        "scc_index": 162
+        "scc_index": 161
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_025"
         ],
-        "scc_index": 163
+        "scc_index": 162
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_026"
         ],
-        "scc_index": 164
+        "scc_index": 163
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_027"
         ],
-        "scc_index": 165
+        "scc_index": 164
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_028"
         ],
-        "scc_index": 166
+        "scc_index": 165
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_029"
         ],
-        "scc_index": 167
+        "scc_index": 166
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_030"
         ],
-        "scc_index": 168
+        "scc_index": 167
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_031"
         ],
-        "scc_index": 169
+        "scc_index": 168
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_032"
         ],
-        "scc_index": 170
+        "scc_index": 169
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_033"
         ],
-        "scc_index": 171
+        "scc_index": 170
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_034"
         ],
-        "scc_index": 172
+        "scc_index": 171
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_035"
         ],
-        "scc_index": 173
+        "scc_index": 172
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_037"
         ],
-        "scc_index": 174
+        "scc_index": 173
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_038"
         ],
-        "scc_index": 175
+        "scc_index": 174
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_039"
         ],
-        "scc_index": 176
+        "scc_index": 175
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_041"
         ],
-        "scc_index": 177
+        "scc_index": 176
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_042"
         ],
-        "scc_index": 178
+        "scc_index": 177
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_043"
         ],
-        "scc_index": 179
+        "scc_index": 178
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_044"
         ],
-        "scc_index": 180
+        "scc_index": 179
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_045"
         ],
-        "scc_index": 181
+        "scc_index": 180
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_046"
         ],
-        "scc_index": 182
+        "scc_index": 181
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_047"
         ],
-        "scc_index": 183
+        "scc_index": 182
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_048"
         ],
-        "scc_index": 184
+        "scc_index": 183
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_049"
         ],
-        "scc_index": 185
+        "scc_index": 184
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_050"
         ],
-        "scc_index": 186
+        "scc_index": 185
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_051"
         ],
-        "scc_index": 187
+        "scc_index": 186
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_052"
         ],
-        "scc_index": 188
+        "scc_index": 187
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_053"
         ],
-        "scc_index": 189
+        "scc_index": 188
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_054"
         ],
-        "scc_index": 190
+        "scc_index": 189
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_055"
         ],
-        "scc_index": 191
+        "scc_index": 190
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_056"
         ],
-        "scc_index": 192
+        "scc_index": 191
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_057"
         ],
-        "scc_index": 193
+        "scc_index": 192
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_058"
         ],
-        "scc_index": 194
+        "scc_index": 193
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_059"
         ],
-        "scc_index": 195
+        "scc_index": 194
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_060"
         ],
-        "scc_index": 196
+        "scc_index": 195
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_061"
         ],
-        "scc_index": 197
+        "scc_index": 196
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_062"
         ],
-        "scc_index": 198
+        "scc_index": 197
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_063"
         ],
-        "scc_index": 199
+        "scc_index": 198
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_064"
         ],
-        "scc_index": 200
+        "scc_index": 199
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_065"
         ],
-        "scc_index": 201
+        "scc_index": 200
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_066"
         ],
-        "scc_index": 202
+        "scc_index": 201
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_067"
         ],
-        "scc_index": 203
+        "scc_index": 202
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_068"
         ],
-        "scc_index": 204
+        "scc_index": 203
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_069"
         ],
-        "scc_index": 205
+        "scc_index": 204
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_070"
         ],
-        "scc_index": 206
+        "scc_index": 205
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_071"
         ],
-        "scc_index": 207
+        "scc_index": 206
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_072"
         ],
-        "scc_index": 208
+        "scc_index": 207
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_073"
         ],
-        "scc_index": 209
+        "scc_index": 208
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_074"
         ],
-        "scc_index": 210
+        "scc_index": 209
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_075"
         ],
-        "scc_index": 211
+        "scc_index": 210
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_077"
         ],
-        "scc_index": 212
+        "scc_index": 211
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_079"
         ],
-        "scc_index": 213
+        "scc_index": 212
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_080"
         ],
-        "scc_index": 214
+        "scc_index": 213
       },
       {
         "node_ids": [
           "KEEPOUT::CENTRAL_OPENING_FAN_CELL_081"
+        ],
+        "scc_index": 214
+      },
+      {
+        "node_ids": [
+          "KEEPOUT::CENTRAL_OPENING_FAN_CELL_083"
         ],
         "scc_index": 215
       },
@@ -17649,51 +18056,19 @@
       "station_mm": 300.250133514
     }
   ],
-  "hard_stops": [
-    {
-      "actionable_reason": "the frozen 23-cell aggregate mask excludes one or more terminal candidate incident faces; do not widen the mask without revising the V27 contract",
-      "aggregate_candidate_face_ids": [
-        3103
-      ],
-      "candidate_incident_face_ids": [
-        3102,
-        3103
-      ],
-      "code": "V27_NO_BOUNDARY_COINCIDENT_TERMINAL_CONSTRUCTION",
-      "missing_cell_ids": [
-        "EXPOSURE_CELL_C20_011"
-      ],
-      "operation": "derive exact terminal incidence",
-      "terminal_id": "C20_CHAIN_3151_8123"
-    },
-    {
-      "actionable_reason": "the frozen 23-cell aggregate mask excludes one or more terminal candidate incident faces; do not widen the mask without revising the V27 contract",
-      "aggregate_candidate_face_ids": [],
-      "candidate_incident_face_ids": [
-        2995,
-        3052
-      ],
-      "code": "V27_NO_BOUNDARY_COINCIDENT_TERMINAL_CONSTRUCTION",
-      "missing_cell_ids": [
-        "EXPOSURE_CELL_C20_007",
-        "EXPOSURE_CELL_C20_009"
-      ],
-      "operation": "derive exact terminal incidence",
-      "terminal_id": "C20_CHAIN_17929_5618"
-    }
-  ],
+  "hard_stops": [],
   "invariants": {
     "aggregate_mask_excludes_frozen_ambiguous_faces": true,
     "aggregate_mask_is_inside_maximum_masks": true,
     "all_batches_fit_batch_bound": true,
     "all_cell_sccs_fit_batch_bound": true,
-    "all_terminal_incidences_complete": false,
+    "all_terminal_incidences_complete": true,
     "face_ownership_is_unique": true,
     "frozen_authority_hashes_match": true,
     "input_blend_hash_matches": true,
     "no_floor_is_excluded": true,
     "no_floor_sample_count_is_12523": true,
-    "selected_cell_count_is_23": true,
+    "selected_cell_count_is_26": true,
     "terminal_record_count_is_4": true
   },
   "mission": "R014-JOINT-C9-C20-ELBOW-V27",
@@ -20497,6 +20872,102 @@
       "source_identifier": "6169"
     },
     {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2995,
+        2996
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_015",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "8028"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2995,
+        2996
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_056",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "15849"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2995,
+        2996
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_061",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "16037"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2995,
+        2996
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_067",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "1186"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2995
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_083",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "14179"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2995,
+        2996
+      ],
+      "keepout_cell_id": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03077",
+      "keepout_kind": "SOURCE_OPEN_ROUTE",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "3077"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2996
+      ],
+      "keepout_cell_id": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03113",
+      "keepout_kind": "SOURCE_OPEN_ROUTE",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "3113"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_007",
+      "intersecting_source_face_ids": [
+        2995,
+        2996
+      ],
+      "keepout_cell_id": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
+      "keepout_kind": "SOURCE_OPEN_ROUTE",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [
+        3129
+      ],
+      "source_identifier": "3129"
+    },
+    {
       "exposure_cell_id": "EXPOSURE_CELL_C20_008",
       "intersecting_source_face_ids": [
         3025
@@ -20588,6 +21059,108 @@
       "exposure_cell_id": "EXPOSURE_CELL_C20_008",
       "intersecting_source_face_ids": [
         3025
+      ],
+      "keepout_cell_id": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
+      "keepout_kind": "SOURCE_OPEN_ROUTE",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "3129"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3052
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_016",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "10868"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3052,
+        3053,
+        3055
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_054",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "13036"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3055
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_056",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "15849"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3052,
+        3053
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_059",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "10512"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3055
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_061",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "16037"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3055
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_067",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "1186"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3055
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_083",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "14179"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3055
+      ],
+      "keepout_cell_id": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03077",
+      "keepout_kind": "SOURCE_OPEN_ROUTE",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "3077"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_009",
+      "intersecting_source_face_ids": [
+        3055
       ],
       "keepout_cell_id": "C20_SOURCE_OPEN_ROUTE_00_EDGE_03129",
       "keepout_kind": "SOURCE_OPEN_ROUTE",
@@ -21080,6 +21653,39 @@
       "intersecting_source_face_ids": [
         3141,
         3148
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_098",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "16645"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_011",
+      "intersecting_source_face_ids": [
+        3102
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_001",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "11773"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_011",
+      "intersecting_source_face_ids": [
+        3102
+      ],
+      "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_060",
+      "keepout_kind": "CENTRAL_OPENING",
+      "relation": "KEEP_OUT_INCIDENCE",
+      "shared_source_edge_ids": [],
+      "source_identifier": "15808"
+    },
+    {
+      "exposure_cell_id": "EXPOSURE_CELL_C20_011",
+      "intersecting_source_face_ids": [
+        3102
       ],
       "keepout_cell_id": "CENTRAL_OPENING_FAN_CELL_098",
       "keepout_kind": "CENTRAL_OPENING",
@@ -25507,16 +26113,17 @@
     "promotion": "NOT_PROMOTED"
   },
   "scope": "read-only exact aggregate mask and dependency authority; no gap solve, candidate geometry, mutation, image work, or Blend save",
-  "semantic_fingerprint": "7b921b05abd71a7b4fe0ade1baceca6fba166e03908970f11cd2cac9a92db462",
+  "semantic_fingerprint": "37b46af6aff610bcdc2d40fad68373c8ea49958b8d3799c5a6de1b92c9969020",
   "status": "V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED",
   "terminal_incidences": [
     {
       "aggregate_candidate_face_ids": [
+        3102,
         3103
       ],
       "candidate_face_cell_ids": [
         {
-          "aggregate_selected": false,
+          "aggregate_selected": true,
           "exposure_cell_id": "EXPOSURE_CELL_C20_011",
           "source_face_id": 3102
         },
@@ -25530,7 +26137,7 @@
         3102,
         3103
       ],
-      "complete_aggregate_incidence": false,
+      "complete_aggregate_incidence": true,
       "component": "C20",
       "exact_source_coordinates_mm": [
         [
@@ -25549,7 +26156,7 @@
           -82.00521087646484
         ]
       ],
-      "fingerprint": "da292d9e5e28690ee72980b5f33e775a61466041dd1e4dd62c111160386f76ca",
+      "fingerprint": "617a5943582839809e2c6d263af9b0ddec4c0c19fb58713cfa038c1a9b1c6c31",
       "minimum_incident_triangle_distance_mm": 1.8624930004013946,
       "ordered_boundary_vertex_ids": [
         2113,
@@ -25568,15 +26175,18 @@
       "terminal_id": "C20_CHAIN_3151_8123"
     },
     {
-      "aggregate_candidate_face_ids": [],
+      "aggregate_candidate_face_ids": [
+        2995,
+        3052
+      ],
       "candidate_face_cell_ids": [
         {
-          "aggregate_selected": false,
+          "aggregate_selected": true,
           "exposure_cell_id": "EXPOSURE_CELL_C20_007",
           "source_face_id": 2995
         },
         {
-          "aggregate_selected": false,
+          "aggregate_selected": true,
           "exposure_cell_id": "EXPOSURE_CELL_C20_009",
           "source_face_id": 3052
         }
@@ -25585,7 +26195,7 @@
         2995,
         3052
       ],
-      "complete_aggregate_incidence": false,
+      "complete_aggregate_incidence": true,
       "component": "C20",
       "exact_source_coordinates_mm": [
         [
@@ -25604,7 +26214,7 @@
           -45.61700439453125
         ]
       ],
-      "fingerprint": "9d07210f1a2cc972ac998d2638929b0d0c4318341be59efa5e73e2108c88c715",
+      "fingerprint": "500e908739df892de004a8be18415a8254a65e6653bef5c6aee68ab76d026a34",
       "minimum_incident_triangle_distance_mm": 1.785004068812106,
       "ordered_boundary_vertex_ids": [
         2063,

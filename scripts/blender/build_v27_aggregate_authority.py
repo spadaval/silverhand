@@ -71,7 +71,7 @@ FROZEN_INPUTS = {
     ),
 }
 
-SELECTED_CELL_IDS = [
+SEED_CELL_IDS = [
     "EXPOSURE_CELL_C20_000",
     "EXPOSURE_CELL_C20_002",
     "EXPOSURE_CELL_C20_003",
@@ -96,6 +96,14 @@ SELECTED_CELL_IDS = [
     "EXPOSURE_CELL_C9_003",
     "EXPOSURE_CELL_C9_004",
 ]
+
+TERMINAL_EXTENSION_CELL_IDS = [
+    "EXPOSURE_CELL_C20_007",
+    "EXPOSURE_CELL_C20_009",
+    "EXPOSURE_CELL_C20_011",
+]
+
+SELECTED_CELL_IDS = sorted(SEED_CELL_IDS + TERMINAL_EXTENSION_CELL_IDS)
 
 TERMINAL_IDS = {
     ("C20", "UPPER"): "C20_CHAIN_17929_5618",
@@ -447,10 +455,11 @@ def build_authority() -> tuple[dict[str, Any], dict[str, Any]]:
         "sha256": measured_blend_hash,
     }
 
-    if exposure["seed_covering_subset"]["selected_cell_ids"] != SELECTED_CELL_IDS:
+    if exposure["seed_covering_subset"]["selected_cell_ids"] != SEED_CELL_IDS:
         raise RuntimeError(
             f"{OPERATION}: frozen exposure selected-cell list differs from the "
-            "V27 23-cell contract; mask expansion/relabeling is not authorized"
+            "V27 23-cell seed contract; mask expansion/relabeling is not "
+            "authorized"
         )
     cell_by_id = {cell["name"]: cell for cell in exposure["exposure_cells"]}
     missing_cells = sorted(set(SELECTED_CELL_IDS) - set(cell_by_id))
@@ -675,7 +684,7 @@ def build_authority() -> tuple[dict[str, Any], dict[str, Any]]:
                         }
                     ),
                     "actionable_reason": (
-                        "the frozen 23-cell aggregate mask excludes one or more "
+                        "the frozen 26-cell aggregate mask excludes one or more "
                         "terminal candidate incident faces; do not widen the mask "
                         "without revising the V27 contract"
                     ),
@@ -1122,7 +1131,7 @@ def build_authority() -> tuple[dict[str, Any], dict[str, Any]]:
         "invariants": {
             "frozen_authority_hashes_match": True,
             "input_blend_hash_matches": True,
-            "selected_cell_count_is_23": len(SELECTED_CELL_IDS) == 23,
+            "selected_cell_count_is_26": len(SELECTED_CELL_IDS) == 26,
             "face_ownership_is_unique": True,
             "aggregate_mask_excludes_frozen_ambiguous_faces": not any(
                 ambiguous_overlap.values()

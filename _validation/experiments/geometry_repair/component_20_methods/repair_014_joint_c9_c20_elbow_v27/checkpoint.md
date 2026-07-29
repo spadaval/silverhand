@@ -59,9 +59,12 @@ relabel reviewed faces.
 V27 deliberately changes the scope boundary, not the V26 evidence:
 
 - The aggregate authorized reconstruction mask is the union of the following
-  `23` V26 wearer-facing exposure cells:
-  - C20: `000`, `002`, `003`, `004`, `005`, `006`, `008`, `010`, `012`,
-    `013`, `017`, `018`, `020`, `021`, `022`, `023`, `028`, `029`.
+  `26` V26 wearer-facing exposure cells: the `23` exact seed-covering cells
+  plus three exact terminal-dependency cells proven necessary by
+  V27-AUTH-005.
+  - C20: `000`, `002`, `003`, `004`, `005`, `006`, `007`, `008`, `009`,
+    `010`, `011`, `012`, `013`, `017`, `018`, `020`, `021`, `022`, `023`,
+    `028`, `029`.
   - C9: `000`, `001`, `002`, `003`, `004`.
 - Full cell identifiers retain the `EXPOSURE_CELL_C20_` or
   `EXPOSURE_CELL_C9_` prefix from the frozen exposure authority.
@@ -106,7 +109,7 @@ retain at least `1.7 mm` exact cutter clearance in the cumulative candidate.
 Implementation must emit a deterministic, hashable dependency DAG before
 constructing geometry. Its nodes are:
 
-1. the `23` exact exposure cells;
+1. the `26` exact exposure cells;
 2. the four frozen terminal chains;
 3. the exact immutable-complement boundary loops adjacent to each cell;
 4. the required flex-gap keepout cells;
@@ -141,7 +144,7 @@ Result on success: `V27_INPUT_AUTHORITIES_FROZEN`
 Derive the exact face union, immutable complement, boundary loops, terminal
 incidences, keepout incidences, floor conflicts, DAG, strongly connected
 components, and deterministic batches. Prove that the mask contains exactly
-the frozen `23` cell memberships, contains no immutable face, and gives every
+the frozen `26` cell memberships, contains no immutable face, and gives every
 face unique ownership.
 
 Result on success: `V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED`
@@ -213,7 +216,7 @@ Result per successful batch: `PASS_V27_BATCH_<NN>_CUMULATIVE_GATE_B_D`
 
 ### Stage 5 — Complete aggregate Gate B and Gate D
 
-After all `23` cells are represented, rerun Gate B and Gate D from the frozen
+After all `26` cells are represented, rerun Gate B and Gate D from the frozen
 source through the complete candidate, independent of batch receipts. Confirm
 that partial checkpoints did not hide cross-batch regressions.
 
@@ -321,7 +324,7 @@ from that text evidence and never reads an image.
 The first implementation slice is read-only:
 
 1. create a V27 authority builder that hash-verifies all frozen inputs;
-2. derive the exact `23`-cell aggregate face mask and immutable complement;
+2. derive the exact `26`-cell aggregate face mask and immutable complement;
 3. emit the deterministic dependency DAG, SCCs, and `<=12`-cell batch order;
 4. prove unique membership, exact terminal incidence, keepout incidence, and
    `NO_FLOOR` exclusion; and
@@ -460,3 +463,58 @@ the gap, generate geometry, request images, mutate a mesh, or save a Blend.
 - next_action: parent reviews the named terminal/mask contract inconsistency and
   decides whether a deliberate V27 charter revision may add cells `007`, `009`,
   and `011`
+
+### V27-AUTH-006 — deliberate terminal-dependency charter revision
+
+- authority_decision: the user already authorized full C9/C20 interface
+  reconstruction; expand V27 aggregate authority from the 23 exact
+  seed-covering cells to 26 exact cells by adding only
+  `EXPOSURE_CELL_C20_007`, `EXPOSURE_CELL_C20_009`, and
+  `EXPOSURE_CELL_C20_011`
+- exact_reason: these three wearer-facing cells contain the candidate-side
+  source faces required by the already frozen C20 upper and lower
+  boundary-coincident terminal chains
+- unchanged_constraints: immutable reviewed faces, `NO_FLOOR` openness,
+  negative-space cells, `>=12 mm` flex gap, `>=1.7 mm` cutter clearance,
+  exact four terminal chains, and `<=12`-cell implementation batches
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: regenerate and independently audit the 26-cell aggregate
+  authority; do not start flex-gap solving until all four terminal incidences
+  are complete
+
+### V27-AUTH-007 — 26-cell aggregate authority checkpointed
+
+- operation: regenerate, repeat, byte-compare, and audit the deliberately
+  revised 26-cell aggregate authority
+- code_sha256:
+  `a8d4e418dc7b9cf4fe3ca97ed5d914a7487a5a238811d37c95f94fd517f921ba`
+- authority_sha256:
+  `552544386bb3f3012527b2bfd819986c1c7b3f82d5d4585b01feb426e4ad78af`
+- receipt_sha256:
+  `d22e2b1e85b199f789cf7bf875288b2208db50eddb524fc9b89e7c6875f4bff3`
+- repeatability: `DONE`; two authority and receipt runs were byte-identical
+- named_audit: `PASS_V27_AGGREGATE_AUTHORITY_INVARIANT_AUDIT`
+- exact_aggregate_mask: 26 cells; 185 C20 faces and 81 C9 faces; unique face
+  ownership; zero immutable overlap; zero maximum-mask expansion
+- exact_terminal_incidences: four records and all four complete
+- aggregate_boundary: nine connected boundary components
+- negative_space_incidences: 571
+- floor_conflicts: all 98 exact frozen records accounted for; 63 touch the
+  aggregate mask and 35 remain excluded
+- no_floor_exclusion: all 12,523 intentional non-gap `NO_FLOOR` samples remain
+  excluded
+- dependency_graph: seven SCCs; maximum SCC size 7; deterministic batch cell
+  counts `[7, 12, 7]`
+- hard_stops: none
+- result: `V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: independently review the revised authority, then solve the
+  exact `>=12 mm` flex gap before any candidate geometry

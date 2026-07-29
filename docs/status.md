@@ -397,8 +397,9 @@ boundary-coincident terminals, but the complete wearer-side demand requires
 stop is `NO_SEED_COVERING_EXPOSURE_CELL_SUBSET_V26`; the cap and result remain
 unchanged.
 
-V27 now deliberately authorizes the aggregate `23`-cell C9/C20 wearer-side
-interface reconstruction while preserving the exact reviewed visible
+V27 now deliberately authorizes the aggregate `26`-cell C9/C20 wearer-side
+interface reconstruction: the `23` seed-covering cells plus exact C20 terminal
+dependency cells `007`, `009`, and `011`. It preserves the reviewed visible
 complement, intentional `NO_FLOOR` openness, exact negative space, a
 `>=12 mm` flex gap, exact terminals, and `>=1.7 mm` cutter clearance. The
 `<=12`-cell limit survives only as a checkpoint/recovery batch bound. The
