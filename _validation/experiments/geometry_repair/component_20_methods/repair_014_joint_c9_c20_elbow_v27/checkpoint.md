@@ -329,4 +329,134 @@ The first implementation slice is read-only:
 
 It must stop at `V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED`. It must not solve
 the gap, generate geometry, request images, mutate a mesh, or save a Blend.
+## V27 aggregate authority implementation retry01
 
+- role: Agent Factory `implement`
+- inherited_implementation_state: none; the prior implementation worker produced no checkpoint, file, or process progress
+- next_action: implement and verify the deterministic V27 aggregate authority builder from the frozen V27 inputs, using the compact floor summary unless a specifically required exact record forces a separately checkpointed full-ledger read
+- scope_stop: `V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED`
+- prohibited_in_this_retry: gap solving, candidate geometry, source mutation, image work, and Blender saves
+
+### V27-AUTH-001 — frozen schema inspection
+
+- operation: inspect frozen authority schemas without loading the 315 MiB full
+  floor ledger
+- resolved_contract: 23 selected exposure cells, four terminal chains, 296
+  negative-space convex cells, and compact proof excluding 12,523 intentional
+  non-gap `NO_FLOOR` samples
+- full_floor_ledger_loaded: false
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: determine whether compact evidence contains every exact
+  cell-level floor-conflict incidence
+
+### V27-AUTH-002 — specific full-ledger need
+
+- operation: identify exact records absent from the compact floor summary
+- result: the summary proves `NO_FLOOR` exclusion and unique ownership, but
+  exposes only the first and last of 91 gap-floor conflicts and seven
+  layer-order inversions
+- exact_record_need: enumerate only
+  `ownership.gap_source_floors_requiring_removal` and the seven
+  `ownership.samples[*]` records where
+  `ordered_cutter_floor_exterior_valid == false`
+- full_floor_ledger_read_authorized: true, after byte-hash verification, with
+  no mutation and no retained bulk copy
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: extract those 98 exact conflict records and implement the
+  deterministic aggregate builder
+
+### V27-AUTH-003 — exact conflict extraction
+
+- operation: hash-verify the full ledger and extract only the required conflict
+  classes
+- full_floor_authority_sha256:
+  `02b758bddee0be121c9c1e93cef13b781b4e8241bda862ec6c8d389aaf653ab9`
+- exact_gap_floor_record_count: 91
+- exact_layer_inversion_record_count: 7
+- extracted_bulk_floor_samples: false
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: implement the builder using these exact paths directly from the
+  frozen authority
+
+### V27-AUTH-004 — builder materialized and statically checked
+
+- artifact: `scripts/blender/build_v27_aggregate_authority.py`
+- operation: implement the complete read-only aggregate authority builder
+- `python3 -m py_compile`: `DONE`
+- `ruff check`: `DONE`; all checks passed
+- observed_contract_conflict: C20 upper terminal candidate faces `2995` and
+  `3052` belong to excluded exposure cells `007` and `009`; C20 lower candidate
+  face `3102` belongs to excluded exposure cell `011`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: execute the builder twice, compare byte hashes, and audit every
+  mask, terminal, keepout, floor, SCC, and batch invariant
+
+### V27-AUTH-005 — aggregate authority checkpointed
+
+- operation: execute, repeat, byte-compare, and independently audit the V27
+  aggregate authority builder
+- code_path: `scripts/blender/build_v27_aggregate_authority.py`
+- code_sha256:
+  `eab9839de351366b29912c5c9ea5814d2a8161ee7872be86bc1a62df63aaaa4b`
+- authority_path:
+  `_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_aggregate_authority.json`
+- authority_sha256:
+  `0c1cd7188aca4eb05effdd1afd30c277d002b71692e4e8d25e61da534dad6609`
+- receipt_path:
+  `_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_aggregate_authority_receipt.json`
+- receipt_sha256:
+  `66382f3006f3f037bb01bce00a968553a062409edf7b1131d040ff63b9816a9f`
+- repeatability: `DONE`; two authority runs and two receipt runs were
+  byte-identical
+- named_audit: `PASS_V27_AGGREGATE_AUTHORITY_INVARIANT_AUDIT`
+- exact_aggregate_mask: 23 cells; 179 C20 faces and 81 C9 faces; unique face
+  ownership; zero immutable overlap; zero maximum-mask expansion
+- aggregate_boundary: 252 exact boundary edges in 10 connected boundary
+  components
+- exact_terminal_incidences: four records; both C9 incidences complete; both
+  C20 incidences incomplete
+- negative_space_incidences: 551 exact convex-cell/source-edge incidence
+  records
+- floor_conflicts: 98 exact frozen records accounted for; 63 touch the
+  aggregate mask and 35 remain in the immutable complement
+- no_floor_exclusion: all 12,523 intentional non-gap `NO_FLOOR` samples remain
+  excluded and were not used as faces, seeds, or support
+- dependency_graph: eight cell SCCs; maximum SCC size 7; deterministic batch
+  cell counts `[7, 11, 5]`; no SCC is split and every batch is at most 12 cells
+- result: `V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED`
+- hard_stop: `V27_NO_BOUNDARY_COINCIDENT_TERMINAL_CONSTRUCTION`
+- counterexample:
+  - C20 upper `C20_CHAIN_17929_5618`: candidate faces `2995` and `3052`
+    require excluded cells `EXPOSURE_CELL_C20_007` and
+    `EXPOSURE_CELL_C20_009`
+  - C20 lower `C20_CHAIN_3151_8123`: candidate face `3102` requires excluded
+    cell `EXPOSURE_CELL_C20_011`; only candidate face `3103` is in selected
+    cell `EXPOSURE_CELL_C20_012`
+- actionable_reason: the frozen 23-cell aggregate mask and frozen exact C20
+  terminal contract cannot both be satisfied; do not solve the flex gap,
+  construct geometry, or widen the mask until the V27 contract is deliberately
+  revised
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: parent reviews the named terminal/mask contract inconsistency and
+  decides whether a deliberate V27 charter revision may add cells `007`, `009`,
+  and `011`

@@ -1,0 +1,41 @@
+{
+  "aggregate_boundary_component_count": 10,
+  "aggregate_mask_fingerprint": "f55537d83057803c924cf3fde6959bcb8184d72079f82ab2d8f3cb486d12b137",
+  "aggregate_source_face_count": {
+    "C20": 179,
+    "C9": 81
+  },
+  "authority_path": "/Users/supadava/Projects/experimental/silverhand/_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_aggregate_authority.json",
+  "authority_sha256": "0c1cd7188aca4eb05effdd1afd30c277d002b71692e4e8d25e61da534dad6609",
+  "batch_cell_counts": [
+    7,
+    11,
+    5
+  ],
+  "cell_scc_count": 8,
+  "complete_terminal_incidence_count": 2,
+  "dependency_graph_fingerprint": "4ee5ce5193d3bb048d38bf4c197bf88bac4ec4d8af3fd2ed917d1e28e6bbf9f7",
+  "floor_conflict_count": 63,
+  "floor_conflict_exclusion_count": 35,
+  "full_floor_conflict_record_count": 98,
+  "hard_stop_codes": [
+    "V27_NO_BOUNDARY_COINCIDENT_TERMINAL_CONSTRUCTION"
+  ],
+  "maximum_cell_scc_size": 7,
+  "negative_space_incidence_count": 551,
+  "no_floor_excluded_sample_count": 12523,
+  "operation": "BUILD_V27_AGGREGATE_AUTHORITY",
+  "safety": {
+    "blend_saved": false,
+    "candidate_construction_started": false,
+    "flex_gap_solve_started": false,
+    "geometry_emitted": false,
+    "image_work_requested": false,
+    "mutation_started": false,
+    "promotion": "NOT_PROMOTED"
+  },
+  "selected_cell_count": 23,
+  "semantic_fingerprint": "7b921b05abd71a7b4fe0ade1baceca6fba166e03908970f11cd2cac9a92db462",
+  "status": "V27_AGGREGATE_MASK_AND_DAG_CHECKPOINTED",
+  "terminal_incidence_count": 4
+}
