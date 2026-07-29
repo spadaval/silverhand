@@ -634,3 +634,163 @@ the gap, generate geometry, request images, mutate a mesh, or save a Blend.
 - promotion: `NOT_PROMOTED`
 - next_action: independent re-review of the ordered boundary and Stage 0
   attestation before the exact flex-gap solver starts
+
+### V27-FLEX-001 — Stage 2 exact flex-gap solver started
+
+- operation: begin the read-only deterministic finite search for an empty,
+  continuous, minimum-12-mm chordwise flex gap within the frozen 26-cell V27
+  aggregate authority
+- prerequisite_commit: `72be45d`
+- required_inputs: committed V27 input attestation, aggregate authority and
+  receipt, plus the attested V26 negative-space, cell, terminal, cutter, and
+  exposure authorities
+- evidence_contract: exact half-space/convex-cell and source-triangle
+  intersection tests supplemented by adaptive sampling; no sparse point-only
+  acceptance
+- finite_family_contract: enumerate and fingerprint the complete ordered
+  placement family before evaluating candidates
+- exclusions: immutable complement triangles, aperture/open-route/central
+  opening keepouts, all four exact terminal chains, and `NO_FLOOR` openness
+- output_contract: atomic `v27_flex_gap_authority.json` and compact receipt;
+  two byte-identical runs; stop at `V27_FLEX_GAP_SOLVED` or the exact
+  `V27_NO_VALID_12MM_FLEX_GAP` counterexample set
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+
+### V27-FLEX-002 — frozen inputs verified and finite family defined
+
+- operation: hash-verify the committed Stage 0/Stage 1 V27 artifacts and every
+  V26 authority frozen by `v27_aggregate_authority.json`, then define the
+  complete finite Stage 2 placement family
+- verified_stage1_authority_sha256:
+  `43c0b161d71a3ef2b6471f0ab63ab5ea71641554a5254354a2d31db58a2ed338`
+- verified_stage1_receipt_sha256:
+  `f4d1e3190999bd22bb9477953bd541f41c0d65b2dba86f729d854920ca0dc938`
+- family_frame: reuse the frozen `FLEX_GAP_MINIMUM_CORE` orthonormal frame,
+  transverse/depth envelope, and exact `12.0 mm` chordwise width; translation
+  is permitted only along its recorded chord axis
+- family_domain: the closed chord-station span of vertices referenced by the
+  exact 26-cell aggregate source-face union and its 20 ordered boundary loops
+- event_definition: all chord-station values at which a 12 mm slab boundary
+  becomes coincident with an aggregate, immutable-complement, terminal, or
+  aperture/open-route/central-opening source or convex-cell vertex
+- finite_representatives: every in-domain event placement plus one
+  deterministic midpoint from every nonempty interval between consecutive
+  events; this exhausts the fixed-frame combinatorial placement states before
+  evaluation
+- acceptance: selected removals must include authorized aggregate faces on
+  both C20 and C9, include no immutable face, remain exactly disjoint from all
+  four terminal polylines and every non-flex negative-space convex cell, and
+  retain an exact 12 mm chordwise width
+- exactness: source triangles are clipped against all six translated slab
+  half-spaces; convex-cell conflicts use combined-half-space feasibility;
+  terminal segments use exact convex clipping; adaptive <=1 mm barycentric
+  triangle samples independently audit each exact classification
+- no_floor: the frozen 12,523 `NO_FLOOR` samples remain excluded from both
+  family construction and acceptance
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+
+### V27-FLEX-003 — solver materialized for first execution
+
+- script: `scripts/blender/solve_v27_flex_gap.py`
+- operation: execute the complete pre-enumerated family in the frozen V24
+  source scene and atomically write the V27 Stage 2 authority and receipt
+- static_checks_before_execution: `python3 -m py_compile` DONE; initial Ruff
+  found one unused local (`frozen_station`), which was removed; repeat static
+  checks are required before execution
+- expected_stop: `V27_FLEX_GAP_SOLVED` or
+  `V27_NO_VALID_12MM_FLEX_GAP`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+
+### V27-FLEX-004 — first complete family execution found a hard stop
+
+- operation: execute all fixed-frame finite placement representatives against
+  exact source triangles before any candidate surface construction
+- family_event_count: `4030`
+- family_placement_count: `8059`
+- family_fingerprint:
+  `7eab8b9546b10c1c0544e601764e3feeed5fa2653ff1d59b0cb2ac1caaaa237d`
+- chord_station_domain_mm:
+  `[-136.64553706761697, -10.263660358335688]`
+- evaluated_placement_count: `8059`
+- immutable_triangle_intersection_count: `8059`
+- no_C9_aggregate_removal_count: `1988`
+- exact_result: `V27_NO_VALID_12MM_FLEX_GAP`
+- first_execution_authority_sha256:
+  `239a9da0179410ea9ecc92c8ddab60f4733a1523edb25de073a6e92fa08e21f2`
+- first_execution_semantic_fingerprint:
+  `af2c762deba7b1081aee419ac18408ab333c63c10b65764619e695ba09f7e835`
+- first_exact_immutable_counterexample: placement `0`, center station
+  `-136.645537067617 mm`, intersects immutable source faces beginning
+  `[5765, 5766, 5768, 5770, 7452, 7456, 7457, 7458]`
+- consequence: every member fails the immutable-complement gate; terminal and
+  non-flex negative-space checks cannot rescue any member and are
+  short-circuited only after the exact immutable rejection is recorded
+- correction_before_repeat: add one exact immutable witness face ID to every
+  placement record and correct the positive `no_floor_used_as_geometry_or_seed`
+  invariant value; rerun the full family twice after static checks
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+
+### V27-FLEX-005 — Stage 2 repeatable hard stop checkpointed
+
+- script: `scripts/blender/solve_v27_flex_gap.py`
+- authority: `v27_flex_gap_authority.json`
+- receipt: `v27_flex_gap_authority_receipt.json`
+- exact_result: `V27_NO_VALID_12MM_FLEX_GAP`
+- family_event_count: `4030`
+- family_placement_count: `8059`
+- evaluated_placement_count: `8059`
+- family_fingerprint:
+  `7eab8b9546b10c1c0544e601764e3feeed5fa2653ff1d59b0cb2ac1caaaa237d`
+- authority_sha256:
+  `e3b30ee70025dc36b60e5cd54eaefa9d64aeb146c6a361b0dccb8febc10720f9`
+- receipt_sha256:
+  `de5c8b87646b73a13e12e0c9200175974df2b8869c7e766f25bfce823372c4b8`
+- semantic_fingerprint:
+  `e7f6183a27716d9c916a2e5b7bf236ec9efb320a1775d5b358fa4b78eb1ba326`
+- repeatability: `DONE`; two final background-Blender executions produced
+  byte-identical authority and receipt hashes
+- immutable_rejection: all `8059` placements have an exact
+  immutable-complement triangle intersection
+- additional_rejection: `1988` placements also remove no authorized C9 face
+- minimum_immutable_hit_counterexample:
+  - placement_index: `8019`
+  - representative: `OPEN_INTERVAL_MIDPOINT`
+  - center_station_mm: `-10.989983793668`
+  - authorized_removals: C20 `22`, C9 `2`
+  - immutable_hit_count: `46`
+  - immutable_face_ids:
+    `[2109, 2110, 2286, 2287, 2705, 2713, 2714, 2715, 2905, 2909, 2911, 2912, 7527, 7528, 7529, 7530, 7531, 9047, 9053, 9054, 9058, 9059, 9060, 9061, 9062, 9063, 9064, 9065, 9066, 9067, 9068, 9069, 9075, 9079, 9080, 9082, 9086, 9087, 9090, 9091, 9092, 9095, 9096, 9097, 9099, 12515]`
+  - immutable_face_ids_fingerprint:
+    `d0a5847feb727eb105fe3acf14a4149898d21833bb2ddee2b4494e0eeb7460f9`
+- most_recurring_exact_witness_faces:
+  `1409×1592`, `1084×1379`, `1407×1313`, `5765×922`, `1411×636`,
+  `1440×456`, `2209×394`, `2109×220`
+- adaptive_counterexample_audit: `48` exact intersecting triangle records,
+  `9587` barycentric samples at no more than `1.0 mm` spacing
+- named_audit: `PASS_V27_FLEX_GAP_AUTHORITY_INVARIANT_AUDIT`
+- static_checks: `python3 -m py_compile` DONE; Ruff DONE; `git diff --check`
+  DONE
+- scope_stop: Stage 3 candidate surface construction remains unauthorized;
+  changing the fixed frozen gap frame, expanding the 26-cell aggregate, or
+  reclassifying immutable faces requires a deliberate contract revision
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
