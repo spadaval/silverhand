@@ -488,6 +488,36 @@ inherits the non-folded v4f adaptive width profile of
 validated substantial-width contract across the full route. Restore a
 non-folding full-width sweep before final visual review.
 
+The matching local-gusset evaluation also remains blocked. Its island-3 edge
+and each constituent's topology, self-clearance, cutter clearance, margin, and
+quality can pass independently. The two required rail-to-island landings
+cannot: corrected direct, bounded midpoint, and historical-route-prepend
+searches each retain exactly five component-9 overlaps. Do not treat the prior
+v7 report or copied Blend as current result evidence. The rail and cage
+junctions must be reconstructed as one obstacle-aware structural system.
+
+A deterministic minimum-twist reconstruction shows that frame continuity
+alone cannot restore that width on the monolithic exact-control route. Of 24
+bounded global rolls, only `60°` and `75°` admit complete fixed-width,
+cutter-clear ring fields, and neither produces a passing rail. The least-bad
+case restores width to `5.999994–6.000005 mm` and thickness to
+`2.399993–2.400007 mm`, remains cutter-clear with `1.699990 mm` minimum
+margin, and preserves the retained cage, hard controls, 11 unaffected
+anchors, tip gap, and selected V2108 transition. It nevertheless has:
+
+- `134` non-tip component-9 overlap pairs;
+- `69` self-overlap pairs;
+- `2.680580°` minimum triangle angle;
+- `15.361248` maximum triangle aspect ratio.
+
+Do not expand the global/local roll search or reintroduce adaptive narrowing.
+The combined v4–v8 evidence rejects a single broad strip constrained through
+all legacy interface controls. The next structural candidate may relax those
+controls explicitly and use a small connected set of broad, closed local
+plates or rails. It must report every relaxed control and displacement,
+preserve the visible cage and open center, and pass the same component-9,
+cutter, topology, wall-margin, and quality gates before visual review.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

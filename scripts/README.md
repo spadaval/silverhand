@@ -139,6 +139,14 @@ lineages.
 - `blender/build_anchor_transition_sweep_v6.py` — sweeps two local anchor
   transitions on the non-folded rail and selects the minimum-displacement
   component-9-clear result while preserving the other 11 anchors exactly.
+- `blender/build_flared_gusset_network_v7.py` — retargets the required local
+  cage-island gusset graph onto the v6 rail and searches a bounded direct
+  island-3 connection. It is evaluation-only and does not repair the v6
+  rail's inherited width collapse.
+- `blender/build_parallel_transport_interface_rail_v8.py` — evaluates a fixed
+  `6.0 × 2.4 mm` minimum-twist rail on the v6 route. The bounded control is
+  rejected because restoring full width on one monolithic exact-control sweep
+  reintroduces component-9 and self intersections.
 - `blender/sweep_cluster_rigid_clearance.py` — tests coherent rigid motion of
   explicit violation clusters with topology-local harmonic transition
   weights. It is diagnostic-only and saves no geometry.
