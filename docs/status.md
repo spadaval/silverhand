@@ -479,7 +479,17 @@ now repeatably checkpointed: 17 reconstruction faces, four protected visible
 faces, and split inner-side duplicates for source vertices `1537`, `1539`,
 and `1542`, with every incident face uniquely partitioned. Exact barrier edges
 `10392`, `12914`, and `12919` use no split vertex. No geometry has yet been
-emitted or mutated.
+emitted or mutated. The first fixed-topology coordinate family is now
+repeatably exhausted: all `5,400` members fail before the overlap and
+negative-space gates (`1,512` invalid direction modes, `1,766` split-vertex
+clearance failures, and `2,122` triangle inversions). A necessary-boundary
+audit proves that retopology inside the same loop is also impossible because
+fixed boundary vertices `1535`, `1536`, and `1540` remain at
+`-18.462990`, `-34.427792`, and `-24.658117 mm` signed cutter margin.
+Their outside incidence requires review of immutable-complement faces
+`[2218, 2219, 2268, 2274, 2275, 2276]`; selected wearer-side face `2282`
+may expand with the reconstruction. That bounded visible-role review is the
+current immediate action.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.

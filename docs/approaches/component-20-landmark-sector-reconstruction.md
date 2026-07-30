@@ -820,6 +820,52 @@ contract. Zero routes survive to full-roll search. This records
 `NO_SAFE_AUTHORED_TAIL_ROUTE_V25`: expanding into B1, replacing more than
 `12 mm` of B2a, or changing the route architecture requires a new decision.
 
+### V27 C9 split-surface reconstruction checkpoint
+
+`V27-SPLIT-SURFACE-001` fixes the next experiment before geometry evaluation.
+The candidate retains the accepted edge-12916 endpoint targets and the
+17-face split-incidence topology authority. Only the three reconstructed-side
+duplicates of source vertices `1537`, `1539`, and `1542` may move; their
+visible source counterparts and the four protected visible faces remain
+exact.
+
+The finite family contains `5,400` members. For each split vertex, a local
+outward direction blends cutter-outward and reconstructed-source normals at
+weights `[0, 0.25, 0.5, 0.75, 1]`, then rotates by
+`[-30, -15, 0, 15, 30]` degrees about the local reconstructed boundary
+tangent. Each vertex advances by the analytically required distance to the
+`1.7 mm` signed cutter margin plus one independently selected extra distance
+from `[0, 1, 2, 4, 6, 8] mm`. Members are enumerated by increasing total
+extra distance, maximum extra distance, displacement tuple, blend, and
+rotation. The complete family definition and fingerprint must be written
+before selection.
+
+Every member must preserve winding, keep all reconstructed-edge length ratios
+inside `[0.5, 2.0]`, keep triangle aspect ratio at or below `12`, add no
+source-complement or self-intersection pair relative to the split-topology
+baseline, add no protected-negative-space cell incidence, and retain at least
+`1.7 mm` adaptive exact cutter clearance. Failure must name the first
+exhausted gate and its best counterexample. No mesh may be emitted unless all
+gates pass.
+
+The repeat-identical result exhausts all `5,400` members without selection.
+`1,512` members have an invalid local direction mode, `1,766` fail split-
+vertex clearance, and the remaining `2,122` invert at least one source
+triangle. No member reaches the later overlap, negative-space, or adaptive
+cutter gates. This closes coordinate-only deformation of the authorized
+17-face topology.
+
+A separate necessary-boundary audit also proves that retopology inside the
+same 15-edge loop cannot solve the defect. Fixed source vertices `1535`,
+`1536`, and `1540` have signed cutter margins `-18.462990`,
+`-34.427792`, and `-24.658117 mm`. Their outside incidences introduce
+immutable-complement faces `[2218, 2219, 2268, 2274, 2275, 2276]` plus
+already-selected wearer-side face `2282`; protected faces `2220` and `2225`
+remain exact visible evidence. The next reconstruction authority must
+classify those six new faces, split any protected visible incidences, and
+expand the boundary beyond all three failing controls before defining new
+surface topology.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
