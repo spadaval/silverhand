@@ -1069,6 +1069,64 @@ promote anything.
   and reviews only the exact eight-face immutable/ambiguous set in local
   context, checkpointing before and after every image operation
 
+### V27-LANDING-009 — bounded visible-role review completed
+
+- operation: disposable subagent rendered and reviewed only the exact
+  eight-face ambiguous set; the parent coordinated exclusively from durable
+  text and JSON checkpoints and did not read an image
+- result: `DONE_V27_C9_EXPANSION_FACE_VISUAL_CLASSIFICATION`
+- image_checkpoint:
+  `c9_expansion_face_visual/checkpoint.md`
+- machine_classification:
+  `c9_expansion_face_visual/classification.json`
+- text_conclusion:
+  `c9_expansion_face_visual/conclusion.md`
+- keep_immutable_face_ids: `[2220, 2221, 2225, 2233]`
+- conditional_expansion_candidate_face_ids: `[2222, 2224, 2226, 2284]`
+- unresolved_face_ids: `[]`
+- visible_roles:
+  - faces `2220`, `2221`, and `2225`: exposed exterior diagonal ridge
+  - face `2233`: exposed opening-rim/barrier surface
+  - face `2222`: recessed wearer-side/internal notch surface
+  - face `2224`: wearer-facing inner opening wall
+  - face `2226`: fully concealed internal surface
+  - face `2284`: concealed inner fold/barrier surface
+- retained_constraints:
+  - face `2222` preserves exact barrier edge `12914` and the recessed notch
+  - face `2224` preserves its intentional opening as empty negative space
+  - face `2226` may not fill or shrink the surrounding opening
+  - face `2284` preserves exact barrier edge `10392` and neighboring face
+    `2283`'s protected source-open route; never bridge, fill, or narrow it
+- image_safety:
+  - raw PNG count: `25`
+  - sanitized PNG count: `25`
+  - maximum sanitized size: `648,110` bytes
+  - every sanitized derivative below `10 MB`: true
+  - raw image inspected: false
+  - contact sheet generated or inspected: false
+  - source Blend saved or changed: false
+- checkpoint_sha256:
+  `db7a951780bc932b16bd9607f8627b4862ee82ecdac6d6141a07ecc8b9036731`
+- classification_sha256:
+  `462cb09cb55aba274612363f6af8d2f7be23b966b88e1d1df867bcc37cfeb48c`
+- conclusion_sha256:
+  `2e1601c5f041aecdd07ec01b9f9738af52d58d2fbcc2798b5033884f710936f7`
+- automatic_mask_expansion_authorized: false
+- geometry_consequence: all three below-clearance boundary vertices are shared
+  with protected visible faces, so moving the source vertices directly remains
+  forbidden. The viable next architecture is a deliberate topology split:
+  preserve the visible source vertices/faces exactly, duplicate only the
+  reconstructed-side incidences, and move/rebuild that inner landing sheet
+  under the recorded barriers and negative-space constraints.
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- promotion: `NOT_PROMOTED`
+- next_action: materialize a read-only split-incidence authority for the
+  11-face landing plus selected faces `2229`, `2283` and conditional faces
+  `2222`, `2224`, `2226`, `2284`, while keeping faces
+  `2220`, `2221`, `2225`, `2233` byte-for-byte immutable
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false

@@ -466,6 +466,15 @@ exterior-or-ambiguous evidence. All ten remain inside the C9 maximum mask and
 none touches a frozen terminal. Face `2283` participates in the protected
 source-open route, so any reconstruction must preserve its openness. The exact
 eight-face ambiguous set now needs bounded sanitized visible-role review.
+That review is complete. Faces `2220`, `2221`, and `2225` are exposed exterior
+ridge composition, and face `2233` is an exposed opening-rim barrier; all four
+remain immutable. Faces `2222`, `2224`, `2226`, and `2284` are conditional
+inner/hidden expansion candidates under exact barrier and opening constraints.
+All three failing boundary vertices are shared with at least one protected
+visible face, so direct source-vertex motion remains forbidden. The next
+architecture must split reconstructed-side incidences from the visible source
+sheet: preserve the exterior vertices/faces exactly while duplicating and
+rebuilding only the inner landing side.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -575,12 +584,13 @@ transformation evidence, not a salvage library for production.
    SHA-256
    `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
 2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
-3. For component `20`, delegate a bounded sanitized face-role review of C9
-   faces `[2220, 2221, 2222, 2224, 2225, 2226, 2233, 2284]`. Decide whether
-   they are hidden/wearer-facing reconstruction authority or visible source
-   landmarks that constrain a smaller authored replacement. Preserve face
-   `2283`'s protected source-open route. Only after that review may the mask
-   change and a distributed surface family be enumerated.
+3. For component `20`, materialize the read-only split-incidence authority for
+   the C9 landing. Keep faces `[2220, 2221, 2225, 2233]` and their visible
+   source vertices exact. Permit only reconstructed-side duplicates for the
+   11-face landing, selected faces `[2229, 2283]`, and conditional inner faces
+   `[2222, 2224, 2226, 2284]`. Preserve barrier edges `12914`, `12919`, and
+   `10392`, all intentional openings, and face `2283`'s protected source-open
+   route before enumerating any surface geometry.
 4. After component `20`, preserve component `9`'s exterior and rebuild only
    its two dominant wearer-facing patches. Do not rerun whole-component
    displacement or wider diffusion.

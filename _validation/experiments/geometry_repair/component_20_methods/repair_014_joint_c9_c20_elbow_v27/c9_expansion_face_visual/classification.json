@@ -1,0 +1,182 @@
+{
+  "operation": "V27_C9_LANDING_EXPANSION_VISIBLE_ROLE_REVIEW",
+  "status": "DONE_V27_C9_EXPANSION_FACE_VISUAL_CLASSIFICATION",
+  "scope": {
+    "source_blend": "/Users/supadava/Projects/experimental/silverhand/blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v24.blend",
+    "source_blend_sha256": "68deef0bf80fdcfe2d592c81c1625061d93bcbc41e25e405a35d551e5dfc7823",
+    "source_object": "EVAL_REPAIR_014_COORDINATED_INTERFACE_AFTER",
+    "face_ids": [
+      2220,
+      2221,
+      2222,
+      2224,
+      2225,
+      2226,
+      2233,
+      2284
+    ]
+  },
+  "records": [
+    {
+      "face_id": 2220,
+      "visible_role": "VISIBLE_EXTERIOR_RIDGE_SURFACE",
+      "uncertainty": "LOW",
+      "may_join_reconstruction_authority_without_harming_visible_composition": false,
+      "decision": "KEEP_IMMUTABLE",
+      "reason": "directly exposed triangle on the diagonal ridge over the broad exterior elbow plate",
+      "evidence": [
+        "sanitized/group__front.png",
+        "sanitized/face_2220__normal.png"
+      ]
+    },
+    {
+      "face_id": 2221,
+      "visible_role": "VISIBLE_EXTERIOR_RIDGE_SURFACE",
+      "uncertainty": "LOW",
+      "may_join_reconstruction_authority_without_harming_visible_composition": false,
+      "decision": "KEEP_IMMUTABLE",
+      "reason": "directly exposed continuation of the diagonal exterior strip",
+      "evidence": [
+        "sanitized/group__front.png",
+        "sanitized/face_2221__normal.png"
+      ]
+    },
+    {
+      "face_id": 2222,
+      "visible_role": "RECESSED_WEARER_SIDE_OR_INTERNAL_NOTCH_SURFACE",
+      "uncertainty": "MEDIUM_LOW",
+      "may_join_reconstruction_authority_without_harming_visible_composition": true,
+      "decision": "CONDITIONAL_EXPANSION_CANDIDATE",
+      "constraints": [
+        "preserve exact barrier edge 12914",
+        "preserve the recessed notch and surrounding intentional open space",
+        "do not turn the reconstruction into a backing carrier"
+      ],
+      "reason": "occluded from normal and oblique exterior views; visible only as a tiny recessed reverse-side triangle",
+      "evidence": [
+        "sanitized/face_2222__normal.png",
+        "sanitized/face_2222__oblique.png",
+        "sanitized/face_2222__reverse.png"
+      ]
+    },
+    {
+      "face_id": 2224,
+      "visible_role": "WEARER_FACING_INNER_OPENING_SURFACE",
+      "uncertainty": "LOW_MEDIUM",
+      "may_join_reconstruction_authority_without_harming_visible_composition": true,
+      "decision": "CONDITIONAL_EXPANSION_CANDIDATE",
+      "constraints": [
+        "retain the intentional opening as empty negative space",
+        "reconstruct inner-wall continuity without filling the opening",
+        "do not turn the reconstruction into a backing carrier"
+      ],
+      "reason": "small inner-wall triangle visible obliquely through the opening, not part of the exterior silhouette or broad plate",
+      "evidence": [
+        "sanitized/face_2224__normal.png",
+        "sanitized/face_2224__oblique.png"
+      ]
+    },
+    {
+      "face_id": 2225,
+      "visible_role": "VISIBLE_EXTERIOR_RIDGE_SURFACE",
+      "uncertainty": "LOW",
+      "may_join_reconstruction_authority_without_harming_visible_composition": false,
+      "decision": "KEEP_IMMUTABLE",
+      "reason": "large, conspicuous central triangle of the diagonal exterior strip",
+      "evidence": [
+        "sanitized/group__front.png",
+        "sanitized/face_2225__normal.png"
+      ]
+    },
+    {
+      "face_id": 2226,
+      "visible_role": "FULLY_CONCEALED_INTERNAL_SURFACE",
+      "uncertainty": "MEDIUM",
+      "may_join_reconstruction_authority_without_harming_visible_composition": true,
+      "decision": "CONDITIONAL_EXPANSION_CANDIDATE",
+      "constraints": [
+        "retain surrounding intentional opening and negative space",
+        "do not turn the reconstruction into a backing carrier"
+      ],
+      "reason": "fully occluded in group, normal, oblique, and reverse views while the surrounding shell and cavity remain visible",
+      "evidence": [
+        "sanitized/face_2226__normal.png",
+        "sanitized/face_2226__oblique.png",
+        "sanitized/face_2226__reverse.png"
+      ]
+    },
+    {
+      "face_id": 2233,
+      "visible_role": "VISIBLE_OPENING_RIM_BARRIER_SURFACE",
+      "uncertainty": "LOW_MEDIUM",
+      "may_join_reconstruction_authority_without_harming_visible_composition": false,
+      "decision": "KEEP_IMMUTABLE",
+      "constraints": [
+        "preserve exact barrier edge 12919"
+      ],
+      "reason": "exposed sliver beneath an exterior overhang that defines an opening/rim transition",
+      "evidence": [
+        "sanitized/face_2233__normal.png",
+        "sanitized/face_2233__oblique.png"
+      ]
+    },
+    {
+      "face_id": 2284,
+      "visible_role": "CONCEALED_INNER_FOLD_BARRIER_SURFACE",
+      "uncertainty": "LOW_MEDIUM",
+      "may_join_reconstruction_authority_without_harming_visible_composition": true,
+      "decision": "CONDITIONAL_EXPANSION_CANDIDATE",
+      "constraints": [
+        "preserve exact barrier edge 10392",
+        "preserve face 2283's exact protected source-open route",
+        "do not bridge, fill, or narrow the protected route",
+        "do not turn the reconstruction into a backing carrier"
+      ],
+      "reason": "substantial inward fold in a local topology cutaway, but occluded in every full-scene view",
+      "evidence": [
+        "sanitized/face_2284__normal.png",
+        "sanitized/face_2284__oblique.png",
+        "sanitized/face_2284__reverse.png",
+        "sanitized/face_2284__local_reverse.png",
+        "sanitized/face_2284__local_oblique.png"
+      ]
+    }
+  ],
+  "summary": {
+    "keep_immutable_face_ids": [
+      2220,
+      2221,
+      2225,
+      2233
+    ],
+    "conditional_expansion_candidate_face_ids": [
+      2222,
+      2224,
+      2226,
+      2284
+    ],
+    "unresolved_face_ids": [],
+    "automatic_mask_expansion_authorized": false,
+    "parent_action": "revise reconstruction authority only for the four conditional candidates and carry every recorded barrier, negative-space, and source-open-route constraint into the machine contract"
+  },
+  "protected_source_open_route": {
+    "incident_face_id": 2283,
+    "constraint": "face 2283's exact source-open route must remain open and unchanged; no recommended expansion authorizes bridging, filling, or narrowing it"
+  },
+  "image_safety": {
+    "raw_images_inspected": false,
+    "sanitized_images_only": true,
+    "all_sanitized_under_10_mb": true,
+    "high_detail_first": true,
+    "original_detail_reads": [
+      "sanitized/face_2284__reverse.png"
+    ],
+    "contact_sheet_generated": false,
+    "contact_sheet_inspected": false
+  },
+  "mutation": {
+    "source_geometry_changed": false,
+    "blend_saved": false,
+    "candidate_promoted": false
+  }
+}
