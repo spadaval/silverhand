@@ -1,0 +1,32 @@
+{
+  "aggregate_selected_face_ids": [
+    2229,
+    2283
+  ],
+  "authority_path": "/Users/supadava/Projects/experimental/silverhand/_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_c9_landing_expansion_classification.json",
+  "authority_sha256": "27311e5fa765094f355c84507ed8090405bdbcbae34739968636ba0b811c3d9d",
+  "immutable_ambiguous_face_ids": [
+    2220,
+    2221,
+    2222,
+    2224,
+    2225,
+    2226,
+    2233,
+    2284
+  ],
+  "operation": "CLASSIFY_V27_C9_LANDING_EXPANSION",
+  "safety": {
+    "blend_saved": false,
+    "geometry_emitted": false,
+    "image_work_requested": false,
+    "mutation_started": false,
+    "promotion": "NOT_PROMOTED"
+  },
+  "semantic_fingerprint": "5ba6b0b4a8f54e0b852fab6d550384320914cad89bfa7ed0b2cebffd8d0dddfb",
+  "source_open_route_incident_face_ids": [
+    2283
+  ],
+  "status": "V27_C9_LANDING_EXPANSION_REQUIRES_VISIBLE_ROLE_REVIEW",
+  "terminal_face_ids": []
+}

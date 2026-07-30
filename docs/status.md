@@ -459,7 +459,13 @@ vertices `1542`, `1539`, and `1537` have signed cutter margins
 `-9.346299369`, `-12.143722862`, and `-4.560815901 mm`. No interior
 retopology can pass while those boundary samples remain fixed. The exact ten
 outside faces incident to them must be classified before any deliberate mask
-expansion.
+expansion. That classification is now complete: faces `2229` and `2283` are
+already selected wearer-side authority; faces
+`[2220, 2221, 2222, 2224, 2225, 2226, 2233, 2284]` remain frozen
+exterior-or-ambiguous evidence. All ten remain inside the C9 maximum mask and
+none touches a frozen terminal. Face `2283` participates in the protected
+source-open route, so any reconstruction must preserve its openness. The exact
+eight-face ambiguous set now needs bounded sanitized visible-role review.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -569,14 +575,12 @@ transformation evidence, not a salvage library for production.
    SHA-256
    `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
 2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
-3. For component `20`, classify the exact ten-face expansion required by the
-   Stage 2c boundary necessity proof:
-   `[2220, 2221, 2222, 2224, 2225, 2226, 2229, 2233, 2283, 2284]`.
-   Check aggregate ownership, visible/source role, terminals, and negative
-   space before revising the mask. Only then enumerate a distributed surface
-   family with preserved orientation, edge ratios `0.5–2.0`, bounded triangle
-   quality, exact baseline-delta complement separation, and at least `1.7 mm`
-   cutter clearance.
+3. For component `20`, delegate a bounded sanitized face-role review of C9
+   faces `[2220, 2221, 2222, 2224, 2225, 2226, 2233, 2284]`. Decide whether
+   they are hidden/wearer-facing reconstruction authority or visible source
+   landmarks that constrain a smaller authored replacement. Preserve face
+   `2283`'s protected source-open route. Only after that review may the mask
+   change and a distributed surface family be enumerated.
 4. After component `20`, preserve component `9`'s exterior and rebuild only
    its two dominant wearer-facing patches. Do not rerun whole-component
    displacement or wider diffusion.

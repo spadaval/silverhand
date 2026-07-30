@@ -1006,6 +1006,69 @@ promote anything.
   against aggregate ownership, visible/source role, terminals, and negative
   space before revising the reconstruction mask
 
+### V27-LANDING-007 — necessary expansion classified
+
+- timestamp_utc: `2026-07-30T03:20:15Z`
+- script: `scripts/tools/classify_v27_c9_landing_expansion.py`
+- result: `V27_C9_LANDING_EXPANSION_REQUIRES_VISIBLE_ROLE_REVIEW`
+- required_expansion_face_ids:
+  `[2220, 2221, 2222, 2224, 2225, 2226, 2229, 2233, 2283, 2284]`
+- aggregate_selected_face_ids: `[2229, 2283]`
+- immutable_ambiguous_face_ids:
+  `[2220, 2221, 2222, 2224, 2225, 2226, 2233, 2284]`
+- all_faces_inside_c9_maximum_mask: true
+- terminal_face_ids: `[]`
+- exact_opening_dependencies:
+  - face `2229` intersects central-opening cell `044`
+  - face `2283` intersects central-opening cells
+    `[031, 032, 038, 039, 041, 044, 046]`
+  - face `2283` intersects protected source-open-route cell
+    `C20_SOURCE_OPEN_ROUTE_01_EDGE_16656`
+- first_execution_code_sha256:
+  `4512b184722227ea94f7283a5d40981c9e4d8cd7f6cd0e0443111f30f951ed4f`
+- first_execution_authority_sha256:
+  `27311e5fa765094f355c84507ed8090405bdbcbae34739968636ba0b811c3d9d`
+- first_execution_receipt_sha256:
+  `5ec42ea315700a7a9f0a84685a270747b7734c9e2ed3d69d28cc8cc02e68b33c`
+- first_execution_semantic_fingerprint:
+  `5ba6b0b4a8f54e0b852fab6d550384320914cad89bfa7ed0b2cebffd8d0dddfb`
+- automatic_mask_expansion_authorized: false
+- reason: eight faces remain frozen exterior-or-ambiguous source evidence and
+  the source-open route must remain empty; the parent cannot infer visible
+  role or authorize reconstruction from topology alone
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: repeat and audit the classification authority, then delegate a
+  bounded sanitized face-role review to a disposable image subagent
+
+### V27-LANDING-008 — expansion classification checkpointed
+
+- result: `V27_C9_LANDING_EXPANSION_REQUIRES_VISIBLE_ROLE_REVIEW`
+- authority: `v27_c9_landing_expansion_classification.json`
+- receipt: `v27_c9_landing_expansion_classification_receipt.json`
+- code_sha256:
+  `4512b184722227ea94f7283a5d40981c9e4d8cd7f6cd0e0443111f30f951ed4f`
+- authority_sha256:
+  `27311e5fa765094f355c84507ed8090405bdbcbae34739968636ba0b811c3d9d`
+- receipt_sha256:
+  `5ec42ea315700a7a9f0a84685a270747b7734c9e2ed3d69d28cc8cc02e68b33c`
+- semantic_fingerprint:
+  `5ba6b0b4a8f54e0b852fab6d550384320914cad89bfa7ed0b2cebffd8d0dddfb`
+- repeatability: `DONE`; two executions produced byte-identical authority and
+  receipt hashes
+- named_audit: `PASS_V27_C9_LANDING_EXPANSION_CLASSIFICATION_AUDIT`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: a disposable image subagent renders, sanitizes, size-checks,
+  and reviews only the exact eight-face immutable/ambiguous set in local
+  context, checkpointing before and after every image operation
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false
