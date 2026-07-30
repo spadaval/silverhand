@@ -1,6 +1,6 @@
 # V28 Authored Wearable Panels
 
-Status: **active construction approach; fit-derived scaffold accepted for next disposable iteration**
+Status: **active construction approach; closed physical shells accepted for next disposable iteration**
 
 Updated: 2026-07-30
 
@@ -131,3 +131,69 @@ The next experiment may add provisional outward thickness and simple edge
 treatment while preserving the current panel count, seams, opening direction,
 and inner scaffold surface. Do not integrate source detail or promote the
 result in that experiment.
+
+## V28-PHYSICAL-001
+
+Checkpointed before geometry mutation on 2026-07-30.
+
+Turn the exact accepted scaffold into three closed evaluation shells:
+
+- use Blend SHA-256
+  `e27c5632d0c5d7b60cb99f4eac87b46a143cc4a36e1caf1b36bbbea366b28c9a`
+  as the sole panel-shape input;
+- preserve every inner scaffold vertex exactly;
+- add provisional `1.6 mm` thickness outward from the neutral construction
+  axis;
+- close both axial ends and both longitudinal opening lips;
+- preserve three independent constituents, both `4 mm` axial seams, and the
+  aligned `40 degree` opening;
+- use square boundary closures in this first solid experiment.
+
+The square edges are deliberate staging geometry, not finished wearer-contact
+treatment. Rounding or rolling an edge may consume clearance or alter the
+opening and therefore follows only after the closed-shell layout is accepted.
+No thickness value has physical authority until a TPU process coupon is tested.
+
+Before saving the disposable physical-shell Blend, require:
+
+- one connected component per panel;
+- positive signed volume;
+- zero boundary and non-manifold edges;
+- no nonadjacent self-overlap or cross-panel overlap;
+- unchanged source, fit-reference, cutter, and accepted inner scaffold meshes;
+- the complete evaluated shell triangle set to pass the `1.7 mm` cutter
+  contract.
+
+This experiment creates a physical mesh topology, but it does not claim a
+closure system, elbow motion, exterior-detail attachment, bed segmentation,
+print readiness, or production status.
+
+## V28-PHYSICAL-001 result
+
+The three provisional physical shells passed machine and independent visual
+review:
+
+- disposable Blend SHA-256:
+  `64366dc52290552416fa7ac478d6bc289adb8ff63fa1de6ca4c84f9e1c80bd68`;
+- three independent connected components, each with `640` vertices and `638`
+  faces;
+- zero boundary edges and zero non-manifold edges;
+- positive volumes of `8675.386`, `7138.060`, and `7488.479 mm³`;
+- all `3,828` evaluated triangles pass the cutter contract;
+- minimum exact triangle-to-cutter distance: `1.813721 mm`;
+- minimum signed adaptive margin: `1.831561 mm`;
+- self-overlap pairs: `0`;
+- cross-panel overlap pairs: `0`;
+- independent visual result: `ACCEPT_FOR_NEXT_DISPOSABLE_ITERATION`;
+- visual classification SHA-256:
+  `81477f741591a705dbb64787d2fa3f0ec249ce43b5d1d1cce625c815ee78903a`.
+
+Seven individual sanitized high-detail views show continuous inner, outer, and
+square rim walls; retained axial seams and longitudinal opening; no obvious
+thin or missing wall; and no visible bulge, spike, twist, fold-over, or surface
+crossing.
+
+These are real closed mesh solids, but still evaluation geometry. The next
+bounded work is wearer-contact edge treatment and a small physical TPU process
+coupon. Detailed exterior junctions, closure hardware, motion architecture,
+and production export remain deferred.

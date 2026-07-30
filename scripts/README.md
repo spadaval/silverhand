@@ -39,6 +39,12 @@ lineages.
   `4 mm` axial seams and a provisional longitudinal opening, uses the cutter
   only for collision/clearance rejection, runs adaptive `1.7 mm` gates, and
   saves only an ignored evaluation Blend.
+- `tools/build_v28_three_panel_physical_shells.sh` — turns the exact accepted
+  scaffold checkpoint into three closed provisional `1.6 mm` shells.
+- `blender/build_v28_three_panel_physical_shells.py` — preserves the accepted
+  inner scaffold vertices, adds thickness outward, closes every rim, and
+  rejects non-manifold topology, non-positive volume, cutter violations, or
+  self/cross-panel overlap before saving an ignored evaluation Blend.
 - `tools/refresh_main_geometry_evidence.sh` — executes the complete
   current-milestone evidence refresh. Each successful operation reports `DONE`;
   only named validation gates and audits may report `PASS`.

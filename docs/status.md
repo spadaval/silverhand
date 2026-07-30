@@ -549,6 +549,29 @@ self-crossing, cross-panel crossing, or unintended gap is visible.
 Classification SHA-256:
 `86645d3d8775ef60105464767ae7e06416088f9d8e02b05c7ee3c8f36bc46227`.
 
+The accepted scaffold has now been converted into three real closed mesh
+solids in the ignored evaluation scene:
+
+- `blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_three_panel_physical_shells.blend`
+- SHA-256
+  `64366dc52290552416fa7ac478d6bc289adb8ff63fa1de6ca4c84f9e1c80bd68`
+
+Each panel is one positive-volume connected component with `640` vertices,
+`638` faces, zero boundary edges, and zero non-manifold edges. Provisional
+thickness is `1.6 mm`, added outward while preserving every accepted inner
+scaffold vertex. All `3,828` evaluated triangles pass the cutter contract,
+with `1.813721 mm` minimum exact distance and `1.831561 mm` minimum signed
+adaptive margin. There are no self- or cross-panel overlap pairs.
+
+Independent review of seven individual sanitized high-detail views accepted
+the shells for the next disposable iteration. Inner, outer, and square rim
+walls read continuously; the seams and opening survive; and no obvious thin
+wall, bulge, spike, twist, fold-over, or crossing is visible. Classification
+SHA-256:
+`81477f741591a705dbb64787d2fa3f0ec249ce43b5d1d1cce625c815ee78903a`.
+The shells are physical mesh topology, not yet a wearable-panel promotion or
+print candidate.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 
@@ -662,13 +685,12 @@ transformation evidence, not a salvage library for production.
    regenerate it unless its exact source inputs change.
 4. Preserve all 253 exterior-reference faces. Do not reuse the rejected
    247-face provisional removal list as deletion authority.
-5. Use the accepted fit-derived scaffold as the sole panel-shape authority for
-   one disposable thickness and simple-edge iteration. Preserve the current
-   panel count, axial seams, opening direction, and inner clearance surface.
-6. Do not integrate source detail, closures, or local junctions in that
-   thickness experiment.
-7. Rerun cutter intersection, continuously sampled edge, adaptive triangle
-   interior, self-overlap, and cross-panel overlap gates after thickness.
+5. Preserve the accepted closed physical shells as the current V28
+   engineering checkpoint.
+6. Design a bounded wearer-contact treatment for the square opening and axial
+   rims without moving the accepted inner clearance surface.
+7. Print a small representative TPU thickness/rim coupon before assigning
+   physical authority to the provisional `1.6 mm` wall.
 8. Reattach retained exterior forms with bounded standoffs or junctions;
    modest relocation or trimming is allowed when exact placement conflicts
    with wearability.

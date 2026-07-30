@@ -19,6 +19,15 @@ running one; script existence does not make a method active.
 The scaffold is not production geometry. Do not add thickness, closures,
 junctions, or source detail until its independent layout review is recorded.
 
+- `build_v28_three_panel_physical_shells.py` — consumes only the exact
+  independently accepted scaffold Blend, preserves its inner vertices, and
+  creates three closed outward-thickness evaluation shells. It requires one
+  positive-volume manifold component per panel plus complete cutter and
+  surface-overlap gates before saving.
+
+The physical shells still have square staging rims. They are not closure,
+motion, source-junction, print, or production authority.
+
 ## Historical V27 evidence
 
 The following scripts remain runnable only to reproduce rejected evidence:
