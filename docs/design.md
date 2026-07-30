@@ -76,15 +76,20 @@ work:
    field into a fitted surface candidate.
 4. Approve the initial deformation integrity and review its source fidelity and
    digital clearance before changing topology.
-5. Reconstruct only bounded visible regions that the reviewed shared
-   deformation cannot make wearable.
-6. Preserve the accepted exterior while adding hidden thickness and closure
-   surfaces.
-7. Author local structural junctions until the sleeve has one durable wearable
-   load network.
-8. Add the donning closure, tactical armor panels, and hardpoints.
-9. Segment, slice, test representative regions, and then print the complete
-   wearable assembly.
+5. Classify the accepted fitted surface into recognizable exterior evidence
+   and wearer-facing engineering geometry.
+6. Remove broad wearer-facing regions that cannot clear the wearer without
+   destructive distortion. The game topology does not govern those hidden
+   regions.
+7. Author a small number of clean wearable panels around the clearance cutter,
+   with deliberate donning, flex, and construction seams.
+8. Reattach retained exterior forms with local standoffs and structural
+   junctions; modestly relocate or trim decorative forms when required for
+   clearance.
+9. Add controlled thickness, closure hardware, tactical armor panels, and
+   hardpoints.
+10. Segment, slice, test representative regions, and then print the complete
+    wearable assembly.
 
 The canonical fitted surface uses a straight construction pose. This simplifies
 radial coordinates, cross-section editing, printer-bed segmentation, and
@@ -106,26 +111,31 @@ details may move closer together but must never exchange order. All
 constituents receive the same spatial field. Per-component, per-sector, or
 collision-driven translations are prohibited.
 
-Until the fitted surface passes visual and clearance review, preserve source
+Until the initial fitted surface passes transformation and visual review,
+preserve source
 vertex/face topology, material assignments, relative registration, and visible
 negative space. Do not split components, delete faces, add thickness, Boolean
 against the cutter, remesh, or manufacture connectivity during this stage.
-If bounded visible reconstruction is required, record its exact region and
-reason, preserve these invariants everywhere else, and repeat visual and
-clearance review on the complete candidate.
+After that review, topology preservation is no longer a goal for classified
+wearer-facing regions. Preserve the approved exterior and negative spaces,
+record the broad replacement mask, and engineer the hidden wearable structure
+cleanly rather than attempting to repair every source triangle.
 
 ## 6. Main-geometry architecture
 
-The arm is a **layered source-preserving wearable structure**. It is not a
-sealed anatomical sleeve and does not require a smooth global backing.
+The arm is a **source-referenced exterior on an authored wearable structure**.
+It is not a repaired game mesh, a sealed anatomical sleeve, or a smooth global
+backing.
 
 Valid forms include:
 
 - closed source-derived rails and cables;
 - locally thickened visible sheets;
+- a small number of clean wearer-facing TPU panels;
 - supported open spans;
 - intentional armor voids;
 - source-authentic overlaps;
+- deliberate panel, flex, and donning seams;
 - deliberately authored structural junctions.
 
 The final wearable must have a durable load path after printing and assembly.
@@ -134,9 +144,14 @@ merge in the slicer or be joined deliberately. Supports never count as a
 permanent connection.
 
 Solidification and connectivity are separate operations. Closing every source
-sheet does not attach floating details. After the fitted surface is approved,
-preserve its exterior and re-engineer hidden surfaces, then connect retained
-constituents with bounded structural junctions.
+sheet does not attach floating details. After the fitted exterior is approved,
+discard unusable hidden source sheets, build the wearable panels independently,
+and connect retained exterior constituents with bounded structural junctions.
+
+Three coarse panels are the default starting point for a difficult wrapped
+region. Add a panel only when a named fit, motion, printing, or assembly
+constraint requires it. Automated face clustering must not turn diagnostic
+complexity into dozens of production pieces.
 
 The intended result is one continuous worn sleeve assembly. It may contain
 multiple deliberately overlapping constituents and will require printer-bed
@@ -155,14 +170,16 @@ It must not:
 
 - become part of the final printed geometry;
 - generate the visible exterior;
-- supply a continuous hidden sleeve;
+- be copied wholesale as a continuous hidden sleeve;
 - fill source gaps automatically;
 - justify a global union or remesh.
 
 During fitted-surface work, a clearance violation triggers a shared-field
-adjustment or a reviewed regional reconstruction. It must not trigger automatic
-face deletion, per-component lifting, or an unreviewed Boolean. Later bounded
-subtractions must preserve the approved visible surface.
+adjustment or classification of a broad wearer-facing replacement region. It
+must not trigger per-component lifting or an unreviewed global Boolean. During
+main-geometry work, the cutter may govern clearance for manually authored local
+panels and bounded subtraction, but source topology and cutter triangles must
+not be copied into the result.
 
 ## 8. Preservation and reconstruction policy
 
@@ -184,12 +201,17 @@ Preserve a source-derived form when it:
 
 Preserve the visible source surface while replacing its hidden closure,
 perimeter, thickness, or attachment geometry. This is the default treatment for
-good-looking but poorly manufactured source sheets.
+good-looking but poorly manufactured source sheets. When a large hidden region
+is unwearable, delete it broadly and replace it with a small number of clean
+authored panels. Do not preserve hidden source topology merely because it
+exists.
 
 ### Reconstruct visibly
 
 Rebuild a visible region only when the existing version is clearly damaged,
-missing, flattened, or mechanically unusable. Reconstruction must:
+missing, flattened, or mechanically unusable. A modest relocation or trim is
+also allowed when a cosplay detail otherwise conflicts with the wearer
+envelope. Reconstruction must:
 
 - begin from intact source evidence;
 - preserve named silhouette, panel, cable, junction, and depth landmarks;

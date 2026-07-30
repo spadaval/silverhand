@@ -510,10 +510,26 @@ is now partially proven: a repeat-identical 15-degree directional partition
 creates 40 connected charts and 97 internal seam edges; 26 charts pass all
 cheap geometry gates. Fourteen charts remain, including the large wrapped
 10/18/24/32/36/55-face sheets. Their cutter exit depth is discontinuous even
-when their normals are coherent. The immediate action is to retain the 26
-passing chart authorities and subdivide only those fourteen failures by
-exit-depth continuity before running full assembly gates. No panel geometry
-has been emitted or promoted.
+when their normals are coherent. No panel geometry was emitted or promoted.
+
+That continuation is now deliberately retired. The forty-chart decomposition
+is retained only as proof that the wearer-side source sheet wraps around
+multiple anatomy sides. It is not the production architecture. V28 resets the
+construction problem: the final 253-face C9 proximal mask is a broad deletion
+and reference scope, recognizable exterior forms remain composition evidence,
+and approximately three clean wearer-facing TPU panels will be authored
+independently around the cutter. Additional panels require a named fit, motion,
+printing, or assembly reason.
+
+The repeat-identical V28 scope authority is now ready at
+`v28_wearable_panel_scope_authority.json`, SHA-256
+`9e0930ff1a72eba6744a80ef3e6cdcbde900f7a34152af9114534cfa5b8cad2c`.
+It defines three neutral construction zones with five cross-sections each,
+`1.7 mm` minimum clearance, and nominal `4 mm` engineering seams. The complete
+253-face V27 mask remains reference evidence; six reviewed exterior faces are
+explicitly retained and the other 247 faces are provisional removal scope
+pending bounded exterior review. Source faces and cutter triangles are
+forbidden as panel topology. No geometry has been emitted or promoted.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -622,27 +638,35 @@ transformation evidence, not a salvage library for production.
 1. Preserve Repairs 001–013 and the exact post-Repair-013 checkpoint with
    SHA-256
    `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
-2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
-3. For component `20`, enumerate the finite coordinate family authorized by
-   the C9 split-incidence topology: move only the three new inner split
-   vertices and landing vertices `1541`, `1543`; hold the 15 symbolic boundary
-   edges, protected visible faces, exact barriers, openings, and source-open
-   route as hard constraints. Test orientation, edge ratios, triangle quality,
-   baseline-delta complement separation, and `1.7 mm` cutter clearance before
-   emitting any surface geometry.
-4. After component `20`, preserve component `9`'s exterior and rebuild only
-   its two dominant wearer-facing patches. Do not rerun whole-component
-   displacement or wider diffusion.
-5. Delegate every image operation to a disposable subagent. Sanitize and size
+2. Treat the V27 split, harmonic, subdivision, and directional-chart scripts
+   as historical read-only evidence. Do not refine or promote their panels.
+3. Use the repeat-identical V28 authored-panel scope authority; do not
+   regenerate it unless its exact source inputs change.
+4. Complete the bounded exterior review of the provisional 247-face removal
+   scope, preserving any additional recognizable exterior evidence.
+5. In a disposable V28 Blend, remove the reviewed wearer-side mask and author
+   three coarse panel scaffolds independent of source topology. Preserve
+   intentional gaps and use neutral region names until wearer landmarks are
+   authoritative.
+6. Review the three-panel layout before adding thickness or detailed
+   junctions. Add a fourth panel only for a named fit, motion, printing, or
+   assembly constraint.
+7. Verify vertices, continuously sampled edges, and adaptive triangle
+   interiors against the `1.7 mm` clearance contract. A failed ray or
+   projection is a hard preflight failure, never a displacement sentinel.
+8. Reattach retained exterior forms with bounded standoffs or junctions;
+   modest relocation or trimming is allowed when exact placement conflicts
+   with wearability.
+9. Delegate every image operation to a disposable subagent. Sanitize and size
    checkpoint every derivative before high-detail review; never replay
    unsanitized historical image outputs.
-6. Repeat triangle-orientation, distortion, matched-view, and exact
+10. Repeat triangle-orientation, distortion, matched-view, and exact
    surface-clearance evidence after every bounded reconstruction.
-7. Promote a fitted surface master only after qualitative visual and digital
+11. Promote a fitted surface master only after qualitative visual and digital
    clearance review.
-8. Begin hidden solidification and connectivity work only after that
+12. Begin hidden solidification and connectivity work only after that
     promotion.
-9. Defer the approximately `30°` priority wear pose and broader elbow mobility
+13. Defer the approximately `30°` priority wear pose and broader elbow mobility
    until the static straight composition is accepted.
 
 ## Deferred decisions already recorded

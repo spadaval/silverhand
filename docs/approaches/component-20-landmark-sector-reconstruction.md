@@ -1,10 +1,17 @@
 # Component 20 Landmark-Sector Reconstruction
 
-Status: **active evaluation; minimal local interface reconstruction selected**
+Status: **superseded; retained as micro-repair exhaustion evidence**
 
-Updated: 2026-07-29
+Updated: 2026-07-30
 
-## Decision
+## Historical decision
+
+This record no longer defines the active construction workflow. V27 proved
+that minimal topology preservation, incidence splitting, harmonic fields, and
+directional chart refinement add substantial complexity without producing a
+wearable surface. The active V28 strategy preserves exterior character,
+removes the broad unusable wearer-side region, and authors a small number of
+clean wearable panels underneath it.
 
 Resolve component `20` before component `9`. Reconstruct only its two major
 wearer-facing failure regions, beginning with the smaller cluster `1`.

@@ -13,6 +13,12 @@ Use the shell entrypoints under `scripts/tools/` for normal work. Files under
 `scripts/blender/` are implementation modules, not commands to run with the
 system Python.
 
+Repair 014 script routing is documented in
+[`blender/README.md`](blender/README.md). Its active workflow begins with
+`blender/build_v28_wearable_panel_scope.py`. V27 split, harmonic,
+subdivision, and directional-chart scripts are historical evidence and must
+not be refined into production geometry.
+
 The pre-reset experimental generators remain recoverable in
 `blender_files/archive/rework_evidence_pre_cleanup_20260727.tar.gz`. They are
 intentionally absent from the active workflow because they encode centimeter
@@ -21,6 +27,11 @@ lineages.
 
 ## Primary commands
 
+- `tools/build_v28_wearable_panel_scope.sh` — runs the active V28 scope
+  preflight against its exact experiment Blend.
+- `blender/build_v28_wearable_panel_scope.py` — verifies the final broad
+  wearer-side evidence and emits the read-only three-panel V28 construction
+  contract. It copies neither source nor cutter topology and saves no Blend.
 - `tools/refresh_main_geometry_evidence.sh` — executes the complete
   current-milestone evidence refresh. Each successful operation reports `DONE`;
   only named validation gates and audits may report `PASS`.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evaluate cutter-following subdivision retopology for the proximal C9 mask."""
+"""Historical V27 evidence: exhaust rejected subdivision retopology."""
 
 from __future__ import annotations
 
@@ -24,6 +24,7 @@ import analyze_v27_c9_landing as landing  # noqa: E402
 import analyze_v27_c9_landing_surface as surface  # noqa: E402
 import solve_v27_c9_split_surface_family as split_family  # noqa: E402
 import solve_v27_flex_gap as exact  # noqa: E402
+from v27_historical_guard import require_historical_rerun  # noqa: E402
 
 
 OPERATION = "SOLVE_V27_C9_SUBDIVIDED_RETOPOLOGY_FAMILY"
@@ -253,6 +254,7 @@ def metrics(
 
 
 def main() -> None:
+    require_historical_rerun(OPERATION)
     args = arguments()
     actual_mask_hash = exact.sha_file(MASK_AUTHORITY)
     if actual_mask_hash != EXPECTED_MASK_SHA256:

@@ -11,6 +11,7 @@ Use only these status meanings:
 - **visual baseline** — recognizable geometry, not necessarily manufacturable;
 - **fitted surface candidate** — topology-preserving source deformation under review;
 - **fitted surface master** — visually approved, digitally clear surface authority for solid construction;
+- **wearable panel candidate** — clean authored wearer-facing structure under an approved exterior;
 - **editable main geometry** — regional working solids;
 - **connected master** — one durable assembled load network;
 - **print candidate** — explicit export that passes digital and slicer review;
@@ -51,11 +52,10 @@ exact source input and confirm:
 A mathematically straight coordinate representation is allowed. A separately
 baked straight mesh followed by another deformation is not.
 
-Failure blocks reconstruction and manufacturing work; adjust the shared field
-and repeat this gate. If a later candidate contains bounded visible
-reconstruction, record the exact reconstruction mask and reason, preserve the
-invariants above everywhere else, and repeat distortion evidence for the
-complete candidate.
+Failure blocks exterior approval; adjust the shared field and repeat this gate.
+After the exterior is approved, classified wearer-facing replacement regions
+leave Gate B topology authority. Record their broad masks, preserve Gate B
+invariants everywhere else, and validate authored panels under Gates C–G.
 
 ## Gate C — Fitted-surface visual review
 
@@ -118,13 +118,23 @@ Validation cameras are review infrastructure, never printable geometry.
   allowance twice.
 - Record intentional snug regions.
 - Resolve fitted-surface violations through shared-field adjustment or bounded
-  reconstruction; do not delete faces or lift constituents automatically.
+  authored panel reconstruction; do not lift constituents automatically.
+- For every retained boundary and authored panel, verify clearance at vertices,
+  continuously sampled boundary edges, and adaptive triangle-interior samples.
+  Clear endpoints do not establish a clear segment or surface.
+- A failed directional exit is a failed preflight. Do not substitute an
+  arbitrary displacement sentinel and continue geometry scoring.
 - Record that this gate establishes anatomical digital fit, not personalized or
   physical fit.
 - Tailor to wearer measurements only after the anatomical fitted surface is
   approved.
 
 The clearance cutter is never printable geometry.
+
+For a broad wearer-facing replacement, Gate D evaluates the complete authored
+panel assembly, not the deleted source patch and not a diagnostic face
+partition. The panel count must be justified by fit, motion, printing, or
+assembly needs.
 
 Current evidence tools:
 
@@ -257,6 +267,8 @@ Each review JSON must include:
 - qualitative assessment;
 - `does_this_look_ass`;
 - unresolved failures;
+- exact worst clearance witness: panel/object, face or triangle, sample type,
+  coordinate, cutter triangle, and measured margin;
 - physical test status;
 - next gate.
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exhaust the finite five-control V27 C9 split-surface family read-only."""
+"""Historical V27 evidence: exhaust the rejected split-surface family."""
 
 from __future__ import annotations
 
@@ -25,6 +25,7 @@ import analyze_v27_c9_landing as landing  # noqa: E402
 import analyze_v27_c9_landing_surface as surface  # noqa: E402
 import audit_v26_cutter_authority as cutter_audit  # noqa: E402
 import solve_v27_flex_gap as exact  # noqa: E402
+from v27_historical_guard import require_historical_rerun  # noqa: E402
 
 
 OPERATION = "SOLVE_V27_C9_SPLIT_SURFACE_FAMILY"
@@ -249,6 +250,7 @@ def keepout_hits(
 
 
 def main() -> None:
+    require_historical_rerun(OPERATION)
     args = arguments()
     verified = {}
     for label, (path, expected) in EXPECTED_HASHES.items():

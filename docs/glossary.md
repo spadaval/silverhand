@@ -71,6 +71,13 @@ matched-source visual, and digital-clearance review. It governs the exterior
 used for later hidden solidification. It is not yet printable geometry or
 physical fit authority.
 
+### Wearable panel candidate
+
+A clean, deliberately authored wearer-facing panel built beneath the approved
+exterior. It is governed by fit, seam, thickness, and attachment requirements,
+not by hidden game-mesh topology. It has not yet passed complete assembly or
+physical review.
+
 ### Editable main geometry
 
 Working solids derived beneath an approved fitted surface master. They are
@@ -204,6 +211,24 @@ replacement.
 
 Manufacturing geometry that closes or thickens a visible source form on its
 wearer-facing or concealed side.
+
+### Authored wearable panel
+
+A coarse wearer-facing TPU constituent designed around the clearance cutter
+and connected to retained exterior forms through local junctions. It is not a
+copy of cutter triangles or a patch-by-patch repair of hidden source topology.
+
+### Decorative exterior
+
+Source-referenced visible geometry retained for silhouette and mechanical
+character. It may be modestly relocated, trimmed, thickened, or locally
+reattached when exact coordinates conflict with wearability.
+
+### Engineering seam
+
+A deliberate gap or junction between authored wearable panels. It exists for
+fit, flex, donning, printing, or assembly and is distinct from accidental
+cracks created by failed reconstruction.
 
 ### Local structural junction
 

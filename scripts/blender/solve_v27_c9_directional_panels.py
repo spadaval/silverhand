@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Solve cheap geometry gates for the selected V27 C9 directional panels."""
+"""Historical V27 evidence: evaluate rejected diagnostic chart panels."""
 
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ import analyze_v27_c9_landing_surface as surface  # noqa: E402
 import solve_v27_c9_split_surface_family as split_family  # noqa: E402
 import solve_v27_c9_subdivided_retopology_family as retopo  # noqa: E402
 import solve_v27_flex_gap as exact  # noqa: E402
+from v27_historical_guard import require_historical_rerun  # noqa: E402
 
 
 OPERATION = "SOLVE_V27_C9_DIRECTIONAL_PANELS"
@@ -124,6 +125,7 @@ def solve_scalar_field(
 
 
 def main():
+    require_historical_rerun(OPERATION)
     args = arguments()
     actual_hash = exact.sha_file(CHART_AUTHORITY)
     if actual_hash != EXPECTED_CHART_SHA256:

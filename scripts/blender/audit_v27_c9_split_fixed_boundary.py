@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit fixed symbolic-boundary cutter margins for the V27 C9 split disk."""
+"""Historical V27 evidence: audit the rejected split-disk boundary."""
 
 from __future__ import annotations
 
@@ -18,6 +18,7 @@ if str(SCRIPT_DIR) not in sys.path:
 import analyze_v27_c9_landing as landing  # noqa: E402
 import solve_v27_c9_split_surface_family as family  # noqa: E402
 import solve_v27_flex_gap as exact  # noqa: E402
+from v27_historical_guard import require_historical_rerun  # noqa: E402
 
 
 OPERATION = "AUDIT_V27_C9_SPLIT_FIXED_BOUNDARY"
@@ -31,6 +32,7 @@ OUTPUT = V27 / "v27_c9_split_fixed_boundary_authority.json"
 
 
 def main() -> None:
+    require_historical_rerun(OPERATION)
     split = exact.load_json(SPLIT_AUTHORITY)
     if exact.sha_file(SPLIT_AUTHORITY) != family.EXPECTED_HASHES[
         "split_authority"

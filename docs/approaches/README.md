@@ -14,3 +14,6 @@ the gates in [validation.md](../validation.md).
 ## Current approaches
 
 - [Regional clearance deformation](regional-clearance-deformation.md)
+- [V28 authored wearable panels](v28-authored-wearable-panels.md)
+  — replace the broad unusable wearer-side source region with three clean
+  engineering panels beneath the retained exterior.

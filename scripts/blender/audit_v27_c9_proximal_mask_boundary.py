@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the fixed outer boundary of the authoritative 238-face C9 mask."""
+"""Historical V27 evidence: audit the proximal C9 micro-repair boundary."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ if str(SCRIPT_DIR) not in sys.path:
 import analyze_v27_c9_landing as landing  # noqa: E402
 import solve_v27_c9_split_surface_family as family  # noqa: E402
 import solve_v27_flex_gap as exact  # noqa: E402
+from v27_historical_guard import require_historical_rerun  # noqa: E402
 
 
 OPERATION = "AUDIT_V27_C9_PROXIMAL_MASK_BOUNDARY"
@@ -38,6 +39,7 @@ EXPECTED_V22_SHA256 = (
 
 
 def main() -> None:
+    require_historical_rerun(OPERATION)
     actual_hash = exact.sha_file(V22)
     if actual_hash != EXPECTED_V22_SHA256:
         raise RuntimeError(

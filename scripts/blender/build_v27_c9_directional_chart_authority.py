@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Partition the final C9 proximal mask into coherent directional charts."""
+"""Historical V27 evidence: partition the rejected micro-repair charts."""
 
 from __future__ import annotations
 
@@ -20,6 +20,7 @@ if str(SCRIPT_DIR) not in sys.path:
 import analyze_v27_c9_landing as landing  # noqa: E402
 import solve_v27_c9_split_surface_family as split_family  # noqa: E402
 import solve_v27_flex_gap as exact  # noqa: E402
+from v27_historical_guard import require_historical_rerun  # noqa: E402
 
 
 OPERATION = "BUILD_V27_C9_DIRECTIONAL_CHART_AUTHORITY"
@@ -118,6 +119,7 @@ def spherical_kmeans(face_ids, vectors, cluster_count):
 
 
 def main():
+    require_historical_rerun(OPERATION)
     args = arguments()
     actual_hash = exact.sha_file(MASK_AUTHORITY)
     if actual_hash != EXPECTED_MASK_SHA256:

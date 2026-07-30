@@ -27,6 +27,8 @@ Current records:
 - [Regional clearance deformation](approaches/regional-clearance-deformation.md)
   — why deep cutter collisions should first be treated as bounded corrections
   to the shared fit field.
+- [V28 authored wearable panels](approaches/v28-authored-wearable-panels.md)
+  — the active coarse-panel strategy for the broad C9/C20 wearer-side failure.
 
 ## Supporting documentation
 

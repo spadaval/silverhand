@@ -443,3 +443,32 @@ were removed after creating:
 
 - `blender_files/archive/Johnny_pre_cleanup_20260727.blend`
 - `blender_files/archive/rework_evidence_pre_cleanup_20260727.tar.gz`
+
+## V27 C9/C20 micro-repair exhaustion and strategy reset
+
+V27 progressively widened a component-9/component-20 landing repair from a
+two-endpoint deformation to split incidences, a 253-face continuously clear
+mask, same-topology harmonic reconstruction, subdivided cutter-following
+retopology, and directional panels. The work established useful bounds but did
+not produce production geometry:
+
+- the exact 17-face split topology exhausts all 5,400 coordinate members;
+- clear boundary vertices do not imply clear edges: one retained chord reached
+  `-6.021026 mm`;
+- clear controls do not imply clear triangles: unchanged chords reached
+  approximately `-38 mm`;
+- one directional height field cannot represent the wrapped wearer surface;
+- a 15-degree partition creates 40 charts and solves only 26 cheap-gate
+  subsets, mostly tiny fragments.
+
+Lesson: this is diagnostic evidence, not a production decomposition. The
+complexity came from treating hidden game topology as manufacturing authority.
+Do not continue angular or exit-depth chart refinement.
+
+The active strategy begins again at V28: preserve the recognizable exterior,
+delete the broad classified wearer-side failure region, and author
+approximately three clean TPU panels around the clearance cutter. Add another
+panel only for a named fit, motion, printing, or assembly reason. Decorative
+source forms may be modestly relocated or trimmed and then attached through
+local junctions. The cutter governs clearance and bounded subtraction; its
+triangles do not become the panel surface.
