@@ -725,6 +725,70 @@ evaluation. Stage 3 remains stopped until an evaluated member records
   and its exact adjacent aggregate boundary dependencies far enough to achieve
   `>=1.7 mm` cutter clearance before defining a new flex-gap footprint
 
+## V27 Stage 2c contract revision — bounded C9 landing reconstruction
+
+Contract status: `V27_STAGE2C_C9_LANDING_CONTRACT_AUTHORED`
+
+The complete Stage 2b family proves that the frozen C9 landing, not the
+interior gap width, is the controlling wearer-clearance dependency. Stage 2c
+therefore permits read-only exploration of one finite C9 landing patch before
+any new gap footprint or surface construction.
+
+### Exact landing scope
+
+- source edge: `12916`
+- ordered source vertices: `[1541, 1543]`
+- source coordinates:
+  - vertex `1541`: `[131.5033721923828, -54.486942291259766,
+    -78.9244613647461]`
+  - vertex `1543`: `[149.577880859375, -63.37962341308594,
+    -55.896202087402344]`
+- exact incident selected faces: `[2230, 2240]`
+- exact endpoint one-ring faces:
+  `[2227, 2228, 2230, 2231, 2232, 2235, 2239, 2240, 2243, 2244, 2245]`
+- prior classifications inside that one-ring:
+  - selected aggregate: `[2228, 2230, 2240, 2243, 2244]`
+  - immutable complement: `[2227, 2231, 2232, 2245]`
+  - outside prior maximum mask: `[2235, 2239]`
+- endpoint boundary records:
+  `[AGGREGATE_BOUNDARY_C9_001, AGGREGATE_BOUNDARY_C9_000]`
+
+The 11-face one-ring is a candidate reconstruction mask, not an authorized
+mutation. Its four immutable and two outside-mask faces remain source evidence
+until a finite landing family proves an exact clearance benefit and a separate
+review authorizes the mask revision.
+
+### First Stage 2c milestone
+
+1. Hash-verify the complete Stage 2b exhaustion authority and frozen source
+   scene.
+2. Enumerate a finite source/cutter-normal-led family of displaced endpoint
+   pairs for edge `12916`.
+3. Require exact segment-to-cutter clearance of at least `1.7 mm`.
+4. Reject intersection with source faces outside the 11-face landing mask,
+   frozen terminal chains, apertures, or source-open-route keepouts.
+5. Record central-opening incidence but allow it only as an explicit
+   flex-opening merge diagnostic.
+6. Stop read-only at `V27_C9_LANDING_FAMILY_CHECKPOINTED`,
+   `V27_C9_LANDING_CLEARANCE_SOLVED`, or
+   `V27_NO_VALID_C9_LANDING_CLEARANCE`.
+
+Stage 2c may write JSON/text evidence only. It must not mutate a mesh, emit
+candidate geometry, save a Blend, request image work, run Gates B/D, or
+promote anything.
+
+### V27-LANDING-001 — landing solver authorized
+
+- started_from_commit: `fb212dd`
+- planned_script: `scripts/blender/analyze_v27_c9_landing.py`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: materialize the read-only finite landing solver and identify
+  the minimum-displacement exact-clearance endpoint pair
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false
