@@ -214,9 +214,10 @@ wearer-facing or concealed side.
 
 ### Authored wearable panel
 
-A coarse wearer-facing TPU constituent designed around the clearance cutter
+A coarse wearer-facing TPU constituent designed from the named fit reference
 and connected to retained exterior forms through local junctions. It is not a
-copy of cutter triangles or a patch-by-patch repair of hidden source topology.
+copy of fit/cutter triangles or a patch-by-patch repair of hidden source
+topology. The cutter tests clearance; it does not generate the panel surface.
 
 ### Decorative exterior
 

@@ -9,10 +9,15 @@ running one; script existence does not make a method active.
   evidence and produces the read-only three-panel V28 construction contract.
   It does not mutate a mesh, copy source topology, copy cutter topology, emit
   geometry, or save a Blend.
+- `build_v28_three_panel_scaffold.py` — consumes that exact authority and
+  creates three independent open loft scaffolds from five clean fit-reference
+  measurements each. It copies no source, fit, or cutter topology; the cutter
+  is collision/audit geometry only. It runs exact surface-overlap and adaptive
+  clearance gates before mutation and saves only a disposable evaluation
+  Blend.
 
-The next geometry builder must consume that authority and create clean
-cross-section/loft scaffolds in a disposable V28 Blend. It must not infer
-production panels from V27 diagnostic face charts.
+The scaffold is not production geometry. Do not add thickness, closures,
+junctions, or source detail until its independent layout review is recorded.
 
 ## Historical V27 evidence
 

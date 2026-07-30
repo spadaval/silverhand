@@ -46,6 +46,7 @@ EXPECTED_MASK_SHA256 = (
     "fcc3e370988a4f92b1c3d7932faaec8280b75899e29135c49df7d9dea28dee63"
 )
 KNOWN_DECORATIVE_EXTERIOR_FACE_IDS = [2219, 2220, 2221, 2225, 2233, 2276]
+FIT_REFERENCE_OBJECT = "REF_FIT_ANATOMY_STRAIGHT"
 PANEL_COUNT = 3
 MINIMUM_CLEARANCE_MM = 1.7
 DEFAULT_ENGINEERING_SEAM_MM = 4.0
@@ -89,6 +90,7 @@ def main() -> None:
         )
     source = bpy.data.objects.get(landing.SOURCE_OBJECT)
     cutter = bpy.data.objects.get(landing.CUTTER_OBJECT)
+    fit_reference = bpy.data.objects.get(FIT_REFERENCE_OBJECT)
     if source is None or source.type != "MESH":
         raise RuntimeError(
             f"{OPERATION}: source mesh missing; object={landing.SOURCE_OBJECT}"
@@ -96,6 +98,11 @@ def main() -> None:
     if cutter is None or cutter.type != "MESH":
         raise RuntimeError(
             f"{OPERATION}: cutter mesh missing; object={landing.CUTTER_OBJECT}"
+        )
+    if fit_reference is None or fit_reference.type != "MESH":
+        raise RuntimeError(
+            f"{OPERATION}: fit-reference mesh missing; "
+            f"object={FIT_REFERENCE_OBJECT}"
         )
     if not landing.matrix_is_identity(source.matrix_world):
         raise RuntimeError(
@@ -115,12 +122,12 @@ def main() -> None:
         )
     provisional_removal = sorted(reference_set - exterior_set)
 
-    cutter_context = geometry.cutter_context(cutter)
-    cutter_points = np.asarray(
-        [geometry.point_record(point) for point in cutter_context["points"]]
+    fit_context = geometry.cutter_context(fit_reference)
+    fit_points = np.asarray(
+        [geometry.point_record(point) for point in fit_context["points"]]
     )
-    center = cutter_points.mean(axis=0)
-    covariance = np.cov(cutter_points - center, rowvar=False)
+    center = fit_points.mean(axis=0)
+    covariance = np.cov(fit_points - center, rowvar=False)
     eigenvalues, eigenvectors = np.linalg.eigh(covariance)
     axis_array = eigenvectors[:, int(np.argmax(eigenvalues))]
     if axis_array[0] < 0.0:
@@ -172,8 +179,8 @@ def main() -> None:
                 "minimum_clearance_mm": MINIMUM_CLEARANCE_MM,
                 "nominal_engineering_seam_mm": DEFAULT_ENGINEERING_SEAM_MM,
                 "construction": (
-                    "author clean cross-sections and loft independently of "
-                    "source and cutter topology"
+                    "author clean fit-reference measurements and loft "
+                    "independently of source, fit, and cutter topology"
                 ),
             }
         )
@@ -200,6 +207,7 @@ def main() -> None:
         "source_scene": {
             "blend": str(blend_path),
             "source_object": source.name,
+            "fit_reference_object": fit_reference.name,
             "cutter_object": cutter.name,
         },
         "source_reference_scope": {
@@ -236,10 +244,14 @@ def main() -> None:
             "modest_exterior_relocation_or_trim_allowed": True,
             "preserve_intentional_negative_space": True,
             "cutter_triangles_may_supply_panel_topology": False,
+            "fit_reference_triangles_may_supply_panel_topology": False,
             "source_faces_may_supply_hidden_panel_topology": False,
             "cutter_use": [
                 "CLEARANCE",
                 "BOUNDED_SUBTRACTION",
+            ],
+            "fit_reference_use": [
+                "CONSTRUCTION_FRAME",
                 "CROSS_SECTION_REFERENCE",
             ],
             "required_clearance_evidence": [
@@ -252,6 +264,8 @@ def main() -> None:
             "panel_count_is_three": len(panels) == PANEL_COUNT,
             "reference_partition_is_complete": True,
             "source_mesh_not_mutated": True,
+            "fit_reference_mesh_not_mutated": True,
+            "cutter_mesh_not_mutated": True,
             "geometry_not_emitted": True,
             "blend_not_saved": True,
         },

@@ -32,6 +32,13 @@ lineages.
 - `blender/build_v28_wearable_panel_scope.py` — verifies the final broad
   wearer-side evidence and emits the read-only three-panel V28 construction
   contract. It copies neither source nor cutter topology and saves no Blend.
+- `tools/build_v28_three_panel_scaffold.sh` — builds the disposable,
+  zero-thickness three-panel V28 scaffold from five clean sections per panel.
+- `blender/build_v28_three_panel_scaffold.py` — consumes the exact V28 scope,
+  fits authored enclosing sections from the named fit reference, preserves
+  `4 mm` axial seams and a provisional longitudinal opening, uses the cutter
+  only for collision/clearance rejection, runs adaptive `1.7 mm` gates, and
+  saves only an ignored evaluation Blend.
 - `tools/refresh_main_geometry_evidence.sh` — executes the complete
   current-milestone evidence refresh. Each successful operation reports `DONE`;
   only named validation gates and audits may report `PASS`.

@@ -78,11 +78,12 @@ work:
    digital clearance before changing topology.
 5. Classify the accepted fitted surface into recognizable exterior evidence
    and wearer-facing engineering geometry.
-6. Remove broad wearer-facing regions that cannot clear the wearer without
-   destructive distortion. The game topology does not govern those hidden
-   regions.
-7. Author a small number of clean wearable panels around the clearance cutter,
-   with deliberate donning, flex, and construction seams.
+6. Remove or independently rebuild only wearer-facing regions with positive
+   classification evidence. Lack of visibility in one view is not deletion
+   authority.
+7. Author a small number of clean wearable panels from the named fit reference,
+   with deliberate donning, flex, and construction seams. Use the clearance
+   cutter only for collision checks and bounded subtraction.
 8. Reattach retained exterior forms with local standoffs and structural
    junctions; modestly relocate or trim decorative forms when required for
    clearance.

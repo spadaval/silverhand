@@ -1,6 +1,6 @@
 # Silverhand — Current Status
 
-Updated: 2026-07-29
+Updated: 2026-07-30
 
 ## Active milestone
 
@@ -515,21 +515,39 @@ when their normals are coherent. No panel geometry was emitted or promoted.
 That continuation is now deliberately retired. The forty-chart decomposition
 is retained only as proof that the wearer-side source sheet wraps around
 multiple anatomy sides. It is not the production architecture. V28 resets the
-construction problem: the final 253-face C9 proximal mask is a broad deletion
-and reference scope, recognizable exterior forms remain composition evidence,
-and approximately three clean wearer-facing TPU panels will be authored
-independently around the cutter. Additional panels require a named fit, motion,
-printing, or assembly reason.
+construction problem: the final 253-face C9 proximal mask is reference scope,
+recognizable exterior forms remain composition evidence, and approximately
+three clean wearer-facing TPU panels will be authored independently from the
+fit reference. The cutter remains collision/audit geometry only. Additional
+panels require a named fit, motion, printing, or assembly reason.
 
 The repeat-identical V28 scope authority is now ready at
 `v28_wearable_panel_scope_authority.json`, SHA-256
-`9e0930ff1a72eba6744a80ef3e6cdcbde900f7a34152af9114534cfa5b8cad2c`.
+`4a35c5953c7a0e61233d8e3f9db218454315ab4143b7c9da981f42405927c7d3`.
 It defines three neutral construction zones with five cross-sections each,
 `1.7 mm` minimum clearance, and nominal `4 mm` engineering seams. The complete
-253-face V27 mask remains reference evidence; six reviewed exterior faces are
-explicitly retained and the other 247 faces are provisional removal scope
-pending bounded exterior review. Source faces and cutter triangles are
-forbidden as panel topology. No geometry has been emitted or promoted.
+253-face V27 mask remains reference evidence. The bounded exterior review
+rejected the provisional 247-face removal in full: 243 are visible in ordinary
+non-axial views, and the other four lack positive deletion evidence and would
+open new edges. All 253 faces are retained as exterior reference; safe removal
+face count is zero. Classification SHA-256:
+`fa02e9d18ecd124bf334db8d23e2e1576d495f9f21046d54e787a3980cc0c597`.
+
+The first fit-derived scaffold is reproducible at
+`blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_three_panel_scaffold.blend`.
+It contains three independent, open, zero-thickness evaluation surfaces with
+five authored sections each, nominal `4 mm` axial seams, and one provisional
+aligned `40°` opening. It copies no source, fit, or cutter topology. All
+`1,512` triangles pass exact/adaptive cutter clearance: minimum exact distance
+is `1.813721 mm`, minimum signed adaptive margin is `1.831561 mm`, and there
+are no nonadjacent self-overlaps or cross-panel overlaps. Source, fit
+reference, and cutter fingerprints remain unchanged. The scaffold is not
+promoted. Independent high-detail review of seven individual sanitized views
+accepted it for the next disposable iteration: the panels are coherent, both
+axial seams remain continuous, the opening stays aligned, and no spike, twist,
+self-crossing, cross-panel crossing, or unintended gap is visible.
+Classification SHA-256:
+`86645d3d8775ef60105464767ae7e06416088f9d8e02b05c7ee3c8f36bc46227`.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -642,18 +660,15 @@ transformation evidence, not a salvage library for production.
    as historical read-only evidence. Do not refine or promote their panels.
 3. Use the repeat-identical V28 authored-panel scope authority; do not
    regenerate it unless its exact source inputs change.
-4. Complete the bounded exterior review of the provisional 247-face removal
-   scope, preserving any additional recognizable exterior evidence.
-5. In a disposable V28 Blend, remove the reviewed wearer-side mask and author
-   three coarse panel scaffolds independent of source topology. Preserve
-   intentional gaps and use neutral region names until wearer landmarks are
-   authoritative.
-6. Review the three-panel layout before adding thickness or detailed
-   junctions. Add a fourth panel only for a named fit, motion, printing, or
-   assembly constraint.
-7. Verify vertices, continuously sampled edges, and adaptive triangle
-   interiors against the `1.7 mm` clearance contract. A failed ray or
-   projection is a hard preflight failure, never a displacement sentinel.
+4. Preserve all 253 exterior-reference faces. Do not reuse the rejected
+   247-face provisional removal list as deletion authority.
+5. Use the accepted fit-derived scaffold as the sole panel-shape authority for
+   one disposable thickness and simple-edge iteration. Preserve the current
+   panel count, axial seams, opening direction, and inner clearance surface.
+6. Do not integrate source detail, closures, or local junctions in that
+   thickness experiment.
+7. Rerun cutter intersection, continuously sampled edge, adaptive triangle
+   interior, self-overlap, and cross-panel overlap gates after thickness.
 8. Reattach retained exterior forms with bounded standoffs or junctions;
    modest relocation or trimming is allowed when exact placement conflicts
    with wearability.

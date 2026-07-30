@@ -1,14 +1,14 @@
 # V28 Authored Wearable Panels
 
-Status: **active construction approach; scope ready, geometry not emitted**
+Status: **active construction approach; fit-derived scaffold accepted for next disposable iteration**
 
 Updated: 2026-07-30
 
 ## Decision
 
 Stop repairing the hidden C9/C20 game sheet. Preserve recognizable exterior
-character, remove the broad wearer-side failure region after exterior review,
-and author three clean TPU panels around the clearance cutter.
+character and author three clean TPU panels from the fit reference. The
+clearance cutter remains collision/audit geometry only.
 
 The panels are engineering geometry. They do not inherit source faces,
 directional-chart topology, or cutter triangles. Neutral zone names remain in
@@ -29,7 +29,7 @@ The repeat-identical authority is:
 
 - `_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v28/v28_wearable_panel_scope_authority.json`
 - SHA-256
-  `9e0930ff1a72eba6744a80ef3e6cdcbde900f7a34152af9114534cfa5b8cad2c`
+  `4a35c5953c7a0e61233d8e3f9db218454315ab4143b7c9da981f42405927c7d3`
 
 No geometry was emitted and the Blend was not saved.
 
@@ -47,11 +47,14 @@ Each initial panel uses:
 Add a fourth panel only for a named fit, motion, printing, or assembly reason.
 Do not derive production panel count from diagnostic face clusters.
 
-The six known exterior faces remain reference evidence. The other 247 faces
-are only provisionally removable until a bounded exterior review confirms that
-no additional recognizable exterior form would be discarded. Modest relocation
-or trimming is allowed when a retained decorative form conflicts with the
-wearer envelope.
+The bounded exterior review rejected the provisional 247-face removal in full.
+All 253 scope faces are exterior reference evidence; none is authorized for
+deletion. The exact classification is
+`exterior_removal_review/classification.json`, SHA-256
+`fa02e9d18ecd124bf334db8d23e2e1576d495f9f21046d54e787a3980cc0c597`.
+Reference evidence may later be independently rebuilt, modestly relocated, or
+trimmed where wearability requires it, but it must not be mistaken for hidden
+wearer-side topology.
 
 ## Next bounded experiment
 
@@ -65,3 +68,66 @@ In a disposable V28 Blend:
 
 The scaffold is not promoted geometry. Its purpose is to validate that three
 simple panels can cover the wearer-side engineering need before detail work.
+
+## V28-SCAFFOLD-001
+
+Checkpointed before geometry mutation on 2026-07-30.
+
+The first scaffold is deliberately simpler than a finished sleeve:
+
+- derive five section point clouds per panel from fit-reference/plane
+  intersections;
+- fit clean enclosing ellipses in one stable neutral construction frame;
+- add a recorded radial engineering allowance outside those ellipses;
+- inset both sides of each shared axial boundary by `2 mm`, producing the
+  nominal `4 mm` seam;
+- leave a provisional `40 degree` opening in every section, consistently
+  oriented by the neutral construction frame;
+- loft corresponding points into three independent, open, zero-thickness
+  evaluation surfaces;
+- do not copy source faces, fit-reference faces, cutter triangles, or
+  section-segment topology;
+- use the cutter only for collision and clearance auditing.
+
+The opening is an engineering hypothesis, not an anatomical or wearer-landmark
+claim. Its orientation may move after fit and motion review. The scaffold does
+not claim printable solidity, thickness, closure design, junction design, or
+source-detail integration.
+
+Before the disposable Blend is saved, every candidate triangle must have:
+
+- no exact cutter-triangle intersection;
+- no nonadjacent self-overlap or cross-panel surface overlap;
+- at least `1.7 mm` exact triangle-to-cutter distance;
+- at least `1.7 mm` signed clearance at adaptively refined triangle-interior
+  samples;
+- edge coverage through the same adaptive lattice at no more than `1 mm`
+  initial spacing and no more than `0.5 mm` adjacent signed-margin variation.
+
+If a candidate fails, retain the failure as text evidence and adjust the
+explicit radial allowance. Do not add local micro-patches or silently increase
+panel count.
+
+## V28-SCAFFOLD-001 result
+
+The fit-derived scaffold passed its machine and independent visual checks:
+
+- disposable Blend SHA-256:
+  `e27c5632d0c5d7b60cb99f4eac87b46a143cc4a36e1caf1b36bbbea366b28c9a`;
+- all `1,512` triangles pass the cutter contract;
+- minimum exact triangle-to-cutter distance: `1.813721 mm`;
+- minimum signed adaptive margin: `1.831561 mm`;
+- nonadjacent self-overlaps: `0`;
+- cross-panel overlaps: `0`;
+- visual result: `ACCEPT_FOR_NEXT_DISPOSABLE_ITERATION`;
+- visual classification SHA-256:
+  `86645d3d8775ef60105464767ae7e06416088f9d8e02b05c7ee3c8f36bc46227`.
+
+Seven individual sanitized views support coherent panels, two uninterrupted
+axial seams, one aligned longitudinal opening, and no visible spike, twist, or
+surface crossing. Exact seam width and opening angle remain machine claims.
+
+The next experiment may add provisional outward thickness and simple edge
+treatment while preserving the current panel count, seams, opening direction,
+and inner scaffold surface. Do not integrate source detail or promote the
+result in that experiment.

@@ -465,10 +465,16 @@ Lesson: this is diagnostic evidence, not a production decomposition. The
 complexity came from treating hidden game topology as manufacturing authority.
 Do not continue angular or exit-depth chart refinement.
 
-The active strategy begins again at V28: preserve the recognizable exterior,
-delete the broad classified wearer-side failure region, and author
-approximately three clean TPU panels around the clearance cutter. Add another
-panel only for a named fit, motion, printing, or assembly reason. Decorative
-source forms may be modestly relocated or trimmed and then attached through
-local junctions. The cutter governs clearance and bounded subtraction; its
-triangles do not become the panel surface.
+The active strategy begins again at V28: preserve the recognizable exterior
+and author approximately three clean TPU panels from the named fit reference.
+Add another panel only for a named fit, motion, printing, or assembly reason.
+Decorative source forms may be modestly relocated or trimmed and then attached
+through local junctions. The cutter governs clearance and bounded subtraction;
+it does not generate the panel surface.
+
+The first V28 scope treated 247 of 253 faces as provisional wearer-side
+removal. Bounded exterior review rejected that hypothesis: 243 are visible in
+ordinary non-axial views, and removing any of the other four would open new
+edges without positive fit, motion, printing, or assembly justification.
+Retain all 253 as exterior reference evidence. Do not equate a
+clearance-failure scope with a hidden deletion mask.
