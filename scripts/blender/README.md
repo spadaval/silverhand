@@ -33,6 +33,9 @@ motion, source-junction, print, or production authority.
   evaluated result for closed positive volume, cutter clearance, and
   self/cross-panel overlap. It never applies a modifier or edits the accepted
   shell objects.
+- `build_v28_tpu_wall_rim_coupon.py` — builds a separate curved physical-test
+  coupon for the provisional `1.6 mm` wall and `0.4 mm` live rim bevel. The
+  coupon tests process and handling assumptions, not sleeve fit or motion.
 
 ## Historical V27 evidence
 

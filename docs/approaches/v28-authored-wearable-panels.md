@@ -250,3 +250,68 @@ silhouette damage is visible.
 
 Keep the modifiers unapplied. Before application or promotion, print a small
 TPU coupon representing the `1.6 mm` wall and `0.4 mm` softened rim.
+
+## V28-COUPON-001
+
+Checkpointed before geometry mutation on 2026-07-30.
+
+Create a separate curved TPU process coupon that represents the accepted panel
+wall and wearer-contact rim without cutting or promoting sleeve geometry:
+
+- `30 mm` inner radius;
+- `1.6 mm` radial wall;
+- `30 mm` axial length;
+- `70 degree` arc;
+- `48` angular samples;
+- one live, unapplied angle-limited Bevel modifier;
+- `0.4 mm` bevel width, two segments, `0.5` profile.
+
+The coupon is a `physical-test candidate`. It tests wall printability, rounded
+rim behavior, handling, and tactile comfort only. It does not test sleeve fit,
+closure, seams, exterior attachment, elbow motion, or full-panel print
+orientation.
+
+Before export, require one closed positive-volume component, zero
+boundary/non-manifold edges, zero self-overlap, dimensions within the A1 mini
+bed, independent sanitized visual review, binary millimeter STL export at
+scale `1.0`, and exact reimport-dimension agreement within `0.001 mm`.
+
+## V28-COUPON-001 result
+
+The curved physical-test candidate passed geometry, independent visual, export,
+and reimport review:
+
+- disposable Blend SHA-256:
+  `c1bcf11610bb739aca9579e18b1320b026af2c525d4bfd7eec9ca1111eac1c5b`;
+- geometry report SHA-256:
+  `37ffd5be663f6ff18d0753a2b10a41543a099bb2b736ede4ddce1d1d987296cc`;
+- one positive-volume connected component;
+- `608` evaluated vertices, `606` evaluated faces, and `1,212` triangles;
+- zero boundary edges, non-manifold edges, self-overlaps, and degenerate
+  triangles;
+- evaluated volume: `1793.173 mm³`;
+- evaluated dimensions: `6.861 × 35.922 × 30.000 mm`;
+- independent visual result: `ACCEPT_FOR_PHYSICAL_TEST_STL_EXPORT`;
+- visual classification SHA-256:
+  `95a87f8cd1378591f7859586705e102db59cd48259eecf62fd446ff2f9158cdf`.
+
+Eight individual sanitized high-detail views show a coherent continuous curved
+wall and softened rim without visible wall loss, pinching, waviness, spikes,
+fold-over, or crossing. Mild regular faceting from the declared `48` angular
+samples is non-blocking for this process coupon.
+
+The evaluated live-bevel result was exported as binary millimeter STL at scale
+`1.0`:
+
+- `exports/evidence/v28_tpu_wall_rim_coupon/v28_tpu_wall_rim_coupon.stl`;
+- STL SHA-256:
+  `f549ce7d46d6c26023bce6679b0b2e0a1e330522bc63d0be91960f71d9a6b4e4`;
+- export report SHA-256:
+  `0554b07fc4ba97f5cefb9d4120bb4d121c6ab8d0da102ed2bbe8de9fe7e01b4f`;
+- maximum reimport dimension delta: `0.000137 mm`;
+- independent STL audit: `1` passed, `0` failed.
+
+This is ready to slice and print as a physical-test candidate. It has no
+physical authority until material, slicer, printer, handling, and tactile
+results are recorded. It is not sleeve geometry and must not be promoted into
+the main scene.

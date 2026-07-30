@@ -594,6 +594,30 @@ or meaningful silhouette damage. Classification SHA-256:
 `8e34120b287dff35538909ba314b7e657b923415e29176554d4bce04c736321b`.
 The modifiers remain unapplied pending a representative TPU wall/rim coupon.
 
+That representative coupon is now ready for physical testing:
+
+- disposable Blend:
+  `blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_tpu_wall_rim_coupon.blend`;
+- Blend SHA-256:
+  `c1bcf11610bb739aca9579e18b1320b026af2c525d4bfd7eec9ca1111eac1c5b`;
+- reviewed STL:
+  `exports/evidence/v28_tpu_wall_rim_coupon/v28_tpu_wall_rim_coupon.stl`;
+- STL SHA-256:
+  `f549ce7d46d6c26023bce6679b0b2e0a1e330522bc63d0be91960f71d9a6b4e4`.
+
+The evaluated `1.6 mm` curved wall and live `0.4 mm` softened rim form one
+closed positive-volume component: `1,212` triangles,
+`6.861 × 35.922 × 30.000 mm`, and `1793.173 mm³`. Geometry review found zero
+boundary edges, non-manifold edges, self-overlaps, or degenerate triangles.
+Independent sanitized visual review accepted it for physical-test STL export.
+The binary millimeter STL passed export and independent host audits, fits the
+A1 mini bed, and reimports with at most `0.000137 mm` dimension error.
+
+The coupon is a physical-test candidate, not sleeve geometry or physical
+authority. The next action is to slice and print it, then record material,
+printer, slicer, handling, and tactile results before applying or promoting
+the sleeve bevels.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 
@@ -710,8 +734,9 @@ transformation evidence, not a salvage library for production.
 5. Preserve the accepted closed physical shells as the current V28
    engineering checkpoint.
 6. Preserve the accepted `0.4 mm` live bevel modifiers unapplied.
-7. Print a small representative `1.6 mm` wall / `0.4 mm` softened-rim TPU
-   coupon before assigning physical authority or applying the modifiers.
+7. Slice and print the accepted V28 `1.6 mm` wall / `0.4 mm` softened-rim TPU
+   coupon. Record material, printer, slicer, handling, and tactile results
+   before assigning physical authority or applying the sleeve modifiers.
 8. Reattach retained exterior forms with bounded standoffs or junctions;
    modest relocation or trimming is allowed when exact placement conflicts
    with wearability.

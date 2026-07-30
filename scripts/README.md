@@ -50,6 +50,13 @@ lineages.
 - `blender/build_v28_reversible_edge_softening.py` — duplicates the physical
   shells, adds unapplied angle-limited rim bevels, and audits the complete
   evaluated modifier output without changing the accepted base objects.
+- `tools/build_v28_tpu_wall_rim_coupon.sh` — builds the separate curved TPU
+  wall/rim physical-test coupon from the accepted V28 dimensions.
+- `blender/build_v28_tpu_wall_rim_coupon.py` — creates and audits a compact
+  `1.6 mm` curved wall with the live `0.4 mm` rim bevel; it does not cut,
+  promote, or export sleeve geometry.
+- `examples/v28_tpu_wall_rim_coupon.export.json` — explicit
+  `physical-test candidate` manifest for the reviewed coupon STL.
 - `tools/refresh_main_geometry_evidence.sh` — executes the complete
   current-milestone evidence refresh. Each successful operation reports `DONE`;
   only named validation gates and audits may report `PASS`.
