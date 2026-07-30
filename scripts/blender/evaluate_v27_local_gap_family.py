@@ -533,6 +533,16 @@ def arguments() -> argparse.Namespace:
         type=int,
         default=None,
     )
+    parser.add_argument(
+        "--diagnostic-allow-negative-space-cell",
+        action="append",
+        default=[],
+    )
+    parser.add_argument(
+        "--diagnostic-max-negative-space-hits",
+        type=int,
+        default=None,
+    )
     return parser.parse_args(argv)
 
 
@@ -737,7 +747,33 @@ def main() -> None:
         )
     diagnostic_mode = bool(diagnostic_allowed_immutable) or (
         args.diagnostic_max_immutable_hits is not None
+    ) or bool(args.diagnostic_allow_negative_space_cell) or (
+        args.diagnostic_max_negative_space_hits is not None
     )
+    diagnostic_allowed_negative_space = set(
+        args.diagnostic_allow_negative_space_cell
+    )
+    if diagnostic_allowed_negative_space and args.max_members != 1:
+        raise RuntimeError(
+            f"{OPERATION}: diagnostic negative-space bypass requires "
+            "--max-members 1; it may inspect only one exact member"
+        )
+    if (
+        diagnostic_allowed_negative_space
+        and args.diagnostic_max_negative_space_hits is not None
+    ):
+        raise RuntimeError(
+            f"{OPERATION}: choose either explicit diagnostic negative-space "
+            "cells or --diagnostic-max-negative-space-hits, not both"
+        )
+    if (
+        args.diagnostic_max_negative_space_hits is not None
+        and args.diagnostic_max_negative_space_hits < 0
+    ):
+        raise RuntimeError(
+            f"{OPERATION}: --diagnostic-max-negative-space-hits must be "
+            f"non-negative; actual={args.diagnostic_max_negative_space_hits}"
+        )
     if args.start_member < 0:
         raise RuntimeError(
             f"{OPERATION}: --start-member must be non-negative; "
@@ -896,7 +932,19 @@ def main() -> None:
                         if intersects:
                             keepout_hits.add(cell["cell_id"])
                 if keepout_hits:
-                    reasons.append("NEGATIVE_SPACE_CONFLICT")
+                    if args.diagnostic_max_negative_space_hits is not None:
+                        blocking_keepout_hits = (
+                            set()
+                            if len(keepout_hits)
+                            <= args.diagnostic_max_negative_space_hits
+                            else keepout_hits
+                        )
+                    else:
+                        blocking_keepout_hits = (
+                            keepout_hits - diagnostic_allowed_negative_space
+                        )
+                    if blocking_keepout_hits:
+                        reasons.append("NEGATIVE_SPACE_CONFLICT")
             if not reasons and geometry is not None:
                 clearance = clearance_audit(
                     geometry, cutter_triangles, cutter_aabbs
@@ -950,6 +998,11 @@ def main() -> None:
                     ),
                     "terminal_chain_ids_intersected": [],
                     "negative_space_cell_ids_intersected": [],
+                    "diagnostically_allowed_negative_space_cell_ids": sorted(
+                        keepout_hits
+                        if args.diagnostic_max_negative_space_hits is not None
+                        else keepout_hits & diagnostic_allowed_negative_space
+                    ),
                     "clearance": clearance,
                 }
                 selected["fingerprint"] = exact.stable_hash(selected)
@@ -996,6 +1049,12 @@ def main() -> None:
             ),
             "diagnostic_max_immutable_hit_count": (
                 args.diagnostic_max_immutable_hits
+            ),
+            "diagnostic_allowed_negative_space_cell_ids": sorted(
+                diagnostic_allowed_negative_space
+            ),
+            "diagnostic_max_negative_space_hit_count": (
+                args.diagnostic_max_negative_space_hits
             ),
             "evaluated_member_count": evaluated_count,
             "selected_first_complete_pass": selected is not None,

@@ -426,9 +426,20 @@ counterexample removes six C20 faces and one C9 face but still intersects
 immutable face `2227`. A complete diagnostic allowing any single immutable
 face to be the only primary exception produces `145` downstream
 negative-space conflicts and zero candidates; a one-face sacrifice is
-therefore insufficient. Widths `14`, `16`, and `18 mm` remain in the frozen
-family and must be evaluated before declaring the complete Stage 2b family
-exhausted.
+therefore insufficient. Widths `14`, `16`, and `18 mm` are now also
+exhausted, closing all `13,789,440` members with zero selections. Twenty
+zero-immutable larger-width members reach only the central-opening conflict.
+Allowing those exact opening overlaps diagnostically sends all twenty to the
+cutter gate, where every one has `0.0 mm` clearance on the same C9 cut-chain
+segment. `V27_NO_VALID_CENTRAL_OPENING_MERGE` therefore closes that fallback
+too.
+
+The controlling dependency is now exact C9 source edge `12916`, vertices
+`1541–1543`. It is a boundary-to-boundary chain whose frozen zero endpoint
+taper leaves the entire segment on the cutter. Another interior gap-prism
+search is not justified. The next reconstruction must deliberately rebuild
+that C9 landing and its finite adjacent boundary dependencies before defining
+a new gap footprint.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.

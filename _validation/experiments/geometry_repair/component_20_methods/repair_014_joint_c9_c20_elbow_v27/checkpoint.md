@@ -666,6 +666,65 @@ evaluation. Stage 3 remains stopped until an evaluated member records
   14/16/18 mm width axes only to complete the authored family; Stage 3 remains
   unauthorized
 
+### V27-LOCAL-005 — complete Stage 2b family exhausted
+
+- evaluator: `scripts/blender/evaluate_v27_local_gap_family.py`
+- merger: `scripts/tools/merge_v27_local_gap_full.py`
+- authority: `v27_local_gap_full_exhaustion_authority.json`
+- receipt: `v27_local_gap_full_exhaustion_receipt.json`
+- exact_member_interval: `[0, 13,789,439]`
+- evaluated_member_count: `13,789,440`
+- widths_exhausted_mm: `[12, 14, 16, 18]`
+- result: `V27_NO_VALID_LOCAL_12MM_FLEX_GAP`
+- selected_member_count: `0`
+- zero_immutable_negative_space_survivors:
+  - width 12: `0`
+  - width 14: `5`
+  - width 16: `5`
+  - width 18: `10`
+- survivor_geometry: all `20` records are allocation-equivalent evaluations
+  of the frozen central-opening corridor family; the first uses pair
+  `LOCAL_GAP_PAIR_000071`, width `14`, zero orientation, zero depths, and
+  removes three C20 faces plus one C9 face
+- merged_opening_diagnostic:
+  - operation: allow every zero-immutable larger-width survivor to continue
+    through its exact central-opening conflict without relabeling the opening,
+    then run exact cutter clearance
+  - result: `V27_NO_VALID_CENTRAL_OPENING_MERGE`
+  - evaluated_survivor_count: `20`
+  - cutter_clearance_failure_count: `20`
+  - common_minimum_clearance_mm: `0.0`
+  - common_witness: C9 cut-chain segment `0`, cutter triangle `466`
+  - conclusion: merging the flex gap into the existing central opening does
+    not restore wearer clearance
+- exact_C9_landing_dependency:
+  - chain_id: `LOCAL_GAP_C9_CHAIN_EB7E82AAC63863FF`
+  - ordered_vertex_ids: `[1541, 1543]`
+  - source_edge_id: `12916`
+  - endpoint_boundaries:
+    `[AGGREGATE_BOUNDARY_C9_001, AGGREGATE_BOUNDARY_C9_000]`
+  - reason_for_next_scope: the chain is a single boundary-to-boundary source
+    edge and the endpoint taper forces zero displacement along the exact
+    cutter-intersecting segment; more interior prism parameters cannot repair
+    it
+- authority_sha256:
+  `c1212eff5367b58c9450bfae0caeddaf6a7efcc0a163a3b096d4175b097abdc3`
+- receipt_sha256:
+  `70c0ed4e3f677d391b4287052d6b5c4b5725bccc9cfc11aa73e86da58e15fadd`
+- semantic_fingerprint:
+  `ce651ed92c02092e4fdcd3da390d50055b345e28a58d77cf58da1dcb84d4bfe9`
+- merge_repeatability: `DONE`; two executions produced byte-identical compact
+  authority and receipt files
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: stop searching the frozen local-prism family; author a new
+  bounded C9 landing reconstruction that may move/rebuild source edge `12916`
+  and its exact adjacent aggregate boundary dependencies far enough to achieve
+  `>=1.7 mm` cutter clearance before defining a new flex-gap footprint
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false
