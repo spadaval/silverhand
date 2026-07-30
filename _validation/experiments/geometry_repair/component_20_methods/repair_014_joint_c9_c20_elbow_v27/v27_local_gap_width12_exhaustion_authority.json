@@ -1,0 +1,221 @@
+{
+  "best_immutable_counterexample": {
+    "c20_chain_id": "LOCAL_GAP_C20_CHAIN_63F8FF56F18734A0",
+    "c9_chain_id": "LOCAL_GAP_C9_CHAIN_EB7E82AAC63863FF",
+    "fingerprint": "3864ef2ef6e0b8de7fb72530d40ecdcbbf15eaf6c475668d7df53e8b287a78b9",
+    "immutable_hit_count": 1,
+    "immutable_source_face_ids": [
+      2227
+    ],
+    "member_index": 687056,
+    "minimum_chord_mm": 28.559136961565805,
+    "pair_id": "LOCAL_GAP_PAIR_000215",
+    "pair_rank": 16,
+    "parameter_rank": 565,
+    "parameters": {
+      "c20_signed_local_normal_depth_mm": 4,
+      "c20_to_c9_displacement_allocation": 0.5,
+      "c9_signed_local_normal_depth_mm": -2,
+      "chord_orientation_degrees": 10,
+      "requested_empty_chord_width_mm": 12
+    },
+    "removal_counts": {
+      "C20": 6,
+      "C9": 1
+    }
+  },
+  "code_sha256": "c2f16ce7b0d169b3d2afc8c2ae01c927248607417f56623819336370ab9983fb",
+  "evaluated_member_count": 3447360,
+  "evaluation_order_fingerprint": "260a549f826dab5990cd9507bc63a96ec46065ba81b384ac3e153758b98f5ac4",
+  "exact_member_interval": [
+    0,
+    3447359
+  ],
+  "family_fingerprint": "6b0ee763889e4bbac7af1d638ec0f1e14b709098fcfbdcb12c910d7dc5a458a9",
+  "invariants": {
+    "all_shards_are_read_only": true,
+    "all_shards_share_family_and_order_fingerprints": true,
+    "complete_interval_has_no_gaps_or_overlaps": true,
+    "no_member_reached_terminal_or_cutter_gate": true,
+    "primary_and_repeat_rejection_totals_match": true,
+    "single_face_exception_is_insufficient": true
+  },
+  "mission": "R014-JOINT-C9-C20-ELBOW-V27",
+  "operation": "MERGE_V27_LOCAL_GAP_WIDTH12",
+  "primary_rejection_counts": {
+    "CHORD_WIDTH_FAILED": 95135,
+    "IMMUTABLE_INTERSECTION": 3243465,
+    "NO_C20_AGGREGATE_REMOVAL": 297385,
+    "NO_C9_AGGREGATE_REMOVAL": 2720690
+  },
+  "primary_repeat_identical": true,
+  "repeat_rejection_counts": {
+    "CHORD_WIDTH_FAILED": 95135,
+    "IMMUTABLE_INTERSECTION": 3243465,
+    "NO_C20_AGGREGATE_REMOVAL": 297385,
+    "NO_C9_AGGREGATE_REMOVAL": 2720690
+  },
+  "requested_empty_chord_width_mm": 12,
+  "safety": {
+    "blend_saved": false,
+    "candidate_surface_geometry_emitted": false,
+    "gate_b_run": false,
+    "gate_d_run": false,
+    "image_work_requested": false,
+    "mutation_started": false,
+    "promotion": "NOT_PROMOTED"
+  },
+  "semantic_fingerprint": "bdd64e4db64360111c6902feb0f7375d58ba5fbba519f6dd34126b0d2bbceb77",
+  "shards": {
+    "diagnostic_max_one_immutable": [
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_diag1_shard_0.json",
+        "sha256": "1228afe6a9b0f63c46dd312698b18f725f5c57c3adcc2a48100222219e439b40",
+        "start_member": 0
+      },
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_diag1_shard_861840.json",
+        "sha256": "2c375972e948f0c884dd8db3ca96a1fe01b1eb3739a24c005b1dfb373bb4dc8d",
+        "start_member": 861840
+      },
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_diag1_shard_1723680.json",
+        "sha256": "e58250224ded1f20739a92ce8e575bfcd9eb9876a130b8f93d9e2dca63c0c077",
+        "start_member": 1723680
+      },
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_diag1_shard_2585520.json",
+        "sha256": "0da19e09ec2839a186ecacb0d1e2421ddae6071182b9a637ff302a0472b47295",
+        "start_member": 2585520
+      }
+    ],
+    "primary": [
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_shard_0.json",
+        "sha256": "2b62f84433364b95f6f4b7cdd879cb2ca3b538aba95870899b3e44bd741e9d56",
+        "start_member": 0
+      },
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_shard_861840.json",
+        "sha256": "4962682bd6e6edc4165f9dfbb68115ad01aacb9a943f3e340b4c21be3b225604",
+        "start_member": 861840
+      },
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_shard_1723680.json",
+        "sha256": "beabf8555a20b6ebf56a033c6b78ed4d642b9dcaaae049a15e286bddec95124f",
+        "start_member": 1723680
+      },
+      {
+        "member_count": 861840,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_width12_shard_2585520.json",
+        "sha256": "5ab6b82e0be63d1054f5978bedbeadb47ecd49b1f58c74ff821f832beebfe88f",
+        "start_member": 2585520
+      }
+    ],
+    "repeat": [
+      {
+        "member_count": 500000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_authority.json",
+        "sha256": "d45e2f82bd36957511d1b55804e9c90f91906b956c8d60ad46baccc03722a8ad",
+        "start_member": 0
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_500000.json",
+        "sha256": "2e0c5cd88e7b24a33df616a56fa34c24122b8f3054b0c53d2d797f44276aca7e",
+        "start_member": 500000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_750000.json",
+        "sha256": "17a2ec35689fc6d5e74117ff86b6ae1d6500830b98f81e16c3694b5b28ed4342",
+        "start_member": 750000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_1000000.json",
+        "sha256": "86047bb587426bcf1abb2d1ee8fe3a66e22077a74201b99b198b946d6e1e929e",
+        "start_member": 1000000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_1250000.json",
+        "sha256": "5a2f79f56140aaefe29a801a93c82aa133774e3fa2c9e87824b361227d11b566",
+        "start_member": 1250000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_1500000.json",
+        "sha256": "1aa5c3030ca895b8dcb504136385c623667c653a23b812cb7576a8e34d470985",
+        "start_member": 1500000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_1750000.json",
+        "sha256": "a3af50219bad57c2dc2f50ccf99e92d26886e16c6ea033a4f6d706a27ea50301",
+        "start_member": 1750000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_2000000.json",
+        "sha256": "8d789252ca4bbe43ca5dd2eb961c28fb160e2d312697576c7dc78fcb9a067b01",
+        "start_member": 2000000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_2250000.json",
+        "sha256": "c9e3ce1e9bc2ce9f74dc24c7a1727c04561d2bef12f7b77ed438ee136ac5db93",
+        "start_member": 2250000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_2500000.json",
+        "sha256": "90073c11dfe38dbf3b6f85ada824c3307de16925086e3f6103bc50eac09eab9d",
+        "start_member": 2500000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_2750000.json",
+        "sha256": "a7e7de974d238a9d98bb10381f2df37f344778dec0bf6291e1ed062544670843",
+        "start_member": 2750000
+      },
+      {
+        "member_count": 250000,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_3000000.json",
+        "sha256": "d9f7a76f2d49188fb2ae18e6c9d4ead6878312a4071f103f308911219810cf14",
+        "start_member": 3000000
+      },
+      {
+        "member_count": 197360,
+        "path": "_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_evaluation_shard_3250000.json",
+        "sha256": "5ad9ccf29f5cfd00afab9ea5b8734eff2794ec2004c7caff453fb107d1d09343",
+        "start_member": 3250000
+      }
+    ]
+  },
+  "single_face_diagnostic": {
+    "conclusion": "no width-12 member becomes valid by preserving all but at most one immutable face; every primary survivor conflicts with frozen negative space before cutter clearance",
+    "cutter_clearance_failure_count": 0,
+    "evaluated_member_count": 3447360,
+    "maximum_diagnostically_allowed_immutable_hit_count": 1,
+    "negative_space_conflict_count": 145,
+    "rejection_counts": {
+      "CHORD_WIDTH_FAILED": 95135,
+      "IMMUTABLE_INTERSECTION": 3143360,
+      "NEGATIVE_SPACE_CONFLICT": 145,
+      "NO_C20_AGGREGATE_REMOVAL": 297385,
+      "NO_C9_AGGREGATE_REMOVAL": 2720690
+    },
+    "selected_member_count": 0,
+    "terminal_conflict_count": 0
+  },
+  "single_face_diagnostic_status": "V27_NO_SUFFICIENT_SINGLE_IMMUTABLE_FACE_EXCEPTION",
+  "status": "V27_NO_VALID_LOCAL_12MM_FLEX_GAP"
+}

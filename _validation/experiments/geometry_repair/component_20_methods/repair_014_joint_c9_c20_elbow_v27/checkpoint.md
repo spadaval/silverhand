@@ -619,6 +619,53 @@ evaluation. Stage 3 remains stopped until an evaluated member records
   read-only exact member evaluator that preserves the factorized family and
   records deterministic rejection witnesses before any Stage 3 geometry
 
+### V27-LOCAL-004 — minimum-width family exhausted
+
+- evaluator: `scripts/blender/evaluate_v27_local_gap_family.py`
+- merger: `scripts/tools/merge_v27_local_gap_width12.py`
+- authority: `v27_local_gap_width12_exhaustion_authority.json`
+- receipt: `v27_local_gap_width12_exhaustion_receipt.json`
+- exact_member_interval: `[0, 3,447,359]`
+- evaluated_width_12_member_count: `3,447,360`
+- primary_result: `V27_NO_VALID_LOCAL_12MM_FLEX_GAP`
+- primary_repeatability: `DONE`; one 13-shard execution and one independent
+  four-shard execution have identical rejection totals
+- best_primary_counterexample:
+  - member_index: `687056`
+  - pair_id: `LOCAL_GAP_PAIR_000215`
+  - parameters: width `12`, orientation `10`, C20 depth `4`, C9 depth `-2`,
+    allocation `0.5`
+  - minimum_chord_mm: `28.559136961565805`
+  - removals: C20 `6`, C9 `1`
+  - immutable_hit_count: `1`
+  - immutable_source_face_ids: `[2227]`
+- single_face_diagnostic:
+  - operation: repeat the complete width-12 family while allowing any member
+    with at most one immutable hit to continue through downstream gates,
+    without relabeling or authorizing that face
+  - result: `V27_NO_SUFFICIENT_SINGLE_IMMUTABLE_FACE_EXCEPTION`
+  - negative_space_conflict_count: `145`
+  - selected_member_count: `0`
+  - conclusion: every zero/one-immutable primary survivor conflicts with
+    frozen source-open-route or central-opening negative space before cutter
+    clearance; deleting or relabeling one extra face cannot solve width 12
+- authority_sha256:
+  `828080c31125d1119afba78f404a112867b3d78816d403a942d65c6a4b4df372`
+- receipt_sha256:
+  `09258c55424c79008837623cc5b74c21a663486be32de92ca322a5834ca207ad`
+- semantic_fingerprint:
+  `bdd64e4db64360111c6902feb0f7375d58ba5fbba519f6dd34126b0d2bbceb77`
+- merge_repeatability: `DONE`; two executions produced byte-identical compact
+  authority and receipt files
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: preserve this minimum-width hard stop, then evaluate the frozen
+  14/16/18 mm width axes only to complete the authored family; Stage 3 remains
+  unauthorized
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false

@@ -420,6 +420,16 @@ Surface construction remains stopped until exact member evaluation proves a
 local `>=12 mm` gap; solids, motion, yokes, TPU, and Gates E/F/G remain
 deferred.
 
+Exact evaluation now exhausts all `3,447,360` requested-width-`12 mm` members
+twice with identical rejection totals and no valid gap. The best primary
+counterexample removes six C20 faces and one C9 face but still intersects
+immutable face `2227`. A complete diagnostic allowing any single immutable
+face to be the only primary exception produces `145` downstream
+negative-space conflicts and zero candidates; a one-face sacrifice is
+therefore insufficient. Widths `14`, `16`, and `18 mm` remain in the frozen
+family and must be evaluated before declaring the complete Stage 2b family
+exhausted.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 
