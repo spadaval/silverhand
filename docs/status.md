@@ -505,7 +505,15 @@ clearance, as do all 15 cutter-following subdivision members. The neighborhood
 wraps around multiple anatomy sides and cannot be represented as one
 directional height field. The immediate action is to partition this exact
 scope into multiple directionally coherent reconstruction panels, each with
-its own clear boundary and preserved negative-space seams.
+its own clear boundary and preserved negative-space seams. That architecture
+is now partially proven: a repeat-identical 15-degree directional partition
+creates 40 connected charts and 97 internal seam edges; 26 charts pass all
+cheap geometry gates. Fourteen charts remain, including the large wrapped
+10/18/24/32/36/55-face sheets. Their cutter exit depth is discontinuous even
+when their normals are coherent. The immediate action is to retain the 26
+passing chart authorities and subdivide only those fourteen failures by
+exit-depth continuity before running full assembly gates. No panel geometry
+has been emitted or promoted.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.

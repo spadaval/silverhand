@@ -907,6 +907,25 @@ deliberate local junctions or retained negative space; they must not recreate
 a global backing carrier. Each chart needs its own continuous clear boundary,
 cutter field, and ordinary geometry gates before charts can be assembled.
 
+The first directional-panel decomposition is repeat-identical. A 60-degree
+coherence bound selects five connected charts but solves only one. Tightening
+to 30 degrees solves six of fifteen. The selected 15-degree authority uses
+fifteen spherical direction clusters that split into forty connected charts
+and 97 internal seam edges. Twenty-six charts pass the cheap clearance,
+orientation, edge-ratio, and triangle-quality gates; fourteen remain
+unresolved. The successful charts are predominantly small, with several
+unchanged-topology panels retaining near-unit edge ratios and
+`1.887–2.000 mm` sampled cutter margin.
+
+This is useful partial reconstruction evidence, not a production candidate.
+The remaining failures include coherent-normal charts of 10, 18, 24, 32, 36,
+and 55 faces. Their failure proves that angular coherence alone does not
+capture the discontinuous ray-exit depth of the wrapped anatomy. Do not keep
+increasing angular chart count. The next partition must split only those
+fourteen failed charts at exit-depth discontinuities, retain the 26 passing
+chart authorities unchanged, and then run complement, self, negative-space,
+adaptive cutter, junction, and assembly gates before emitting geometry.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:
