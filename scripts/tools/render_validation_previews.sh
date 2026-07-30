@@ -2,7 +2,7 @@
 set -eu
 
 repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
-output_dir=${1:-"$repo_root/_validation/previews"}
+output_dir=${1:-"$repo_root/.work/evidence/previews"}
 
 if [ -n "${BLENDER_PATH:-}" ]; then
     blender_bin=$BLENDER_PATH

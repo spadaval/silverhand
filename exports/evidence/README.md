@@ -1,9 +1,10 @@
-# Export evidence
+# Evidence Exports
 
-These files are retained experiment evidence, not production exports.
+This directory is for deliberately retained, non-production exports that
+support a durable milestone claim.
 
-- `source_guided_layered_forearm_coupon_v1.stl` proved that intentional
-  overlapping closed shells can pass topology checks and slice successfully.
+It is currently empty. Ordinary experiment exports belong under `.work/` and
+should be deleted when their run is retired.
 
-Historical rejected and obsolete exports were moved to the ignored local archive
-under `blender_files/archive/removed_repo_assets_20260727/`.
+Production candidates belong under `exports/current/` and require an explicit
+manifest plus the validation gates in `docs/validation.md`.

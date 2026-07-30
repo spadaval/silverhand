@@ -4,7 +4,7 @@
     {
       "filename": "replace_with_artifact_name.stl",
       "objects": [
-        "REPLACE_WITH_EXPLICIT_REG_OBJECT"
+        "REPLACE_WITH_EXPLICIT_OBJECT"
       ],
       "component_policy": "single_solid",
       "bed_policy": "unsegmented_evidence"

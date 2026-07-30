@@ -113,9 +113,9 @@ immutable source evidence.
 ### Working solid
 
 An editable closed constituent derived during solid construction. A working
-solid may still be discarded or rebuilt. The current objects under
-`20_SALVAGE_WORKING` are rejected experimental evidence, not active working
-solids.
+solid may still be discarded or rebuilt. The removed
+`20_SALVAGE_WORKING` collection was rejected experimental evidence and remains
+recoverable at the `pre-repo-cleanup-20260730` Git tag.
 
 ### Evaluation object
 

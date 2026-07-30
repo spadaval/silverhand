@@ -1,48 +1,55 @@
 # Silverhand Cyberarm
 
-A wearable Johnny Silverhand-inspired cyberarm for 3D printing. The design uses
-flexible TPU structure with separate rigid PLA armor while prioritizing comfort
-and source-model character over literal replica construction.
+A wearable Johnny Silverhand-inspired cyberarm for additive manufacturing.
+The intended result is a source-led mechanical exterior supported by hidden
+wearable engineering—not a generic anatomical sleeve with decoration attached.
 
-## Current direction
+## Current state
 
-The active milestone is a wrist-to-upper-bicep **fitted surface master**:
+`reference/Johnny.blend` is the tracked authority. It contains:
 
-- begin again from the clean armor-stripped game surface;
-- map the whole surface through one shared, smooth deformation field;
-- preserve topology, relative placement, depth ordering, and negative space;
-- rebuild only bounded regions that cannot survive wearer fitting;
-- use a wearer-clearance volume only as a Boolean cutter and collision tool;
-- defer thickness, structural junctions, and printable topology until the fitted
-  surface passes matched-view review.
+- immutable game/source evidence;
+- the anatomical fit reference and non-printable clearance cutter;
+- `WORK_FITTED_SURFACE_CANDIDATE`, including retained Repairs 001–013;
+- three closed V28 wearer-side engineering prototypes with live rim bevels;
+- six deferred rigid-armor reference objects;
+- the canonical validation cameras.
 
-Armor-gap panels, magnet hardpoints, closure details, segmentation, and final
-exports are deliberately later milestones.
+The scene is an engineering checkpoint. It is not yet wearable, articulated,
+segmented, or a production export.
 
-## Project authority
+The next milestone is a coarse whole-arm structural mockup that preserves the
+source silhouette, layers, rails, cables, armor voids, and intentional negative
+space while adding only the minimum hidden structure needed for wearability.
 
-- [Documentation index](docs/README.md) — authority map and reading order
-- [Design contract](docs/design.md) — accepted strategy and geometry contract
-- [Current status](docs/status.md) — active scene and immediate work
-- [Validation contract](docs/validation.md) — promotion gates
-- [Glossary](docs/glossary.md) — authoritative project terminology
-- [History](docs/history.md) — rejected approaches and retained lessons
-- [AGENTS.md](AGENTS.md) — operating conventions
+## Authority
 
-## Important files
+- [Design contract](docs/design.md)
+- [Current status](docs/status.md)
+- [Validation gates](docs/validation.md)
+- [Glossary](docs/glossary.md)
+- [History and rejected methods](docs/history.md)
+- [Agent instructions](AGENTS.md)
 
-- `reference/Johnny.blend` — tracked master scene
-- `reference/johnny_silverhand_arm_scaled_up.3mf` — print-proven reference
-- `validation_reviews/` — tracked qualitative review records
-- `exports/current/` — production exports only; currently empty
-- `exports/evidence/` — retained non-production proof artifacts
+## Repository layout
 
-The entire project uses millimeters. Blender is configured as
-`1 Blender unit = 1 mm`, and STL export scale is `1.0`.
+```text
+reference/            tracked master Blend and source reference
+docs/                 durable decisions and current status
+scripts/              active tools only
+validation_reviews/   concise milestone evidence
+exports/current/      production exports only
+exports/evidence/     deliberately retained non-production exports
+.work/                ignored local scenes, runs, renders, and reports
+```
+
+Keep each local run self-contained under `.work/runs/<name>/`. Generated
+evidence is disposable unless its conclusion is promoted into
+`validation_reviews/` or the durable documentation.
 
 ## Validation
 
-Validate the master scene:
+Validate the master:
 
 ```sh
 blender --background reference/Johnny.blend \
@@ -50,23 +57,17 @@ blender --background reference/Johnny.blend \
   --python scripts/blender/validate_master.py
 ```
 
-Validate only the explicit current export directory:
+Validate explicit production STL exports:
 
 ```sh
 scripts/tools/run_validation.sh
 ```
 
-An empty `exports/current/` is expected until a connected main-geometry master
-is approved.
+The repository uses millimeters: `1 Blender unit = 1 mm`, scene
+`scale_length = 0.001`, and STL export scale `1.0`.
 
-## Git LFS
+## Recovery
 
-Install Git LFS before cloning or pulling:
-
-```sh
-git lfs install
-git clone git@github.com:spadaval/silverhand.git
-```
-
-Only `reference/Johnny.blend` is tracked as a `.blend`. Working scenes and local
-archives remain under the ignored `blender_files/` directory.
+The repository state before the 2026-07-30 simplification is tagged
+`pre-repo-cleanup-20260730`. Only `reference/Johnny.blend` is tracked through
+Git LFS; temporary Blend files belong under `.work/`.

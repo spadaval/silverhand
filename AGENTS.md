@@ -10,7 +10,6 @@ Read these files before changing the model:
 3. `docs/validation.md` — reusable promotion gates.
 4. `docs/glossary.md` — authoritative project terminology and result language.
 5. `docs/history.md` — rejected approaches and lessons that must not be repeated.
-6. Relevant records under `docs/approaches/` — evidence-backed method bounds.
 
 ## Units
 
@@ -22,14 +21,18 @@ Read these files before changing the model:
 
 ## Source and scene safety
 
-- `reference/Johnny.blend` is the tracked master scene.
+- `reference/Johnny.blend` is the tracked master scene and contains the current
+  fitted candidate plus retained engineering prototypes.
 - `reference/johnny_silverhand_arm_scaled_up.3mf` is print-proven scale and
   armor-shape evidence, not anatomical registration.
 - Preserve `SRC_GAME_RAW` and `SRC_GAME_FITTED` as immutable source evidence.
 - Do not edit or export `EVAL_*` review objects as production geometry.
-- Do not delete current salvage geometry without a verified checkpoint.
-- Local `.blend` experiments and archives belong under `blender_files/`, which
-  is intentionally ignored.
+- Do not delete `WORK_FITTED_SURFACE_CANDIDATE` or
+  `PROTOTYPE_V28_WEARABLE_PANEL_*` without a verified checkpoint.
+- Local scenes, generated evidence, and temporary exports belong under
+  `.work/`, which is intentionally ignored.
+- Keep one self-contained directory per active run. Do not scatter one
+  experiment across parallel repository trees.
 
 ## Image evidence safety
 
@@ -80,8 +83,8 @@ Read these files before changing the model:
 
 - Git LFS is required for the tracked master `.blend`.
 - Do not force-add other `.blend` files.
-- Keep rejected experiments in Git history or local archives, not in the active
-  master scene.
+- Keep rejected experiments in Git history or a deliberate external archive,
+  not in the active master scene or active script tree.
 - Errors must name the failed operation, target object/file, and actionable
   reason.
 - Use `DONE` for successful tool execution. Reserve `PASS` for a named

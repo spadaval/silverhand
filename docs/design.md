@@ -52,10 +52,10 @@ Wearer circumference evidence:
 | Widest forearm | 255 mm |
 | Bicep design target | 330 mm |
 
-The first fitted surface master targets the provided anatomical reference. This
-is a general human-fit prototype, not personalized-fit approval. Tailoring the
-approved deformation controls to the recorded wearer measurements is a later
-fit pass, followed by physical testing.
+The current fitted surface candidate targets the provided anatomical reference.
+It is a general human-fit prototype, not personalized-fit approval. Tailoring
+the deformation controls to recorded wearer measurements remains a later fit
+pass, followed by physical testing.
 
 Fit, TPU stretch, closure adjustment, wall thickness, and armor clearance are
 separate allowances. Do not stack the same margin more than once.
@@ -149,10 +149,11 @@ sheet does not attach floating details. After the fitted exterior is approved,
 discard unusable hidden source sheets, build the wearable panels independently,
 and connect retained exterior constituents with bounded structural junctions.
 
-Three coarse panels are the default starting point for a difficult wrapped
-region. Add a panel only when a named fit, motion, printing, or assembly
-constraint requires it. Automated face clustering must not turn diagnostic
-complexity into dozens of production pieces.
+Authored panels are hidden or visually subordinate engineering geometry. They
+must not replace the source-led exterior with a generic anatomical tube. Add a
+panel only when a named fit, motion, printing, or assembly constraint requires
+it. Automated face clustering must not turn diagnostic complexity into dozens
+of production pieces.
 
 The intended result is one continuous worn sleeve assembly. It may contain
 multiple deliberately overlapping constituents and will require printer-bed
@@ -184,9 +185,9 @@ not be copied into the result.
 
 ## 8. Preservation and reconstruction policy
 
-Begin from the clean source surface. Do not spend the current milestone
-classifying or repairing the 101 processed solids. They remain recoverable
-evidence of a failed transformation approach.
+Begin from the clean source surface and the retained fitted candidate in the
+tracked master. The rejected 101-solid carrier-free experiment has been removed
+from the active scene and remains recoverable through Git history.
 
 ### Keep
 
@@ -274,8 +275,9 @@ registration and shear restraint. Exact magnet size, count, capture, membrane
 thickness, and hardpoint geometry remain coupon-gated. Velcro remains available
 for small, curved, lightweight, or highly flexible parts.
 
-Attachment points and tactical panels are explicitly outside the current
-main-geometry milestone.
+Coarse armor placement and minimum support footprints belong in the whole-arm
+prototype because they determine which voids are intentional. Detailed
+hardpoints, magnet captures, and final tactical panels remain deferred.
 
 ## 12. Closure and segmentation — deferred constraints
 

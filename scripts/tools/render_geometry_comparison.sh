@@ -2,7 +2,7 @@
 set -eu
 
 repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
-output_dir=${1:-"$repo_root/_validation/main_geometry_comparison"}
+output_dir=${1:-"$repo_root/.work/evidence/main_geometry_comparison"}
 
 "$repo_root/scripts/tools/run_blender_script.sh" \
     scripts/blender/render_geometry_comparison.py \

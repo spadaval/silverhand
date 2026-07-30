@@ -1,0 +1,53 @@
+{
+  "operation": "MIGRATE_20260730_MASTER",
+  "status": "DONE",
+  "classification": "demolition_and_reconnect",
+  "pre_cleanup_git_tag": "pre-repo-cleanup-20260730",
+  "input_checkpoint_sha256": "e8f35c4b3f58d44b85d03caa41f1e1cd9a5a3b3fe25ab569c524a2f9c895a913",
+  "output_blend": "reference/Johnny.blend",
+  "output_sha256": "e837fa51c98ce258a56dabb2aecfd7cc7d9e79bc29203f5aaacd0fca8cb4a218",
+  "retained": {
+    "fitted_candidate": {
+      "object": "WORK_FITTED_SURFACE_CANDIDATE",
+      "fingerprint": "70f1f224b0c8be72abfba6bd3c0ce341c5685e3c541fb17bede0d59dcd8c95d3",
+      "shape_keys": 16
+    },
+    "engineering_prototypes": [
+      {
+        "object": "PROTOTYPE_V28_WEARABLE_PANEL_0",
+        "fingerprint": "327874ca7de7ee1e8cb15bf6a85daa16bc4b68fd6adafff830cc4754a9bec9d4",
+        "live_bevel": true
+      },
+      {
+        "object": "PROTOTYPE_V28_WEARABLE_PANEL_1",
+        "fingerprint": "65c9720e54eb3410603511174bd892d2709e420d9953d1217329908138d641c8",
+        "live_bevel": true
+      },
+      {
+        "object": "PROTOTYPE_V28_WEARABLE_PANEL_2",
+        "fingerprint": "e2091bed93c4596af8db552ac84ca4a8390509897066f9260a86da0d90a3a3df",
+        "live_bevel": true
+      }
+    ]
+  },
+  "removed": {
+    "salvage_objects": 101,
+    "review_objects": 26,
+    "scaffold_duplicates": 3,
+    "unsoftened_shell_duplicates": 3,
+    "zero_user_meshes": 133
+  },
+  "output_scene": {
+    "objects": 76,
+    "meshes": 65,
+    "collections": 10,
+    "cameras": 8,
+    "images": 0
+  },
+  "claims": {
+    "printable": false,
+    "wearable": false,
+    "motion": false,
+    "whole_arm_production_geometry": false
+  }
+}

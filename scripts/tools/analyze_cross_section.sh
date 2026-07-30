@@ -11,7 +11,7 @@ fi
 
 station_index=$1
 shift
-output_path="$repo_root/_validation/cross_section_station_${station_index}.json"
+output_path="$repo_root/.work/evidence/cross_section_station_${station_index}.json"
 
 exec "$repo_root/scripts/tools/run_blender_script.sh" \
     scripts/blender/analyze_cross_section.py \

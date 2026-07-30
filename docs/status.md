@@ -4,758 +4,159 @@ Updated: 2026-07-30
 
 ## Active milestone
 
-Create a source-faithful, anatomically human-sized wrist-to-upper-bicep
-**fitted surface master** in the straight construction pose.
-
-Current work is limited to source/anatomical landmarks, one shared deformation
-field, matched-view review, anatomical clearance, and bounded visible
-reconstruction. Personalized wearer tailoring, elbow mobility, local thickness,
-structural junctions, armor-gap panels, magnet hardpoints, closure detail,
-segmentation, and production exports follow after fitted-surface approval.
-
-## Scene authority
-
-Master: `reference/Johnny.blend`
-
-The scene is millimeter-native and organized into:
-
-| Collection | Role |
-|---|---|
-| `00_SOURCE_LOCKED` | immutable game, fitted, semantic, and comparison evidence |
-| `10_FIT_TOOLS` | provisional fit reference and non-printable clearance cutter |
-| `20_SALVAGE_WORKING` | retained 101-solid failed experiment; not the production starting point |
-| `30_REVIEW` | disposable joined evidence of that processed baseline |
-| `40_DEFERRED_ARMOR` | six registered armor sources; not print-ready |
-| `90_VALIDATION_CAMERAS` | eight canonical semantic comparison cameras |
-
-No active fitted surface candidate exists in the tracked master. Any promoted
-candidate must be derived from `SRC_GAME_TPU_ONLY_BASELINE` without editing the
-immutable source.
-Objects under `20_SALVAGE_WORKING` must not be promoted or repaired as the new
-master.
-`EVAL_MAIN_GEOMETRY_BASELINE` is review-only.
-
-The validation cameras are persistent review infrastructure. They do not belong
-to the printable object graph and may be deterministically repaired with
-`scripts/tools/sync_validation_cameras.sh`.
-
-## Static-fit prototype evidence
-
-An ignored local experiment now exists at:
-
-- `blender_files/Johnny_static_fit_prototype.blend`
-
-It is reproducible with `scripts/blender/build_static_fit_prototype.py`. The
-script recovers the provided anatomical right arm from the verified pre-cleanup
-checkpoint, derives a straight anatomical fit reference and cutter, duplicates
-`SRC_GAME_TPU_ONLY_BASELINE`, and stores the deformation in the
-`STATIC_ANATOMICAL_FIT` shape key. The source remains the untouched Basis.
-
-The selected experimental pass uses one low-frequency station-angle source
-baseline and one monotonic radial mapping. It preserves all `7,347` vertices,
-`19,876` edges, `12,564` faces, polygon indices, material slots, and material
-assignments. It does not split, delete, solidify, Boolean, remesh, or move
-individual components.
-
-This candidate is **not promoted**:
-
-- topology invariants pass, but full transformation-integrity review remains
-  open;
-- the matched contact sheet is much more coherent than the rejected processed
-  baseline and has no exploded registration;
-- bicep/shoulder mass and axial depth remain visibly altered;
-- `743` vertices remain inside the anatomical cutter, with a minimum margin of
-  `-49.514 mm`;
-- cutter intersections affect `19` of the source's `64` connected components;
-- `30` triangulated faces are orientation-review locators and the long
-  distortion tail remains unresolved.
-
-The station-only alternative reduced the failure to six components and
-`-11.754 mm`, but visibly inflated the whole sleeve. Strong asymmetric radial
-compression reduced the vertex failure to `16` vertices within `-0.956 mm`,
-but flattened too much axial depth. Both are rejected as automatic fixes.
-
-Evidence:
-
-- `_validation/static_fit_prototype/iteration_6/build_report.json`
-- `_validation/static_fit_prototype/iteration_6/comparison/comparison_contact_sheet.png`
-- `validation_reviews/static_fit_prototype/review.json`
-
-## Bounded fragment rescue evidence
-
-The first clearance-rescue pass is preserved in the ignored local experiment:
-
-- `blender_files/Johnny_fragment_rescue_work.blend`
-
-Before the experiment, the tracked master and static-fit prototype were copied
-to:
-
-- `blender_files/archive/Johnny_pre_fragment_rescue_20260727_221837.blend`
-- `blender_files/archive/Johnny_static_fit_pre_fragment_rescue_20260727_221837.blend`
-
-The retained rescue is a second reversible shape key,
-`FRAGMENT_RESCUE_CLEARANCE`, relative to `STATIC_ANATOMICAL_FIT`. It uses a
-global `5 mm` maximum hard lift, a three-edge falloff, and a topology-driven
-orientation deferral rule. It does not delete, split, remesh, solidify, Boolean,
-or independently translate connected components.
-
-Results:
-
-- topology remains exactly equal to the source;
-- `566` of `999` reserved-wall failures were cleared;
-- actual cutter penetrations fell from `743` to `424`;
-- no pre-rescue-to-rescue negative-orientation locators remain;
-- the matched pre-rescue/rescue contact sheet shows no new exterior silhouette
-  damage, spikes, or flattened carrier-like slabs;
-- `395` deep vertices were deferred by the `5 mm` lift limit and `40` vertices
-  were deferred by the orientation rule;
-- `1,051` cutter triangle overlaps and a `-46.575 mm` minimum margin remain, so
-  anatomical clearance still fails and this object is not promoted.
-
-This pass proves that shallow local failures can be salvaged without repeating
-the destructive global clearance strategies. The remaining failures are not
-appropriate for further automatic radial lifting; they require bounded
-classification and reconstruction.
-
-Evidence:
-
-- `_validation/fragment_rescue/iteration_10/build_report.json`
-- `_validation/fragment_rescue/iteration_10/pre_vs_rescue/comparison_contact_sheet.png`
-- `validation_reviews/fragment_rescue/review.json`
-
-## Rejected deep-clearance experiments
-
-Direct Boolean subtraction against `CUT_CLEARANCE_ANATOMY_STRAIGHT` is rejected
-for the current open fitted surface:
-
-- normal Exact mode grafted cutter walls and caps into the result;
-- hole-tolerant Exact mode tore visible holes and still left `932` cutter
-  overlaps;
-- a `1 mm` Voxel Remesh made the generated pieces manifold but produced
-  `3,409` thin solids; subtraction then removed almost the entire visible arm
-  and left `92` disconnected solids.
-
-These trials are preserved only in ignored local Blender files and generated
-validation evidence. The tracked master and retained rescue candidate were not
-changed. A Boolean cutter becomes viable only after a bounded region has been
-classified and reconstructed as a coherent volume.
-
-## Deep-fragment pilot evidence
-
-Two ignored local pilot scenes compare vertex deletion, rigid translation,
-uniform radial offset, radial-depth compression, and a procedural masked
-displacement field:
-
-- a borderline component with only two violating vertices can be cleared by
-  the masked field without a perceptible exterior change;
-- the selected deep wrist component has `40` vertices, `15` cutter
-  penetrations, and a `-11.748 mm` minimum margin;
-- deleting its violating vertices removes `15` vertices and `33` of its `65`
-  faces;
-- uniform radial offset inflates it, while masked displacement and radial-depth
-  compression visibly crush its axial profile;
-- a `15.2 mm` rigid lift preserves the fragment but breaks local registration
-  when applied to that component alone.
-
-A final spatial-field trial applied the same rigid motion to nearby geometry
-with smooth `25 mm` and `40 mm` falloffs. The `25 mm` field is the least
-destructive deep-failure result so far: it preserves the pilot fragment,
-affects `493` nearby vertices, and reduces total cutter penetrations from `424`
-to `401`. The `40 mm` field affects `1,085` vertices and creates new
-reserved-margin failures.
-
-No deep-fragment variant is promoted. The useful result is strategic: deep
-failures should first be tested as bounded corrections to the shared regional
-fit field. Isolated component repair remains a fallback only after neighboring
-registration has been evaluated.
-
-Evidence:
-
-- `blender_files/Johnny_pilot_reconstruction_trials.blend`
-- `blender_files/Johnny_pilot_reconstruction_component59_trials.blend`
-- `_validation/pilot_reconstruction/iteration_2_component59/build_report.json`
-- [Regional clearance-deformation approach](approaches/regional-clearance-deformation.md)
-
-## Stepwise geometry-repair evidence
-
-The active ignored repair scene is:
-
-- `blender_files/Johnny_geometry_repair_work.blend`
-
-It begins from the retained fragment rescue and stores each accepted change as
-a reversible relative shape key. `REPAIR_001_COMPONENT_0` is retained as a
-bounded shallow-clearance patch:
-
-- two remaining penetrations are cleared;
-- global cutter penetrations fall from `424` to `422`;
-- reserved-margin failures fall from `433` to `431`;
-- cutter triangle overlaps fall from `1,051` to `1,037`;
-- source topology, face indices, and material assignments remain unchanged;
-- no negative-orientation locators are introduced;
-- local and complete high-detail review pages show no perceptible damage.
-
-The patch does not promote the complete fitted surface. Two contracted local
-edges remain recorded as later thickness/print-detail watch items.
-
-`REPAIR_002_COMPONENT_1_REGIONAL` is retained as a second reversible candidate,
-relative to Repair 001. Component `1` is a visible ventral mechanical plate
-nested against component `25`, so isolated lifting, deletion, masked radial
-displacement, and depth compression were rejected. A shared `35 mm` regional
-field moves the plate through an `8.2 mm` rigid core correction and blends the
-same motion through nearby source geometry:
-
-- all `8` component-1 penetrations are cleared;
-- global cutter penetrations fall from `422` to `397`;
-- reserved-margin failures fall from `431` to `411`;
-- cutter triangle overlaps fall from `1,037` to `978`;
-- topology and material assignments remain unchanged;
-- component `1` remains approximately `0.277 mm` from component `25`;
-- no negative-orientation locators are introduced;
-- local and complete high-detail review shows no perceptible registration or
-  silhouette damage.
-
-The field affects `1,471` weighted vertices and its affected-edge ratios range
-from `0.723772` to `1.312896`. It remains a fitted-surface candidate and does
-not establish a general automatic regional-lifting rule.
-
-Three additional hidden-side repairs are retained as reversible relative shape
-keys:
-
-| Repair | Component | Cutter vertices cleared | Global overlaps before → after | Visible result |
-|---|---:|---:|---:|---|
-| `REPAIR_003_COMPONENT_25_MASKED` | 25 | 29 | 978 → 885 | visible cradle preserved; displaced surface is buried |
-| `REPAIR_004_COMPONENT_37_MASKED` | 37 | 7 | 885 → 870 | exposed cable curve preserved; distorted endpoint is buried |
-| `REPAIR_005_COMPONENT_42_MASKED` | 42 | 7 | 870 → 837 | exposed upper-arm composition preserved; displaced branch is buried |
-
-Together, Repairs 003–005 reduce cutter penetrations from `397` to `354` and
-reserved-margin failures from `411` to `365`. They preserve all source
-vertices, faces, polygon indices, and material assignments, and introduce no
-negative-orientation locators. The active work scene is checkpointed after
-each retained repair.
-
-These are fitted-surface repairs, not printable-solid approval. Component `25`
-has five hidden edges contracted below half length; component `37` has three
-such edges plus one edge expanded to `2.088288`; component `42` has one edge
-contracted to `0.448621`. Those buried regions are explicit later
-solidification watch items.
-
-Eight further repairs are retained as reversible candidates after independent,
-sanitized, high-detail local and complete matched-view review:
-
-| Repair | Component | Method | Global cutter vertices before → after | Global overlaps before → after |
-|---|---:|---|---:|---:|
-| `REPAIR_006_COMPONENT_20_MINOR_PATCHES` | 20 | six-ring harmonic field over minor clusters 2–5 | 354 → 336 | 837 → 806 |
-| `REPAIR_007_COMPONENT_16_HARMONIC` | 16 | eight-ring harmonic field | 336 → 334 | 806 → 792 |
-| `REPAIR_008_COMPONENT_52_REGIONAL` | 52 | `35 mm` shared regional rigid field | 334 → 326 | 792 → 769 |
-| `REPAIR_009_COMPONENT_57_REGIONAL` | 57 | `45 mm` shared regional rigid field | 326 → 309 | 769 → 741 |
-| `REPAIR_010_COMPONENT_59_REGIONAL` | 59 | `40 mm` shared regional rigid field | 309 → 282 | 741 → 701 |
-| `REPAIR_011_COMPONENT_36_REGIONAL` | 36 | `30 mm` shared regional rigid field | 282 → 278 | 701 → 692 |
-| `REPAIR_012_COMPONENT_39_REGIONAL` | 39 | `25 mm` shared regional rigid field | 278 → 265 | 692 → 675 |
-| `REPAIR_013_COMPONENT_19_CLUSTER_RIGID` | 19 | six-ring harmonic transition around one rigid cluster | 265 → 258 | 675 → 653 |
-
-Repairs 006–013 preserve all source vertices, faces, face indices, and material
-assignments and introduce no negative-orientation locators. Each bounded delta
-answers `does_this_repair_delta_look_ass: false`. Component `16`, component
-`19`, component `36`, component `39`, component `52`, component `57`, and
-component `59` now have zero vertices below either the cutter or the reserved
-wall. Repair 006 clears only the four minor component-20 clusters; `115`
-component-20 vertices remain inside the cutter.
-
-The active scene and its post-Repair-013 checkpoint are byte-identical at
-SHA-256
-`ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`:
-
-- `blender_files/Johnny_geometry_repair_work.blend`
-- `blender_files/checkpoints/geometry_repair/post_repair_013_component_19_20260728.blend`
-
-The earlier failed radial, compression, and isolated-lift trials for components
-`19`, `36`, `39`, and `59` remain rejected. Repairs 010–013 supersede the
-decision to park those components by using different bounded methods. The
-component-19 cluster field is especially local: a `5.430353 mm` rigid motion
-of seven core vertices is blended through only 53 affected vertices, with
-edge ratios bounded to `0.827474–1.088134`.
-
-Component `9` is also classified, but no geometry is retained from its trials.
-It is a `2,508`-vertex structural surface spanning much of the wrist and
-forearm, not one movable fragment. Its `163` penetrating vertices form six
-clusters; the two dominant wearer-facing inner-wall clusters contain `86` and
-`68` vertices at the proximal and wrist ends.
-
-Whole-component movement, radial compression, uniform offset, and masked
-projection are rejected. The nominal rigid lift creates `670` component-9
-penetrations; compression introduces `11` reversed faces; uniform offset
-introduces `9`; the ordinary masked field introduces `58`. Increasing masked
-diffusion raises the failure to `90–125` reversed faces. Deleting the
-penetrating vertices removes `466` interior faces and confirms that the outer
-silhouette is mostly unaffected, but the resulting open lumen holes are not a
-retained repair.
-
-Component `20`, only `0.012323 mm` from component `9`, was originally
-classified into six violation clusters. Repair 006 retains bounded harmonic
-corrections for minor clusters 2–5. On the exact post-Repair-013 base, major
-clusters 0 and 1 contain `87` and `31` reserved-margin failures and require
-wearer-facing surface replacement. The former `32` count is stale: Repair
-006's transition also cleared adjacent vertex `4860`.
-
-The first cutter-derived replacement trials are not retained. An unbridged
-patch splits the candidate from `64` to `68` connected components and raises
-boundary edges from `1,756` to `1,929`. The best tested boundary bridge keeps
-`64` components but still raises boundary edges to at least `1,785`; conforming
-bridges raise them further. These trials prove the replacement location and
-clearance effect, not a valid transition topology.
-
-A boundary-count-preserving strip then met those numerical topology bounds:
-`64` connected components and `1,756` boundary/nonmanifold edges were
-unchanged, no noncontiguous manifold edges appeared, penetrations fell from
-`309` to `194`, and overlaps fell from `741` to `519`. It is nevertheless
-rejected. Bicep-axial high-detail review shows that its `1,451`-face
-cutter-conforming strip erases the source's stepped angular inner depth and
-reads as a broad smooth carrier-like slab. It also retains `42` replacement
-triangle overlaps.
-
-Two relief-preserving deformation controls are also rejected numerically.
-Pointwise projection of the original major-cluster vertices clears component
-`20` but reverses `8–22` triangles and stretches one edge to `11.8664` times
-its original length. Translating each major cluster rigidly before a harmonic
-boundary blend requires `48.205661 mm` and `32.556071 mm` motions; every
-tested transition reverses at least seven triangles, and the variants that
-clear the clusters reverse `43–202`.
-
-A component-proximity audit does not justify deleting component `20` as a
-duplicate of component `9`. Only `2` of the `118` major-cluster vertices are
-within `0.1 mm` of component `9`; the median nearest distance is
-`10.186440 mm`. The two surfaces occupy similar stations and radii but
-different angular locations around the lumen.
-
-A closed-core topology trial isolates the smaller major cluster `1`. Its
-original `87` faces and recognizable faceted relief are translated rigidly by
-`32.556071 mm`, then connected to the unchanged source through a one-layer,
-`60`-edge, `120`-triangle annulus. The trial preserves `64` connected
-components, `1,756` boundary/nonmanifold edges, and contiguous winding, while
-reducing penetrations from `309` to `296` and overlaps from `741` to `704`.
-It is rejected visually. Dorsal and ventral high-detail review show the
-annulus as a long triangular shelf/wall with spike-like projections that
-crowds and partially bridges the intentional local gap. The translated core
-itself preserves relief; the full-perimeter transition is the defect.
-
-The next component-20 method must preserve the reviewed exterior boundary and
-the source's angular inner relief, replace only the two major wearer-facing
-patches, and avoid increasing boundary-edge or connected-component counts.
-The next bounded trial should transfer the source ridge/depth landmarks as
-outward relief on a cutter-safe base. Do not repeat pointwise projection, a
-smooth cutter-only field, a harmonic blend of the full `32–48 mm` motion, or a
-full-perimeter annulus around a translated core.
-
-Repair 014 has now exhausted the bounded component-20-only reconstruction
-scope through v21. A broad `6 × 2.4 mm` C9-clear frame corridor is numerically
-recoverable, but neither bounded terminal approach can reach the retained
-cage: every upper variant intersects source outside the four-face topology
-allowlist, and every lower variant also intersects immutable component `9`.
-No v21 topology was changed or geometry promoted. The immediate decision is
-either a wider component-20 landing replacement or a joint
-component-9/component-20 elbow-interface reconstruction.
-
-The joint v22 attribution preflight is also complete without mutation. It
-recovers exact C9/C20 overlap identities for all `30` bounded terminal
-approaches, but every lower variant crosses `5–19` exterior-facing
-component-20 faces; six also leave the proximal C9 wearer class. A local C9
-channel alone is therefore not authorized. The next joint trial must
-re-author the approach corridor from the exact attributed face evidence before
-defining either component's topology mask.
-
-The v23 free-space preflight also stops read-only. All `315` primary and
-`315` exterior-C20-relaxed route tuples are blocked at the first `6 mm`
-tangent-continuous scarf leaving the fixed B2b exit; no path reaches spline
-fitting. The immediate numeric dependency is therefore a bounded B2b exit
-trim/reauthoring, not a broader free-space search from the same portal.
-
-The v24 B2b exit preflight exhausts that bounded dependency without mutation.
-Exact trims at `R8`, `R7`, and `R6` clear the local departure but produce no
-complete route; the `R5` trim cannot clear the required local `2 mm`
-departure. Of `675` bounded R5/R6/R7 terminal-subsegment replacements, `62`
-clear the local geometry gate and zero complete the unchanged v23 route
-contract. The obstruction therefore extends upstream of the authorized
-terminal subsegment. The next joint trial must re-author the earlier B2b/turn-
-bridge corridor; repeating terminal-only exit changes is not justified.
-
-The v25 authored-tail preflight exhausts that fixed upstream scope without
-mutation. It evaluates all `11,907` escape tuples, retains `3,570` local
-passes at `1,190` unique portals, and tests all `3,570` portal/endpoint routes.
-Every route fails the necessary radius-`1.2 mm` inscribed-capsule search on
-the same `4 mm` lattice, so none can contain the required
-`4.5–6.0 × 2.4 mm` rectangular rail. The named stop is
-`NO_SAFE_AUTHORED_TAIL_ROUTE_V25`. The next decision must deliberately expand
-into B1 or beyond the `12 mm` B2a suffix authority, or choose a different
-joint-interface architecture; another fixed-scope route iteration is not
-justified.
-
-The v26 static-interface preflight also closes without mutation. Exact
-cutter, negative-space, floor-ownership, exposure, terminal, and five rounds
-of disposable sanitized face-review authority establish valid upper and lower
-boundary-coincident terminals, but the complete wearer-side demand requires
-`23` exposure cells against v26's aggregate cap of `12`. Its truthful named
-stop is `NO_SEED_COVERING_EXPOSURE_CELL_SUBSET_V26`; the cap and result remain
-unchanged.
-
-V27 now deliberately authorizes the aggregate `26`-cell C9/C20 wearer-side
-interface reconstruction: the `23` seed-covering cells plus exact C20 terminal
-dependency cells `007`, `009`, and `011`. It preserves the reviewed visible
-complement, intentional `NO_FLOOR` openness, exact negative space, a
-`>=12 mm` flex gap, exact terminals, and `>=1.7 mm` cutter clearance. The
-`<=12`-cell limit survives only as a checkpoint/recovery batch bound. The
-read-only aggregate mask and dependency DAG are checkpointed. The translated
-fixed global gap frame is now exhaustively rejected: every one of its `8,059`
-placements intersects the immutable complement. Stage 2b therefore authorizes
-only a finite, fingerprinted local source-surface family: one ordered C20 cut
-chain and one ordered C9 cut chain, a ruled/local convex-prism empty footprint,
-and exact widths, source-led orientations, and local normal depths. The
-footprint must remain inside the same 26-cell aggregate; it may not use the
-cutter as visible geometry or disturb terminals, non-flex negative space, or
-`NO_FLOOR`. The first Stage 2b milestone now checkpoints `152` eligible C20
-chains, `8` eligible C9 chains, `1,216` ordered non-crossing pairs, and a
-factorized `13,789,440`-member exact family without evaluating or emitting
-geometry. The authored signed-depth grid makes the correct count `11,340`
-parameter tuples per pair; the earlier `5,040` handoff count is superseded.
-Surface construction remains stopped until exact member evaluation proves a
-local `>=12 mm` gap; solids, motion, yokes, TPU, and Gates E/F/G remain
-deferred.
-
-Exact evaluation now exhausts all `3,447,360` requested-width-`12 mm` members
-twice with identical rejection totals and no valid gap. The best primary
-counterexample removes six C20 faces and one C9 face but still intersects
-immutable face `2227`. A complete diagnostic allowing any single immutable
-face to be the only primary exception produces `145` downstream
-negative-space conflicts and zero candidates; a one-face sacrifice is
-therefore insufficient. Widths `14`, `16`, and `18 mm` are now also
-exhausted, closing all `13,789,440` members with zero selections. Twenty
-zero-immutable larger-width members reach only the central-opening conflict.
-Allowing those exact opening overlaps diagnostically sends all twenty to the
-cutter gate, where every one has `0.0 mm` clearance on the same C9 cut-chain
-segment. `V27_NO_VALID_CENTRAL_OPENING_MERGE` therefore closes that fallback
-too.
-
-The controlling dependency is now exact C9 source edge `12916`, vertices
-`1541–1543`. It is a boundary-to-boundary chain whose frozen zero endpoint
-taper leaves the entire segment on the cutter. Another interior gap-prism
-search is not justified. A finite `11,250`-member Stage 2c endpoint family now
-solves that dependency read-only. The first accepted member moves vertices
-`1541` and `1543` by `4 mm` and `8 mm`, retains `2.012107006124184 mm` exact
-segment-to-cutter clearance, changes the edge length by less than `0.04%`, and
-touches no immutable-complement face, terminal, or protected non-flex opening.
-Its only negative-space incidence is the intended central flex opening. The
-authority is repeat-identical and passes
-`PASS_V27_C9_LANDING_AUTHORITY_AUDIT`.
-
-No surface has been mutated or accepted yet. The direct deformation of only
-those two endpoints is now repeatably rejected: it flips five triangles,
-stretches one affected edge to `2.3797866395854035` of its source length,
-leaves nine of eleven patch triangles below the exact/signed cutter contract,
-and creates 28 new source-complement intersection pairs. There is no new
-self-intersection. The endpoint clearance solution remains useful as a target,
-but the complete 11-face one-ring needs a distributed reconstruction whose
-other controls absorb the relocation. A necessary-boundary audit now proves
-that even this is insufficient inside the current mask: fixed boundary
-vertices `1542`, `1539`, and `1537` have signed cutter margins
-`-9.346299369`, `-12.143722862`, and `-4.560815901 mm`. No interior
-retopology can pass while those boundary samples remain fixed. The exact ten
-outside faces incident to them must be classified before any deliberate mask
-expansion. That classification is now complete: faces `2229` and `2283` are
-already selected wearer-side authority; faces
-`[2220, 2221, 2222, 2224, 2225, 2226, 2233, 2284]` remain frozen
-exterior-or-ambiguous evidence. All ten remain inside the C9 maximum mask and
-none touches a frozen terminal. Face `2283` participates in the protected
-source-open route, so any reconstruction must preserve its openness. The exact
-eight-face ambiguous set now needs bounded sanitized visible-role review.
-That review is complete. Faces `2220`, `2221`, and `2225` are exposed exterior
-ridge composition, and face `2233` is an exposed opening-rim barrier; all four
-remain immutable. Faces `2222`, `2224`, `2226`, and `2284` are conditional
-inner/hidden expansion candidates under exact barrier and opening constraints.
-All three failing boundary vertices are shared with at least one protected
-visible face, so direct source-vertex motion remains forbidden. The next
-architecture must split reconstructed-side incidences from the visible source
-sheet: preserve the exterior vertices/faces exactly while duplicating and
-rebuilding only the inner landing side. That symbolic topology authority is
-now repeatably checkpointed: 17 reconstruction faces, four protected visible
-faces, and split inner-side duplicates for source vertices `1537`, `1539`,
-and `1542`, with every incident face uniquely partitioned. Exact barrier edges
-`10392`, `12914`, and `12919` use no split vertex. No geometry has yet been
-emitted or mutated. The first fixed-topology coordinate family is now
-repeatably exhausted: all `5,400` members fail before the overlap and
-negative-space gates (`1,512` invalid direction modes, `1,766` split-vertex
-clearance failures, and `2,122` triangle inversions). A necessary-boundary
-audit proves that retopology inside the same loop is also impossible because
-fixed boundary vertices `1535`, `1536`, and `1540` remain at
-`-18.462990`, `-34.427792`, and `-24.658117 mm` signed cutter margin.
-Their outside incidence requires review of immutable-complement faces
-`[2218, 2219, 2268, 2274, 2275, 2276]`; selected wearer-side face `2282`
-may expand with the reconstruction. That bounded visible-role review is the
-current immediate action. It retains faces `2219` and `2276` as visible
-seam/opening-rim composition and admits concealed faces
-`[2218, 2268, 2274, 2275]` only under their recorded edge and cavity
-constraints. Because those visible and concealed faces share deeply
-cutter-blocked controls, repeated local incidence splitting is now closed.
-The reconstruction scope expands to the authoritative 238-face proximal C9
-wearer neighborhood plus the exact seven-face necessary boundary closure
-`[1447, 1449, 1450, 1556, 1563, 1564, 1570]`. Continuous boundary-edge
-sampling requires eight more faces
-`[896, 897, 898, 900, 901, 1560, 1562, 2246]`. The final 253-face scope
-has a clear 71-edge boundary with `1.702642 mm` minimum sampled margin.
-All 45 same-topology harmonic members nevertheless fail sampled cutter
-clearance, as do all 15 cutter-following subdivision members. The neighborhood
-wraps around multiple anatomy sides and cannot be represented as one
-directional height field. The immediate action is to partition this exact
-scope into multiple directionally coherent reconstruction panels, each with
-its own clear boundary and preserved negative-space seams. That architecture
-is now partially proven: a repeat-identical 15-degree directional partition
-creates 40 connected charts and 97 internal seam edges; 26 charts pass all
-cheap geometry gates. Fourteen charts remain, including the large wrapped
-10/18/24/32/36/55-face sheets. Their cutter exit depth is discontinuous even
-when their normals are coherent. No panel geometry was emitted or promoted.
-
-That continuation is now deliberately retired. The forty-chart decomposition
-is retained only as proof that the wearer-side source sheet wraps around
-multiple anatomy sides. It is not the production architecture. V28 resets the
-construction problem: the final 253-face C9 proximal mask is reference scope,
-recognizable exterior forms remain composition evidence, and approximately
-three clean wearer-facing TPU panels will be authored independently from the
-fit reference. The cutter remains collision/audit geometry only. Additional
-panels require a named fit, motion, printing, or assembly reason.
-
-The repeat-identical V28 scope authority is now ready at
-`v28_wearable_panel_scope_authority.json`, SHA-256
-`4a35c5953c7a0e61233d8e3f9db218454315ab4143b7c9da981f42405927c7d3`.
-It defines three neutral construction zones with five cross-sections each,
-`1.7 mm` minimum clearance, and nominal `4 mm` engineering seams. The complete
-253-face V27 mask remains reference evidence. The bounded exterior review
-rejected the provisional 247-face removal in full: 243 are visible in ordinary
-non-axial views, and the other four lack positive deletion evidence and would
-open new edges. All 253 faces are retained as exterior reference; safe removal
-face count is zero. Classification SHA-256:
-`fa02e9d18ecd124bf334db8d23e2e1576d495f9f21046d54e787a3980cc0c597`.
-
-The first fit-derived scaffold is reproducible at
-`blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_three_panel_scaffold.blend`.
-It contains three independent, open, zero-thickness evaluation surfaces with
-five authored sections each, nominal `4 mm` axial seams, and one provisional
-aligned `40°` opening. It copies no source, fit, or cutter topology. All
-`1,512` triangles pass exact/adaptive cutter clearance: minimum exact distance
-is `1.813721 mm`, minimum signed adaptive margin is `1.831561 mm`, and there
-are no nonadjacent self-overlaps or cross-panel overlaps. Source, fit
-reference, and cutter fingerprints remain unchanged. The scaffold is not
-promoted. Independent high-detail review of seven individual sanitized views
-accepted it for the next disposable iteration: the panels are coherent, both
-axial seams remain continuous, the opening stays aligned, and no spike, twist,
-self-crossing, cross-panel crossing, or unintended gap is visible.
-Classification SHA-256:
-`86645d3d8775ef60105464767ae7e06416088f9d8e02b05c7ee3c8f36bc46227`.
-
-The accepted scaffold has now been converted into three real closed mesh
-solids in the ignored evaluation scene:
-
-- `blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_three_panel_physical_shells.blend`
-- SHA-256
-  `64366dc52290552416fa7ac478d6bc289adb8ff63fa1de6ca4c84f9e1c80bd68`
-
-Each panel is one positive-volume connected component with `640` vertices,
-`638` faces, zero boundary edges, and zero non-manifold edges. Provisional
-thickness is `1.6 mm`, added outward while preserving every accepted inner
-scaffold vertex. All `3,828` evaluated triangles pass the cutter contract,
-with `1.813721 mm` minimum exact distance and `1.831561 mm` minimum signed
-adaptive margin. There are no self- or cross-panel overlap pairs.
-
-Independent review of seven individual sanitized high-detail views accepted
-the shells for the next disposable iteration. Inner, outer, and square rim
-walls read continuously; the seams and opening survive; and no obvious thin
-wall, bulge, spike, twist, fold-over, or crossing is visible. Classification
-SHA-256:
-`81477f741591a705dbb64787d2fa3f0ec249ce43b5d1d1cce625c815ee78903a`.
-The shells are physical mesh topology, not yet a wearable-panel promotion or
-print candidate.
-
-Reversible wearer-contact softening is now accepted for the next disposable
-iteration:
-
-- `blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_reversible_edge_softening.blend`
-- SHA-256
-  `e8f35c4b3f58d44b85d03caa41f1e1cd9a5a3b3fe25ab569c524a2f9c895a913`
-
-Each physical shell was duplicated and given one live, unapplied, angle-limited
-Bevel modifier: `0.4 mm` width, two segments, `0.5` profile. The accepted
-physical-shell objects and mesh datablocks remain unchanged. All `7,236`
-evaluated triangles pass cutter clearance; minimum exact distance is
-`1.813714 mm` and minimum signed adaptive margin is `1.830236 mm`. Evaluated
-outputs remain closed positive-volume solids with zero boundary/non-manifold
-edges and zero self/cross-panel overlap pairs.
-
-Independent review of seven sanitized before/softened camera pairs found the
-rounding subtle but consistently visible, with continuous rims, retained seams
-and opening, and no wall loss, pinching, waviness, fold-over, crossing, bridge,
-or meaningful silhouette damage. Classification SHA-256:
-`8e34120b287dff35538909ba314b7e657b923415e29176554d4bce04c736321b`.
-The modifiers remain unapplied pending a representative TPU wall/rim coupon.
-
-That representative coupon is now ready for physical testing:
-
-- disposable Blend:
-  `blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_tpu_wall_rim_coupon.blend`;
-- Blend SHA-256:
-  `c1bcf11610bb739aca9579e18b1320b026af2c525d4bfd7eec9ca1111eac1c5b`;
-- reviewed STL:
-  `exports/evidence/v28_tpu_wall_rim_coupon/v28_tpu_wall_rim_coupon.stl`;
-- STL SHA-256:
-  `f549ce7d46d6c26023bce6679b0b2e0a1e330522bc63d0be91960f71d9a6b4e4`.
-
-The evaluated `1.6 mm` curved wall and live `0.4 mm` softened rim form one
-closed positive-volume component: `1,212` triangles,
-`6.861 × 35.922 × 30.000 mm`, and `1793.173 mm³`. Geometry review found zero
-boundary edges, non-manifold edges, self-overlaps, or degenerate triangles.
-Independent sanitized visual review accepted it for physical-test STL export.
-The binary millimeter STL passed export and independent host audits, fits the
-A1 mini bed, and reimports with at most `0.000137 mm` dimension error.
-
-The coupon is a physical-test candidate, not sleeve geometry or physical
-authority. The next action is to slice and print it, then record material,
-printer, slicer, handling, and tactile results before applying or promoting
-the sleeve bevels.
-
-Component `9` follows with the same bounded classification principle; do not
-reconstruct coincident component-9 and component-20 inner layers twice.
-
-The earlier shallow radial-patch method remains rejected for components `16`,
-`19`, and `52`: component `16` visibly narrows, component `19` introduces a
-flipped triangle, and component `52` produces severe edge collapse/stretch
-plus two flipped triangles. Repairs 007, 008, and 013 supersede those failed
-methods without invalidating the rejection lessons.
-
-Only components `9` and `20` remain offending. Neither qualifies for further
-shallow automatic lifting; each requires bounded wearer-facing reconstruction.
-
-Evidence:
-
-- `validation_reviews/geometry_repair/classification.json`
-- `validation_reviews/geometry_repair/repair_001_component_0/review.json`
-- `_validation/geometry_repair/repair_001_component_0/`
-- `experiments/geometry_repair/component_1_methods/README.md`
-- `_validation/experiments/geometry_repair/component_1_methods/`
-- `experiments/geometry_repair/component_25_methods/README.md`
-- `experiments/geometry_repair/component_37_methods/README.md`
-- `experiments/geometry_repair/component_42_methods/README.md`
-- `experiments/geometry_repair/component_36_methods/README.md`
-- `experiments/geometry_repair/component_39_methods/README.md`
-- `experiments/geometry_repair/component_9_methods/README.md`
-- `validation_reviews/geometry_repair/repair_005_checkpoint/review.json`
-- `validation_reviews/geometry_repair/repair_006_component_20_minor/review.json`
-- `validation_reviews/geometry_repair/repair_007_component_16_harmonic/review.json`
-- `validation_reviews/geometry_repair/repair_008_component_52_regional/review.json`
-- `validation_reviews/geometry_repair/repair_009_component_57_regional/review.json`
-- `validation_reviews/geometry_repair/repair_010_component_59_regional/review.json`
-- `validation_reviews/geometry_repair/repair_011_component_36_regional/review.json`
-- `validation_reviews/geometry_repair/repair_012_component_39_regional/review.json`
-- `validation_reviews/geometry_repair/repair_013_component_19_cluster_rigid/review.json`
-- `validation_reviews/geometry_repair/component_20_boundary_r2_l16_o4/review.json`
-- `validation_reviews/geometry_repair/component_20_relief_core_c1_l1/review.json`
-- [Component 20 landmark-sector reconstruction](approaches/component-20-landmark-sector-reconstruction.md)
-
-## Cleanup baseline
-
-- 170 objects
-- 160 mesh datablocks
-- 16 collections
-- 8 validation cameras and no curve or image datablocks
-- 101 closed salvage solids
-- 31 reversed salvage solids repaired to positive orientation
-- all geometry converted from centimeters to millimeters
-- legacy sleeve, V2/V3/V4, coupon, reimport, and embedded 3MF collections removed
-- unused datablocks purged
-
-Recoverable local checkpoints:
-
-- `blender_files/archive/Johnny_pre_cleanup_20260727.blend`
-- `blender_files/archive/rework_evidence_pre_cleanup_20260727.tar.gz`
-
-## What the scene proves
-
-- The clean armor-stripped source preserves the intended wrist, forearm, elbow,
-  upper-arm composition, longitudinal rails, cables, layered masses, and
-  negative spaces.
-- The processed 101-solid experiment is recoverable and measurable.
-- The prior straight fit reference reported no triangle intersections.
-- The current clearance audit reports zero cutter intersections and zero tested
-  vertices inside the cutter across all 101 working solids.
-- Each retained editable form is locally closed and consistently oriented.
-
-## Why the processed baseline is rejected
-
-The matched contact sheet shows exploded component placement, damaged source
-registration, severe bicep/shoulder compression, unexpected warping, and
-floating fragments. It fails the qualitative main-geometry visual gate.
-
-The archived generator combined a hard-coded straight-axis mapping, piecewise
-longitudinal rescaling, radial-depth compression, eight independent forearm
-sectors, collision-driven component lifting, face deletion, component pruning,
-and local solidification. Its zero-clearance result and closed-shell reports do
-not rescue the visible failure.
-
-The current geometric contact graph reproduces 30 overlap groups and 18
-isolated solids. The largest group contains 35 solids. These remain defects,
-not accepted architecture or proof of slicer fusion. The baseline is historical
-transformation evidence, not a salvage library for production.
-
-## Known strategic debt
-
-- The tracked master does not yet contain a promoted source-derived fitted
-  surface candidate.
-- The processed geometry was generated by an experimental centimeter-based
-  script with a duplicated hard-coded fit profile and fails visual review.
-- The old generator is archived, not active authority.
-- The existing fit volume must be verified against the provided anatomical
-  reference before it can govern the first fitted surface.
-- Its extracted 77-ring profile is approximately 390 mm long, begins near
-  `163.5 mm` circumference, and reaches only `295.7 mm`; this is below the
-  recorded wearer measurements, but those measurements are later tailoring
-  evidence rather than the current digital target.
-- The inherited cutter is a consistent `2.5 mm` radial expansion, but shares
-  surface triangles with the fit volume at its unexpanded end boundaries.
-- The clean source elbow is composition evidence, not the final flex zone.
-- Source islands must remain registered during fitting; pruning happens only
-  after fitted-surface review.
+Build a coarse, complete wrist-to-upper-bicep structural mockup from the
+source-led fitted exterior already present in the tracked master.
+
+The mockup must remain recognizably Silverhand. It should preserve the
+mechanical silhouette, layered plates, rails, cables, hubs, armor voids, and
+intentional open spans while adding only the minimum hidden structure needed
+for clearance, donning, support, and eventual assembly.
+
+This is a whole-arm architecture pass. Do not return to component-by-component
+vertex repair or replace the exterior with a generic anatomical carrier.
+
+## Tracked authority
+
+Master:
+
+- file: `reference/Johnny.blend`
+- SHA-256:
+  `e837fa51c98ce258a56dabb2aecfd7cc7d9e79bc29203f5aaacd0fca8cb4a218`
+- units: millimeters
+- objects: `76`
+- meshes: `65`
+- collections: `10`
+- cameras: `8`
+- images: `0`
+
+The 2026-07-30 master promotion is recorded in
+`validation_reviews/repository_cleanup/master_promotion.json`.
+
+### Scene collections
+
+| Collection | Authority |
+| --- | --- |
+| `00_SOURCE_LOCKED` | immutable game, fitted, comparison, component, and anatomy evidence |
+| `10_FIT_TOOLS` | fit references and non-printable clearance cutters |
+| `20_FITTED_SURFACE` | current source-led whole-arm fitted candidate |
+| `25_ENGINEERING_PROTOTYPES` | accepted local wearer-side engineering prototypes |
+| `40_DEFERRED_ARMOR` | six registered rigid-armor references; not print-ready |
+| `90_VALIDATION_CAMERAS` | canonical matched-view cameras |
+
+The rejected 101-solid carrier-free baseline and accumulated `EVAL_*` review
+objects are no longer present in the active master.
+
+## Whole-arm fitted candidate
+
+`WORK_FITTED_SURFACE_CANDIDATE` is the current source-led starting point.
+
+- geometry/shape-key fingerprint:
+  `70f1f224b0c8be72abfba6bd3c0ce341c5685e3c541fb17bede0d59dcd8c95d3`
+- source topology: `7,347` vertices and `12,564` faces;
+- all `64` source constituents remain registered;
+- source materials and topology are preserved;
+- retained reversible controls include the static anatomical fit, shallow
+  fragment rescue, and Repairs 001–013;
+- `printable=false`;
+- `print_ready=false`.
+
+This candidate preserves the recognizable overall composition much better than
+the removed carrier-free baseline, but it is still open source surface
+geometry. It has no wearability, motion, solid-construction, or print claim.
+
+The evaluated 2026-07-30 anatomical-clearance audit reports `653`
+surface-triangle intersection pairs and `255` candidate vertices inside
+`CUT_CLEARANCE_ANATOMY_STRAIGHT`. These are known whole-arm clearance defects,
+not a promotion pass. The retained shape keys and repairs are active in that
+measurement.
+
+## Retained wearer-side prototypes
+
+`25_ENGINEERING_PROTOTYPES` contains:
+
+- `PROTOTYPE_V28_WEARABLE_PANEL_0`
+- `PROTOTYPE_V28_WEARABLE_PANEL_1`
+- `PROTOTYPE_V28_WEARABLE_PANEL_2`
+
+Each object is a closed positive-volume local prototype derived from the
+accepted V28 wearer-side experiment. Each retains a live, unapplied
+angle-limited Bevel modifier:
+
+- width: `0.4 mm`;
+- segments: `2`;
+- profile: `0.5`;
+- provisional wall: `1.6 mm`.
+
+These objects demonstrate one viable hidden-panel construction method for a
+roughly `62.5 mm` difficult region. They are engineering evidence, not the
+visual language for the complete arm and not production geometry.
+
+The generic curved wall/rim coupon was retired. It was valid geometry but did
+not test a sufficiently representative arm feature to justify blocking work.
+
+## What the current model proves
+
+- The intact source-led exterior can remain registered through broad
+  anatomical fitting.
+- Most recognizable plates, cables, rails, hooks, and layered forms can survive
+  as the visible design.
+- Difficult wearer-side surfaces can be replaced with closed local solids
+  without using the cutter as visible geometry.
+- Reversible edge softening can remain live without invalidating the three
+  retained prototypes.
+- The project does not require a smooth visible backing sleeve.
+
+## What remains unresolved
+
+### Whole-arm structure
+
+- No complete permanent load path exists.
+- Retained source sheets are not globally closed printable solids.
+- The current local prototypes are not integrated into the source exterior.
+- Large armor voids have not been classified with the armor shown in place.
+
+### Wearability
+
+- No concealed medial donning closure exists.
+- No personalized wearer-fit pass exists.
+- No physical comfort or fatigue authority exists.
+
+### Elbow
+
+- The straight scene makes no motion claim.
+- The open hub/strut/cable composition must remain recognizable.
+- The flex zone and both transitions require a deliberate architecture.
+
+### Manufacturing
+
+- No final thickness map exists.
+- No structural junctions or armor hardpoints are approved.
+- No A1 mini segmentation or weld plan exists.
+- `exports/current/` remains empty.
 
 ## Immediate next work
 
-1. Preserve Repairs 001–013 and the exact post-Repair-013 checkpoint with
-   SHA-256
-   `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
-2. Treat the V27 split, harmonic, subdivision, and directional-chart scripts
-   as historical read-only evidence. Do not refine or promote their panels.
-3. Use the repeat-identical V28 authored-panel scope authority; do not
-   regenerate it unless its exact source inputs change.
-4. Preserve all 253 exterior-reference faces. Do not reuse the rejected
-   247-face provisional removal list as deletion authority.
-5. Preserve the accepted closed physical shells as the current V28
-   engineering checkpoint.
-6. Preserve the accepted `0.4 mm` live bevel modifiers unapplied.
-7. Slice and print the accepted V28 `1.6 mm` wall / `0.4 mm` softened-rim TPU
-   coupon. Record material, printer, slicer, handling, and tactile results
-   before assigning physical authority or applying the sleeve modifiers.
-8. Reattach retained exterior forms with bounded standoffs or junctions;
-   modest relocation or trimming is allowed when exact placement conflicts
-   with wearability.
-9. Delegate every image operation to a disposable subagent. Sanitize and size
-   checkpoint every derivative before high-detail review; never replay
-   unsanitized historical image outputs.
-10. Repeat triangle-orientation, distortion, matched-view, and exact
-   surface-clearance evidence after every bounded reconstruction.
-11. Promote a fitted surface master only after qualitative visual and digital
-   clearance review.
-12. Begin hidden solidification and connectivity work only after that
-    promotion.
-13. Defer the approximately `30°` priority wear pose and broader elbow mobility
-   until the static straight composition is accepted.
+1. Create one disposable whole-arm structural mockup from the tracked fitted
+   candidate; do not rebuild the exterior from generic panels.
+2. Review the six armor references in place and classify each visible void as
+   intentional negative space, armor-covered space, or a genuine support need.
+3. Preserve source-led hero forms and broadly remove only unusable hidden
+   wearer-facing sheets.
+4. Add a clean wrist interface, a simple concealed medial opening, local
+   forearm/bicep supports, and an explicitly open elbow architecture.
+5. Evaluate the entire arm for silhouette, clearance, donning, permanent
+   connectivity, and obvious injury risks before refining any local region.
+6. Only after that whole-arm pass, refine from wrist to bicep in broad
+   appearance and engineering passes.
 
-## Deferred decisions already recorded
+## Recovery
 
-- Clearance geometry is cutter-only.
-- Tactical armor panels are local, never global.
-- Major armor plans for magnet-to-magnet clamping plus mechanical registration.
-- Velcro remains a smaller/flexible-part option.
-- Exact attachment geometry requires later physical iteration.
+- Git tag before repository simplification:
+  `pre-repo-cleanup-20260730`
+- retained complete local checkpoint:
+  `.work/archive/pre_repo_cleanup_20260730/latest_full_v28_checkpoint.blend`
+- retained checkpoint SHA-256:
+  `c1bcf11610bb739aca9579e18b1320b026af2c525d4bfd7eec9ca1111eac1c5b`
+
+The recovery checkpoint includes historical review objects and the retired
+coupon. It is archive evidence only and must not replace the simplified master.

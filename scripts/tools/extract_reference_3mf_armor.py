@@ -1,7 +1,7 @@
 """Extract armor-shaped donor meshes from the proven 3MF without plate transforms.
 
-The output is local working data under ``blender_files/`` and is intentionally
-gitignored. Meshes remain in millimeters and are centered as stored by Bambu
+The output is local working data under ignored ``.work/``. Meshes remain in
+millimeters and are centered as stored by Bambu
 Studio; they are shape/scale donors, not anatomically registered parts.
 """
 
@@ -81,7 +81,7 @@ def main():
     parser.add_argument(
         "--output",
         type=Path,
-        default=repo_root / "blender_files" / "reference_3mf_armor_donors",
+        default=repo_root / ".work" / "reference_3mf_armor_donors",
     )
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)

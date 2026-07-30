@@ -16,7 +16,7 @@ import bpy
 from mathutils.bvhtree import BVHTree
 
 
-DEFAULT_COLLECTION = "20_SALVAGE_WORKING"
+DEFAULT_COLLECTION = "25_ENGINEERING_PROTOTYPES"
 RAY_OFFSET_MM = 1.0e-4
 RAY_ADVANCE_MM = 1.0e-2
 PROBE_OFFSET_MM = 0.25
@@ -181,14 +181,14 @@ def main() -> int:
         (
             obj
             for obj in collection.all_objects
-            if obj.type == "MESH" and obj.name.startswith("REG_")
+            if obj.type == "MESH"
         ),
         key=lambda obj: obj.name,
     )
     if not objects:
         raise RuntimeError(
             f"Cannot analyze thickness: collection '{collection.name}' "
-            "contains no REG_* mesh objects"
+            "contains no mesh objects"
         )
     reports = [
         inspect_object(obj, args.threshold_mm) for obj in objects

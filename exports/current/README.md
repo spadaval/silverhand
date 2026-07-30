@@ -1,7 +1,13 @@
-# Current exports
+# Current Production Exports
 
-Only active production candidates belong here.
+This directory contains only explicit production print candidates.
 
-This directory intentionally contains no STL files while the project is at the
-main-geometry visual-baseline stage. `scripts/tools/run_validation.sh` should fail with
-an explicit “no STL files found” message until a current candidate exists.
+It is intentionally empty. The current tracked master is an engineering
+checkpoint, not a complete wearable or segmented print assembly.
+
+Every future STL must be named in an export manifest, produced at millimeter
+scale `1.0`, and pass:
+
+```sh
+scripts/tools/run_validation.sh
+```

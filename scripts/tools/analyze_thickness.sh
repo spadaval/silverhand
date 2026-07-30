@@ -2,7 +2,7 @@
 set -eu
 
 repo_root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
-output_path=${1:-"$repo_root/_validation/thickness_report.json"}
+output_path=${1:-"$repo_root/.work/evidence/thickness_report.json"}
 
 if [ "$#" -ge 2 ]; then
     exec "$repo_root/scripts/tools/run_blender_script.sh" \

@@ -10,7 +10,7 @@ import bpy
 COLLECTION_NAME = "90_VALIDATION_CAMERAS"
 RIG_VERSION = 1
 DEFAULT_SOURCE = "SRC_GAME_TPU_ONLY_BASELINE"
-DEFAULT_TARGET = "EVAL_MAIN_GEOMETRY_BASELINE"
+DEFAULT_TARGET = "WORK_FITTED_SURFACE_CANDIDATE"
 
 # Millimeter migration preserved orientation. These are anatomical directions,
 # not dimensions or a duplicated fit profile.

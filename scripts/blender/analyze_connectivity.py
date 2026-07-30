@@ -18,7 +18,7 @@ from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
 
-DEFAULT_COLLECTION = "20_SALVAGE_WORKING"
+DEFAULT_COLLECTION = "25_ENGINEERING_PROTOTYPES"
 INSIDE_TOLERANCE_MM = 1.0e-4
 RAY_DIRECTIONS = (
     Vector((0.936329, 0.281718, 0.210449)).normalized(),
@@ -195,14 +195,14 @@ def main() -> int:
         (
             obj
             for obj in collection.all_objects
-            if obj.type == "MESH" and obj.name.startswith("REG_")
+            if obj.type == "MESH"
         ),
         key=lambda obj: obj.name,
     )
     if not objects:
         raise RuntimeError(
             f"Cannot analyze connectivity: collection '{collection.name}' "
-            "contains no REG_* mesh objects"
+            "contains no mesh objects"
         )
 
     geometry = {}

@@ -17,9 +17,9 @@ import bpy
 from mathutils.bvhtree import BVHTree
 
 
-DEFAULT_CUTTER = "CUT_CLEARANCE_BASELINE"
-DEFAULT_FIT_REFERENCE = "REF_FIT_VOLUME_BASELINE"
-DEFAULT_COLLECTION = "20_SALVAGE_WORKING"
+DEFAULT_CUTTER = "CUT_CLEARANCE_ANATOMY_STRAIGHT"
+DEFAULT_FIT_REFERENCE = "REF_FIT_ANATOMY_STRAIGHT"
+DEFAULT_COLLECTION = "20_FITTED_SURFACE"
 TOLERANCE_MM = 1.0e-4
 
 
@@ -70,29 +70,46 @@ def inspect_closed_mesh(obj: bpy.types.Object) -> dict:
         bm.free()
 
 
-def world_vertices(obj: bpy.types.Object) -> list:
-    return [obj.matrix_world @ vertex.co for vertex in obj.data.vertices]
+def evaluated_world_geometry(
+    obj: bpy.types.Object,
+    depsgraph: bpy.types.Depsgraph,
+) -> tuple[list, list[tuple[int, ...]]]:
+    evaluated = obj.evaluated_get(depsgraph)
+    mesh = evaluated.to_mesh()
+    try:
+        points = [
+            evaluated.matrix_world @ vertex.co
+            for vertex in mesh.vertices
+        ]
+        faces = [
+            tuple(polygon.vertices)
+            for polygon in mesh.polygons
+        ]
+    finally:
+        evaluated.to_mesh_clear()
+    return points, faces
 
 
-def world_bvh(obj: bpy.types.Object) -> BVHTree:
+def world_bvh(points: list, faces: list[tuple[int, ...]]) -> BVHTree:
     return BVHTree.FromPolygons(
-        world_vertices(obj),
-        [tuple(polygon.vertices) for polygon in obj.data.polygons],
+        points,
+        faces,
         all_triangles=False,
     )
 
 
 def signed_vertex_clearance(
-    obj: bpy.types.Object,
+    object_name: str,
+    points: list,
     cutter_bvh: BVHTree,
 ) -> dict:
     signed_distances = []
-    for point in world_vertices(obj):
+    for point in points:
         nearest = cutter_bvh.find_nearest(point)
         if nearest[0] is None:
             raise RuntimeError(
                 "Cannot analyze clearance: nearest-surface lookup failed for "
-                f"object '{obj.name}'"
+                f"object '{object_name}'"
             )
         location, normal, _, distance = nearest
         side = (point - location).dot(normal)
@@ -124,6 +141,7 @@ def signed_vertex_clearance(
 
 def main() -> int:
     args = parse_args()
+    depsgraph = bpy.context.evaluated_depsgraph_get()
     cutter = require_mesh(args.cutter, "clearance cutter")
     fit_reference = require_mesh(args.fit_reference, "fit reference")
     collection = bpy.data.collections.get(args.collection)
@@ -160,23 +178,45 @@ def main() -> int:
             + ")"
         )
 
-    cutter_bvh = world_bvh(cutter)
-    fit_bvh = world_bvh(fit_reference)
+    cutter_points, cutter_faces = evaluated_world_geometry(
+        cutter,
+        depsgraph,
+    )
+    fit_points, fit_faces = evaluated_world_geometry(
+        fit_reference,
+        depsgraph,
+    )
+    cutter_bvh = world_bvh(cutter_points, cutter_faces)
+    fit_bvh = world_bvh(fit_points, fit_faces)
     fit_surface_overlaps = cutter_bvh.overlap(fit_bvh)
-    fit_clearance = signed_vertex_clearance(fit_reference, cutter_bvh)
+    fit_clearance = signed_vertex_clearance(
+        fit_reference.name,
+        fit_points,
+        cutter_bvh,
+    )
 
     objects = sorted(
         (
             obj
             for obj in collection.all_objects
-            if obj.type == "MESH" and obj.name.startswith("REG_")
+            if obj.type == "MESH"
         ),
         key=lambda obj: obj.name,
     )
+    if not objects:
+        raise RuntimeError(
+            f"Cannot analyze clearance: collection '{collection.name}' "
+            "contains no mesh objects"
+        )
     reports = []
     for obj in objects:
-        overlaps = cutter_bvh.overlap(world_bvh(obj))
-        clearance = signed_vertex_clearance(obj, cutter_bvh)
+        points, faces = evaluated_world_geometry(obj, depsgraph)
+        overlaps = cutter_bvh.overlap(world_bvh(points, faces))
+        clearance = signed_vertex_clearance(
+            obj.name,
+            points,
+            cutter_bvh,
+        )
         reports.append(
             {
                 "object": obj.name,
@@ -239,7 +279,10 @@ def main() -> int:
         },
         "warnings": warnings,
         "method_limits": [
-            "Surface-triangle overlap is exact for the current triangulation.",
+            "Objects are evaluated through the dependency graph, including "
+            "active shape keys and modifiers.",
+            "Surface-triangle overlap is exact for the evaluated "
+            "triangulation.",
             "Signed vertex clearance uses the nearest cutter surface normal and "
             "is an approximation on strongly concave geometry.",
             "A geometric pass does not establish wearer dimensions, comfort, "

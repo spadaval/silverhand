@@ -24,11 +24,13 @@ status and evidence.
 ## Gate A — Scene integrity
 
 - Metric units, `scale_length = 0.001`, millimeters.
-- Required source, fit, working, review, and deferred-armor collections exist.
+- Required source, fit, fitted-surface, engineering-prototype, deferred-armor,
+  and validation-camera collections exist.
 - `SRC_GAME_RAW` and `SRC_GAME_FITTED` are preserved.
 - No missing external files.
 - No accidental shared editable mesh data.
-- No cameras, exports, or legacy objects masquerade as active geometry.
+- No cameras, exports, `EVAL_*`, `REG_*`, or retired salvage collections
+  masquerade as active geometry.
 - Current object names agree with [status.md](status.md).
 
 Failure blocks all later gates.
@@ -178,7 +180,7 @@ An evaluated joined mesh must not hide invalid constituent solids.
 Current evidence tools:
 
 ```sh
-./scripts/tools/inventory_working_geometry.sh
+./scripts/tools/analyze_connectivity.sh
 ./scripts/tools/analyze_thickness.sh
 ```
 

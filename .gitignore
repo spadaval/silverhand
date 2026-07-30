@@ -1,10 +1,12 @@
-# Blender working state — large CAD sources; keep local / external backup
-blender_files/
+# Local working state and generated evidence
+.work/
+_validation/
 *.blend
 *.blend1
-_validation/
 __pycache__/
 *.py[cod]
+.ruff_cache/
+.DS_Store
 
-# ...except the master scene, which is checked in via Git LFS
+# The master scene is checked in via Git LFS.
 !reference/Johnny.blend
