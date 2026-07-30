@@ -866,6 +866,47 @@ classify those six new faces, split any protected visible incidences, and
 expand the boundary beyond all three failing controls before defining new
 surface topology.
 
+The bounded image review classifies faces `2219` and `2276` as protected
+visible seam/opening-rim surfaces. Faces `2218`, `2268`, `2274`, and `2275`
+are concealed conditional expansion surfaces; their exact junction and
+negative-space constraints are recorded in
+`c9_fixed_boundary_expansion_visual/classification.json`. This result also
+exposes the limit of repeated local splitting: protected visible triangles
+share the same deeply cutter-blocked source controls. Exact-coordinate
+preservation and wearability cannot both hold inside that neighborhood.
+Visible composition must be re-authored over a wider wearer-side mask rather
+than frozen in place.
+
+`V27-C9-PROXIMAL-RECON-001` therefore adopts the previously authoritative
+238-face proximal C9 wearer neighborhood as the starting full-reconstruction
+scope. Its fixed outer boundary has only three shallow failures: vertices
+`1155`, `1158`, and `1227` at `0.953602`, `1.455193`, and
+`1.686493 mm`. Deterministic necessary closure adds only faces
+`[1447, 1449, 1450, 1556, 1563, 1564, 1570]`. The resulting 245-face mask
+has 65 boundary edges/vertices and a minimum boundary-vertex margin of
+`1.740156 mm`, but continuous edge sampling rejects it: five boundary chords
+fall below contract, led by edge `625–1538` at `-6.021026 mm`. Necessary
+edge closure adds faces `[896, 897, 898, 900, 901, 1560, 1562, 2246]`.
+The final 253-face scope has a 71-edge/vertex fixed boundary with
+`1.809283 mm` minimum vertex margin and `1.702642 mm` minimum sampled edge
+margin.
+
+A 45-member same-topology harmonic family on this final scope fails entirely
+at sampled cutter clearance; its best member still reaches
+`-38.114231 mm`. Direct cutter-offset subdivision also fails because
+independent nearest or PCA-radial exits choose incompatible anatomy sides.
+A consistent global exit direction improves coherence but cannot represent
+the wrapped neighborhood as one height field: the 15-member
+`2×/4×/8×` subdivision family still bottoms out at `-28.348696 mm`, and
+some controls have no exit along that common direction. This closes both
+same-topology deformation and single-chart cutter-following retopology.
+
+The next full reconstruction must partition the 253-face wearer neighborhood
+into multiple directionally coherent charts/panels. Chart seams must be
+deliberate local junctions or retained negative space; they must not recreate
+a global backing carrier. Each chart needs its own continuous clear boundary,
+cutter field, and ordinary geometry gates before charts can be assembled.
+
 ## Numerical gate
 
 A candidate may enter image review only if it:

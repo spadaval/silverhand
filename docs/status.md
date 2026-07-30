@@ -489,7 +489,23 @@ fixed boundary vertices `1535`, `1536`, and `1540` remain at
 Their outside incidence requires review of immutable-complement faces
 `[2218, 2219, 2268, 2274, 2275, 2276]`; selected wearer-side face `2282`
 may expand with the reconstruction. That bounded visible-role review is the
-current immediate action.
+current immediate action. It retains faces `2219` and `2276` as visible
+seam/opening-rim composition and admits concealed faces
+`[2218, 2268, 2274, 2275]` only under their recorded edge and cavity
+constraints. Because those visible and concealed faces share deeply
+cutter-blocked controls, repeated local incidence splitting is now closed.
+The reconstruction scope expands to the authoritative 238-face proximal C9
+wearer neighborhood plus the exact seven-face necessary boundary closure
+`[1447, 1449, 1450, 1556, 1563, 1564, 1570]`. Continuous boundary-edge
+sampling requires eight more faces
+`[896, 897, 898, 900, 901, 1560, 1562, 2246]`. The final 253-face scope
+has a clear 71-edge boundary with `1.702642 mm` minimum sampled margin.
+All 45 same-topology harmonic members nevertheless fail sampled cutter
+clearance, as do all 15 cutter-following subdivision members. The neighborhood
+wraps around multiple anatomy sides and cannot be represented as one
+directional height field. The immediate action is to partition this exact
+scope into multiple directionally coherent reconstruction panels, each with
+its own clear boundary and preserved negative-space seams.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
