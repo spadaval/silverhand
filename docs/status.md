@@ -411,10 +411,14 @@ chain and one ordered C9 cut chain, a ruled/local convex-prism empty footprint,
 and exact widths, source-led orientations, and local normal depths. The
 footprint must remain inside the same 26-cell aggregate; it may not use the
 cutter as visible geometry or disturb terminals, non-flex negative space, or
-`NO_FLOOR`. The first Stage 2b milestone checkpoints the family without
-evaluating or emitting geometry. Surface construction remains stopped until a
-local member proves the `>=12 mm` gap; solids, motion, yokes, TPU, and Gates
-E/F/G remain deferred.
+`NO_FLOOR`. The first Stage 2b milestone now checkpoints `152` eligible C20
+chains, `8` eligible C9 chains, `1,216` ordered non-crossing pairs, and a
+factorized `13,789,440`-member exact family without evaluating or emitting
+geometry. The authored signed-depth grid makes the correct count `11,340`
+parameter tuples per pair; the earlier `5,040` handoff count is superseded.
+Surface construction remains stopped until exact member evaluation proves a
+local `>=12 mm` gap; solids, motion, yokes, TPU, and Gates E/F/G remain
+deferred.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.

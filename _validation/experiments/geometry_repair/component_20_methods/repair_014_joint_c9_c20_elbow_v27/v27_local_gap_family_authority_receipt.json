@@ -1,0 +1,26 @@
+{
+  "authority_path": "/Users/supadava/Projects/experimental/silverhand/_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_local_gap_family_authority.json",
+  "authority_sha256": "14eccf5706d6325901cb9a025ca16a8cb8898dd190be672863c308403f06866d",
+  "chain_counts": {
+    "C20": 152,
+    "C9": 8
+  },
+  "evaluation_started": false,
+  "family_fingerprint": "6b0ee763889e4bbac7af1d638ec0f1e14b709098fcfbdcb12c910d7dc5a458a9",
+  "family_member_count": 13789440,
+  "operation": "BUILD_V27_LOCAL_GAP_FAMILY",
+  "ordered_chain_pair_count": 1216,
+  "parameter_tuple_count_per_pair": 11340,
+  "safety": {
+    "blend_saved": false,
+    "candidate_surface_geometry_emitted": false,
+    "evaluation_started": false,
+    "gate_b_run": false,
+    "gate_d_run": false,
+    "image_work_requested": false,
+    "mutation_started": false,
+    "promotion": "NOT_PROMOTED"
+  },
+  "semantic_fingerprint": "96cbcf7e5a223a30d24a29f5b7eabcd7f7bb4d93bb971f90c9fd416a608cc70f",
+  "status": "V27_LOCAL_GAP_FAMILY_CHECKPOINTED"
+}

@@ -575,6 +575,50 @@ evaluation. Stage 3 remains stopped until an evaluated member records
   `scripts/blender/build_v27_local_gap_family.py` incrementally from the
   committed Stage 2b contract and this exact handoff
 
+### V27-LOCAL-003 — repeatable local-gap family checkpointed
+
+- script: `scripts/blender/build_v27_local_gap_family.py`
+- authority: `v27_local_gap_family_authority.json`
+- receipt: `v27_local_gap_family_authority_receipt.json`
+- result: `V27_LOCAL_GAP_FAMILY_CHECKPOINTED`
+- corrected_parameter_tuple_count_per_pair: `11,340`
+- stale_handoff_count: `5,040`
+- correction_reason: the exact grid has four widths, seven orientations, nine
+  independent C20 depths, nine independent C9 depths, and five allocations;
+  `4 * 7 * 9 * 9 * 5 = 11,340`
+- eligible_chain_counts: C20 `152`, C9 `8`
+- ordered_non_crossing_chain_pair_count: `1,216`
+- factorized_family_member_count: `13,789,440`
+- family_fingerprint:
+  `6b0ee763889e4bbac7af1d638ec0f1e14b709098fcfbdcb12c910d7dc5a458a9`
+- authority_sha256:
+  `14eccf5706d6325901cb9a025ca16a8cb8898dd190be672863c308403f06866d`
+- receipt_sha256:
+  `5a1da9d6636138f32c2dc3b11a5da8f1e15967fa9693d620c4a66622625c36aa`
+- repeatability: `DONE`; two default-path background-Blender executions
+  produced byte-identical authority and receipt files
+- semantic_audit: `PASS_V27_LOCAL_GAP_FAMILY_SEMANTIC_AUDIT`; code hash,
+  every chain fingerprint, every pair fingerprint, the complete family
+  fingerprint, Cartesian-product count, unique chain IDs, and all recorded
+  invariants recomputed exactly
+- rejected_implementation_attempts:
+  - treating every edge of a keepout-intersecting face as an exact barrier
+    removed all C20 chains; only exact shared source-edge barriers belong in
+    base-chain exclusion, while full keepout volumes remain reserved for exact
+    prism evaluation
+  - the first completed file was byte-repeatable but failed semantic audit
+    because endpoint frame dictionaries were aliased and mutated during pair
+    construction; copied endpoint frames resolve the mismatch
+- evaluation_started: false
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: independently review the frozen family authority, then build a
+  read-only exact member evaluator that preserves the factorized family and
+  records deterministic rejection witnesses before any Stage 3 geometry
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false
