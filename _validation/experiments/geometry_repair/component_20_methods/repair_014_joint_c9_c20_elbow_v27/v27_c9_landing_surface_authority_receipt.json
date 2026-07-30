@@ -1,0 +1,31 @@
+{
+  "authority_path": "/Users/supadava/Projects/experimental/silverhand/_validation/experiments/geometry_repair/component_20_methods/repair_014_joint_c9_c20_elbow_v27/v27_c9_landing_surface_authority.json",
+  "authority_sha256": "a1fbd4f844e423823a4852e0b6ecdaa9927069f0a013dc859d13d344891961e4",
+  "candidate_fingerprint": "23d356cf70f556fd0c15ab63e8bbd51e56c91b4c7ca4ab443908e00a523c9659",
+  "failed_invariants": [
+    "TRIANGLE_ORIENTATION_REVERSAL",
+    "EDGE_STRETCH_ABOVE_2.0_RATIO",
+    "SURFACE_CUTTER_CLEARANCE_FAILED",
+    "SOURCE_COMPLEMENT_INTERSECTION"
+  ],
+  "operation": "ANALYZE_V27_C9_LANDING_SURFACE",
+  "safety": {
+    "blend_saved": false,
+    "candidate_surface_geometry_emitted": false,
+    "gate_b_run": false,
+    "gate_d_run": false,
+    "image_work_requested": false,
+    "mutation_started": false,
+    "promotion": "NOT_PROMOTED"
+  },
+  "semantic_fingerprint": "dc811fc430dd82c6d51db54cf01e22f773a8c0712dd906c130134f868c2edd02",
+  "status": "V27_C9_LANDING_DIRECT_SURFACE_REJECTED",
+  "surface_metrics": {
+    "maximum_edge_ratio": 2.3797866395854035,
+    "maximum_triangle_aspect_ratio": 11.71642660293299,
+    "minimum_edge_ratio": 0.9205596160481258,
+    "minimum_exact_triangle_cutter_clearance_mm": 0.0,
+    "minimum_normal_dot": -0.7963564321398735,
+    "minimum_signed_sample_margin_mm": -19.07624626159668
+  }
+}

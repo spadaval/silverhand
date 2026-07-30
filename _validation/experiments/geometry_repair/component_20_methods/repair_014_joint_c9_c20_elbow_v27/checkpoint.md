@@ -845,6 +845,101 @@ promote anything.
   exact cutter clearance, and complement/keepout collisions before any mesh
   mutation or Blend save
 
+### V27-LANDING-003 — direct 11-face deformation rejected
+
+- timestamp_utc: `2026-07-30T03:12:09Z`
+- operation: move only endpoint vertices `1541` and `1543` to the reviewed
+  Stage 2c coordinates in memory, preserving the source triangulation, and
+  audit every triangle and affected edge in the exact 11-face one-ring
+- script: `scripts/blender/analyze_v27_c9_landing_surface.py`
+- first_execution_result: `V27_C9_LANDING_DIRECT_SURFACE_REJECTED`
+- first_execution_code_sha256:
+  `a9a471b7b21332301a6e981b29be9dd2720c8bb0a165f6d249da9266254c64d8`
+- first_execution_authority_sha256:
+  `2872540f60a9f82d0931d151c13011dfa08e3b3ce323be54317e4fce80a94d65`
+- first_execution_receipt_sha256:
+  `80dcf07c6e43111b3b684a7ca9e924d3412bbba74d35ac1f1929f6d3ce3a8dd3`
+- first_execution_semantic_fingerprint:
+  `6cd3935f720b7c1b4dc09c661446d62f4da9fa0789824badac02cb0d649f64b0`
+- candidate_fingerprint:
+  `23d356cf70f556fd0c15ab63e8bbd51e56c91b4c7ca4ab443908e00a523c9659`
+- flipped_triangle_count: `5`
+- flipped_faces: `[2231, 2235, 2239, 2240, 2244]`
+- minimum_source_normal_dot: `-0.7963564321398735`
+- affected_edge_ratio_range: `[0.9205596160481258, 2.3797866395854035]`
+- over-stretched_edge: source edge `2955`, vertices `[1537, 1543]`,
+  ratio `2.3797866395854035`
+- maximum_triangle_aspect_ratio: `11.71642660293299`
+- cutter_rejecting_triangle_count: `9`
+- minimum_exact_triangle_cutter_clearance_mm: `0.0`
+- minimum_signed_sample_margin_mm: `-19.07624626159668`
+- self_intersection_conflict_count: `0`
+- provisional_absolute_complement_overlap_count: `45`
+- audit_correction_required: the first complement check records absolute patch
+  overlap against the complete source complement. Because the frozen source
+  can contain pre-existing cross-component contacts, the final complement
+  claim must compare the original patch and candidate patch and reject only
+  new overlap pairs or worsened witnesses. The provisional absolute count is
+  retained as implementation evidence but is not independently used to
+  characterize the direct deformation.
+- controlling_rejections_independent_of_that_correction: five flipped
+  triangles, one edge above the existing `2.0` stretch bound, and nine
+  triangle-level cutter failures
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: add baseline-delta overlap evidence, repeat the authority, and
+  then enumerate a distributed landing-surface family rather than retrying the
+  rejected two-vertex drag
+
+### V27-LANDING-004 — corrected direct-surface authority checkpointed
+
+- operation: repeat V27-LANDING-003 with original-versus-candidate overlap
+  deltas so pre-existing source contacts are retained as baseline evidence
+  instead of being mislabeled as reconstruction regressions
+- result: `V27_C9_LANDING_DIRECT_SURFACE_REJECTED`
+- authority: `v27_c9_landing_surface_authority.json`
+- receipt: `v27_c9_landing_surface_authority_receipt.json`
+- code_sha256:
+  `a40c07eb48537f019ddbcd04fa2abea713d4bd0762ac6ae19a85846c19d12f99`
+- authority_sha256:
+  `a1fbd4f844e423823a4852e0b6ecdaa9927069f0a013dc859d13d344891961e4`
+- receipt_sha256:
+  `dc26f4bfb4faa67ae5be0f930e304cfc68559950b5bcc8dd5c6b05e809cab59d`
+- semantic_fingerprint:
+  `dc811fc430dd82c6d51db54cf01e22f773a8c0712dd906c130134f868c2edd02`
+- candidate_fingerprint:
+  `23d356cf70f556fd0c15ab63e8bbd51e56c91b4c7ca4ab443908e00a523c9659`
+- complement_overlap_delta:
+  - baseline conflict pairs: `29`
+  - candidate conflict pairs: `45`
+  - new conflict pairs: `28`
+  - resolved conflict pairs: `12`
+  - retained conflict pairs: `17`
+- self_overlap_delta:
+  - baseline conflict pairs: `1`
+  - candidate conflict pairs: `0`
+  - new conflict pairs: `0`
+- controlling_rejections:
+  - five flipped triangles, on faces
+    `[2231, 2235, 2239, 2240, 2244]`
+  - source edge `2955` stretched to ratio `2.3797866395854035`
+  - nine of eleven patch triangles fail the exact/signed cutter contract
+  - 28 new source-complement intersection pairs
+- repeatability: `DONE`; two final background-Blender executions produced
+  byte-identical authority and receipt hashes
+- named_audit: `PASS_V27_C9_DIRECT_SURFACE_AUTHORITY_AUDIT`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: enumerate a finite distributed one-ring surface family with
+  interior/control displacements shared across the landing patch; do not retry
+  the endpoint-only deformation
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false

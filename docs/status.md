@@ -446,12 +446,14 @@ Its only negative-space incidence is the intended central flex opening. The
 authority is repeat-identical and passes
 `PASS_V27_C9_LANDING_AUTHORITY_AUDIT`.
 
-No surface has been mutated or accepted yet. The immediate reconstruction
-question is whether the complete 11-face landing one-ring can absorb that
-endpoint relocation without triangle inversion, unacceptable distortion or
-edge stretch, source-complement collision, or loss of `1.7 mm` cutter
-clearance. Only a passing read-only surface feasibility result may authorize
-an experimental candidate Blend and a revised local flex-gap footprint.
+No surface has been mutated or accepted yet. The direct deformation of only
+those two endpoints is now repeatably rejected: it flips five triangles,
+stretches one affected edge to `2.3797866395854035` of its source length,
+leaves nine of eleven patch triangles below the exact/signed cutter contract,
+and creates 28 new source-complement intersection pairs. There is no new
+self-intersection. The endpoint clearance solution remains useful as a target,
+but the complete 11-face one-ring needs a distributed reconstruction whose
+other controls absorb the relocation.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -561,11 +563,13 @@ transformation evidence, not a salvage library for production.
    SHA-256
    `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
 2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
-3. For component `20`, evaluate the Stage 2c C9 11-face landing surface around
-   edge `12916` using the accepted endpoint relocation. Require preserved
-   orientation, bounded distortion and edge stretch, exact complement and
-   keepout separation, and at least `1.7 mm` cutter clearance before emitting
-   an experimental surface candidate or revising the flex-gap footprint.
+3. For component `20`, enumerate a finite distributed reconstruction family
+   for the Stage 2c C9 11-face landing around edge `12916`. Preserve the
+   reviewed endpoint clearance target while moving the remaining one-ring
+   controls coherently. Require preserved orientation, edge ratios
+   `0.5–2.0`, bounded triangle quality, exact baseline-delta complement
+   separation, and at least `1.7 mm` cutter clearance before emitting an
+   experimental surface candidate or revising the flex-gap footprint.
 4. After component `20`, preserve component `9`'s exterior and rebuild only
    its two dominant wearer-facing patches. Do not rerun whole-component
    displacement or wider diffusion.
