@@ -453,7 +453,13 @@ leaves nine of eleven patch triangles below the exact/signed cutter contract,
 and creates 28 new source-complement intersection pairs. There is no new
 self-intersection. The endpoint clearance solution remains useful as a target,
 but the complete 11-face one-ring needs a distributed reconstruction whose
-other controls absorb the relocation.
+other controls absorb the relocation. A necessary-boundary audit now proves
+that even this is insufficient inside the current mask: fixed boundary
+vertices `1542`, `1539`, and `1537` have signed cutter margins
+`-9.346299369`, `-12.143722862`, and `-4.560815901 mm`. No interior
+retopology can pass while those boundary samples remain fixed. The exact ten
+outside faces incident to them must be classified before any deliberate mask
+expansion.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -563,13 +569,14 @@ transformation evidence, not a salvage library for production.
    SHA-256
    `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
 2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
-3. For component `20`, enumerate a finite distributed reconstruction family
-   for the Stage 2c C9 11-face landing around edge `12916`. Preserve the
-   reviewed endpoint clearance target while moving the remaining one-ring
-   controls coherently. Require preserved orientation, edge ratios
-   `0.5–2.0`, bounded triangle quality, exact baseline-delta complement
-   separation, and at least `1.7 mm` cutter clearance before emitting an
-   experimental surface candidate or revising the flex-gap footprint.
+3. For component `20`, classify the exact ten-face expansion required by the
+   Stage 2c boundary necessity proof:
+   `[2220, 2221, 2222, 2224, 2225, 2226, 2229, 2233, 2283, 2284]`.
+   Check aggregate ownership, visible/source role, terminals, and negative
+   space before revising the mask. Only then enumerate a distributed surface
+   family with preserved orientation, edge ratios `0.5–2.0`, bounded triangle
+   quality, exact baseline-delta complement separation, and at least `1.7 mm`
+   cutter clearance.
 4. After component `20`, preserve component `9`'s exterior and rebuild only
    its two dominant wearer-facing patches. Do not rerun whole-component
    displacement or wider diffusion.

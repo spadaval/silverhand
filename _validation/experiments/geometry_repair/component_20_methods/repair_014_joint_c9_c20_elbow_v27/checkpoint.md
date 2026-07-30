@@ -940,6 +940,72 @@ promote anything.
   interior/control displacements shared across the landing patch; do not retry
   the endpoint-only deformation
 
+### V27-LANDING-005 — 11-face fixed boundary proven infeasible
+
+- timestamp_utc: `2026-07-30T03:16:58Z`
+- operation: derive the exact simple boundary loop of the 11-face landing mask
+  and test every fixed boundary vertex against the exact cutter
+- script: `scripts/blender/analyze_v27_c9_landing_boundary.py`
+- result: `V27_C9_LANDING_MASK_EXPANSION_REQUIRED`
+- boundary_vertex_count: `9`
+- ordered_boundary_vertex_ids:
+  `[625, 626, 1546, 1545, 1544, 1542, 1539, 1537, 1538]`
+- failing_boundary_vertex_count: `3`
+- failing_boundary_vertices:
+  - vertex `1542`: signed margin `-9.346299369 mm`
+  - vertex `1539`: signed margin `-12.143722862 mm`
+  - vertex `1537`: signed margin `-4.560815901 mm`
+- necessary_result: no triangulation or added interior control confined to
+  the current 11-face boundary can satisfy the `1.7 mm` surface-clearance gate,
+  because every retained surface incident to those fixed vertices inherits a
+  below-threshold boundary sample
+- exact_adjacent_faces_required_for_any_boundary_motion:
+  `[2220, 2221, 2222, 2224, 2225, 2226, 2229, 2233, 2283, 2284]`
+- first_execution_code_sha256:
+  `a3321c699a1878adda45d0186c653900107e93eb33f4876f62932092f31f30cd`
+- first_execution_authority_sha256:
+  `83b7c5ed527f241a8e4e31b5e125ec395fd8c8ebe9cdc8bcce419bddd53079f6`
+- first_execution_receipt_sha256:
+  `906ae6e96bf55e7166e50a55e2306a1511fa8afe5f21dc4f007dcd3b32e9078d`
+- first_execution_semantic_fingerprint:
+  `119692a2c8a62d956f5089a39bf0629d0e2e6a55d468891c42694e1b49e13848`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: repeat and audit this necessary-boundary authority, then
+  classify the exact ten-face expansion before enumerating surface geometry
+
+### V27-LANDING-006 — boundary necessity authority checkpointed
+
+- result: `V27_C9_LANDING_MASK_EXPANSION_REQUIRED`
+- authority: `v27_c9_landing_boundary_authority.json`
+- receipt: `v27_c9_landing_boundary_authority_receipt.json`
+- code_sha256:
+  `a3321c699a1878adda45d0186c653900107e93eb33f4876f62932092f31f30cd`
+- authority_sha256:
+  `83b7c5ed527f241a8e4e31b5e125ec395fd8c8ebe9cdc8bcce419bddd53079f6`
+- receipt_sha256:
+  `906ae6e96bf55e7166e50a55e2306a1511fa8afe5f21dc4f007dcd3b32e9078d`
+- semantic_fingerprint:
+  `119692a2c8a62d956f5089a39bf0629d0e2e6a55d468891c42694e1b49e13848`
+- repeatability: `DONE`; two default-path background-Blender executions
+  produced byte-identical authority and receipt hashes
+- named_audit: `PASS_V27_C9_LANDING_BOUNDARY_NECESSITY_AUDIT`
+- consequence: the next finite family must first classify and deliberately
+  authorize an expanded boundary; searching retopologies inside the 11-face
+  mask would be knowingly impossible
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: classify faces
+  `[2220, 2221, 2222, 2224, 2225, 2226, 2229, 2233, 2283, 2284]`
+  against aggregate ownership, visible/source role, terminals, and negative
+  space before revising the reconstruction mask
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false
