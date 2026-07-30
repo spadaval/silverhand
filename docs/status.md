@@ -437,9 +437,21 @@ too.
 The controlling dependency is now exact C9 source edge `12916`, vertices
 `1541–1543`. It is a boundary-to-boundary chain whose frozen zero endpoint
 taper leaves the entire segment on the cutter. Another interior gap-prism
-search is not justified. The next reconstruction must deliberately rebuild
-that C9 landing and its finite adjacent boundary dependencies before defining
-a new gap footprint.
+search is not justified. A finite `11,250`-member Stage 2c endpoint family now
+solves that dependency read-only. The first accepted member moves vertices
+`1541` and `1543` by `4 mm` and `8 mm`, retains `2.012107006124184 mm` exact
+segment-to-cutter clearance, changes the edge length by less than `0.04%`, and
+touches no immutable-complement face, terminal, or protected non-flex opening.
+Its only negative-space incidence is the intended central flex opening. The
+authority is repeat-identical and passes
+`PASS_V27_C9_LANDING_AUTHORITY_AUDIT`.
+
+No surface has been mutated or accepted yet. The immediate reconstruction
+question is whether the complete 11-face landing one-ring can absorb that
+endpoint relocation without triangle inversion, unacceptable distortion or
+edge stretch, source-complement collision, or loss of `1.7 mm` cutter
+clearance. Only a passing read-only surface feasibility result may authorize
+an experimental candidate Blend and a revised local flex-gap footprint.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -549,11 +561,11 @@ transformation evidence, not a salvage library for production.
    SHA-256
    `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
 2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
-3. For component `20`, replace only major clusters 0 and 1 with local
-   wearer-facing surfaces that retain the source's stepped angular depth.
-   Reject any transition construction that increases boundary-edge count,
-   creates an additional component, or smooths the inner surface into a broad
-   carrier-like field.
+3. For component `20`, evaluate the Stage 2c C9 11-face landing surface around
+   edge `12916` using the accepted endpoint relocation. Require preserved
+   orientation, bounded distortion and edge stretch, exact complement and
+   keepout separation, and at least `1.7 mm` cutter clearance before emitting
+   an experimental surface candidate or revising the flex-gap footprint.
 4. After component `20`, preserve component `9`'s exterior and rebuild only
    its two dominant wearer-facing patches. Do not rerun whole-component
    displacement or wider diffusion.

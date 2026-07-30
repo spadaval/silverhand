@@ -789,6 +789,62 @@ promote anything.
 - next_action: materialize the read-only finite landing solver and identify
   the minimum-displacement exact-clearance endpoint pair
 
+### V27-LANDING-002 — C9 landing clearance solved
+
+- timestamp_utc: `2026-07-30T03:07:44Z`
+- script: `scripts/blender/analyze_v27_c9_landing.py`
+- authority: `v27_c9_landing_authority.json`
+- receipt: `v27_c9_landing_authority_receipt.json`
+- result: `V27_C9_LANDING_CLEARANCE_SOLVED`
+- finite_family_member_count: `11,250`
+- evaluated_member_count: `3,727`
+- selected_member_index: `3,726`
+- selected_endpoint_offsets_mm: `[4, 8]`
+- selected_common_direction:
+  `[-0.43621088003759323, -0.8956946816447896, -0.08631978573923607]`
+- selected_moved_endpoint_coordinates_mm:
+  - vertex `1541`:
+    `[129.75852867223244, -58.06972101783892, -79.26974050770303]`
+  - vertex `1543`:
+    `[146.08819381907426, -70.54518086624425, -56.58676037331623]`
+- exact_minimum_segment_cutter_distance_mm: `2.012107006124184`
+- minimum_signed_sample_margin_mm: `2.0413452591747046`
+- edge_length_ratio: `1.0003974793505002`
+- source_complement_hit_count: `0`
+- terminal_hit_count: `0`
+- protected_nonflex_keepout_hit_count: `0`
+- flex_opening_merge: the candidate intersects nine recorded
+  central-opening cells; this is explicit intended flex-opening incidence,
+  not permission to fill the opening
+- code_sha256:
+  `3f87ef5e1bfe63be6a094d9db42fa68a335d1dfa9e22de86bc735f5d721e29b0`
+- family_fingerprint:
+  `b36e91661ae9be29d28217b65e8a1d5f8028f6d29ab0642579615a205321dfde`
+- selection_fingerprint:
+  `cd1f20883f0edfdef9548e153bc8fce344e2bbc356db7eb28f55329c7d900ddf`
+- authority_sha256:
+  `c2529003261cf0f086c6de01bb700474fc6dfa3c016e03671cf928effa79dfc6`
+- receipt_sha256:
+  `e947c383ab4d093a0274160c4d7faa83df1ea4efd98bd36b5134a59807bb285a`
+- semantic_fingerprint:
+  `a0a4ea1383c378f0cbc18b544108e393817a217da09f4f6c52e163eaf6f3e455`
+- repeatability: `DONE`; two default-path background-Blender executions
+  produced byte-identical authority and receipt hashes
+- named_audit: `PASS_V27_C9_LANDING_AUTHORITY_AUDIT`
+- rejection_counts_before_selection:
+  - cutter clearance: `3,696`
+  - protected negative space: `5`
+  - source complement: `25`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: evaluate the complete 11-face landing surface produced by this
+  endpoint relocation for triangle orientation, distortion, edge stretch,
+  exact cutter clearance, and complement/keepout collisions before any mesh
+  mutation or Blend save
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false
