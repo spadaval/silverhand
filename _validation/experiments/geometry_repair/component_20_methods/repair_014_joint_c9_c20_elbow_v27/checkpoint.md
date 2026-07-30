@@ -1127,6 +1127,77 @@ promote anything.
   `2222`, `2224`, `2226`, `2284`, while keeping faces
   `2220`, `2221`, `2225`, `2233` byte-for-byte immutable
 
+### V27-LANDING-010 — split-incidence topology materialized
+
+- timestamp_utc: `2026-07-30T03:40:20Z`
+- script: `scripts/blender/build_v27_c9_split_incidence_authority.py`
+- result: `V27_C9_SPLIT_INCIDENCE_AUTHORITY_CHECKPOINTED`
+- reconstruction_source_face_count: `17`
+- reconstruction_source_face_ids:
+  `[2222, 2224, 2226, 2227, 2228, 2229, 2230, 2231, 2232, 2235, 2239,
+  2240, 2243, 2244, 2245, 2283, 2284]`
+- protected_visible_face_ids: `[2220, 2221, 2225, 2233]`
+- split_source_vertex_ids: `[1537, 1539, 1542]`
+- split_incidence_partitions:
+  - vertex `1537`: reconstructed faces `[2222, 2227, 2230, 2231]`;
+    visible immutable faces `[2220, 2221, 2225]`
+  - vertex `1539`: reconstructed faces `[2224, 2226, 2227, 2228, 2229]`;
+    visible immutable face `[2225]`
+  - vertex `1542`: reconstructed faces `[2228, 2229, 2232, 2283, 2284]`;
+    visible immutable face `[2233]`
+- unaccounted_incident_face_count: `0`
+- symbolic_reconstruction_boundary_edge_count: `15`
+- exact_barrier_edges: `[10392, 12914, 12919]`
+- barrier_edge_split_vertex_incidence: none
+- protected_route: face `2283` remains constraint-only; never bridge, fill,
+  or narrow its exact source-open route
+- first_execution_code_sha256:
+  `d84a0bf97724da875d1f7db752101177e022794172f2f29ee060d2af01358428`
+- first_execution_authority_sha256:
+  `1e0b9da47116bb23e45cbfc5ef1259cd1733a4aeb1d2bbfadc1bf7724a63ab72`
+- first_execution_receipt_sha256:
+  `d24aa2d6a3fe9694e22307819c281b4937019f1a08a527541952772a1c842910`
+- first_execution_semantic_fingerprint:
+  `66bf882d58a0232afe11485d14f158febaacc80569273707f00b8acf1378bd31`
+- reconstruction_authority_fingerprint:
+  `1e920e9100dddff3adf250ee76c5b0a1cfe98e4eff24b7b63ec0338ddec57bfd`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: repeat and semantically audit the split authority before
+  enumerating displaced coordinates or surface triangulations
+
+### V27-LANDING-011 — split-incidence authority checkpointed
+
+- result: `V27_C9_SPLIT_INCIDENCE_AUTHORITY_CHECKPOINTED`
+- authority: `v27_c9_split_incidence_authority.json`
+- receipt: `v27_c9_split_incidence_authority_receipt.json`
+- code_sha256:
+  `d84a0bf97724da875d1f7db752101177e022794172f2f29ee060d2af01358428`
+- authority_sha256:
+  `1e0b9da47116bb23e45cbfc5ef1259cd1733a4aeb1d2bbfadc1bf7724a63ab72`
+- receipt_sha256:
+  `d24aa2d6a3fe9694e22307819c281b4937019f1a08a527541952772a1c842910`
+- semantic_fingerprint:
+  `66bf882d58a0232afe11485d14f158febaacc80569273707f00b8acf1378bd31`
+- reconstruction_authority_fingerprint:
+  `1e920e9100dddff3adf250ee76c5b0a1cfe98e4eff24b7b63ec0338ddec57bfd`
+- repeatability: `DONE`; two background-Blender executions produced
+  byte-identical authority and receipt hashes
+- named_audit: `PASS_V27_C9_SPLIT_INCIDENCE_AUTHORITY_AUDIT`
+- mutation_started: false
+- geometry_emitted: false
+- blend_saved: false
+- images_requested: false
+- promotion: `NOT_PROMOTED`
+- next_action: enumerate a finite coordinate family for the three new inner
+  split vertices plus landing vertices `1541` and `1543`, holding the 15
+  symbolic boundary edges, three exact barrier edges, four visible faces, and
+  protected source-open route as hard constraints before testing candidate
+  triangulations
+
 - mutation_started: false
 - geometry_emitted: false
 - blend_saved: false

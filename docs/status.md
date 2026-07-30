@@ -474,7 +474,12 @@ All three failing boundary vertices are shared with at least one protected
 visible face, so direct source-vertex motion remains forbidden. The next
 architecture must split reconstructed-side incidences from the visible source
 sheet: preserve the exterior vertices/faces exactly while duplicating and
-rebuilding only the inner landing side.
+rebuilding only the inner landing side. That symbolic topology authority is
+now repeatably checkpointed: 17 reconstruction faces, four protected visible
+faces, and split inner-side duplicates for source vertices `1537`, `1539`,
+and `1542`, with every incident face uniquely partitioned. Exact barrier edges
+`10392`, `12914`, and `12919` use no split vertex. No geometry has yet been
+emitted or mutated.
 
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
@@ -584,13 +589,13 @@ transformation evidence, not a salvage library for production.
    SHA-256
    `ff603514cacfc1b99d4ecf2c4548f1291b80164afdc16b0be0e77652c4f7942e`.
 2. Resume from `blender_files/Johnny_geometry_repair_work.blend`.
-3. For component `20`, materialize the read-only split-incidence authority for
-   the C9 landing. Keep faces `[2220, 2221, 2225, 2233]` and their visible
-   source vertices exact. Permit only reconstructed-side duplicates for the
-   11-face landing, selected faces `[2229, 2283]`, and conditional inner faces
-   `[2222, 2224, 2226, 2284]`. Preserve barrier edges `12914`, `12919`, and
-   `10392`, all intentional openings, and face `2283`'s protected source-open
-   route before enumerating any surface geometry.
+3. For component `20`, enumerate the finite coordinate family authorized by
+   the C9 split-incidence topology: move only the three new inner split
+   vertices and landing vertices `1541`, `1543`; hold the 15 symbolic boundary
+   edges, protected visible faces, exact barriers, openings, and source-open
+   route as hard constraints. Test orientation, edge ratios, triangle quality,
+   baseline-delta complement separation, and `1.7 mm` cutter clearance before
+   emitting any surface geometry.
 4. After component `20`, preserve component `9`'s exterior and rebuild only
    its two dominant wearer-facing patches. Do not rerun whole-component
    displacement or wider diffusion.
