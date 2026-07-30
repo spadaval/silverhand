@@ -292,22 +292,22 @@ def clearance_summary(clearance: dict) -> dict:
         if record["minimum_signed_sample_margin_mm"] is not None
     )
     maximum_spacing = max(
-        max(
-            (
-                step["maximum_edge_step_mm"]
-                for step in record["adaptive_samples"]["refinement_history"]
-            ),
-            default=0.0,
+        (
+            record["adaptive_samples"]["refinement_history"][-1][
+                "maximum_edge_step_mm"
+            ]
+            if record["adaptive_samples"]["refinement_history"]
+            else 0.0
         )
         for record in records
     )
     maximum_variation = max(
-        max(
-            (
-                step["maximum_adjacent_signed_margin_variation_mm"]
-                for step in record["adaptive_samples"]["refinement_history"]
-            ),
-            default=0.0,
+        (
+            record["adaptive_samples"]["refinement_history"][-1][
+                "maximum_adjacent_signed_margin_variation_mm"
+            ]
+            if record["adaptive_samples"]["refinement_history"]
+            else 0.0
         )
         for record in records
     )

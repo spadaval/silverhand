@@ -197,3 +197,56 @@ These are real closed mesh solids, but still evaluation geometry. The next
 bounded work is wearer-contact edge treatment and a small physical TPU process
 coupon. Detailed exterior junctions, closure hardware, motion architecture,
 and production export remain deferred.
+
+## V28-EDGE-001
+
+Checkpointed before geometry mutation on 2026-07-30.
+
+Test reversible edge softening on duplicates of the exact accepted physical
+shells:
+
+- input Blend SHA-256:
+  `64366dc52290552416fa7ac478d6bc289adb8ff63fa1de6ca4c84f9e1c80bd68`;
+- preserve the accepted physical-shell objects and mesh datablocks exactly;
+- duplicate each panel into an evaluation-only softened object;
+- add one unapplied Bevel modifier per duplicate;
+- initial bevel width: `0.4 mm`;
+- segments: `2`;
+- limit method: angle, affecting only the sharp square rim transitions;
+- keep the modifier live and removable.
+
+The evaluated modifier output—not the unchanged base mesh—must retain one
+closed positive-volume component per panel, zero boundary/non-manifold edges,
+zero cutter violations, and zero self/cross-panel overlaps. If `0.4 mm` fails,
+retain the rejection report and reduce only the explicit width; do not move the
+accepted inner scaffold or rewrite the shell topology.
+
+This is wearer-contact staging, not a comfort, print, or physical-fit claim.
+
+## V28-EDGE-001 result
+
+The live `0.4 mm`, two-segment bevel passed machine and independent visual
+review:
+
+- disposable Blend SHA-256:
+  `e8f35c4b3f58d44b85d03caa41f1e1cd9a5a3b3fe25ab569c524a2f9c895a913`;
+- all three accepted physical-shell objects remain unchanged;
+- all three softened duplicates retain one positive-volume component with zero
+  boundary and non-manifold edges;
+- all `7,236` evaluated triangles pass the cutter contract;
+- minimum exact triangle-to-cutter distance: `1.813714 mm`;
+- minimum signed adaptive margin: `1.830236 mm`;
+- maximum converged adjacent signed-margin variation: `0.420379 mm`;
+- self-overlap pairs: `0`;
+- cross-panel overlap pairs: `0`;
+- visual result: `ACCEPT_FOR_NEXT_DISPOSABLE_ITERATION`;
+- visual classification SHA-256:
+  `8e34120b287dff35538909ba314b7e657b923415e29176554d4bce04c736321b`.
+
+Seven exact before/softened camera pairs show a subtle but consistent rounded
+rim band. The seams and opening remain unobstructed; no missing wall, pinch,
+wave, bulge, spike, twist, fold-over, crossing, bridge, or meaningful
+silhouette damage is visible.
+
+Keep the modifiers unapplied. Before application or promotion, print a small
+TPU coupon representing the `1.6 mm` wall and `0.4 mm` softened rim.

@@ -572,6 +572,28 @@ SHA-256:
 The shells are physical mesh topology, not yet a wearable-panel promotion or
 print candidate.
 
+Reversible wearer-contact softening is now accepted for the next disposable
+iteration:
+
+- `blender_files/experiments/geometry_repair/repair_014_joint_c9_c20_elbow_v28_reversible_edge_softening.blend`
+- SHA-256
+  `e8f35c4b3f58d44b85d03caa41f1e1cd9a5a3b3fe25ab569c524a2f9c895a913`
+
+Each physical shell was duplicated and given one live, unapplied, angle-limited
+Bevel modifier: `0.4 mm` width, two segments, `0.5` profile. The accepted
+physical-shell objects and mesh datablocks remain unchanged. All `7,236`
+evaluated triangles pass cutter clearance; minimum exact distance is
+`1.813714 mm` and minimum signed adaptive margin is `1.830236 mm`. Evaluated
+outputs remain closed positive-volume solids with zero boundary/non-manifold
+edges and zero self/cross-panel overlap pairs.
+
+Independent review of seven sanitized before/softened camera pairs found the
+rounding subtle but consistently visible, with continuous rims, retained seams
+and opening, and no wall loss, pinching, waviness, fold-over, crossing, bridge,
+or meaningful silhouette damage. Classification SHA-256:
+`8e34120b287dff35538909ba314b7e657b923415e29176554d4bce04c736321b`.
+The modifiers remain unapplied pending a representative TPU wall/rim coupon.
+
 Component `9` follows with the same bounded classification principle; do not
 reconstruct coincident component-9 and component-20 inner layers twice.
 
@@ -687,10 +709,9 @@ transformation evidence, not a salvage library for production.
    247-face provisional removal list as deletion authority.
 5. Preserve the accepted closed physical shells as the current V28
    engineering checkpoint.
-6. Design a bounded wearer-contact treatment for the square opening and axial
-   rims without moving the accepted inner clearance surface.
-7. Print a small representative TPU thickness/rim coupon before assigning
-   physical authority to the provisional `1.6 mm` wall.
+6. Preserve the accepted `0.4 mm` live bevel modifiers unapplied.
+7. Print a small representative `1.6 mm` wall / `0.4 mm` softened-rim TPU
+   coupon before assigning physical authority or applying the modifiers.
 8. Reattach retained exterior forms with bounded standoffs or junctions;
    modest relocation or trimming is allowed when exact placement conflicts
    with wearability.

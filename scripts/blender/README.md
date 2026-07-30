@@ -28,6 +28,12 @@ junctions, or source detail until its independent layout review is recorded.
 The physical shells still have square staging rims. They are not closure,
 motion, source-junction, print, or production authority.
 
+- `build_v28_reversible_edge_softening.py` — duplicates the exact accepted
+  physical shells, adds live angle-limited Bevel modifiers, and audits the
+  evaluated result for closed positive volume, cutter clearance, and
+  self/cross-panel overlap. It never applies a modifier or edits the accepted
+  shell objects.
+
 ## Historical V27 evidence
 
 The following scripts remain runnable only to reproduce rejected evidence:
