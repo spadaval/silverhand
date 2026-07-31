@@ -110,6 +110,27 @@ connected master or print candidate. The promotion preserved all `76`
 preexisting master objects, added zero image datablocks, and is recorded in
 `validation_reviews/v03_editable_main/promotion.json`.
 
+### A1 mini segmentation evidence
+
+A non-promoted segmentation experiment replaces only `V03_MAJOR_0` and
+`V03_MAJOR_1` with four capped transverse segments:
+
+- file:
+  `.work/runs/full_prototype_v03_solid/full_prototype_v03_candidate_segmented.blend`;
+- SHA-256:
+  `069a4150e9d76cf593ca7bf893494b33eb53f8034bcb2849abbd9e8ea6146162`;
+- segment longest PCA extents: `173.009`, `143.665`, `162.425`, and
+  `150.494 mm`;
+- topology-and-clearance result: `PASS`;
+- visual result: `KEEP`;
+- `does_this_look_ass: false`.
+
+All `61` structural constituents now have a demonstrated PCA-oriented
+preflight fit inside the `180 mm` cube. The two seams preserve the silhouette,
+hero details, open elbow, wearer openings, fitted patch, cables, and bicep
+bracket. This is bed-fit geometry evidence only; it has no joint-strength,
+tolerance, slicer, or physical-process claim.
+
 ## Retained wearer-side prototypes
 
 `25_ENGINEERING_PROTOTYPES` contains:
@@ -164,7 +185,9 @@ not test a sufficiently representative arm feature to justify blocking work.
 - The remaining `23` detached objects are classified as post-print detail.
   They total only `0.503%` of candidate volume and do not drive the structural
   network.
-- Large armor voids have not been classified with the armor shown in place.
+- Deferred armor has now been classified in place: it explains tactical
+  dorsal-forearm skin and local lateral-elbow hardpoint coverage only. It does
+  not solve the elbow span, medial rail/cable attachments, or wearer closures.
 
 ### Wearability
 
@@ -184,19 +207,22 @@ not test a sufficiently representative arm feature to justify blocking work.
   established.
 - The two local dorsal-bicep junctions are approved for the coarse prototype;
   no armor hardpoints or additional junction process is approved.
-- No A1 mini segmentation or weld plan exists.
+- A1 mini segmentation geometry exists and is visually accepted. Its joint
+  keys/tolerances, assembly access, weld/adhesive method, and slicer plan remain
+  unresolved.
 - `exports/current/` remains empty.
 
 ## Immediate next work
 
-1. Review the six armor references in place and classify each visible void as
-   intentional negative space, armor-covered space, or a genuine support need.
-2. Add only the closure hardware and hidden support required
+1. Add only the closure hardware and hidden support required
    for a durable worn load path. Preserve the open elbow and intended voids.
-3. Apply reversible edge softening to the wearer openings and fitted-patch
+2. Apply reversible edge softening to the wearer openings and fitted-patch
    collar, then repeat the clearance and visual gates.
-4. Segment the retained structural pieces for the `180 mm` A1 mini envelope
-   and define their weld, fastener, strap, or glue interfaces.
+3. Define the accepted four-piece segmentation prototype's weld, fastener, or
+   adhesive interfaces. Preserve assembly access around the lower elbow-side
+   seam.
+4. Refit the forearm plate and primary elbow armor only after main closure and
+   flex architecture are stable.
 5. After closure and segmentation are explicit, begin broad wrist-to-bicep
    refinement from the promoted editable geometry.
 
