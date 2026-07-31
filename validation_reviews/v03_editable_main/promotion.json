@@ -1,0 +1,36 @@
+{
+  "status": "DONE",
+  "date": "2026-07-30",
+  "input_master_sha256": "e837fa51c98ce258a56dabb2aecfd7cc7d9e79bc29203f5aaacd0fca8cb4a218",
+  "promoted_source_checkpoint": ".work/runs/full_prototype_v03_solid/full_prototype_v03_candidate_roles_classified.blend",
+  "promoted_source_sha256": "0c09e5230daabdbd05e1c7ffb7798726fda5ff04aea3938726de49a91a46f13e",
+  "output_master": "reference/Johnny.blend",
+  "output_master_sha256": "ab57ad38c4b88afecac86889ee145d8acd88774fb2799b79ce8c4acc6c64976f",
+  "preexisting_objects_preserved": 76,
+  "changed_existing_objects": [],
+  "promoted_mesh_objects": 84,
+  "role_counts": {
+    "STRUCTURAL_NETWORK": 61,
+    "POST_PRINT_DETAIL": 23
+  },
+  "scene_counts": {
+    "objects": 160,
+    "meshes": 149,
+    "collections": 13,
+    "cameras": 8,
+    "images": 0
+  },
+  "units": {
+    "length_unit": "MILLIMETERS",
+    "scale_length": 0.001
+  },
+  "claims": {
+    "scene_integrity": "PASS",
+    "topology_and_clearance": "PASS",
+    "visual_result": "KEEP",
+    "does_this_look_ass": false,
+    "editable_main_geometry": true,
+    "connected_master": false,
+    "print_candidate": false
+  }
+}

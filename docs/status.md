@@ -4,16 +4,19 @@ Updated: 2026-07-30
 
 ## Active milestone
 
-Build a coarse, complete wrist-to-upper-bicep structural mockup from the
-source-led fitted exterior already present in the tracked master.
+Turn the accepted coarse wrist-to-upper-bicep solid mockup into a deliberate
+worn assembly: establish its minimum permanent load path, donning strategy,
+touch-safe wearer openings, and A1 mini segmentation without replacing the
+source-led exterior with a generic carrier.
 
 The mockup must remain recognizably Silverhand. It should preserve the
 mechanical silhouette, layered plates, rails, cables, hubs, armor voids, and
 intentional open spans while adding only the minimum hidden structure needed
 for clearance, donning, support, and eventual assembly.
 
-This is a whole-arm architecture pass. Do not return to component-by-component
-vertex repair or replace the exterior with a generic anatomical carrier.
+This remains a whole-arm architecture pass. Do not return to
+component-by-component vertex repair or replace the exterior with a generic
+anatomical carrier.
 
 ## Tracked authority
 
@@ -21,11 +24,11 @@ Master:
 
 - file: `reference/Johnny.blend`
 - SHA-256:
-  `e837fa51c98ce258a56dabb2aecfd7cc7d9e79bc29203f5aaacd0fca8cb4a218`
+  `ab57ad38c4b88afecac86889ee145d8acd88774fb2799b79ce8c4acc6c64976f`
 - units: millimeters
-- objects: `76`
-- meshes: `65`
-- collections: `10`
+- objects: `160`
+- meshes: `149`
+- collections: `13`
 - cameras: `8`
 - images: `0`
 
@@ -40,6 +43,7 @@ The 2026-07-30 master promotion is recorded in
 | `10_FIT_TOOLS` | fit references and non-printable clearance cutters |
 | `20_FITTED_SURFACE` | current source-led whole-arm fitted candidate |
 | `25_ENGINEERING_PROTOTYPES` | accepted local wearer-side engineering prototypes |
+| `30_EDITABLE_MAIN_GEOMETRY` | accepted V03 coarse solids, split into structural-network and post-print-detail children |
 | `40_DEFERRED_ARMOR` | six registered rigid-armor references; not print-ready |
 | `90_VALIDATION_CAMERAS` | canonical matched-view cameras |
 
@@ -69,6 +73,42 @@ surface-triangle intersection pairs and `255` candidate vertices inside
 `CUT_CLEARANCE_ANATOMY_STRAIGHT`. These are known whole-arm clearance defects,
 not a promotion pass. The retained shape keys and repairs are active in that
 measurement.
+
+## Accepted experimental solid mockup
+
+The current experimental authority is:
+
+- file: `reference/Johnny.blend`;
+- collection: `30_EDITABLE_MAIN_GEOMETRY`;
+- promoted source checkpoint:
+  `.work/runs/full_prototype_v03_solid/full_prototype_v03_candidate_roles_classified.blend`;
+- SHA-256:
+  `0c09e5230daabdbd05e1c7ffb7798726fda5ff04aea3938726de49a91a46f13e`
+  for the promoted source checkpoint;
+- active printable-intent constituents: `84`;
+- topology-and-clearance result: `PASS`;
+- visual result: `KEEP`;
+- `does_this_look_ass: false`.
+
+All `84` constituents are closed, manifold, positive-volume solids with zero
+clearance-cutter triangle intersections and zero vertices inside the cutter.
+The candidate preserves the source-led wrist-to-bicep silhouette, armor voids,
+open elbow, cables, rails, separated panels, and wearer openings.
+
+Gross even-offset solidification failures have been removed. Source components
+`3` and `7` use bounded non-even, angle-clamped solidification; components
+`51` and `53` are quarantined as non-hero artifacts. The accepted fitted
+distal-forearm patch remains active.
+
+Two accepted bounded local junctions now attach the formerly detached dorsal
+bicep hero shell to the dominant structural group. They form a small
+two-strut bracket on the external shell boundary, preserve the split-bicep
+void, and do not enter the wearer opening.
+
+This is accepted **editable main geometry** in the tracked master, not a
+connected master or print candidate. The promotion preserved all `76`
+preexisting master objects, added zero image datablocks, and is recorded in
+`validation_reviews/v03_editable_main/promotion.json`.
 
 ## Retained wearer-side prototypes
 
@@ -105,14 +145,25 @@ not test a sufficiently representative arm feature to justify blocking work.
 - Reversible edge softening can remain live without invalidating the three
   retained prototypes.
 - The project does not require a smooth visible backing sleeve.
+- The complete source-led composition can be converted into individually
+  closed, cutter-clear positive solids without the catastrophic fins produced
+  by unbounded even-offset miters.
+- The repaired whole-arm solid mockup survives all eight canonical views
+  without losing its hero silhouette or filling intentional negative space.
 
 ## What remains unresolved
 
 ### Whole-arm structure
 
-- No complete permanent load path exists.
-- Retained source sheets are not globally closed printable solids.
-- The current local prototypes are not integrated into the source exterior.
+- A dominant permanent printed-contact network exists, but no complete worn
+  load path exists until the donning closure and later segment joins are
+  defined.
+- The accepted solid mockup has `20` geometric contact groups: one dominant
+  `61`-object group, one four-object group, one two-object group, and `17`
+  isolated objects.
+- The remaining `23` detached objects are classified as post-print detail.
+  They total only `0.503%` of candidate volume and do not drive the structural
+  network.
 - Large armor voids have not been classified with the armor shown in place.
 
 ### Wearability
@@ -129,25 +180,25 @@ not test a sufficiently representative arm feature to justify blocking work.
 
 ### Manufacturing
 
-- No final thickness map exists.
-- No structural junctions or armor hardpoints are approved.
+- Advisory thickness evidence exists, but no physical process minimum has been
+  established.
+- The two local dorsal-bicep junctions are approved for the coarse prototype;
+  no armor hardpoints or additional junction process is approved.
 - No A1 mini segmentation or weld plan exists.
 - `exports/current/` remains empty.
 
 ## Immediate next work
 
-1. Create one disposable whole-arm structural mockup from the tracked fitted
-   candidate; do not rebuild the exterior from generic panels.
-2. Review the six armor references in place and classify each visible void as
+1. Review the six armor references in place and classify each visible void as
    intentional negative space, armor-covered space, or a genuine support need.
-3. Preserve source-led hero forms and broadly remove only unusable hidden
-   wearer-facing sheets.
-4. Add a clean wrist interface, a simple concealed medial opening, local
-   forearm/bicep supports, and an explicitly open elbow architecture.
-5. Evaluate the entire arm for silhouette, clearance, donning, permanent
-   connectivity, and obvious injury risks before refining any local region.
-6. Only after that whole-arm pass, refine from wrist to bicep in broad
-   appearance and engineering passes.
+2. Add only the closure hardware and hidden support required
+   for a durable worn load path. Preserve the open elbow and intended voids.
+3. Apply reversible edge softening to the wearer openings and fitted-patch
+   collar, then repeat the clearance and visual gates.
+4. Segment the retained structural pieces for the `180 mm` A1 mini envelope
+   and define their weld, fastener, strap, or glue interfaces.
+5. After closure and segmentation are explicit, begin broad wrist-to-bicep
+   refinement from the promoted editable geometry.
 
 ## Recovery
 

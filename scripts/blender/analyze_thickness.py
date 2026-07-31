@@ -63,28 +63,34 @@ def ray_hit_distances(
     bvh: BVHTree,
     origin,
     direction,
-) -> list[float]:
-    distances = []
+) -> list[tuple[float, float]]:
+    hits = []
     travelled = 0.0
+    initial_origin = origin.copy()
     current = origin.copy()
     for _ in range(MAX_LINE_HITS):
-        location, _, _, distance = bvh.ray_cast(
+        location, normal, _, distance = bvh.ray_cast(
             current,
             direction,
             MAX_RAY_DISTANCE_MM - travelled,
         )
         if location is None:
-            return distances
+            return hits
         travelled += float(distance)
+        ray_distance = (location - initial_origin).dot(direction)
+        facing = normal.dot(direction)
         if (
-            not distances
-            or travelled - distances[-1] > DISTINCT_HIT_TOLERANCE_MM
+            not hits
+            or (
+                ray_distance - hits[-1][0] > DISTINCT_HIT_TOLERANCE_MM
+                and facing * hits[-1][1] < 0.0
+            )
         ):
-            distances.append(travelled)
+            hits.append((ray_distance, facing))
         current = location + direction * RAY_ADVANCE_MM
         travelled += RAY_ADVANCE_MM
         if travelled >= MAX_RAY_DISTANCE_MM:
-            return distances
+            return hits
     raise RuntimeError(
         "Cannot analyze thickness: ray traversal exceeded "
         f"{MAX_LINE_HITS} surface hits"
@@ -99,9 +105,9 @@ def thickness_along_normal(bvh: BVHTree, center, normal) -> float | None:
         hits = ray_hit_distances(bvh, origin, -outward)
         if len(hits) < 2:
             continue
-        if hits[0] > PROBE_OFFSET_MM * 2.0:
+        if hits[0][0] > PROBE_OFFSET_MM * 2.0:
             continue
-        span = hits[1] - hits[0]
+        span = hits[1][0] - hits[0][0]
         if span > DISTINCT_HIT_TOLERANCE_MM:
             candidates.append(span)
     return min(candidates) if candidates else None
